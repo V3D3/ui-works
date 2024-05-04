@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>worx ui</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />	
+    <style>
+        * {
+            color: orange;
+            font-family: Segoe UI Light, Helvetica Neue Light, SF Pro Display Light, Noto Sans Light, sans-serif;
+            user-select: none;
+            border-radius: 8pt;
+        }
+        p {
+            max-width: 40%;
+            padding: 20pt;
+            margin: 20pt;
+            border: 1px solid orange;
+            font-size: 15pt;
+        }
+        div  {
+            cursor: default;
+            margin: 20pt 20pt 20pt 20pt;
+            width: fit-content;
+            max-width: 40%;
+            border: 2px solid orange;
+            line-height: 9vh;
+            font-variant: petite-caps;
+            font-size: 35pt;
+            text-align: center;
+            padding-left: 32pt;
+            padding-right: 32pt;
+        }
+        div:hover  {
+            background: orange;
+            color: black;
+            box-shadow: 0 0 10px orange;
+            font-variant: normal;
+        }
+        ::-webkit-scrollbar  {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track  {
+            background: #503000;
+            opacity: 0.1;
+            border-radius: 100px;
+        }
+        ::-webkit-scrollbar-track:hover  {
+            background: #604000;
+            opacity: 0.2;
+        }
+        ::-webkit-scrollbar-thumb  {
+            background: orange;
+            border-radius: 100px;
+        }
+        ::-webkit-scrollbar-thumb:hover  {
+            background: #ffb510;
+        }
+        ::-webkit-scrollbar-corner  {
+            background: orange;
+            border-radius: 100px;
+        }
+    </style>
+</head> 
+<body style="background:black; overflow-x:hidden; margin:0; display:flex; flex-wrap:wrap; align-content: flex-start;">
+    <p>UI works by V3D3. Free for use. <br>1920x1080 with Segoe UI Light are recommended for viewing.</p>
+    <script>
+        let mp = '';
+        let stuffdict = {
+            'Vertex Design Scheme': 'aoohasdof'
+        }
+        let detaildict = {
+        }
+
+        function makeTile(name, i) {
+            return "<div class='tile' id='dili" + i + "' style='top: " + ((window.innerHeight * 0.025) * (2 * i + 1) + (window.innerHeight * 0.2) * i) +  "px;' onclick='runf(\"" + stuffdict[name] + "\")'>" + name + "</div>"
+        }
+
+        let i = 0;
+        for (let name in stuffdict) {
+            document.getElementsByTagName('body')[0].innerHTML += makeTile(name, stuffdict[name], i);
+            i++;
+        }
+        function runf(link)  {
+            window.location = link;
+        }
+    </script>
+    
+</body>
+</html>

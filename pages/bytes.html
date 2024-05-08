@@ -1,0 +1,234 @@
+<html>
+	<head>
+		<title>{ B Y T E S }</title>
+		<script src='../scripts/jq.js'></script>
+		<script src='../scripts/vm.js'></script>
+        <script>
+            //variables
+
+            var sW = window.innerWidth, sH = window.innerHeight;
+            var nm = 'byteman';
+            var hg = 0;
+            var inv = false;
+            var selmod = -1;
+            var invan = 0;
+            var dnm = false;
+            
+            //built
+            $(document).ready(function()  {
+                if(localStorage.getItem('hg') != undefined)  {
+                    nm = localStorage.getItem('nm');
+                    hg = localStorage.getItem('hg');
+                }  else  {
+                    inv = true;
+                }
+                initanim();
+            });
+            function loadmn()  {
+                $(document).ready(function()  {
+                    $('#lattmc').delay(200).velocity({height: '70%'}, 800, 'easeInOutExpo');
+                    $('#modeselcont').delay(200).velocity({height: '30%'}, 800, 'easeInOutExpo');
+                });
+            }
+            
+            //continuousdev
+            function initanim()  {
+                $(document).ready(function()  {
+                    var z = Math.round(Math.random() * 1);
+                    switch(z)  {
+                        case 0:
+                            $('body').append("<span id='b0' style='position: absolute; top: -100%; left: 28%; background: lime; height: 30%; width: 12%; transform: perspective(200px) rotateX(0deg); z-index: 3;'></span><span id='b1' style='position: absolute; top: 110%; left: 36%; background: lime; height: 30%; width: 12%; transform: perspective(200px) rotateX(0deg); z-index: 3;'></span><span id='b2' style='position: absolute; top: -100%; left: 44%; background: lime; height: 30%; width: 12%; transform: perspective(200px) rotateX(0deg); z-index: 3;'></span><span id='b3' style='position: absolute; top: 110%; left: 52%; background: lime; height: 30%; width: 12%; transform: perspective(200px) rotateX(0deg); z-index: 3;'></span><span id='b4' style='position: absolute; top: -100%; left: 60%; background: lime; height: 30%; width: 12%; transform: perspective(200px) rotateX(0deg); z-index: 3;'></span>");
+                            
+                            $('#b0').delay(100).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [200, 200], left: '31%', rotateX: [0, 1000]}, '900', 'easeOutExpo');
+                            $('#b1').delay(300).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [200, 200], left: '39%', rotateX: [0, 1000]}, '900', 'easeOutExpo');
+                            $('#b2').delay(500).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [200, 200], left: '47%', rotateX: [0, 1000]}, '900', 'easeOutExpo');
+                            $('#b3').delay(700).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [200, 200], left: '55%', rotateX: [0, 1000]}, '900', 'easeOutExpo');
+                            $('#b4').delay(900).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [200, 200], left: '63%', rotateX: [0, 1000]}, '900', 'easeOutExpo', function()  {
+                                $('#lattice').css('opacity', 1);
+                                $('body').css('background', '#00cc00');
+                                $('#b0').delay(100).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '28%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b1').delay(300).velocity({top: '-100%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '36%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b2').delay(500).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '44%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b3').delay(700).velocity({top: '-100%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '52%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b4').delay(900).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '60%', rotateX: [500, 0]}, '900', 'easeInExpo', function()  {
+                                    chkinv();
+                                });
+                            });
+                        break;
+                        case 1:
+                            $('body').append("<span id='b0' style='position: absolute; top: 0; left: 0; background: lime; height: 100%; width: 20%; z-index: 3;'></span><span id='b1' style='position: absolute; top: 0; left: 20%; background: lime; height: 100%; width: 20%; z-index: 3;'></span><span id='b2' style='position: absolute; top: 0; left: 40%; background: lime; height: 100%; width: 20%; z-index: 3;'></span><span id='b3' style='position: absolute; top: 0; left: 60%; background: lime; height: 100%; width: 20%; z-index: 3;'></span><span id='b4' style='position: absolute; top: 0; left: 80%; background: lime; height: 100%; width: 20%; z-index: 3;'></span>");
+                            
+                            $('#b0').delay(700).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [600, 600], left: '31%', rotateX: [0, 180]}, '900', 'easeOutExpo');
+                            $('#b1').delay(500).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [600, 600], left: '39%', rotateX: [0, 180]}, '900', 'easeOutExpo');
+                            $('#b2').delay(300).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [600, 600], left: '47%', rotateX: [0, 180]}, '900', 'easeOutExpo');
+                            $('#b3').delay(500).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [600, 600], left: '55%', rotateX: [0, 180]}, '900', 'easeOutExpo');
+                            $('#b4').delay(700).velocity({top: '42.5%', height: '15%', width: '6%', transformPerspective: [600, 600], left: '63%', rotateX: [0, 180]}, '900', 'easeOutExpo', function()  {
+                                $('#lattice').css('opacity', 1);
+                                $('body').css('background', '#00cc00');
+                                $('#b0').delay(500).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '28%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b1').delay(300).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '36%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b2').delay(100).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '44%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b3').delay(300).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '52%', rotateX: [500, 0]}, '900', 'easeInExpo');
+                                $('#b4').delay(500).velocity({top: '110%', height: '30%', width: '12%', transformPerspective: [200, 200], left: '60%', rotateX: [500, 0]}, '900', 'easeInExpo', function()  {
+                                    chkinv();
+                                });
+                            });
+                        break;
+                    }
+                });
+            }
+            function chkinv()  {
+                $(document).ready(function()  {
+                    if(inv)  {
+                        invan = Math.round(Math.random() * 1);
+                        switch(invan)  {
+                            case 0:
+                                $('#lattice').velocity({scale: [0.8, 1]}, 600, 'easeInOutExpo', function()  {
+                                    $('#lattice').delay(200).velocity({rotateY: 90, transformPerspective: [600, 600]}, 600, 'easeInExpo', function()  {
+                                        $('#lattice').css('opacity', 0);
+                                        $('#invlattice').velocity({rotateY: [360, 270], transformPerspective: [600, 600], opacity: [1, 1], scale: [0.8, 0.8]}, 600, 'easeOutExpo', function()  {
+                                            $('#invlattice').velocity({scale: [1, 0.8]}, 600, 'easeInOutExpo');
+                                            $('#inpwau').focus();
+                                        });
+                                    });
+                                });
+                            break;
+                            case 1:
+                                $('#lattice').velocity({scale: [0.8, 1]}, 600, 'easeInOutExpo', function()  {
+                                    $('#lattice').velocity({top: '100%'}, 600, 'easeInExpo', function()  {
+                                       $('#invlattice').velocity({top: [0, '-100%'], scale: [0.8, 0.8], opacity: [1, 1]}, 'easeOutExpo', function()  {
+                                            $('#invlattice').velocity({scale: [1, 0.8]}, 600, 'easeInOutExpo');
+                                            $('#inpwau').focus();
+                                       });
+                                    });
+                                });
+                            break;
+                        }
+                    }  else  {
+                        loadmn();
+                    }
+                });
+            }
+            function unchkinv()  {
+                switch(invan)  {
+                    case 0:
+                        $('#inpwau').blur();
+                        $('#invlattice').velocity({scale: [0.8, 1]}, 600, 'easeInOutExpo', function()  {
+                            $('#invlattice').velocity({rotateY: [270, 360], transformPerspective: [600, 600], scale: [0.8, 0.8]}, 600, 'easeInExpo', function()  {
+                                $('#invlattice').css('opacity', 0);
+                                $('#lattice').velocity({opacity: [1, 1], transformPerspective: [600, 600], rotateY: [0, 90], scale: [0.8, 0.8]}, 600, 'easeOutExpo', function()  {
+                                    $('#lattice').velocity({scale: [1, 0.8]}, 600, 'easeInOutExpo', function()  {
+                                        loadmn();
+                                    });
+                                });
+                            });
+                        });
+                    break;
+                    case 1:
+                        $('#inpwau').blur();
+                        $('#invlattice').velocity({scale: [0.8, 1]}, 600, 'easeInOutExpo', function()  {
+                            $('#invlattice').velocity({top: '-100%', scale: [0.8, 0.8]}, 600, 'easeInExpo', function()  {
+                                $('#invlattice').css('opacity', 0);
+                                $('#lattice').velocity({scale: [0.8, 0.8], top: 0}, 600, 'easeOutExpo', function()  {
+                                    $('#lattice').velocity({scale: [1, 0.8]}, 600, 'easeInOutExpo', function()  {
+                                        loadmn();
+                                    });
+                                });
+                            });
+                        });
+                    break;
+                }
+            }
+            
+            //objactionblock
+            $(document).ready(function()  {
+                $('#modeselcont').mouseenter(function(e)  {
+                    $('#grad').velocity('stop');
+                    dnm = true;
+                    $('#more').velocity({opacity: 2 * Math.abs(0.5 - (2) * (e.pageX / sW))}, 100);
+                    $('#grad').velocity({left: ((-100 * (e.pageX / sW)) + "%")}, 100, function()  {
+                        dnm = false;
+                    });
+                });
+                $('#modeselcont').mouseleave(function(e)  {
+                    $('#grad').velocity('stop');
+                    dnm = true;
+                    $('#more').velocity({opacity: 1}, 100);
+                    $('#grad').velocity({left:  "-50%"}, 100, function()  {
+                        dnm = false;
+                    });
+                });
+                $('#modeselcont').mousemove(function(e)  {
+                    if(selmod == -1 && (!dnm))  {
+                        x = e;
+                        $('#more').css('opacity', 1 - Math.abs(2 - (4) * (e.pageX / sW)));
+                        $('#grad').css('left', ((-100 * (e.pageX / sW)) + "%"));
+                    }
+                });
+                $('#more').mouseenter(function()  {
+                    $('#grad').velocity({opacity: 0.7}, 100);
+                    $('#more').css('background', 'transparent');
+                });
+                $('#more').mouseleave(function()  {
+                    $('#grad').velocity({opacity: 1}, 100);
+                    $('#more').css('background', 'transparent');
+                });
+                $('#more').mousedown(function()  {
+                    $('#more').css('background', 'black');
+                });
+                $('#more').mouseup(function()  {
+                    $('#more').css('background', 'transparent');
+                    $('#morecont').velocity({bottom: '0'}, 600, 'easeOutExpo');
+                });
+                $('#less').mouseenter(function()  {
+                    $('#morecont').velocity({opacity: 0.9}, 100);
+                    $('#less').css('background', 'transparent');
+                });
+                $('#less').mouseleave(function()  {
+                    $('#morecont').velocity({opacity: 1}, 100);
+                    $('#less').css('background', 'transparent');
+                });
+                $('#less').mousedown(function()  {
+                    $('#less').css('background', 'lime');
+                });
+                $('#less').mouseup(function()  {
+                    $('#less').css('background', 'transparent');
+                    $('#morecont').velocity({bottom: '-100%'}, 600, 'easeInExpo');
+                });
+                $('#inpwau').keypress(function(e)  {
+                    if(e.key == 'Enter')  {
+                        nm = $('#inpwau').val();
+                        hg = 0;
+                        localStorage.setItem('nm', nm);
+                        localStorage.setItem('hg', 0);
+                        unchkinv();
+                    }
+                });
+            });
+        </script>
+	</head>
+	<body style='background: black; margin: 0; overflow: hidden;'>
+        <span id='lattice' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; opacity: 0; z-index: 2; background: black;'>
+            <span id='lattmc' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;'>
+                <span style='position: absolute; color: #00cc00; font-family: Segoe UI Light; font-size: 12vh; height: 15%; line-height: 15vh; width: 6%; text-align: center; top: 42.5%; left: 31%;'>B</span>
+                <span style='position: absolute; color: #00cc00; font-family: Segoe UI Light; font-size: 12vh; height: 15%; line-height: 15vh; width: 6%; text-align: center; top: 42.5%; left: 39%;'>Y</span>
+                <span style='position: absolute; color: #00cc00; font-family: Segoe UI Light; font-size: 12vh; height: 15%; line-height: 15vh; width: 6%; text-align: center; top: 42.5%; left: 47%;'>T</span>
+                <span style='position: absolute; color: #00cc00; font-family: Segoe UI Light; font-size: 12vh; height: 15%; line-height: 15vh; width: 6%; text-align: center; top: 42.5%; left: 55%;'>E</span>
+                <span style='position: absolute; color: #00cc00; font-family: Segoe UI Light; font-size: 12vh; height: 15%; line-height: 15vh; width: 6%; text-align: center; top: 42.5%; left: 63%;'>S</span>
+            </span>
+            <span id='modeselcont' style='position: absolute; bottom: 0; width: 100%; height: 0; box-shadow: inset 0 0 100px black; left: 0; overflow: hidden;'>
+                <span id='grad' style='position: absolute; width: 200%; height: 100%; top: 0; left: -50%; background: linear-gradient(to right, lime, #008800, #006600, #008800, lime); z-index: -1;'></span>
+                <span id='more' style='position: absolute; bottom: 2vh; height: 2vh; left: calc(50% - 1vh); width: 2vh; border-radius: 50%; border: 2px solid black;'></span>
+                <span id='morecont' style='position: absolute; bottom: -100%; height: calc(100% - 2px); background: black; width: 100%; left: 0; overflow: hidden;'>
+                    <span id='less' style='position: absolute; bottom: 2vh; height: 2vh; left: calc(50% - 1vh); width: 2vh; border-radius: 50%; border: 2px solid lime;'></span>
+                </span>
+            </span>
+        </span>
+        <span id='invlattice' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: black; z-index: 1; opacity: 0;'>
+            <span id='declwau' style='position: absolute; top: 0; left: 5%; height: 50%; width: 95%; line-height: 50vh; font-family: Segoe UI Light; font-size: 10vh; letter-spacing: 6vh; color: lime; text-align: left;'>
+                WHO ARE YOU?
+            </span>
+            <input id='inpwau' style='position: absolute; border: 0; outline: 0; color: lime; background: transparent; font-family: Segoe UI Light; font-size: 13vh; letter-spacing: 6vh; font-variant: petite-caps; text-align: right; height: 50%; width: 100%; top: 50%; right: 5%; line-height: 50vh;'>
+        </span>
+	</body>
+</html>

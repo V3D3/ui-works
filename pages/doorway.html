@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Doorway - A Tiny Counter</title>
+		<style>*:focus{outline:0;}</style>
+	</head>
+	<body onload='bind();' style='background: white; margin: 0; overflow: hidden;'>
+		<textarea id='in' style='position: absolute; top: 0; left: 0; height: 68%; width: 100%; padding: 1%; padding-bottom: 1%; border: 0; z-index: 1; box-shadow: inset 0 0 50px black; resize: none;'></textarea>
+		<button id='ec' style='position: absolute; bottom: 24%; height: 8%; width: 100%; left: 0; text-align: center; line-height: 8vh; font-family: Segoe UI Light; font-size: 4vh; background: #ff8040; color: white; z-index: 2; box-shadow: 0 0 20px black; border: 0;' onclick='run();'>count</button>
+		<span id='nl' style='position: absolute; bottom: 16%; height: 8%; width: 100%; left: 0; text-align: center; line-height: 8vh; font-family: Segoe UI Light; font-size: 4vh; background: dodgerblue; color: white; z-index: 1;'>awaiting</span>
+		<span id='nw' style='position: absolute; bottom: 8%; height: 8%; width: 100%; left: 0; text-align: center; line-height: 8vh; font-family: Segoe UI Light; font-size: 4vh; background: rebeccapurple; color: white;'>input</span>
+		<span id='nt' style='position: absolute; bottom: 0; height: 8%; width: 100%; left: 0; text-align: center; line-height: 8vh; font-family: Segoe UI Light; font-size: 4vh; background: lime; color: white;'>text</span>
+		<script>
+			_ = x => document.getElementById(x);
+			$ = (x, y, f) => document.getElementById(x).addEventListener(y, f);
+			function bind()  {
+				$('ec', 'mouseenter', function()  {_('ec').style.boxShadow = '0 0 10px black';});
+				$('ec', 'mouseleave', function()  {_('ec').style.boxShadow = '0 0 20px black';});
+				$('ec', 'mousedown', function()  {_('ec').style.boxShadow = '0 0 0 black';});
+				$('ec', 'mouseup', function()  {_('ec').style.boxShadow = '0 0 10px black';});
+			}
+
+			function run()  {
+				text = document.getElementById('in').value;
+				var nl = text.split('\n').length, nw = text.split(' ').length, nt = text.length;
+				_('nl').innerHTML = nl + ' lines';
+				_('nw').innerHTML = nw + ' words';
+				_('nt').innerHTML = nt + ' characters';
+			}
+		</script>
+	</body>
+</html>

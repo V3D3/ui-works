@@ -10,3 +10,11 @@ A simple utility to count lines, words, characters in given text. X is an eccent
 
 #### XPR
 A splash with a menu of 4 choices. The title says Tritium since it was supposed to be a part of WEBv3 (Tritium). Nothing more.
+
+#### XPR pages
+##### XPR CirC
+An animation with randomly generated colored circles.
+##### XPR Circular
+An animation and experimentation page for curved motion animations using easing.
+##### XPR Grid
+A page that shows the position of the mouse. Nothing more.

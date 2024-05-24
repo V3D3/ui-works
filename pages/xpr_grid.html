@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title> Grid (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            $(document).ready(function()  {
+                $('body').mousemove(function(e)  {
+                    $('#x').css('left', e.pageX);
+                    $('#y').css('top', e.pageY);
+                    $('#xm').html('X: ' + e.pageX);
+                    $('#ym').html('Y: ' + e.pageY);
+                });
+                $('body').mouseleave(function()  {
+                    $('#x').css('left', '-100%');
+                    $('#y').css('top', '-100%');
+                    $('#xm').html('X: (out of bounds)');
+                    $('#ym').html('Y: (out of bounds)');
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id='x' style='position: absolute; top: 0; left: -100%; width: 1px; height: 100%; background: orange;'></span>
+        <span id='y' style='position: absolute; left: 0; top: -100%; width: 100%; height: 1px; background: orange;'></span>
+        <span id='xm' style='position: absolute; bottom: 1%; right: 2%; height: 5%; width: 20%; text-align: right; line-height: 5vh; font-size: 4vh; color: orange; font-family: Segoe UI Light;'></span>
+        <span id='ym' style='position: absolute; bottom: 6%; right: 2%; height: 5%; width: 20%; text-align: right; line-height: 5vh; font-size: 4vh; color: orange; font-family: Segoe UI Light;'></span>
+    </body>
+</html>

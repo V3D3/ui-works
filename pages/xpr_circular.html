@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <title> Circular (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var e1 = "easeInSine", e2 = "easeOutSine";
+            var s = false;
+            $(document).ready(function()  {
+                function wut()  {
+                    $(".idc").velocity({top: "5%"}, {duration: 1000, easing: e1, queue: false});
+                    $(".idc").velocity({left: "85%"}, {duration: 1000, easing: e2, queue: false, complete: function()  {
+                        $(".idc").velocity({top: "85%"}, {duration: 1000, easing: e1, queue: false});
+                        $(".idc").velocity({left: "5%"}, {duration: 1000, easing: e2, queue: false, complete: function()  {wut();}});
+                    }});
+                }
+                wut();
+            });
+            $(document).ready(function()  {
+                $("#switch").mouseenter(function()  {
+                    $("#switch").css({backgroundColor: "rgba(255, 255, 255, " + ((s)?"0.9)":"0.1)")});
+                });
+                $("#switch").mousedown(function()  {
+                    $("#switch").css({backgroundColor: (s)?"black":"white", color: (s)?"white":"black", outline: 0});
+                });
+                $("#switch").mouseleave(function()  {
+                    $("#switch").css({backgroundColor: (s)?"white":"transparent", color: (s)?"black":"white"});
+                });
+                $("#switch").mouseup(function()  {
+                    s = !s;
+                    $("#switch").css({backgroundColor: "rgba(255, 255, 255, " + ((s)?"0.9)":"0.1)"), color: (s)?"black":"white"});
+                    var t = e1;
+                    e1 = e2;
+                    e2 = t;
+                });
+                $("#ptick").mouseenter(function()  {
+                    $("#ptick").css({backgroundColor: "rgba(255, 255, 255, 0.1)"});
+                });
+                $("#ptick").mousedown(function()  {
+                    $("#ptick").css({backgroundColor: "white", outline: 0});
+                });
+                $("#ptick").mouseleave(function()  {
+                    $("#ptick").css({backgroundColor: "transparent"});
+                });
+                $("#ptick").mouseup(function()  {
+                    $("#ptick").css({backgroundColor: "rgba(255, 255, 255, 0.1)"});
+                    $("#cont").velocity({blur: "1.5vh"}, 600, function()  {
+                        $("body").velocity({translateY: "-20%"}, 600, "easeOutExpo");
+                    });
+                });
+                $("#puntick").mouseenter(function()  {
+                    $("#puntick").css({backgroundColor: "rgba(0, 0, 0, 0.1)"});
+                });
+                $("#puntick").mousedown(function()  {
+                    $("#puntick").css({backgroundColor: "black", outline: 0});
+                });
+                $("#puntick").mouseleave(function()  {
+                    $("#puntick").css({backgroundColor: "transparent"});
+                });
+                $("#puntick").mouseup(function()  {
+                    $("#puntick").css({backgroundColor: "rgba(0, 0, 0, 0.1)"});
+                    $("body").velocity({translateY: "0"}, 600, "easeOutExpo", function()  {
+                        $("#cont").velocity({blur: "0"}, 600);
+                    });
+                });
+            });
+            function updat()  {
+                $(document).ready(function()  {
+                    e1 = ((s)?"easeOut":"easeIn") + $("#e1in").val();
+                    e2 = ((s)?"easeIn":"easeOut") + $("#e2in").val();
+                });
+            }
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0;">
+        <span id="cont" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 2;">
+            <span style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; margin: 0;">
+                <span class="idc" style="position: absolute; height: 15.1vh; width: 15.1vh; left: 5%; top: 85%; background-color: orange; border-radius: 100%; box-shadow: 0 0 1.5vh 1.2vh orange;"></span>
+            </span>
+            <span style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; margin: 0; transform: rotateX(180deg);">
+                <span class="idc" style="position: absolute; height: 15.1vh; width: 15.1vh; left: 5%; top: 85%; background-color: dodgerblue; border-radius: 100%; box-shadow: 0 0 1.5vh 1.2vh dodgerblue;"></span>
+            </span>
+            <span style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; margin: 0; transform: rotateY(180deg);">
+                <span class="idc" style="position: absolute; height: 15.1vh; width: 15.1vh; left: 5%; top: 85%; background-color: lime; border-radius: 100%; box-shadow: 0 0 1.5vh 1.2vh lime;"></span>
+            </span>
+            <span style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; margin: 0; transform: rotateX(180deg) rotateY(180deg);">
+                <span class="idc" style="position: absolute; height: 15.1vh; width: 15.1vh; left: 5%; top: 85%; background-color: rgb(255, 38, 38); border-radius: 100%; box-shadow: 0 0 1.5vh 1.2vh rgb(255, 38, 38);"></span>
+            </span>
+            <button id="switch" style="position: absolute; height: 10%; width: 10%; top: 45%; left: 45%; border: 0.45vh solid white; color: white; font-family: 'Segoe UI Light'; font-size: 3.5vh; background-color: transparent; border-radius: 1.2vh;">Switch</button>
+            <button id="ptick" style="position: absolute; height: 3vh; width: 3vh; top: 58%; left: calc(50% - 1.5vh); border: 0.45vh solid white; background-color: transparent; border-radius: 50%; padding: 0;"></button>
+        </span>
+        <span id="panel" style="position: absolute; top: 100%; left: -200%; height: 40%; width: 500%; background-color: white; box-shadow: inset 0 0 7.55vh 0.75vh black;">
+            <span style="position: absolute; top: 0; left: 40%; height: 50%; width: 10%; overflow: hidden;">
+                <p style="position: absolute; top: 0; left: 0; height: 50%; line-height: 10vh; font-family: 'Segoe UI Light'; font-size: 4vh; color: black; text-align: center; width: 100%; margin: 0;">easeIn easing</p>
+                <input id="e1in" style="position: absolute; height: 6vh; font-size: 4vh; font-family: 'Segoe UI Light'; left: 25%; width: 50%; color: black; margin: 0; text-align: center; border: 0; border-radius: 1.2vh; background-color: rgba(0, 0, 0, 0.1); top: calc(75% - 3vh);" value="Sine" onkeyup="updat()">
+            </span>
+            <span style="position: absolute; top: 0; left: 50%; height: 50%; width: 10%; overflow: hidden;">
+                <p style="position: absolute; top: 0; left: 0; height: 50%; line-height: 10vh; font-family: 'Segoe UI Light'; font-size: 4vh; color: black; text-align: center; width: 100%; margin: 0;">easeOut easing</p>
+                <input id="e2in" style="position: absolute; height: 6vh; font-size: 4vh; font-family: 'Segoe UI Light'; left: 25%; width: 50%; color: black; margin: 0; text-align: center; border: 0; border-radius: 1.2vh; background-color: rgba(0, 0, 0, 0.1); top: calc(75% - 3vh);" value="Sine" onkeyup="updat()">
+            </span>
+            <span style="position: absolute; top: 0; width: 0.3vh; background-color: black; height: calc(25% - 1.5vh); left: calc(50% - 0.15vh);"></span>
+            <button id="puntick" style="position: absolute; height: 3vh; width: 3vh; top: calc(25% - 1.5vh); left: calc(50% - 1.5vh); border: 0.45vh solid black; background-color: transparent; border-radius: 50%; padding: 0;"></button>
+            <span style="position: absolute; top: calc(25% + 1.5vh); width: 0.3vh; background-color: black; height: calc(25% - 1.5vh); left: calc(50% - 0.15vh);"></span>
+        </span>
+    </body>
+</html>

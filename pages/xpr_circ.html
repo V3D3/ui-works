@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title> CirC (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+			var id = 1;
+            var lim = 30 + Math.round(Math.random() * 30);
+            var parr = [[(sW / 2) - 1, (sH / 2) - 1]];
+            $(document).ready(function()  {
+				$('#p0').velocity({top: (sH / 2) - 1}, 'easeOutExpo', 600, function()  {
+                    gen(lim);
+                });
+            });
+            function gen(n)  {
+                $(document).ready(function()  {
+                    for(var i = id; i < id + lim; i++)  {
+                    	var blur = Math.round(Math.random());
+                        var style = 'position: absolute; top: ' + ((sH / 2) - 1) + 'px; left: ' + ((sW / 2) - 1) + 'px; z-index: 1; border-radius: 50%;' + ((blur) ? ' backdrop-filter: blur(5px);' : '');
+                        if(Math.round(Math.random() * 10) < 4)  {
+                            style += ' border: 1px solid ' + gc() + ';';
+                        }  else  {
+                            style += ' background: ' + gca(1 - blur) + ';';
+                        }
+                        $('#cont').append("<span class='rekt' id='p" + i + "' style='" + style + "'></span>");
+                    }
+                    for(var n = id; n < id + lim; n++)  {
+                        var x = sW * Math.random();
+                        var y = sH * Math.random();
+                        var w = 5 + (10 * Math.random());
+                        var h = w;
+                        if(n < id + lim - 1)  {
+                            $('#p' + n).delay((n - id) * 100).velocity({top: y, left: x, width: w + 'vw', height: h + 'vw'}, 'easeInOutExpo', 800);
+                        }  else  {
+                            $('#p' + n).delay((n - id) * 100).velocity({top: y, left: x, width: w + 'vw', height: h + 'vw'}, 'easeInOutExpo', 800, function()  {
+                                $('#p0').velocity({left: '46vw', top: '47.5vh', height: '5vh', width: '8vw'}, 400, 'easeInOutExpo');
+                            });
+                        }
+                        parr.push([x, y]);
+                    }
+                });
+            }
+            function gc()  {
+                return "rgb(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ")";
+            }
+            function gca(b)  {
+                return "rgba(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + (0.75 + (0.25 * b)) + ")";
+            }
+        </script>
+    </head>
+    <body id='cont' style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: black; overflow: hidden; margin: 0px;">
+        <span id='p0' style='position: absolute; height: 2px; width: 2px; top: 100%; left: calc(50% - 1px); z-index: 2; overflow: hidden; font-family: SF Pro Display Thin; font-size: 2.8vh; letter-spacing: 0.4vh; line-height: 5vh; text-align: center; border: 1px solid black; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(15px);'>CIRC</span>
+    </body>
+</html>

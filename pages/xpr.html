@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <title> XPR // TRITIUM
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var nav = "";
+            $(document).ready(function()  {
+                $("#p1").delay(250).velocity({height: "50%", top: "25%"}, 1000, "easeOutExpo", function()  {
+                    $("#p1").velocity({rotateZ: "45deg"}, 500, "easeInOutExpo", function()  {
+                        $("#p2").css("opacity", "1");
+                        $("#p21").velocity({height: "50%", top: "-5%"}, 1000, "easeInOutExpo");
+                        $("#p22").velocity({height: "50%", top: "55%"}, 1000, "easeInOutExpo", function()  {
+                            $("#p2").velocity({rotateZ: "-45deg"}, 0);
+                            $("#p2").velocity({rotateZ: "360deg", height: "2px", width: "2px", top: (sH / 2) - 1, left: (sW / 2) - 1}, 1500, "easeInOutSine");
+                            $("#p1").velocity({rotateZ: "-360deg", height: "2px", width: "2px", top: (sH / 2) - 1, left: (sW / 2) - 1}, 1500, "easeInOutSine", function()  {
+                                $("#xbtn, #xnvg, #xspl, #xprg, #xppt, #xmsc").css("opacity", "1");
+                                $("#wut").css("display", "none");
+                                $("#xbtn").velocity({top: (sH / 2) - 10, left: sep(1) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo");
+                                $("#xnvg").delay(200).velocity({top: (sH / 2) - 10, left: sep(2) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo");
+                                $("#xppt").delay(400).velocity({top: (sH / 2) - 10, left: sep(3) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo");
+                                $("#xprg").delay(600).velocity({top: (sH / 2) - 10, left: sep(4) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo");
+                                $("#xspl").delay(800).velocity({top: (sH / 2) - 10, left: sep(5) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo");
+                                $("#xmsc").delay(1000).velocity({top: (sH / 2) - 10, left: sep(6) - 10, height: 16, width: 16, borderWidth: 2}, 600, "easeInOutExpo", function()  {
+                                    $("#xbtni, #xnvgi, #xspli, #xprgi, #xppti, #xmsci, #xbtnt, #xnvgt, #xsplt, #xprgt, #xpptt, #xmsct").css("opacity", "1");
+                                    $("#xbtn, #xnvg, #xspl, #xprg, #xppt, #xmsc").css("background-color", "transparent");
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+            function sep(i)  {
+                return (sW / 7) * i;
+            }
+            $(document).ready(function()  {
+                $("#xbtn, #xnvg, #xppt, #xprg, #xspl, #xmsc").mouseenter(function()  {
+                    $("#" + $(this).attr("id") + "i").velocity({top: "15%", left: "41%", width: "18%", height: "10%", borderRadius: "0"}, 600, "easeInOutExpo");
+                });
+                $("#xbtn").mouseleave(function()  {
+                    $("#xbtni").velocity({top: (sH / 2) - 8, left: sep(1) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xnvg").mouseleave(function()  {
+                    $("#xnvgi").velocity({top: (sH / 2) - 8, left: sep(2) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xppt").mouseleave(function()  {
+                    $("#xppti").velocity({top: (sH / 2) - 8, left: sep(3) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xprg").mouseleave(function()  {
+                    $("#xprgi").velocity({top: (sH / 2) - 8, left: sep(4) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xspl").mouseleave(function()  {
+                    $("#xspli").velocity({top: (sH / 2) - 8, left: sep(5) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xmsc").mouseleave(function()  {
+                    $("#xmsci").velocity({top: (sH / 2) - 8, left: sep(6) - 8, width: 16, height: 16, borderRadius: "50%"}, 600, "easeInOutExpo");
+                });
+                $("#xbtn, #xnvg, #xppt, #xprg, #xspl, #xmsc").mousedown(function()  {
+                    $(this).css("background-color", "orange");
+                });
+                $("#xbtn, #xnvg, #xppt, #xprg, #xspl, #xmsc").mouseup(function()  {
+                    $(this).css("background-color", "black").css("z-index", "2");
+                    nav = $(this).attr("id").substring(1);
+                    $("#curtain").velocity({borderTopWidth: sH, borderBottomWidth: sH, borderLeftWidth: sW, borderRightWidth: sW}, 800, "easeInExpo", function()  {
+                        $("#x" + nav).delay(250).velocity({height: 3 * sW, width: 3 * sW, top: (sH / 2) - (sW * 1.5), left: -(sW * 0.5)}, 600, "easeInExpo", function()  {
+                            $("body").velocity({opacity: 1}, 500, function()  {redir();});
+                        });
+                    });
+                });
+            });
+            function redir()  {
+                if(nav == "btn")  {
+                    window.location = "buttons/index.html";
+                }  else if(nav == "ppt")  {
+                    window.location = "prompts/index.html";
+                }  else if(nav == "prg")  {
+                    window.location = "progression/index.html";
+                }  else if(nav == "nvg")  {
+                    window.location = "navigation/index.html";
+                }  else if(nav == "spl")  {
+                    window.location = "splashes/index.html";
+                }  else if(nav == "msc")  {
+                    window.location = "misc/index.html";
+                }
+            }
+        </script>
+        <style>
+            #xbtn, #xnvg, #xspl, #xprg, #xppt, #xmsc  {
+                position: absolute;
+                top: calc(50% - 1px);
+                left: calc(50% - 1px);
+                height: 0px;
+                width: 0px;
+                border: 1px solid orange;
+                background-color: orange;
+                border-radius: 50%;
+                opacity: 0;
+                z-index: 1;
+            }
+            #xbtni, #xnvgi, #xspli, #xprgi, #xppti, #xmsci  {
+                position: absolute;
+                top: calc(50% - 8px);
+                height: 16px;
+                width: 16px;
+                background-color: orange;
+                border-radius: 50%;
+                opacity: 0;
+                overflow: hidden;
+                z-index: 0;
+            }
+            #xbtni  {
+                left: calc(100% / 7 - 8px);
+            }
+            #xnvgi  {
+                left: calc(200% / 7 - 8px);
+            }
+            #xppti  {
+                left: calc(300% / 7 - 8px);
+            }
+            #xprgi  {
+                left: calc(400% / 7 - 8px);
+            }
+            #xspli  {
+                left: calc(500% / 7 - 8px);
+            }
+            #xmsci  {
+                left: calc(600% / 7 - 8px);
+            }
+            #xbtnt, #xnvgt, #xsplt, #xprgt, #xpptt, #xmsct  {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 18vw;
+                height: 10vh;
+                color: black;
+                font-family: "Segoe UI Light";
+                font-size: 4vh;
+                font-variant: petite-caps;
+                line-height: 10vh;
+                text-align: center;
+                opacity: 0;
+            }
+            #curtain  {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-left-color: orange;
+                border-top-color: orange;
+                border-width: 0;
+            }
+        </style>
+    </head>
+    <body style="background-color: black;overflow: hidden; margin: 0px;">
+        <span id="wut" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+            <span id="p2" style="
+                                position: absolute;
+                                overflow: hidden;
+                                height: 50%;
+                                width: 1px;
+                                top: 25%;
+                                left: 50%;
+                                transform: rotate(-45deg);
+                                background-color: transparent;
+                                opacity: 0;
+                                ">
+                <span id="p21" style="
+                                      position: absolute;
+                                      top: 50%;
+                                      left: 0;
+                                      height: 1;
+                                      width: 100%;
+                                      background-color: orange;
+                                      "></span>
+                <span id="p22" style="
+                                      position: absolute;
+                                      top: 50%;
+                                      left: 0;
+                                      height: 1;
+                                      width: 100%;
+                                      background-color: orange;
+                                      "></span>
+            </span>
+            <span id="p1" style="
+                                position: absolute;
+                                height: 0%;
+                                width: 1px;
+                                background-color: orange;
+                                top: 100%;
+                                left: 50%;
+                                "></span>
+        </span>
+        <span id="xbtn"></span>
+        <span id="xbtni"><span id="xbtnt">interactives</span></span>
+        <span id="xnvg"></span>
+        <span id="xnvgi"><span id="xnvgt">navigation</span></span>
+        <span id="xppt"></span>
+        <span id="xppti"><span id="xpptt">prompts</span></span>
+        <span id="xprg"></span>
+        <span id="xprgi"><span id="xprgt">progression</span></span>
+        <span id="xspl"></span>
+        <span id="xspli"><span id="xsplt">introduction</span></span>
+        <span id="xmsc"></span>
+        <span id="xmsci"><span id="xmsct">miscellaneous</span></span>
+        <span id="curtain"></span>
+    </body>
+</html>

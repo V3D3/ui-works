@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title> XPR // TRITIUM
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <script>
+            var ipod = 1;
+            $(document).ready(function()  {
+                $("#p1").delay(250).velocity({height: "50%", top: "25%"}, 1000, "easeOutExpo", function()  {
+                    $("#p1").velocity({rotateZ: "45deg"}, 500, "easeInOutExpo", function()  {
+                        $("#p2").css("opacity", "1");
+                        $("#p21").velocity({height: "50%", top: "-5%"}, 1000, "easeInOutExpo");
+                        $("#p22").velocity({height: "50%", top: "55%"}, 1000, "easeInOutExpo", function()  {
+                            idk();
+                            idc();
+                        });
+                    });
+                });
+            });
+            function idc()  {
+                $(document).ready(function()  {
+                    $("#wut").velocity({rotateZ: "-360deg"}, 60000, (ipod == 1)?"easeIn":"linear", function()  {
+                        $("#wut").css("rotateZ", "0deg");
+                        ipod = 0;
+                        idc();
+                    });
+                });
+            }
+            function idk()  {
+                $(document).ready(function()  {
+                    $("body").velocity({scaleX: "1.1", scaleY: "1.1"}, 1500, function()  {
+                        $("body").velocity({scaleX: "1", scaleY: "1"}, 1500, function()  {
+                            idk();
+                        });
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body style="background-color: black;overflow: hidden; margin: 0px;">
+        <span id="wut" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+            <span id="p2" style="
+                                position: absolute;
+                                overflow: hidden;
+                                height: 50%;
+                                width: 1px;
+                                top: 25%;
+                                left: 50%;
+                                transform: rotate(-45deg);
+                                background-color: transparent;
+                                opacity: 0;
+                                ">
+                <span id="p21" style="
+                                      position: absolute;
+                                      top: 50%;
+                                      left: 0;
+                                      height: 1;
+                                      width: 100%;
+                                      background-color: orange;
+                                      "></span>
+                <span id="p22" style="
+                                      position: absolute;
+                                      top: 50%;
+                                      left: 0;
+                                      height: 1;
+                                      width: 100%;
+                                      background-color: orange;
+                                      "></span>
+            </span>
+            <span id="p1" style="
+                                position: absolute;
+                                height: 0%;
+                                width: 1px;
+                                background-color: orange;
+                                top: 100%;
+                                left: 50%;
+                                "></span>
+        </span>
+    </body>
+</html>

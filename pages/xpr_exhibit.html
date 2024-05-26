@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>Exhibit (menus) // XPR // VDS</title>
+        <script src='../scripts/jq.js'></script>
+        <script src='../scripts/vm.js'></script>
+        <script src='../scripts/vum.js'></script>
+        <script>
+            var sW = window.innerWidth,
+                sH = window.innerHeight;
+            var elm = [];
+            var ini = 0;
+            var inh = 0;
+            var globScrollCount = 0;
+            var c = id => document.getElementById(id).style;
+            $(document).ready(function()  {
+                $('#tilep3').velocity({transformPerspective: 600, scale: 0.7, translateX: '170%', translateZ: '-34vh', rotateY: -36}, 0);
+                $('#tilep2').velocity({transformPerspective: 600, scale: 0.8, translateX: '100%', translateZ: '-23vh', rotateY: -26}, 0);
+                $('#tilep1').velocity({transformPerspective: 600, scale: 0.9, translateX: '35%', translateZ: '-14vh', rotateY: -16}, 0);
+                $('#tile0').velocity({transformPerspective: 600}, 0);
+                $('#tilen1').velocity({transformPerspective: 600, scale: 0.9, translateX: '-35%', translateZ: '-14vh', rotateY: 16}, 0);
+                $('#tilen2').velocity({transformPerspective: 600, scale: 0.8, translateX: '-100%', translateZ: '-23vh', rotateY: 26}, 0);
+                $('#tilen3').velocity({transformPerspective: 600, scale: 0.7, translateX: '-170%', translateZ: '-34vh', rotateY: 36}, 0);
+                $('#tilespw').velocity({transformPerspective: 600, scale: 0.6, translateX: '1000%', translateZ: '-38vh', rotateY: 45}, 0);
+                for(var i = (elm.length > 7)?ini:0; i < ((elm.length > 7)?ini:0) + Math.max(7, elm.length); i++)  {
+                    
+                }
+            });
+            
+            //if elm < 7
+            //limit tile movement to elm.n
+            //make extra tiles invisible
+            
+            $(document).ready(function()  {
+                $('body').keyup(function(e)  {
+                    if(e.key == 'ArrowLeft')  {
+                        shiftB();
+                    }  else if(e.key == 'ArrowRight')  {
+                        shiftF();
+                    }
+                });
+                                
+                document.getElementsByTagName('body')[0].addEventListener('wheel', function(e)  {
+                    if(Math.sign(e.wheelDeltaY) == 1)  {
+                        globScrollCount--;
+                    }  else if(Math.sign(e.wheelDeltaY) == -1)  {
+                        globScrollCount++;
+                    }
+
+                    if(globScrollCount > 12)  {
+                        shiftF();
+                        globScrollCount = 0;
+                    }
+                    if(globScrollCount < -12)  {
+                        shiftB();
+                        globScrollCount = 0;
+                    }
+                });
+            });
+            
+            function shiftB()  {
+                $('*').velocity('stop');
+                document.getElementById('tilep3').id = 'tilek';
+                document.getElementById('tilep2').id = 'tilep3';
+                document.getElementById('tilep1').id = 'tilep2';
+                document.getElementById('tile0').id = 'tilep1';
+                document.getElementById('tilen1').id = 'tile0';
+                document.getElementById('tilen2').id = 'tilen1';
+                document.getElementById('tilen3').id = 'tilen2';
+                document.getElementById('tilespw').id = 'tilen3';
+                document.getElementById('tilek').id = 'tilespw';
+                $('#tilespw').velocity({translateX: '1000%'});
+                $('#tilep3').velocity({transformPerspective: 600, scale: 0.7, translateX: '170%', translateZ: '-34vh', rotateY: -36}, 'easeOutExpo');
+                $('#tilep2').velocity({transformPerspective: 600, scale: 0.8, translateX: '100%', translateZ: '-23vh', rotateY: -26}, 'easeOutExpo');
+                $('#tilep1').velocity({transformPerspective: 600, scale: 0.9, translateX: '35%', translateZ: '-14vh', rotateY: -16}, 'easeOutExpo');
+                $('#tile0').velocity({transformPerspective: 600, scale: 1, translateX: 0, translateZ: 0, rotateY: 0}, 'easeOutExpo');
+                $('#tilen1').velocity({transformPerspective: 600, scale: 0.9, translateX: '-35%', translateZ: '-14vh', rotateY: 16}, 'easeOutExpo');
+                $('#tilen2').velocity({transformPerspective: 600, scale: 0.8, translateX: '-100%', translateZ: '-23vh', rotateY: 26}, 'easeOutExpo');
+                //assign data to spw first
+                $('#tilen3').velocity({transformPerspective: 600, scale: 0.7, translateX: ['-170%', '-1000%'], translateZ: '-34vh', rotateY: 36}, 'easeOutExpo');
+                $('#tilep3, #tilen3').css('z-index', 2);
+                $('#tilep2, #tilen2').css('z-index', 3);
+                $('#tile0').css('z-index', 5);
+                $('#tilep1, #tilen1').css('z-index', 4);
+                
+                //NOTE: Earlier build had id-switching as a function that executed right after spw's animation completed.
+                //If shiftB was invoked repeatedly (with intervals lesser than the animation durations), no actual switching would
+                //occur (*the id-switching is the actual switching*) and ONLY spw's animation would be repeated.
+                
+            }
+            function shiftF()  {
+                $('*').velocity('stop');
+                document.getElementById('tilen3').id = 'tilek';
+                document.getElementById('tilen2').id = 'tilen3';
+                document.getElementById('tilen1').id = 'tilen2';
+                document.getElementById('tile0').id = 'tilen1';
+                document.getElementById('tilep1').id = 'tile0';
+                document.getElementById('tilep2').id = 'tilep1';
+                document.getElementById('tilep3').id = 'tilep2';
+                document.getElementById('tilespw').id = 'tilep3';
+                document.getElementById('tilek').id = 'tilespw';
+                $('#tilespw').velocity({translateX: '-1000%'});
+                //assign data to spw first
+                $('#tilep3').velocity({transformPerspective: 600, scale: 0.7, translateX: ['170%', '1000%'], translateZ: '-34vh', rotateY: -36}, 'easeOutExpo');
+                $('#tilep2').velocity({transformPerspective: 600, scale: 0.8, translateX: '100%', translateZ: '-23vh', rotateY: -26}, 'easeOutExpo');
+                $('#tilep1').velocity({transformPerspective: 600, scale: 0.9, translateX: '35%', translateZ: '-14vh', rotateY: -16}, 'easeOutExpo');
+                $('#tile0').velocity({transformPerspective: 600, scale: 1, translateX: 0, translateZ: 0, rotateY: 0}, 'easeOutExpo');
+                $('#tilen1').velocity({transformPerspective: 600, scale: 0.9, translateX: '-35%', translateZ: '-14vh', rotateY: 16}, 'easeOutExpo');
+                $('#tilen2').velocity({transformPerspective: 600, scale: 0.8, translateX: '-100%', translateZ: '-23vh', rotateY: 26}, 'easeOutExpo');
+                $('#tilen3').velocity({transformPerspective: 600, scale: 0.7, translateX: '-170%', translateZ: '-34vh', rotateY: 36}, 'easeOutExpo');
+                $('#tilen3, #tilep3').css('z-index', 2);
+                $('#tilen2, #tilep2').css('z-index', 3);
+                $('#tile0').css('z-index', 5);
+                $('#tilen1, #tilep1').css('z-index', 4);
+            }
+            function addEl()  {
+                
+            }
+            function remEl()  {
+                
+            }
+            function selEl()  {
+                
+            }
+        </script>
+        <style>
+            span  {
+                position: absolute;
+                box-shadow: 0 0 110px black;
+                line-height: 60vh;
+                font-family: Segoe UI Light;
+                color: black;
+                font-size: 15vh;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body style="background: black; overflow: hidden; margin: 0;">
+        <span id='tile0' style="height: 60%; width: 40%; left: 30%; top: 20%; background: rgb(255, 38, 38); z-index: 5;">4</span>
+        <span id='tilen1' style="z-index: 4; top: 20%; height: 60%; width: 40%; left: 30%; background: orange;">3</span>
+        <span id='tilep1' style="z-index: 4; top: 20%; height: 60%; left: 30%; width: 40%; background: orange;">5</span>
+        <span id='tilen2' style="z-index: 3; top: 20%; height: 60%; width: 40%; left: 30%; background: dodgerblue;">2</span>
+        <span id='tilep2' style="z-index: 3; top: 20%; height: 60%; width: 40%; left: 30%; background: dodgerblue;">6</span>
+        <span id='tilen3' style="z-index: 2; top: 20%; height: 60%; left: 30%; width: 40%; background: lime;">1</span>
+        <span id='tilep3' style="z-index: 2; top: 20%; height: 60%; width: 40%; left: 30%; background: lime;">7</span>
+        <span id='tilespw' style="z-index: 1; top: 20%; height: 60%; width: 40%; left: 30%; background: white;">0</span>
+    </body>
+</html>

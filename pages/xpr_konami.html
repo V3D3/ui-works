@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title> Konami (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var idc = [];
+            var curr = 0;
+            var ref = [38,38,40,40,37,39,37,39,66,65,13];
+            $(document).keydown(function(event)  {
+                idc[curr++] = event.which;
+                for(var i = 0; i < curr; i++)  {
+                    if(idc[i] != ref[i])  {
+                        idc = [];
+                        curr = 0;
+                        break;
+                    }  else  {
+                        if(i == curr - 1)  {
+                            if(idc.length == ref.length)  {
+                                trigger();
+                            }
+                        }
+                    }
+                }
+            });
+            function trigger()  {
+                $("body").velocity({transformPerspective: "600px"}, 0);
+                $("body").velocity({rotateY: 90, transformPerspective: "600px", scale: "0.5"}, "easeInExpo", 1500, function()  {
+                    $("#easterContent").css("z-index", "2");
+                    $("body").velocity({rotateY: 180, transformPerspective: "600px", scale: "1"}, 1500, "easeOutExpo");
+                });
+            }
+        </script>
+    </head>
+    <body style="background-color: white; overflow: hidden; margin: 0px; transform: perspective(600px) rotateY(0deg);">
+        <span id="mainContent" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 1;"></span>
+        <span id="easterContent" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: dodgerblue; z-index: 0;"></span>
+    </body>
+</html>

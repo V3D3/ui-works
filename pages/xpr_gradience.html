@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Gradience // XPR</title>
+		<script src='../scripts/jq.js'></script>
+		<script src='../scripts/vm.js'></script>
+		<style>
+			span  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+			}
+			#s0  {
+				z-index: 0;
+				background: linear-gradient(to right, lime, dodgerblue);
+			}
+			#s1  {
+				z-index: 1;
+				background: linear-gradient(to right, rebeccapurple, lime, lime, dodgerblue);
+				opacity: 0;
+			}
+			#s2  {
+				z-index: 2;
+				background: linear-gradient(to right, rebeccapurple, lime);
+				opacity: 0;
+			}
+		</style>
+		<script>
+			var dur = 3000;
+			var eiv = 'linear';
+			var eov = 'linear';
+			function int()  {
+				$('#s1').velocity({opacity: 1}, eiv, dur, function()  {
+					$('#s2').velocity({opacity: 1}, eov, dur, out);
+				});
+			}
+			function out()  {
+				$('#s2').velocity({opacity: 0}, eiv, dur, function()  {
+					$('#s1').velocity({opacity: 0}, eov, dur, int);
+				});
+			}
+                        $(document).ready(function() {
+                            int();
+                        });
+		</script>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0;'>
+		<span id='s0'></span>
+		<span id='s1'></span>
+		<span id='s2'></span>
+	</body>
+</html>

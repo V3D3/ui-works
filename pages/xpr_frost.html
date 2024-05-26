@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title> Frost (prompts) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                $("#content").delay(2500).velocity({blur: "5px"}, function()  {
+                    $("#dialog").delay(250).velocity({top: "25%"}, 1500, "easeOutExpo");
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden;">
+        <span id="content" style='position: absolute; height: 100%; width: 100%; top: 0; left: 0;'>
+            <span style="position: absolute; height: 30vh; width: 30vh; border-radius: 100vh; background-color: dodgerblue; top: calc(50% - 15vh); left: calc(25% - 15vh);"></span>
+            <span style="position: absolute; height: 0; width: 0; border-style: solid; border-bottom: 30vh solid dodgerblue; border-left: 15vh solid black; border-right: 15vh solid black; top: calc(50% - 15vh); left: calc(50% - 15vh);"></span>
+            <span style="position: absolute; height: 30vh; width: 30vh; background-color: dodgerblue; top: calc(50% - 15vh); left: calc(75% - 15vh);"></span>
+        </span>
+        <iframe id="dialog" style="position: absolute; top: 120%; left: 25%; width: 50%; height: 50%; background-color: dodgerblue; box-shadow: 0px 0px 50px black; border: 1px solid dodgerblue;" frameBorder="0" src="../_vertex_logo_template.html"></iframe>
+    </body>
+</html>

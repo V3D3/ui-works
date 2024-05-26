@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title> Crowd (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            //render() adapted from destools, also by V3D3
+            function render()  {
+                var str = '', st = 3;
+                
+                for(var i = 0; i < (sH / st); i++)  {str += "<span style='position: absolute; left: 0; width: 100%; height: 2px; background: black; top: " + (i * st) + "px; z-index: 2;'></span>";}
+                for(var i = 0; i < (sW / st); i++)  {str += "<span style='position: absolute; top: 0; height: 100%; width: 2px; background: black; left: " + (i * st) + "px; z-index: 2;'></span>";}
+                
+                $('body').append(str);
+            }
+            $(document).ready(function()  {
+                render();
+            });
+            $(document).ready(function()  {
+				$('body').mousemove(function(e)  {
+                    chck(e.pageX, e.pageY);
+				});
+            });
+            function chck(x, y)  {
+                $('#muv').css({left: ((-1.5 + (x / sW)) * 100) + '%', top: ((-1.5 + (y / sH)) * 100) + '%'});
+            }
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+<!--        <span id='muv' style='position: absolute; height: 300%; width: 300%; z-index: 0; top: -100%; left: -100%; background: radial-gradient(orange, transparent 24%); filter: blur(60px);'></span>-->
+        <span id='muv' style='position: absolute; height: 300%; width: 300%; z-index: 0; top: -100%; left: -100%; background: linear-gradient(to right, transparent, orange, orange, transparent); filter: blur(60px);'></span>
+    </body>
+</html>

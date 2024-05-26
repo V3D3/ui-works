@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title> Chromaswipe (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var dur = 2000;
+            var pColx = "rgb(0, 0, 0)";
+            var pCol = 'orange';
+            var mCol = gCol();
+            var nCol = gCol();
+            $(document).ready(function()  {
+                function idk()  {
+                    $("#grad, #main").velocity({left: "-100%"}, 0);
+                    $("#grad").css("background", "linear-gradient(to left, " + pCol + ", " + mCol + ")");
+                    $("#main").css("background", "linear-gradient(to left, " + mCol + ", " + nCol + ")");
+                    pCol = nCol;
+                    pColx = mCol;
+                    mCol = gCol();
+                    nCol = gCol();
+                    $("#prev").velocity({left: "100%"}, dur, "linear");
+                    $("#grad").velocity({left: 0}, dur, "linear", function()  {
+                        $("#grad").velocity({left: "100%"}, dur, "linear");
+                        $("#main").velocity({left: 0}, dur, "linear", function()  {
+                            $("#prev").css("background", "linear-gradient(to right, " + pCol + ", " + pColx + ")");
+                            $("#prev").velocity({left: 0}, 0);
+                            idk();
+                        });
+                    });
+                }
+                idk();
+            });
+            function gC()  {
+                return parseInt(Math.random() * 255).toString();
+            }
+            function gCol()  {
+                return "rgb(" + gC() + ", " + gC() + ", " + gC() + ")";
+            }
+        </script>
+        <style>
+            span  {
+                height: 100%;
+                width: 100%;
+                top: 0;
+                position: absolute;
+            }
+            #main  {
+                left: -100%;
+                background: linear-gradient(to left, dodgerblue, black);
+                z-index: 1;
+            }
+            #grad  {
+                left: -100%;
+                background: linear-gradient(to left, orange, dodgerblue);
+                z-index: 2;
+            }
+            #prev  {
+                left: 0;
+                background: linear-gradient(to right, orange, black);
+                z-index: 3;
+                transform: translateX(-1px);
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id="main"></span>
+        <span id="grad"></span>
+        <span id="prev"></span>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title> Origin (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var ar = [];
+            var dg = Math.sqrt(sH * sH + sW * sW);
+            var n = 5;
+            $(document).ready(function()  {
+                appl('foc0', 20, 20);
+                appl('foc1', 20, 20);
+                appl('foc2', 20, 20);
+                appl('foc3', 20, 20);
+                appl('foc4', 20, 20);
+            });
+            $(document).ready(function()  {
+				$('body').mousemove(function(e)  {
+					for(var i = 0; i < ar.length; i++)  {
+                        chck(ar[i], e.pageX, e.pageY);
+                    }
+				});
+            });
+            
+            function appl(id, bm, dm)  {
+                ar.push([id, bm, dm]);
+            }
+            function chck(id, x, y)  {
+                s = $('#' + id[0]);
+                 midx = Number(s.css('left').substr(0, s.css('left').length - 2)) + (s.width() / 2);
+                 midy = Number(s.css('top').substr(0, s.css('top').length - 2)) + (s.height() / 2);
+                 d = Math.sqrt(Math.pow(midx - x, 2) + Math.pow(midy - y, 2));
+                bsb = (id[1] / 2) + ((id[1] / 2) * (d / dg));
+                bsdx = ((midx - x) / sW) * id[2];
+                bsdy = ((midy - y) / sH) * id[2];
+                s.css('boxShadow', bsdx + 'px ' + bsdy + 'px ' + bsb + 'px dodgerblue');
+                s.css('transform', 'translateX(' + ((-((x / sW) * 10) - 5)) + 'px)' + ' ' + 'translateY(' + ((-((y / sH) * 10) - 5)) + 'px)');
+            }
+            
+            
+            //Code from Imitant.
+            
+            $('body').mousedown(function(e)  {
+                $('body').append("<span class='foc' id='foc" + n + "' style='position: absolute; height: 15vh; width: 15vh; left: calc(" + ((e.pageX / sW) * 100) + "% - 7.5vh); top: " + (((e.pageY / sH) * 100) - 7.5) + "%; border-radius: 50%; background: dodgerblue; z-index: 90;'></span>");
+				eval("$('#foc" + n + "').mousedown(function()  {var i = $(this).attr('id').substr($(this).attr('id').lastIndexOf('c') + 1);if(ac == -1)  {ac = i;ao = $(this).css('background');$('body').css('background', ao);$(this).css('background', 'black');}  else if(ac == i)  {ac = -1;$(this).css('background', ao);$('body').css('background', 'black');}});");
+				n++;
+            });
+            
+        </script>
+        <style>
+            .foc  {
+                position: absolute;
+                height: 15vh;
+                width: 15vh;
+                background: dodgerblue;
+                border-radius: 50%;
+                box-shadow: 0 0 0 dodgerblue;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id='foc0' class='foc' style='top: calc(50% - 7.5vh); left: calc(50% - 7.5vh);'></span>
+        <span id='foc1' class='foc' style='top: calc(25% - 7.5vh); left: calc(25% - 7.5vh);'></span>
+        <span id='foc2' class='foc' style='top: calc(75% - 7.5vh); left: calc(25% - 7.5vh);'></span>
+        <span id='foc3' class='foc' style='top: calc(25% - 7.5vh); left: calc(75% - 7.5vh);'></span>
+        <span id='foc4' class='foc' style='top: calc(75% - 7.5vh); left: calc(75% - 7.5vh);'></span>
+    </body>
+</html>

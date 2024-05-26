@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title> Chromarise (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            $(document).ready(function()  {
+                function idk()  {
+                    $("#aD").css("background-color", $("body").css("background-color")).css({top: -((sW - sH) / 2), left: "0", height: sW, width: sW});
+                    $("#aD").velocity({rotateZ: 90}, 0);
+                    $("body").css("background-color", gCol());
+                    $("#aD").velocity({top: "50%", left: "50%", width: 0, height: 0, rotateZ: 0}, 1000, "easeInOutQuad", function()  {idk();});
+                }
+                idk();
+            });
+            function gC()  {
+                return parseInt(Math.random() * 255).toString();
+            }
+            function gCol()  {
+                return "rgb(" + gC() + ", " + gC() + ", " + gC() + ")";
+            }
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id="aD" style="position: absolute; top: 0; left: 0; height: 100vw; width: 100%; transform: rotate(90deg); background-color: dodgerblue;"></span>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Tipsy (Demo) // XPR // V3D3</title>
+		<script src='../scripts/jq.js'></script>
+		<script>
+			var sH = window.innerHeight;
+			var sW = window.innerWidth;
+			var ntipsy = 0;
+			$(document).ready(function()  {
+				tipsy('#foc0', 'This is Foc. Say Hi!');
+			});
+			
+			function tipsy(sel, tip)  {
+				$(sel).mouseenter(function(e)  {
+					$('body').append("<span id='tipc" + ntipsy + "' style='position: absolute; top: " + (e.pageY + 20) + "px; left: " + (e.pageX + 12) + "px; opacity: 0; z-index: 9999;'><div id='tip" + ntipsy + "' style='border: 1px solid gray; background: black; color: darkgray; font-size: 2vh; font-family: Segoe UI Light; padding: 0.3vw;'>" + tip + "</div></span>");
+					eval("$('#tipc" + ntipsy + "').animate({opacity: 1}, 400);");
+					eval("$('" + sel + "').mousemove(function(e)  {$('#tipc" + ntipsy + "').css({left: (e.pageX + 12) + 'px', top: (e.pageY + 20) + 'px'});})");
+					eval("$('" + sel + "').mouseleave(function()  {$('#tipc" + ntipsy + "').animate({opacity: 0}, 400, function()  {$('#tipc" + ntipsy + "').remove();});});");
+					ntipsy++;
+				});
+			}
+		</script>
+	</head>
+	<body style='background: black; margin: 0; overflow: hidden;'>
+		<span class='foc' id='foc0' style='position: absolute; height: 15vh; width: 15vh; left: calc(50% - 7.5vh); top: 42.5%; border-radius: 50%; background: dodgerblue; z-index: 90;'></span>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title> Engage (menus) // XPR // TRITIUM
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            $(document).ready(function()  {
+                $('#c0, #c1, #c2, #c3').delay(1000).velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 800, 'easeInOutExpo');
+            })
+            $(document).ready(function()  {
+                $("#c0").mouseenter(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '20%', translateY: '-10vh', lineHeight: '20vh'}, 150);
+                    $('#c1, #c2, #c3').velocity({height: '14%', translateY: '-7vh', lineHeight: '14vh'}, 150);
+                });
+                $("#c0").mouseleave(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                    $('#c1, #c2, #c3').velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                });
+                $("#c1").mouseenter(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '20%', translateY: '-10vh', lineHeight: '20vh'}, 150);
+                    $('#c0, #c2, #c3').velocity({height: '14%', translateY: '-7vh', lineHeight: '14vh'}, 150);
+                });
+                $("#c1").mouseleave(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                    $('#c0, #c2, #c3').velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                });
+                $("#c2").mouseenter(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '20%', translateY: '-10vh', lineHeight: '20vh'}, 150);
+                    $('#c0, #c1, #c3').velocity({height: '14%', translateY: '-7vh', lineHeight: '14vh'}, 150);
+                });
+                $("#c2").mouseleave(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                    $('#c0, #c1, #c3').velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                });
+                $("#c3").mouseenter(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '20%', translateY: '-10vh', lineHeight: '20vh'}, 150);
+                    $('#c0, #c2, #c1').velocity({height: '14%', translateY: '-7vh', lineHeight: '14vh'}, 150);
+                });
+                $("#c3").mouseleave(function()  {
+                    $('*').velocity('stop');
+                    $(this).velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                    $('#c0, #c2, #c1').velocity({height: '16%', translateY: '-8vh', lineHeight: '16vh'}, 150);
+                });
+                
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px; transform: perspective(600px);">
+        <span id='c0' style='position: absolute; top: 15%; height: 0%; width: 100%; left: 0; color: black; font-family: Segoe UI Light; font-size: 6vh; line-height: 0vh; text-align: center; background: orange; cursor: default; box-shadow: inset 0 0 70px black;'>X</span>
+        <span id='c1' style='position: absolute; top: 38%; height: 0%; width: 100%; left: 0; color: black; font-family: Segoe UI Light; font-size: 6vh; line-height: 0vh; text-align: center; background: dodgerblue; cursor: default; box-shadow: inset 0 0 70px black;'>P</span>
+        <span id='c2' style='position: absolute; top: 61%; height: 0%; width: 100%; left: 0; color: black; font-family: Segoe UI Light; font-size: 6vh; line-height: 0vh; text-align: center; background: rgb(255, 38, 38); cursor: default; box-shadow: inset 0 0 70px black;'>R</span>
+        <span id='c3' style='position: absolute; top: 84%; height: 0%; width: 100%; left: 0; color: black; font-family: Segoe UI Light; font-size: 6vh; line-height: 0vh; text-align: center; background: lime; cursor: default; box-shadow: inset 0 0 70px black;'>ZERO</span>
+    </body>
+</html>

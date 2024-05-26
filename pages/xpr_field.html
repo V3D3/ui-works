@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title> Field (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var ar = [];
+            var dg = Math.sqrt(sH * sH + sW * sW);
+            var n = 5;
+            $(document).ready(function()  {
+                var i = 0;
+                for(var x = sW / 20; x < (39 / 40) * sW; x += sW / 20)  {
+                    for(var y = sH / 10; y < (39 / 40) * sH; y += sH / 10)  {
+                        $('body').append("<span class='point' id='p" + i + "' style='top: " + y + "px; left: " + x + "px;'></span>");
+                        ar.push('p' + i);
+                        i++;
+                    }
+                }
+            });
+            $(document).ready(function()  {
+				$('body').mousemove(function(e)  {
+					for(var i = 0; i < ar.length; i++)  {
+                        chck(ar[i], e.pageX, e.pageY);
+                    }
+				});
+            });
+            function chck(id, x, y)  {
+                s = $('#' + id);
+                s.css('filter', 'blur(' + ((Math.sqrt(Math.pow((s.position().left - x), 2) + Math.pow((s.position().top - y), 2)) / (Math.sqrt(sW * sW + sH * sH))) * 25) + 'px)');
+            }
+        </script>
+        <style>
+            .point  {
+                position: absolute;
+                height: 5px;
+                width: 5px;
+                background: orange;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+    </body>
+</html>

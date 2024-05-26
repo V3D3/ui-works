@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Imitant // XPR // V3D3</title>
+		<script src='../scripts/jq.js'></script>
+		<script>
+			var sH = window.innerHeight;
+			var sW = window.innerWidth;
+			var n = 1;
+			var ac = -1;
+			var ao = 'dodgerblue';
+			$(document).ready(function()  {
+				$('body').mousemove(function(e)  {
+					if(ac == -1)  {
+						$('.foc').css('transform', 'translateX(' + (((e.pageX / sW) * 50) - 25) + 'px)' + ' ' + 'translateY(' + (((e.pageY / sH) * 50) - 25) + 'px)');
+					}  else  {
+						$('#foc' + ac).css({left: e.pageX - (sH * 0.075), top: e.pageY - (sH * 0.075), transform: ''});
+					}
+				});
+				$('#foc0').mousedown(function()  {
+					var i = $(this).attr('id').substr($(this).attr('id').lastIndexOf('c') + 1);
+					if(ac == -1)  {
+						ac = i;
+						ao = $(this).css('background');
+						$('body').css('background', ao);
+						$(this).css('background', 'black');
+					}  else if(i == ac)  {
+						ac = -1;
+						$(this).css('background', ao);
+						$('body').css('background', 'black');
+					}
+				});
+				$('#spw').mousedown(function(e)  {
+					$('body').append("<span class='foc' id='foc" + n + "' style='position: absolute; height: 15vh; width: 15vh; left: calc(" + ((e.pageX / sW) * 100) + "% - 7.5vh); top: " + (((e.pageY / sH) * 100) - 7.5) + "%; border-radius: 50%; background: dodgerblue; z-index: 90;'></span>");
+					eval("$('#foc" + n + "').mousedown(function()  {var i = $(this).attr('id').substr($(this).attr('id').lastIndexOf('c') + 1);if(ac == -1)  {ac = i;ao = $(this).css('background');$('body').css('background', ao);$(this).css('background', 'black');}  else if(ac == i)  {ac = -1;$(this).css('background', ao);$('body').css('background', 'black');}});");
+					n++;
+				});
+				$('body').keyup(function(e)  {
+					if(ac != -1)  {
+						if(e.key == ' ')  {
+							var col = "rgb(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ")";
+							$('body').css('background', col);
+							ao = col;
+						}
+						if(e.key == 'Control')  {
+							var col = "radial-gradient(rgb(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + "), rgb(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + "))";
+							$('body').css('background', col);
+							ao = col;
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body style='background: black; margin: 0; overflow: hidden;'>
+		<span id='spw' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 0;'></span>
+		<span class='foc' id='foc0' style='position: absolute; height: 15vh; width: 15vh; left: calc(50% - 7.5vh); top: 42.5%; border-radius: 50%; background: dodgerblue; z-index: 90;'></span>
+	</body>
+</html>

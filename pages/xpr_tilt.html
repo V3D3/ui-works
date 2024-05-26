@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title> Tilt (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth,
+                sH = window.innerHeight;
+            $(document).ready(function()  {
+                $('body').mousemove(function(e)  {
+                    $('#xcard').css('transform', 'perspective(' + ((600 / 1366) * sW) + 'px) rotateY(' + ((((sW / 2) - e.pageX) / sW) * (-40)) + 'deg) rotateX(' + ((((sH / 2) - e.pageY) / sH) * 40) + 'deg)')
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id='xcard' style='position: absolute; top: 25%; left: 25%; width: 50%; height: 50%; background: dodgerblue; color: black; font-family: Roboto Thin; font-size: 7vh; text-align: center; letter-spacing: 3vh; line-height: 50vh;'>XPR</span>
+    </body>
+</html>

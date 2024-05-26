@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title> Chromafall (misc) // XPR // VDS
+        </title>
+        <script src="../scripts/jq.js"></script>
+        <script src="../scripts/jui.js"></script>
+        <script src="../scripts/vm.js"></script>
+        <script src="../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            $(document).ready(function()  {
+                function idk()  {
+                    $("body").css("background-color", $("#aD").css("background-color"));
+                    $("#aD").velocity({rotateZ: 0}, 0);
+                    $("#aD").css("background-color", gCol()).css({top: "50%", left: "50%", height: 0, width: 0});
+                    $("#aD").velocity({top: -((sW - sH) / 2), left: 0, width: "100%", height: sW, rotateZ: 90}, 1000, "easeInOutQuad", function()  {idk();});
+                }
+                idk();
+            });
+            function gC()  {
+                return parseInt(Math.random() * 255).toString();
+            }
+            function gCol()  {
+                return "rgb(" + gC() + ", " + gC() + ", " + gC() + ")";
+            }
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id="aD" style="position: absolute; top: 50%; left: 50%; height: 0; width: 0; transform: rotate(0deg); background-color: dodgerblue;"></span>
+    </body>
+</html>

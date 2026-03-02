@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title> Uber (splash)
+        </title>
+        <script src="../../../scripts/jq.js"></script>
+        <script src="../../../scripts/jui.js"></script>
+        <script src="../../../scripts/vm.js"></script>
+        <script src="../../../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                $({deg: 0}).delay(2000).animate({deg: -180}, {
+                    duration: 3500,
+                    easing: "easeOutExpo",
+                    step: function(now)  {
+                        $("#oao").css({transform: 'rotate(' + now + 'deg)'});
+                    },
+                    complete: function()  {
+                        $("#oao").fadeOut(600);
+                    }
+                });
+                $("#oao").delay(2000).velocity({width: "30%", height: "30%", top: "35%", left: "35%", opacity: 1}, 3500, "easeOutExpo");
+            });
+        </script>
+        <style>
+            #oao  {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 100%;
+                opacity: 0.4;
+                background-color: dodgerblue;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden;">
+        <span id="oao"></span>
+    </body>
+</html>

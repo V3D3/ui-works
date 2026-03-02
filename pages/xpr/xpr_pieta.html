@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title> Pieta (misc) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var e = 0, k = 0;
+            $(document).ready(function()  {
+                $('body').css('background', 'rgb(' + g() + ', ' + g() + ', ' + g() + ')');
+                orient();
+            });
+            function g()  {
+                return Math.round(Math.random() * 255);
+            }
+            function orient()  {
+                k = 0;
+                for(var i = 0; i < 10; i++)  {
+                    for(var j = 0; j < (sW / (sH * 0.1)); j++)  {
+                        $('body').append("<span class='box' id='b" + e + '' + k + "' style='top: " + (i * (sH * 0.1)) + "px; left: " + (j * (sH * 0.1)) + "px; background: rgb(" + g() + ", " + g() + ", " + g() + "); transform: scale(0.5); opacity: 0; z-index: " + (2 * e + 1) + "'></span>");
+                        if(k == (10 * Math.ceil(sW / (sH * 0.1)) - 1))  {
+                            $('#b' + e + '' + k).delay(k * 20).velocity({opacity: 1, scale: [1, 0.5]}, "easeOutExpo", 800, function()  {
+                                reinit();
+                                console.log('called');
+                            });
+                        }  else  {
+                            $('#b' + e + '' + k).delay(k * 20).velocity({opacity: 1, scale: [1, 0.5]}, "easeOutExpo", 800);
+                        }
+                        k++;
+                    }
+                }
+            }
+            function reinit()  {
+                selel = '#b' + e + '' + Math.round(k * Math.random());
+                e++;
+                $(selel).velocity({top: 0, left: 0, height: '100%', width: '100%', zIndex: [2 * e + 1, 2 * e + 1]}, 'easeInOutExpo', 800, function()  {
+                    orient();
+                });
+            }
+        </script>
+        <style>
+            .box  {
+                position: absolute;
+                height: 10vh;
+                width: 10vh;
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+    </body>
+</html>
+
+<!--8875786777 Deepa (Deepam foundation)-->

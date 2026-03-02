@@ -1,0 +1,194 @@
+<html>
+    <head>
+        <title>:pixie:</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <style>
+            ::-webkit-scrollbar  {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-corner, ::-webkit-scrollbar-track  {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: rgba(100, 0, 255, 0.4);
+                border-radius: 50px;
+            }
+            ::-webkit-scrollbar-thumb:hover  {
+                background: rgba(100, 0, 255, 1);
+            }
+            *  {
+                font-family: SF Pro Display Thin;
+            }
+            input:focus  {
+                outline: 0;
+            }
+            span  {
+                position: absolute;
+            }
+            .direl  {
+                height: 8vh;
+                width: 18%;
+                line-height: 8vh;
+                font-size: 4vh;
+                text-transform: lowercase;
+                background: blueviolet;
+                margin-bottom: 2.5vh;
+                margin-top: 2.5vh;
+                border-radius: 10px;
+                color: black;
+                text-align: center;
+                cursor: default;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding-left: 1vw;
+                padding-right: 1vw;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden;'>
+        <span id='logonc' style='height: 6vh; width: 25%; top: 47%; left: 37.5%; z-index: 100; transform: 0;'>
+            <span id='logon0' style='height: 2vh; width: 2vh; border-radius: 50%; background: blueviolet; left: calc(-4vw + 1vh); top: 2vh;'></span>
+            <span id='logon1' style='height: 2vh; width: 2vh; border-radius: 50%; background: blueviolet; right: calc(-4vw + 1vh); top: 2vh;'></span>
+            <span id='logon2' style='height: 100%; width: 100%; top: 0; left: 0; overflow: hidden;'>
+                <span id='logon2i' style='height: 100%; font-size: 4vh; width: 25vw; background: blueviolet; letter-spacing: 3vw; line-height: 6vh; text-align: center; font-variant: petite-caps; left: 0; top: 0; overflow: hidden; cursor: default; user-select: none;'>&nbsp;pixie</span>
+            </span>
+        </span>
+
+        <span id='cov' style='opacity: 0; height: 30px; width: 100%; top: 6vh; left: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent); z-index: 50;'></span>
+
+        <span id='bg' style='height: 94%; left: 0; top: 110%; width: 100%; background: linear-gradient(to bottom, black, blueviolet); z-index: -1;'></span>
+        <span id='bgext' style='height: 100vh; left: 0; top: 0; width: 100vw; background: blueviolet; z-index: -1; opacity: 0;'></span>
+
+
+        <input id='dirin' style='position: absolute; bottom: 22%; height: 0; width: 100%; left: 0; border: 0; background: black; color: blueviolet; text-align: center; line-height: 8vh; font-size: 4vh; overflow: hidden; opacity: 0; box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); z-index: 25;' value='(no drive selected)' spellcheck=false></input>
+        <span id='dirh' style='height: 6vh; font-size: 4vh; width: 100%; letter-spacing: 3vw; line-height: 4vh; text-align: center; font-variant: petite-caps; left: 0; bottom: 0; overflow: hidden;'>&nbsp;directory</span>
+        <span id='dirc' style='border: 1px solid black; border-radius: 10px; font-size: 5vh; line-height: 8vh; height: 8%; width: 15%; text-align: center; bottom: 10%; left: 42.5%; cursor: default;'>choose</span>
+        <span id='dirs' style='top: 6%; left: 0%; width: 100%; height: 65%; overflow: scroll;'></span>
+
+        <script>
+            //the purpose of the nav page is the selection of a directory, for pixie to work on.
+            //this chosen directory is stored in currpath.
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var currpath = '';
+            //initial presentation
+            $(document).ready(function()  {
+                $("#logon0").delay(500).velocity({left: '-55vw'}, 1000, 'easeInOutExpo');
+                $("#logon1").delay(500).velocity({right: '-55vw'}, 1000, 'easeInOutExpo');
+                $('#logonc, #logon2i').delay(500).velocity({width: '100%', left: 0, top: 0}, 1000, 'easeInOutExpo', function()  {
+                    $('#dirin').delay(200).velocity({height: '8vh', opacity: 1}, 1000, 'easeOutExpo');
+                    $('#bg').delay(200).velocity({top: '6%'}, 1000, 'easeOutExpo', function()  {
+                        $('#cov').css({opacity: 1});
+                        dsk(function(d)  {
+                            for(var i = 0; i < d.length; i++)  {
+                                diradd(i, (d[i].split(':')[0] + ':') + ((d[i].split(':')[1] != '')?(' (' + d[i].split(':')[1] + ')'):''));
+                            }
+                        });
+                    });
+                });
+            });
+            //events for dirc, dirin
+            $(document).ready(function()  {
+                $('#dirc').mouseenter(function()  {
+                    $('#dirc').velocity({opacity: 0.7}, 50);
+                });
+                $('#dirc').mouseleave(function()  {
+                    $('#dirc').velocity({opacity: 1}, 100);
+                });
+                $('#dirc').mousedown(function()  {
+                    $('#dirc').css({opacity: 1, background: 'black', color: 'blueviolet'});
+                });
+                $('#dirc').mouseup(function()  {
+                    $('#dirc').css({opacity: 0.7, background: 'transparent', color: 'black'});
+                    $('#logonc').velocity({height: '100%'}, 1200, 'easeInOutExpo');
+                    $('#logon2i').velocity({lineHeight: '100vh'}, 1200, 'easeInOutExpo');
+                });
+                $('#dirin').keypress(function(e)  {
+                    if(e.key == 'Enter')  {
+                        if($('#dirin').val() == 'is there an easter here?')  {
+                            alert('Nope.');
+                            alert('(._.)');
+                            dirch('');
+                        }  else if($('#dirin').val() == "you're cute")  {
+                            alert('Aww... Thanks.');
+                            alert("BTW don't use apostrophes. Please. :3");
+                            dirch('');
+                        }  else if($('#dirin').val() == 'you suck')  {
+                            document.write('...said something?');
+                        }  else  {
+                            dirch($('#dirin').val());
+                        }
+                    }
+                });
+            });
+
+            //bind events to a newly created dirrel element in dirs
+            function binddirel(id)  {
+                $('#d' + id).mouseenter(function()  {
+                    $(this).velocity({opacity: 0.7}, 50);
+                });
+                $('#d' + id).mouseleave(function()  {
+                    $(this).velocity({opacity: 1}, 100);
+                });
+                $('#d' + id).mousedown(function()  {
+                    $(this).css({opacity: 1, background: 'black', color: 'blueviolet'});
+                });
+                $('#d' + id).mouseup(function()  {
+                    $(this).css({opacity: 0.7, background: 'blueviolet', color: 'black'});
+                    var appdir = $(this).html();
+                    if(appdir == '.')  {
+                        dirch('');
+                    }  else if(appdir == '..')  {
+                        dirch(currpath.split('/').splice(0, currpath.split('/').length - 2).join('/') + '/');
+                        //the -2 because paths are stored with the ending '/'.
+                        //so, the element we want to delete is the 2nd last one, and the last element is... null.
+                        //we gotta remove both of them, and then add a '/' to go one up and maintain compatibility with the method right below, respectively.
+                    }  else  {
+                        dirch(currpath + appdir + '/');
+                    }
+                });
+            }
+            //return the directories present in a directory
+            function dir(d, callback)  {
+                $.post('dir.php', {d: d}, function(r)  {callback(r.substr(0, r.length - 1).split(','));});
+            }
+            //return the disks currently available on the computer
+            function dsk(callback)  {
+                $.post('dir.php', {}, function(r)  {callback(r.substr(0, r.length - 1).split(','));});
+            }
+            //change the directory to another one
+            function dirch(fin)  {
+                $('#dirs').html('');
+                var i = 0;
+                if(fin == '')  {
+                    dsk(function(d)  {
+                        for(; i < d.length; i++)  {
+                            diradd(i, (d[i].split(':')[0] + ':') + ((d[i].split(':')[1] != '')?(' (' + d[i].split(':')[1] + ')'):''));
+                        }
+                    });
+                    currpath = fin;
+                }  else  {
+                    if(fin[fin.length - 2] == ':')  {
+                        diradd(0, '.')
+                        i = 1;
+                    }
+                    dir(fin, function(d)  {
+                        for(; i < d.length; i++)  {
+                            diradd(i, d[i]);
+                        }
+                    });
+                    currpath = fin;
+                }
+                $('#dirin').val((currpath)?currpath:"(no drive selected)");
+            }
+            //add a dirrel element to dirs
+            function diradd(id, nm)  {
+                $('#dirs').append("<span class='direl' id='d" + id + "' style='top: " + (3 + (Math.floor(id / 4) * 13)) + "vh; left: " + (2.5 + ((id % 4) * 25)) + "%'>" + nm + "</span>");
+                binddirel(id);
+            }
+        </script>
+    </body>
+</html>

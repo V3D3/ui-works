@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <title> Uber (choice)
+        </title>
+        <script src="../../../scripts/jq.js"></script>
+        <script src="jshadow.js"></script>
+        <script src="../../../scripts/vm.js"></script>
+        <script src="../../../scripts/vum.js"></script>
+        <script>
+            var choice = 0;
+            $(document).ready(function()  {
+                $("#left").mouseenter(function()  {
+                    if(choice == 0)  {
+                        $("#left").css("z-index", "5");
+                        $("#info_l").animate({boxShadow: "0px 0px 50px black"}, 100);
+                        $("#left").animate({boxShadow: "0px 0px 50px black", fontSize: "52px", width: "51%", left: "-0.5%"}, 100);
+                    }
+                });
+                $("#left").mouseleave(function()  {
+                    if(choice == 0)  {
+                        $("#info_l").animate({boxShadow: "0px 0px 100px black"}, 100);
+                        $("#left").animate({boxShadow: "0px 0px 0px black", fontSize: "50px", width: "50%", left: "0"}, 100, function()  {
+                            $("#left").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#right").mouseenter(function()  {
+                    if(choice == 0)  {
+                        $("#right").css("z-index", "5");
+                        $("#info_r").animate({boxShadow: "0px 0px 50px black"}, 100);
+                        $("#right").animate({boxShadow: "0px 0px 50px black", fontSize: "52px", width: "51%", left: "49.5%"}, 100);
+                    }
+                });
+                $("#right").mouseleave(function()  {
+                    if(choice == 0)  {
+                        $("#info_r").animate({boxShadow: "0px 0px 100px black"}, 100);
+                        $("#right").animate({boxShadow: "0px 0px 0px black", fontSize: "50px", width: "50%", left: "50%"}, 100, function()  {
+                            $("#right").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#left").mousedown(function()  {
+                    if(choice == 0)  {
+                        $("#info_l").animate({boxShadow: "0px 0px 100px black"}, 100);
+                        $("#left").animate({boxShadow: "0px 0px 0px black", fontSize: "50px", width: "50%", left: "0"}, 100, function()  {
+                            $("#left").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#right").mousedown(function()  {
+                    if(choice == 0)  {
+                        $("#info_r").animate({boxShadow: "0px 0px 100px black"}, 100);
+                        $("#right").animate({boxShadow: "0px 0px 0px black", fontSize: "50px", width: "50%", left: "50%"}, 100, function()  {
+                            $("#right").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#left").mouseup(function()  {
+                    if(choice == 0)  {
+                        $("#left").css("z-index", "2");
+                        $("#info").velocity({width: 0, height: 0, left: "50%", top: "50%"}, 200, function()  {
+                            $("#left").velocity({width: "100%"}, 400, "easeOutExpo");
+                        });
+                        choice = 1;
+                    }
+                });
+                $("#right").mouseup(function()  {
+                    if(choice == 0)  {
+                        $("#right").css("z-index", "2");
+                        $("#info").velocity({width: 0, height: 0, left: "50%", top: "50%"}, 200, function()  {
+                            $("#right").velocity({width: "100%", left: 0}, 400, "easeOutExpo");
+                        });
+                        choice = 2;
+                    }
+                });
+            });
+        </script>
+        <style>
+            #left  {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 50%;
+                overflow: hidden;
+                background-color: orange;
+                font-family: "Sequi";
+                font-size: 50px;
+                color: white;
+                text-align: center;
+                box-shadow: 0px 0px 0px black;
+                line-height: 100vh;
+            }
+            #right  {
+                position: absolute;
+                left: 50%;
+                top: 0;
+                height: 100%;
+                width: 50%;
+                overflow: hidden;
+                background-color: dodgerblue;
+                font-family: "Sequi";
+                font-size: 50px;
+                color: white;
+                text-align: center;
+                box-shadow: 0px 0px 0px black;
+                line-height: 100vh;
+            }
+            #info_l  {
+                position: absolute;
+                height: 100%;
+                width: 50%;
+                top: 0%;
+                left: 0%;
+                box-shadow: 0px 0px 100px black;
+                z-index: 1;
+                /*border-top-left-radius: 100px;*/
+                border-bottom-left-radius: 100px;
+            }
+            #info_r  {
+                position: absolute;
+                height: 100%;
+                width: 50%;
+                top: 0;
+                left: 50%;
+                box-shadow: 0px 0px 100px black;
+                z-index: 1;
+                border-top-right-radius: 100px;
+                /*border-bottom-right-radius: 100px;*/
+            }
+            #info  {
+                position: absolute;
+                height: 25%;
+                width: 25%;
+                top: 37.5%;
+                left: 37.5%;
+                font-family: "Sequi";
+                font-size: 70px;
+                color: white;
+                text-align: center;
+                line-height: 25vh;
+                z-index: 100;
+                /*border-top-left-radius: 100px;*/
+                border-bottom-left-radius: 100px;
+                border-top-right-radius: 100px;
+                /*border-bottom-right-radius: 100px;*/
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden;">
+        <span id="left">
+            Lame.
+        </span>
+        <span id="info">
+            <span style="z-index: 2; color: white; position: absolute; left: 0; top: 0; text-align: center; height: 100%; width: 100%; background-color: deeppink; overflow: hidden;/* border-bottom-right-radius: 100px; border-top-left-radius: 100px; */border-top-right-radius: 100px; border-bottom-left-radius: 100px;">I am...</span>
+            <span id="info_l"></span>
+            <span id="info_r"></span>
+        </span>
+        <span id="right">
+            Awesome.
+        </span>
+    </body>
+</html>

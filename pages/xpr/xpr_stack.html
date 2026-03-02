@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title> Stack (misc) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                $("#c1").delay(500).velocity({top: "10%"}, 1000, "easeOutExpo", function()  {
+                    $("#c1").velocity({blur: "5px"}, 1000);
+                    $("#c2").velocity({top: "15%"}, 1000, "easeOutExpo", function()  {
+                        $("#c1").velocity({blur: "10px"}, 1000);
+                        $("#c2").velocity({blur: "5px"}, 1000);
+                        $("#c3").velocity({top: "20%"}, 1000, "easeOutExpo", function()  {
+                            $("#c1").velocity({blur: "15px"}, 1000);
+                            $("#c2").velocity({blur: "10px"}, 1000);
+                            $("#c3").velocity({blur: "5px"}, 1000);
+                            $("#c4").velocity({top: "25%"}, 1000, "easeOutExpo", function()  {
+                                $("#c1, #c2, #c3, #c4").delay(2000).velocity({boxShadowBlur: 0, blur: 0}, function()  {
+                                    $("#c1, #c2, #c3, #c4").velocity({height: "50%", width: "50%", left: "25%", top: "125%"}, 1000, "easeInExpo");
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: dodgerblue; overflow: hidden;">
+        <span id="c1" style="position: absolute; height: 80%; width: 80%; left: 10%; top: 140%; background-color: dodgerblue; box-shadow: 0px 0px 20px black;"></span>
+        <span id="c2" style="position: absolute; height: 70%; width: 70%; left: 15%; top: 140%; background-color: dodgerblue; box-shadow: 0px 0px 30px black;"></span>
+        <span id="c3" style="position: absolute; height: 60%; width: 60%; left: 20%; top: 140%; background-color: dodgerblue; box-shadow: 0px 0px 40px black;"></span>
+        <iframe id="c4" src="../_vertex_logo_template.html" style="position: absolute; height: 50%; width: 50%; left: 25%; top: 140%; background-color: dodgerblue; border: 1px solid dodgerblue; box-shadow: 0px 0px 50px black;" frameBorder="0"></iframe>
+    </body>
+</html>

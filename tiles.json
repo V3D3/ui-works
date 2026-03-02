@@ -177,5 +177,85 @@
         "type": "Component",
         "path": "pages/xpr/xpr_hyper.html",
         "weight": 2
+    },
+    {
+        "title": "Pixie",
+        "type": "Tool/Anim",
+        "path": "pages/pixie/index.html",
+        "weight": 2,
+        "description": "Minimalist file navigation and visualization."
+    },
+    {
+        "title": "Uber Dashboard",
+        "type": "Menu/Tool",
+        "path": "pages/uber/index.html",
+        "weight": 2,
+        "description": "Collection of Uber-style UI components and animations."
+    },
+    {
+        "title": "YTDL (Desktop)",
+        "type": "Tool",
+        "path": "pages/ytdl/dindex.html",
+        "weight": 2,
+        "description": "Elegant YouTube downloader interface for desktop."
+    },
+    {
+        "title": "YTDL (Mobile)",
+        "type": "Tool",
+        "path": "pages/ytdl/mindex.html",
+        "weight": 1,
+        "description": "Mobile-optimized YouTube downloader interface."
+    },
+    {
+        "title": "XPR Mesh",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_mesh.html",
+        "weight": 2,
+        "description": "Animated point mesh with colorful generative lines."
+    },
+    {
+        "title": "XPR Mesh II",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_mesh2.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR PaperNav",
+        "type": "Menu",
+        "path": "pages/xpr/xpr_papernav.html",
+        "weight": 2,
+        "description": "Cinematic paper-fold navigation menu."
+    },
+    {
+        "title": "XPR Pieta",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_pieta.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Protosel",
+        "type": "Component",
+        "path": "pages/xpr/xpr_protosel.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Protosel X",
+        "type": "Component",
+        "path": "pages/xpr/xpr_protoselx.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Stack",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_stack.html",
+        "weight": 2,
+        "description": "Layered depth stack animation."
+    },
+    {
+        "title": "Involve",
+        "type": "Splash/Tool",
+        "path": "pages/involve/index.html",
+        "weight": 2,
+        "description": "Personalised onboarding experience with theme selection."
     }
 ]

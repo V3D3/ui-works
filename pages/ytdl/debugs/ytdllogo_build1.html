@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            @keyframes rot  {
+                from  {
+                    transform: rotate(0deg);
+                }
+                to  {
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes rotx  {
+                from  {
+                    transform: rotate(360deg);
+                }
+                to  {
+                    transform: rotate(0deg);
+                }
+            }
+            .rotel  {
+                animation-name: rot;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            .arotel  {
+                animation-name: rotx;
+                animation-duration: 10s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+        </style>
+        <script src='jquery.js'></script>
+        <script src='velocity.min.js'></script>
+        <script>
+            var sW = window.innerWidth, sH = window.innerHeight;
+            var h = x => (x / 100) * sH;
+            var w = x => (x / 100) * sW;
+            $(document).ready(function()  {
+                $('#centel').velocity({top: h(48), height: h(4), width: h(4), left: w(50) - h(2), rotateZ: 180}, 1000, 'easeOutExpo');
+                $('#bg').delay(800).velocity({top: h(40), height: h(20), width: h(20), left: w(50) - h(10), rotateZ: 180, borderRadius: '50%'}, 1000, 'easeOutExpo');
+                $('#c1').delay(1600).velocity({translateX: ['-17vh', '-100vw']}, 1000, 'easeOutExpo');
+                $('#c3').delay(1700).velocity({translateY: ['-17vh', '-100vw']}, 1000, 'easeOutExpo');
+                $('#c0').delay(1800).velocity({translateX: ['17vh', '100vw']}, 1000, 'easeOutExpo');
+                $('#c2').delay(1900).velocity({translateY: ['17vh', '100vw']}, 1000, 'easeOutExpo', function()  {
+                    $('#stage').attr('class', 'rotel');
+                    $('#centel').attr('class', 'arotel');
+                });
+            });
+        </script>
+    </head>
+    <body style="background: #eee; overflow: hidden;">
+        <span id='stage' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;' class='rotel'>
+            <span id='xcentel' class='arotel' style='position: absolute; top: 48%; left: calc(50% - 2vh); width: 4vh; height: 4vh; background: red; border-radius: 10px;'></span>
+            <span id='xbg' style='position: absolute; top: 40%; left: calc(50% - 10vh); height: 20%; width: 20vh; background: #eee; border-radius: 50%; z-index: -1;'></span>
+            <span id='xc0' style='position: absolute; top: 40%; left: calc(50% - 10vh); height: 20%; width: 20vh; background: red; transform: translateX(17vh); border-radius: 50%;'></span>
+            <span id='xc1' style='position: absolute; top: 40%; left: calc(50% - 10vh); height: 20%; width: 20vh; background: red; transform: translateX(-17vh); border-radius: 50%;'></span>
+            <span id='xc2' style='position: absolute; top: 40%; left: calc(50% - 10vh); height: 20%; width: 20vh; background: red; transform: translateY(17vh); border-radius: 50%;'></span>
+            <span id='xc3' style='position: absolute; top: 40%; left: calc(50% - 10vh); height: 20%; width: 20vh; background: red; transform: translateY(-17vh); border-radius: 50%;'></span>
+        </span>
+    </body>
+</html>

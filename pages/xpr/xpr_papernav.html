@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <title> PaperNav (menus) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var chosen = 0;
+            $(document).ready(function()  {
+                $("#choice1").mouseenter(function()  {
+                    if(!chosen)  {
+                        $("#choice1").css("z-index", "1");
+                        $("#choice1").velocity({scale: 1.1, boxShadowBlur: "30px"}, 100);
+                    }
+                });
+                $("#choice1").mouseleave(function()  {
+                    if(!chosen)  {
+                        $("#choice1").velocity({scale: 1, boxShadowBlur: 0}, 100, function()  {
+                            $("#choice1").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#choice2").mouseenter(function()  {
+                    if(!chosen)  {
+                        $("#choice2").css("z-index", "1");
+                        $("#choice2").velocity({scale: 1.1, boxShadowBlur: "30px"}, 100);
+                    }
+                });
+                $("#choice2").mouseleave(function()  {
+                    if(!chosen)  {
+                        $("#choice2").velocity({scale: 1, boxShadowBlur: 0}, 100, function()  {
+                            $("#choice2").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#choice3").mouseenter(function()  {
+                    if(!chosen)  {
+                        $("#choice3").css("z-index", "1");
+                        $("#choice3").velocity({scale: 1.1, boxShadowBlur: "30px"}, 100);
+                    }
+                });
+                $("#choice3").mouseleave(function()  {
+                    if(!chosen)  {
+                        $("#choice3").velocity({scale: 1, boxShadowBlur: 0}, 100, function()  {
+                            $("#choice3").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#choice4").mouseenter(function()  {
+                    if(!chosen)  {
+                        $("#choice4").css("z-index", "1");
+                        $("#choice4").velocity({scale: 1.1, boxShadowBlur: "30px"}, 100);
+                    }
+                });
+                $("#choice4").mouseleave(function()  {
+                    if(!chosen)  {
+                        $("#choice4").velocity({scale: 1, boxShadowBlur: 0}, 100, function()  {
+                            $("#choice4").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#choice5").mouseenter(function()  {
+                    if(!chosen)  {
+                        $("#choice5").css("z-index", "1");
+                        $("#choice5").velocity({scale: 1.1, boxShadowBlur: "30px"}, 100);
+                    }
+                });
+                $("#choice5").mouseleave(function()  {
+                    if(!chosen)  {
+                        $("#choice5").velocity({scale: 1, boxShadowBlur: 0}, 100, function()  {
+                            $("#choice5").css("z-index", "0");
+                        });
+                    }
+                });
+                $("#choice1, #choice2, #choice3, #choice4, #choice5").mouseup(function()  {
+                    $("body").velocity({transformPerspective: "600px"}, 0);
+                    $("body").velocity({scale: 0.8, transformPerspective: "600px"}, 400, "easeInOutExpo", function()  {
+                        $("body").velocity({rotateY: 90, transformPerspective: "600px"}, 600, "easeInExpo", function()  {
+                            $("#choice1, #choice2, #choice3, #choice4, #choice5").css("display", "none");
+                            $("#content" + chosen).css("display", "block");
+                            $("body").velocity({rotateY: 180, transformPerspective: "600px"}, 600, "easeOutExpo", function()  {
+                                $("body").velocity({scale: 1, transformPerspective: "600px"}, "easeInOutExpo");
+                            });
+                        });
+                    });
+                });
+                $("#choice1").mousedown(function()  {
+                    if(!chosen)  {
+                        chosen = 1;
+                        $("#choice2, #choice3, #choice4, #choice5").velocity({opacity: 0.8});
+                        $("#choice1").velocity({top: 0, height: "100%", scale: 1, lineHeight: "100vh"}, 600, "easeInOutExpo");
+                    }
+                });
+                $("#choice2").mousedown(function()  {
+                    if(!chosen)  {
+                        chosen = 2;
+                        $("#choice1, #choice3, #choice4, #choice5").velocity({opacity: 0.8});
+                        $("#choice2").velocity({top: 0, height: "100%", scale: 1, lineHeight: "100vh"}, 600, "easeInOutExpo");
+                    }
+                });
+                $("#choice3").mousedown(function()  {
+                    if(!chosen)  {
+                        chosen = 3;
+                        $("#choice2, #choice1, #choice4, #choice5").velocity({opacity: 0.8});
+                        $("#choice3").velocity({top: 0, height: "100%", scale: 1, lineHeight: "100vh"}, 600, "easeInOutExpo");
+                    }
+                });
+                $("#choice4").mousedown(function()  {
+                    if(!chosen)  {
+                        chosen = 4;
+                        $("#choice2, #choice3, #choice1, #choice5").velocity({opacity: 0.8});
+                        $("#choice4").velocity({top: 0, height: "100%", scale: 1, lineHeight: "100vh"}, 600, "easeInOutExpo");
+                    }
+                });
+                $("#choice5").mousedown(function()  {
+                    if(!chosen)  {
+                        chosen = 5;
+                        $("#choice2, #choice3, #choice4, #choice1").velocity({opacity: 0.8});
+                        $("#choice5").velocity({top: 0, height: "100%", scale: 1, lineHeight: "100vh"}, 600, "easeInOutExpo");
+                    }
+                });
+            });
+        </script>
+        <style>
+            span  {
+                position: absolute;
+                font-family: Segoe UI Light;
+                color: black;
+                font-size: 9vh;
+                width: 100%;
+                left: 0;
+                text-align: center;
+                cursor: default;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px; transform: perspective(600px);">
+        <span id="choice1" style="line-height: 20vh; top: 0; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+            Loaders
+        </span>
+        <span id="choice2" style="line-height: 20vh; top: 20%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+            Buttons
+        </span>
+        <span id="choice3" style="line-height: 20vh; top: 40%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+            Navigation
+        </span>
+        <span id="choice4" style="line-height: 20vh; top: 60%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+            Miscellaneous
+        </span>
+        <span id="choice5" style="line-height: 20vh; top: 80%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+            About
+        </span>
+        <span id="content1" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+            Loaders
+        </span>
+        <span id="content2" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+            Buttons
+        </span>
+        <span id="content3" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+            Navigation
+        </span>
+        <span id="content4" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+            Miscellaneous
+        </span>
+        <span id="content5" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+            About
+        </span>
+    </body>
+</html>

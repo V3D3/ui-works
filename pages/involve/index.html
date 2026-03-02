@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Involve )) Preparation</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='xpr.tipsy.js'></script>
+		<style>
+			input:focus  {
+				outline: 0;
+			}
+		</style>
+	</head>
+	<body style='background: black; margin: 0; overflow: hidden;'>
+		<span id='hel0' style='position: absolute; top: 100%; left: 0; height: 100%; line-height: 100vh; width: 100%; color: orange; font-family: SF Pro Display Thin; font-size: 20vh; text-align: center;'>hello, friend.</span>
+		<span id='hel1' style='position: absolute; top: 100%; left: 0; height: 60%; line-height: 60vh; width: 100%; color: orange; font-family: SF Pro Display Thin; font-size: 16vh; text-align: center;'>what should i call you?</span>
+		<input id='helin0' style='position: absolute; top: 100%; left: 0; height: 40%; line-height: 40vh; width: 100%; color: orange; font-family: SF Pro Display Thin; font-size: 20vh; text-align: center; background: rgb(15, 15, 15); border: 0;'>
+		<span id='hel2' style='position: absolute; top: 0; left: 100%; height: 200%; line-height: 100vh; width: 100%; color: orange; font-family: SF Pro Display Thin; font-size: 20vh; text-align: center; background: rgb(15, 15, 15);'></span>
+		<span id='hel3' style='position: absolute; top: 100%; left: 0; height: 25%; line-height: 25vh; width: 100%; color: orange; font-family: SF Pro Display Thin; font-size: 10vh; text-align: center; background: rgb(15, 15, 15);'></span>
+		<span id='helb0' style='position: absolute; top: 100%; left: 0; height: 25%; width: 40%; color: orange; font-family: SF Pro Display Thin; font-size: 9vh; opacity: 0.7; text-align: center;'>something dark</span>
+		<span id='helb1' style='position: absolute; top: 100%; left: 60%; height: 25%; width: 40%; color: orange; font-family: SF Pro Display Thin; font-size: 9vh; opacity: 0.7; text-align: center;'>something light</span>
+		<span id='helb2' style='position: absolute; top: 100%; left: 30%; height: 25%; width: 40%; color: orange; font-family: SF Pro Display Thin; font-size: 9vh; opacity: 0.7; text-align: center;'>something else</span>
+		<script>
+			var name = 'friend';
+			$(document).ready(function()  {
+				tcss = {color: 'orange', borderColor: 'orange', background: 'rgb(15, 15, 15)'};
+				$.tipsy('#helin0', 'Press Enter when done.', tcss);
+				$('#hel0').delay(500).velocity({top: 0}, 'easeOutExpo', 1000, function()  {
+					$('#helin0').val(name);
+					$('#hel0').delay(1000).velocity({top: '-100%'}, 'easeInExpo', 700);
+					$('#hel1').delay(1500).velocity({top: 0}, 'easeOutExpo', 1000);
+					$('#helin0').delay(2000).velocity({top: '60%'}, 'easeOutExpo', 1000, function()  {
+						$('#helin0').focus();
+					});
+				});
+			});
+			$(document).ready(function()  {
+				$('#helin0').keyup(function(e)  {
+					if(e.key == "Enter")  {
+						name = $('#helin0').val();
+						$('#hel2').html('alright, ' + name + '.');
+						$('#hel3').html('what theme would you like, ' + name + '?');
+						$('#hel1').delay(150).velocity({top: '-60%'}, 'easeInExpo', 600);
+						$('#helin0').delay(500).velocity({top: 0, height: '100%'}, 'easeInOutExpo', 800, function()  {
+							$('body').css({background: 'rgb(15, 15, 15)'});
+							$('#helin0').delay(300).velocity({left: '-100%'}, 'easeInExpo', 800);
+							$('#hel2').delay(1150).velocity({left: 0}, 'easeOutExpo', 800, function()  {
+								$('body').css('background', 'black');
+								$('#hel2').delay(500).velocity({top: '-100%'}, 'easeInExpo', 700);
+								$('#hel2').velocity({top: '-200%'}, 'easeInExpo', 600, function()  {
+									$('#hel3').velocity({top: '0'}, 'easeOutExpo', 800);
+									$('#helb0').delay(200).velocity({top: '45%'}, 'easeOutExpo', 800);
+									$('#helb1').delay(400).velocity({top: '45%'}, 'easeOutExpo', 800);
+									$('#helb2').delay(600).velocity({top: '65%'}, 'easeOutExpo', 800);
+								});
+							});
+						});
+					}
+				});
+				$('#helb0, #helb1, #helb2').mouseenter(function()  {
+					$(this).velocity({opacity: 1}, 200);
+				});
+				$('#helb0, #helb1, #helb2').mouseleave(function()  {
+					$(this).velocity({opacity: 0.7}, 200);
+				});
+			});
+		</script>
+	</body>
+</html>

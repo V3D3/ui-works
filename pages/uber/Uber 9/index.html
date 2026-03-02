@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title> Uber (splash)
+        </title>
+        <script src="../../../scripts/jq.js"></script>
+        <script src="../../../scripts/vm.js"></script>
+        <script src="../../../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                $("#oao").velocity({top: 0, height: "100%"}, 200, function()  {
+                    $("body").css("background-color", "orange");
+                    $("#oao").css("height", "0").css("top", "100%").css("background-color", "lime");
+                    $("#oao").velocity({top: 0, height: "100%"}, 300, function()  {
+                        $("body").css("background-color", "lime");
+                        $("#oao").css("height", "0").css("top", "100%").css("background-color", "rgb(255, 38, 38)");
+                        $("#oao").velocity({top: 0, height: "100%"}, 400, function()  {
+                            $("body").css("background-color", "rgb(255, 38, 38");
+                            $("#oao").css("height", "0").css("top", "100%").css("background-color", "dodgerblue");
+                            $("#oao").velocity({top: 0, height: "100%"}, 800, "easeOutCirc", function()  {
+                                $("body").css("background-color", "dodgerblue");
+                                $("#oao").css("height", "0").css("top", "100%").css("display", "none");
+                            });
+                        });
+                    });
+                });
+            });
+
+            //(oao == one_and_only) = true;
+        </script>
+        <style>
+            #oao  {
+                position: absolute;
+                top: 100%;
+                height: 0;
+                width: 100%;
+                left: 0;
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body style="background-color: black; overflow: hidden;">
+        <span id="oao"></span>
+    </body>
+</html>

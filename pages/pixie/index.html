@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>:pixie:</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <script>
+            //The below is an inefficient, but functional and understandable script.
+            //Deal with it.
+
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            $(document).ready(function()  {
+                $('#logo0, #logo1, #logo2, #logo3, #logo0i, #logo1i, #logo2i, #logo3i, #logo0x, #logo1x, #logo2x, #logo3x').velocity({rotateZ: [45, 45]}, 0);
+                $('#logo0i').velocity({top: sH * 0.4}, 1200, 'easeOutExpo');
+                $('#logo1i').delay(200).velocity({top: sH * 0.425}, 1200, 'easeOutExpo');
+                $('#logo2i').delay(400).velocity({top: sH * 0.45}, 1200, 'easeOutExpo');
+                $('#logo3i').delay(600).velocity({top: sH * 0.475}, 1200, 'easeOutExpo', function()  {
+                    $('#logo0, #logo0x').velocity({top: sH * 0.4}, 0);
+                    $('#logo1, #logo1x').velocity({top: sH * 0.425}, 0);
+                    $('#logo2, #logo2x').velocity({top: sH * 0.45}, 0);
+                    $('#logo3, #logo3x').velocity({top: sH * 0.475}, 0, function()  {
+                        $('#logo0i, #logo1i, #logo2i, #logo3i').css({opacity: 0});
+                        $('#logon0, #logon1, #logon2').css({opacity: 1});
+                    });
+                });
+            });
+            $(document).ready(function()  {
+                $('#logo3').mousedown(function()  {
+                    $('#logo3').velocity({rotateZ: [45, 45], scale: 0, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo2').delay(100).velocity({rotateZ: [45, 45], scale: 0, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo1').delay(200).velocity({rotateZ: [45, 45], scale: 0, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo0').delay(300).velocity({rotateZ: [45, 45], scale: 0, opacity: 0}, 'easeInExpo', 400);
+                });
+                $('#logo3').mouseenter(function()  {
+                    $('#logo0x, #logo1x, #logo2x, #logo3x').velocity({boxShadowBlur: 20}, 200);
+                });
+                $('#logo3').mouseleave(function()  {
+                    $('#logo0x, #logo1x, #logo2x, #logo3x').velocity({boxShadowBlur: 0}, 200);
+                });
+                $('#logo3x, #logo3').mouseup(function()  {
+                    $('#logo0x').velocity({rotateZ: [0, 45], scale: 20, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo1x').delay(100).velocity({rotateZ: [0, 45], scale: 20, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo2x').delay(200).velocity({rotateZ: [0, 45], scale: 20, opacity: 0}, 'easeInExpo', 400);
+                    $('#logo3x').delay(300).velocity({rotateZ: [0, 45], scale: 20, opacity: 0}, 'easeInExpo', 400, function()  {
+                        $('#logon0').delay(300).velocity({left: (-0.04 * sW) + (0.01 * sH)}, 1200, 'easeOutExpo');
+                        $('#logon1').delay(300).velocity({right: (-0.04 * sW) + (0.01 * sH)}, 1200, 'easeOutExpo');
+                        $('#logonc').delay(300).velocity({left: '37.5%', width: '25%', rotateZ: [0, 180]}, 1200, 'easeOutExpo');
+                        $('#logon2i').delay(300).velocity({left: 0}, 1200, 'easeOutExpo', function()  {
+                            window.location = 'nav.html';
+                        });
+                    });
+                });
+            });
+        </script>
+        <style>
+            *  {
+                font-family: SF Pro Display Thin;
+            }
+            span  {
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden;'>
+        <span id='logo0i' style='height: 20vh; width: 20vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 10vh); border-radius: 10px; border: 2px solid rgb(255, 38, 38); z-index: 2;'></span>
+        <span id='logo1i' style='height: 15vh; width: 15vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 7.5vh); border-radius: 10px; border: 2px solid lime; z-index: 4;'></span>
+        <span id='logo2i' style='height: 10vh; width: 10vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 5vh); border-radius: 10px; border: 2px solid orange; z-index: 6;'></span>
+        <span id='logo3i' style='height: 5vh; width: 5vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 2.5vh); border-radius: 10px; border: 2px solid dodgerblue; z-index: 8;'></span>
+
+        <span id='logo0' style='height: 20vh; width: 20vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 10vh); border-radius: 10px; border: 2px solid rgb(255, 38, 38); z-index: 2; background: black;'></span>
+        <span id='logo1' style='height: 15vh; width: 15vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 7.5vh); border-radius: 10px; border: 2px solid lime; z-index: 4; background: black;'></span>
+        <span id='logo2' style='height: 10vh; width: 10vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 5vh); border-radius: 10px; border: 2px solid orange; z-index: 6; background: black;'></span>
+        <span id='logo3' style='height: 5vh; width: 5vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 2.5vh); border-radius: 10px; border: 2px solid dodgerblue; z-index: 8; background: black;'></span>
+        <span id='logo0x' style='height: 20vh; width: 20vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 10vh); border-radius: 10px; border: 2px solid rgb(255, 38, 38); z-index: 1; background: rgb(255, 38, 38); box-shadow: 0 0 0px rgb(255, 38, 38);'></span>
+        <span id='logo1x' style='height: 15vh; width: 15vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 7.5vh); border-radius: 10px; border: 2px solid lime; z-index: 3; background: lime; box-shadow: 0 0 0px lime;'></span>
+        <span id='logo2x' style='height: 10vh; width: 10vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 5vh); border-radius: 10px; border: 2px solid orange; z-index: 5; background: orange; box-shadow: 0 0 0px orange;'></span>
+        <span id='logo3x' style='height: 5vh; width: 5vh; transform: translateX(-2px) translateY(-2px) rotate(45deg); top: 150%; left: calc(50% - 2.5vh); border-radius: 10px; border: 2px solid dodgerblue; z-index: 7; background: dodgerblue; box-shadow: 0 0 0px dodgerblue;'></span>
+
+        <span id='logonc' style='height: 6vh; width: 0; top: 47%; left: 50%; z-index: 0; transform: rotateZ(90deg);'>
+            <span id='logon0' style='height: 2vh; width: 2vh; border-radius: 50%; background: blueviolet; left: -1vh; top: 2vh; opacity: 0;'></span>
+            <span id='logon1' style='height: 2vh; width: 2vh; border-radius: 50%; background: blueviolet; right: -1vh; top: 2vh; opacity: 0;'></span>
+            <span id='logon2' style='height: 100%; width: 100%; top: 0; left: 0; opacity: 0; overflow: hidden;'>
+                <span id='logon2i' style='height: 100%; font-size: 4vh; width: 25vw; background: blueviolet; letter-spacing: 3vw; line-height: 6vh; text-align: center; font-variant: petite-caps; left: -12.5vw; top: 0; overflow: hidden;'>&nbsp;pixie</span>
+            </span>
+        </span>
+    </body>
+</html>

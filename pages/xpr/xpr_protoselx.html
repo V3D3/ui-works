@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title> Protosel (buttons) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var exit = 0;
+            $(document).ready(function()  {
+                $("#x1o").mouseenter(function()  {
+                    exit = 0;
+                    $("#x1o").velocity({width: 0}, 450, "easeInOutExpo");
+                    $("#x1oi").velocity({width: "15%", left: "42.5%"}, 450, "easeInOutExpo");
+                    $("#x1ot, #x1oit").velocity({left: 0, width: "15vw"}, 450, "easeInOutExpo", function()  {
+                        if(exit == 0)  {
+                            $("#x1obg").velocity({opacity: "1"}, 400);
+                            exit = 2;
+                        }
+                    });
+                });
+                $("#x1oi").mouseleave(function()  {
+                    if(exit == 2)  {
+                        $("#x1obg").velocity({opacity: "0"}, 400);
+                    }
+                    exit = 1;
+                    $("#x1o").delay(400).velocity({width: "13%"}, 450, "easeInOutExpo");
+                    $("#x1oi").delay(400).velocity({width: "2%", left: "55.5%"}, 450, "easeInOutExpo");
+                    $("#x1ot").delay(400).velocity({left: 0, width: "13vw"}, 450, "easeInOutExpo");
+                    $("#x1oit").delay(400).velocity({left: "-650%", width: "13vw"}, 450, "easeInOutExpo");
+                });
+            });
+        </script>
+        <style>
+            #x1o  {
+                position: absolute;
+                width: 13%;
+                height: 15%;
+                top: 42.5%;
+                left: 42.5%;
+                border: 2px solid orange;
+                background-color: orange;
+                color: black;
+                font-family: 'Segoe UI Light';
+                font-size: 7vh;
+                line-height: 15vh;
+                text-align: center;
+                overflow: hidden;
+            }
+            #x1oi  {
+                position: absolute;
+                width: 2%;
+                height: 15%;
+                top: 42.5%;
+                left: 55.5%;
+                border: 2px solid orange;
+                background-color: black;
+                color: black;
+                font-family: 'Segoe UI Light';
+                font-size: 7vh;
+                overflow: hidden;
+            }
+            #x1ot  {
+                position: absolute;
+                width: 13vw;
+                height: 100%;
+                top: 0;
+                left: 0;
+                text-align: center;
+                font-family: 'Segoe UI Light';
+                font-size: 7vh;
+                color: black;
+                line-height: 15vh;
+            }
+            #x1oit  {
+                position: absolute;
+                width: 13vw;
+                height: 100%;
+                top: 0;
+                left: -650%;
+                text-align: center;
+                font-family: 'Segoe UI Light';
+                font-size: 7vh;
+                color: orange;
+                line-height: 15vh;
+            }
+        </style>
+    </head>
+    <body style="background-color: black;overflow: hidden; margin: 0px;">
+        <span id="x1obg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: orange; opacity: 0;"></span>
+        <span id="x1o"><span id="x1ot">Buttons</span></span>
+        <span id="x1oi"><span id="x1oit">Buttons</span></span>
+    </body>
+</html>

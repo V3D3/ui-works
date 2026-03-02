@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title> Mesh (misc) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script src="../../scripts/draw.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+			var id = 1;
+            var lim = 5 + Math.round(Math.random() * 30);
+            var parr = [[(sW / 2) - 1, (sH / 2) - 1]];
+            $(document).ready(function()  {
+				$('#p0').velocity({top: (sH / 2) - 1}, 'easeOutExpo', 600, function()  {
+                    gen(lim);
+                });
+            });
+            function gen(n)  {
+                $(document).ready(function()  {
+                    for(var i = id; i < id + lim; i++)  {
+                        $('#cont').append("<span class='point' id='p" + i + "' style='top: " + ((sH / 2) - 1) + "px; left: " + ((sW / 2) - 1) + "px'></span>");
+                    }
+                    for(var n = id; n < id + lim; n++)  {
+                        var x = sW * Math.random();
+                        var y = sH * Math.random();
+                        if(n < id + lim - 1)  {
+                            $('#p' + n).delay((n - id) * 100).velocity({top: y, left: x}, 'easeInOutExpo', 800);
+                        }  else  {
+                            $('#p' + n).delay((n - id) * 100).velocity({top: y, left: x}, 'easeInOutExpo', 800, function()  {
+                                draw();
+                            });
+                        }
+                        parr.push([x, y]);
+                    }
+                });
+            }
+            
+            function draw()  {
+                $(document).ready(function()  {
+                    var x1, y1, x2, y2;
+
+                    for(var i = 0; i < parr.length - 1; i++)  {
+                        for(var j = i + 1; j < parr.length; j++)  {
+                            x1 = parr[i][0];
+                            x2 = parr[j][0];
+                            y1 = sH - parr[i][1];
+                            y2 = sH - parr[j][1];
+
+                            line(x1, y1, x2, y2, {bg: gc(x1, x2, y1, y2)});
+                        }
+                    }
+                });
+            }
+            function gc(x1, x2, y1, y2)  {
+                var basecol = 'rgba(255, 165, 0, ';
+                var distance = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+                return basecol + (1 - (distance / sW)) + ")";
+            }
+        </script>
+        <style>
+            .point  {
+                position: absolute;
+                height: 2px;
+                width: 2px;
+                background: orange;
+            }
+        </style>
+    </head>
+    <body id='cont' style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: black; overflow: hidden; margin: 0px;">
+        <span class='point' id='p0' style='top: 100%; left: calc(50% - 1px);'></span>
+    </body>
+</html>

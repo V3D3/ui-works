@@ -1,69 +1,275 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>worx ui</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>worx ui | gallery</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <style>
+        :root {
+            --primary: #ff9d00;
+            --primary-glow: rgba(255, 157, 0, 0.3);
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text: #e0e0e0;
+            --font-main: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
         * {
-            color: orange;
-            font-family: Segoe UI Light, Helvetica Neue Light, SF Pro Display Light, Noto Sans Light, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             user-select: none;
-            border-radius: 8pt;
         }
-        p {
-            max-width: 40%;
-            padding: 20pt;
-            margin: 20pt;
-            border: 1px solid orange;
-            font-size: 15pt;
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
         }
-        div  {
-            cursor: default;
-            margin: 20pt 20pt 20pt 20pt;
-            width: fit-content;
-            max-width: 40%;
-            border: 2px solid orange;
-            line-height: 9vh;
-            font-variant: petite-caps;
-            font-size: 35pt;
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 200;
+            letter-spacing: -1px;
+            color: var(--primary);
+            text-transform: lowercase;
+            line-height: 1;
+        }
+
+        .header-meta {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: right;
+            max-width: 300px;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        #search-input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: var(--primary);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        #search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        #search-input::placeholder {
+            color: #444;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .tile {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 16/10;
             text-align: center;
-            padding-left: 32pt;
-            padding-right: 32pt;
+            backdrop-filter: blur(10px);
         }
-        div:hover  {
-            background: orange;
+
+        .tile:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            background: rgba(255, 157, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--primary);
+        }
+
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--primary-glow), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .tile:hover::before {
+            opacity: 1;
+        }
+
+        .tile-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .tile:hover .tile-type {
+            color: var(--primary);
+        }
+
+        .tile-name {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .tile:hover .tile-name {
+            color: #fff;
+        }
+
+        /* Viewer Overlay */
+        #viewer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        #viewer-header {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        #viewer-title {
+            color: var(--primary);
+            font-weight: 300;
+            font-size: 1.2rem;
+        }
+
+        #close-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-main);
+            transition: all 0.3s ease;
+        }
+
+        #close-btn:hover {
+            background: var(--primary);
             color: black;
-            box-shadow: 0 0 10px orange;
-            font-variant: normal;
+            box-shadow: 0 0 15px var(--primary-glow);
         }
-        ::-webkit-scrollbar  {
-            width: 8px;
+
+        #viewer-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
         }
-        ::-webkit-scrollbar-track  {
-            background: #503000;
-            opacity: 0.1;
-            border-radius: 100px;
+
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        ::-webkit-scrollbar-track:hover  {
-            background: #604000;
-            opacity: 0.2;
+        ::-webkit-scrollbar-track {
+            background: #111;
         }
-        ::-webkit-scrollbar-thumb  {
-            background: orange;
-            border-radius: 100px;
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
         }
-        ::-webkit-scrollbar-thumb:hover  {
-            background: #ffb510;
-        }
-        ::-webkit-scrollbar-corner  {
-            background: orange;
-            border-radius: 100px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
     </style>
-</head> 
-<body style="background:black; overflow-x:hidden; margin:0; display:flex; flex-wrap:wrap; align-content: flex-start;">
-    <p>UI works by V3D3. Free for use. <br>1920x1080 with Segoe UI Light are recommended for viewing.</p>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1>worx ui</h1>
+            <div class="header-meta">
+                Interactive UI Gallery by V3D3<br>
+                Optimized for visual excellence.
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="search experiments..." autocomplete="off">
+        </div>
+    </header>
+
+    <main class="gallery" id="tile-container">
+        <!-- Tiles injected here -->
+    </main>
+
+    <div id="viewer-overlay">
+        <div id="viewer-header">
+            <span id="viewer-title">experiment</span>
+            <button id="close-btn">close</button>
+        </div>
+        <iframe id="viewer-frame" src=""></iframe>
+    </div>
+
     <script>
-        let stuffdict = {
+        const stuffdict = {
             'Splash: BYTES': 'pages/bytes.html',
             'Tool: Doorway': 'pages/doorway.html',
             'Tool: Doorway X': 'pages/doorwayx.html',
@@ -92,23 +298,69 @@
             'Anim: XPR Gradience': 'pages/xpr_gradience.html',
             'Component: XPR Konami': 'pages/xpr_konami.html',
             'Component: XPR Hyper': 'pages/xpr_hyper.html',
-        }
-        let detaildict = {
+        };
+
+        const container = document.getElementById('tile-container');
+        const searchInput = document.getElementById('search-input');
+        const overlay = document.getElementById('viewer-overlay');
+        const frame = document.getElementById('viewer-frame');
+        const viewerTitle = document.getElementById('viewer-title');
+        const closeBtn = document.getElementById('close-btn');
+
+        function createTiles(filter = '') {
+            container.innerHTML = '';
+            for (const [name, path] of Object.entries(stuffdict)) {
+                if (name.toLowerCase().includes(filter.toLowerCase())) {
+                    const tile = document.createElement('div');
+                    tile.className = 'tile';
+
+                    const parts = name.split(': ');
+                    const type = parts.length > 1 ? parts[0] : 'Misc';
+                    const label = parts.length > 1 ? parts[1] : parts[0];
+
+                    tile.innerHTML = `
+                        <div class="tile-type">${type}</div>
+                        <div class="tile-name">${label}</div>
+                    `;
+
+                    tile.onclick = () => openViewer(name, path);
+                    container.appendChild(tile);
+                }
+            }
         }
 
-        function makeTile(name, i) {
-            return "<div class='tile' id='dili" + i + "' style='top: " + ((window.innerHeight * 0.025) * (2 * i + 1) + (window.innerHeight * 0.2) * i) +  "px;' onclick='runf(\"" + stuffdict[name] + "\")'>" + name + "</div>"
+        function openViewer(name, path) {
+            viewerTitle.textContent = name.toLowerCase();
+            frame.src = path;
+            overlay.style.display = 'flex';
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+            }, 10);
+            document.body.style.overflow = 'hidden';
         }
 
-        let i = 0;
-        for (let name in stuffdict) {
-            document.getElementsByTagName('body')[0].innerHTML += makeTile(name, stuffdict[name], i);
-            i++;
+        function closeViewer() {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                frame.src = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
         }
-        function runf(link)  {
-            window.location = link;
-        }
+
+        searchInput.oninput = (e) => createTiles(e.target.value);
+        closeBtn.onclick = closeViewer;
+
+        // Escape to close
+        window.onkeydown = (e) => {
+            if (e.key === 'Escape' && overlay.style.display === 'flex') {
+                closeViewer();
+            }
+        };
+
+        // Initialize
+        createTiles();
     </script>
-    
 </body>
 </html>
+

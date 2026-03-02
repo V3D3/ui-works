@@ -1,8 +1,8 @@
 <html>
     <head>
         <title>• WAPT •</title>
-        <script src='jm.js'></script>
-        <script src='vm.js'></script>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
         <script src='th.js'></script>
         <script>
             var st;
@@ -24,7 +24,7 @@
                 $('#logo').delay(500).velocity({width: '25vw', left: '37.5vw'}, 1000, 'easeOutExpo', function()  {
                     $('#logotext').delay(500).velocity({left: '-25vw'}, 1000, 'easeInExpo');
                     $('#logo').delay(500).velocity({width: '0', left: '110vw'}, 1000, 'easeInExpo', function()  {
-                        
+
                         //if first visit, say hi.
 
                         if(!localStorage.getItem('wapt_nfirst'))  {
@@ -81,7 +81,7 @@
             <span id='logotext' style='left: 0; width: 25vw; top: 0; height: 100%; line-height: 20vh; color: black; font-family: Consolas; font-size: 15vh; font-variant: petite-caps; text-align: center;'>WAPT</span>
         </span>
 
-        
+
         <span id='ninhint' style='left: -10%; width: 0; border: 1px solid black; height: 20vh; top: 30vh; overflow: hidden;'>
             <span id='ninhinttext' style='left: 0; width: 70vw; top: 0; height: 100%; line-height: 20vh; color: black; font-family: Consolas; font-size: 7vh; text-align: center;'>Hi! I'm WAPT. What's your name?</span>
         </span>

@@ -193,20 +193,6 @@
         "description": "Collection of Uber-style UI components and animations."
     },
     {
-        "title": "YTDL (Desktop)",
-        "type": "Tool",
-        "path": "pages/ytdl/dindex.html",
-        "weight": 2,
-        "description": "Elegant YouTube downloader interface for desktop."
-    },
-    {
-        "title": "YTDL (Mobile)",
-        "type": "Tool",
-        "path": "pages/ytdl/mindex.html",
-        "weight": 1,
-        "description": "Mobile-optimized YouTube downloader interface."
-    },
-    {
         "title": "XPR Mesh",
         "type": "Anim",
         "path": "pages/xpr/xpr_mesh.html",

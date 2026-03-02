@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>• WAPT •</title>
+        <script src='jm.js'></script>
+        <script src='vm.js'></script>
+        <script src='th.js'></script>
+        <script>
+            var st;
+            var r = (localStorage.getItem('wapt_theme'))?localStorage.getItem('wapt_theme'):Math.round(Math.random() * (stylebank.length - 1));
+            st = stylebank[r]; //selects a random sub-array from the stylebank
+            st[7] = (st[7])?st[7]:'15vh'; //implicit, if st[7] not given
+            localStorage.setItem('wapt_ctheme', r);
+
+            $(document).ready(function()  {
+                //Apply selected style to document.
+                $('body').css({background: st[0]});
+                $('#logo, #ninhint, #nin').css({background: st[1]});
+                $('#logotext, #ninhinttext, #nin').css({color: st[2]});
+                $('#logo, #ninhint, #nin').css({border: st[3]});
+                $('#logotext, #ninhinttext, #nin').css({fontFamily: st[4]});
+                $('#logotext').css({fontSize: st[7]});
+
+                //Begin introduction.
+                $('#logo').delay(500).velocity({width: '25vw', left: '37.5vw'}, 1000, 'easeOutExpo', function()  {
+                    $('#logotext').delay(500).velocity({left: '-25vw'}, 1000, 'easeInExpo');
+                    $('#logo').delay(500).velocity({width: '0', left: '110vw'}, 1000, 'easeInExpo', function()  {
+                        
+                        //if first visit, say hi.
+
+                        if(!localStorage.getItem('wapt_nfirst'))  {
+                            $('#ninhint').velocity({left: '15vw', width: '70vw'}, 1000, 'easeOutExpo');
+                            $('#nin').delay(400).velocity({left: '25vw', width: '50vw'}, 1000, 'easeOutExpo', function()  {
+                                $('#nin').focus();
+                            });
+                        }  else  {
+
+                            //else, say bye.
+
+                            //localStorage.setItem('wapt_nfirst', ''); //for dev.
+                            window.location = 'menu.html';
+                        }
+                    });
+                });
+            });
+
+            $(document).ready(function()  {
+                $('#nin').keypress(function(e)  {
+                    if(e.key == "Enter")  {
+                        localStorage.setItem('wapt_name', $('#nin').val());
+                        localStorage.setItem('wapt_nfirst', true);
+                        $('#nin').velocity({left: '110vw', width: 0}, 1000, 'easeInExpo');
+                        $('#ninhint').delay(400).velocity({left: '110vw', width: 0}, 1000, 'easeInExpo');
+                        $('#ninhinttext').delay(400).velocity({left: '-50vw'}, 1000, 'easeInExpo', function()  {
+                            window.location = 'menu.html';
+                        });
+                    }
+                });
+            });
+
+            /*
+                QUIRKS
+                    > WAPT: Write A Program To
+                    > NIN: Name INput
+                    > BHLC: Button HighLight Color
+                    > BHLBG: Button HighLight BackGround
+             */
+        </script>
+        <style>
+            input:focus  {
+                outline: 0;
+            }
+            span  {
+                position: absolute;
+                cursor: default;
+            }
+        </style>
+        <meta charset='UTF-8'>
+    </head>
+    <body style='background: black; overflow: hidden;'>
+        <span id='logo' style='left: -10%; width: 0; border: 1px solid black; height: 20vh; top: 40vh; overflow: hidden;'>
+            <span id='logotext' style='left: 0; width: 25vw; top: 0; height: 100%; line-height: 20vh; color: black; font-family: Consolas; font-size: 15vh; font-variant: petite-caps; text-align: center;'>WAPT</span>
+        </span>
+
+        
+        <span id='ninhint' style='left: -10%; width: 0; border: 1px solid black; height: 20vh; top: 30vh; overflow: hidden;'>
+            <span id='ninhinttext' style='left: 0; width: 70vw; top: 0; height: 100%; line-height: 20vh; color: black; font-family: Consolas; font-size: 7vh; text-align: center;'>Hi! I'm WAPT. What's your name?</span>
+        </span>
+        <input id='nin' style='position: absolute; left: -10%; width: 0; padding-left: 3vw; padding-right: 3vw; border: 1px solid black; color: black; text-align: center; height: 9vh; line-height: 9vh; top: 70vh; outline: 0; background: transparent; font-size: 5vh; letter-spacing: 1vh;' value='Jane Newmann Doe' spellcheck=false>
+    </body>
+</html>

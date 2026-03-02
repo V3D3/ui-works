@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>• WAPT •</title>
+        <script src='th.js'></script>
+        <script src='jm.js'></script>
+        <script src='vm.js'></script>
+        <script>
+            var sH = window.innerHeight, sW = window.innerWidth;
+            var st = stylebank[localStorage.getItem('wapt_ctheme')]; //selects a random sub-array from the stylebank
+            var ea = 0;
+
+            $(document).ready(function()  {
+                //Apply selected style to document.
+                $('body').css({background: st[0]});
+                $('.b, #NM').css({background: st[1]});
+                $('.bt, #NMt').css({color: st[2]});
+                $('.b, #NM').css({border: st[3]})
+                $('.bt, #NMt').css({fontFamily: st[4]});
+                $('#DL').css({background: st[5], color: st[6], boxShadow: '0 0 40px ' + st[5], textShadow: '0 0 10px ' + st[6], fontFamily: st[4]});
+                $('#DA').css({background: st[6], color: st[5]});
+                // $('#sizechk').css({fontFamily: st[4]});
+                // $('#DB0, #DB1').css({fontFamily: st[4], color: st[5], border: st[7]})
+                $('#NMt').html('Hello, ' + localStorage.getItem('wapt_name').split(' ')[0]);
+
+                //Begin introduction.
+                $('#NM').velocity({width: '25vw', left: '70vw'}, 1000, 'easeOutExpo');
+                $('#SEQ').delay(400).velocity({width: '15vw', left: '5vw'}, 1000, 'easeOutExpo');
+                $('#RAN').delay(400).velocity({width: '15vw', left: '30vw'}, 1000, 'easeOutExpo');
+                $('#BRO').delay(400).velocity({width: '15vw', left: '55vw'}, 1000, 'easeOutExpo');
+                $('#SEA').delay(400).velocity({width: '15vw', left: '80vw'}, 1000, 'easeOutExpo');
+                $('#NAM').delay(800).velocity({width: '15vw', left: '5vw'}, 1000, 'easeOutExpo');
+                $('#THE').delay(800).velocity({width: '15vw', left: '30vw'}, 1000, 'easeOutExpo');
+                $('#EXP').delay(800).velocity({width: '15vw', left: '55vw'}, 1000, 'easeOutExpo');
+                $('#CON').delay(1200).velocity({width: '15vw', left: '5vw'}, 1000, 'easeOutExpo');
+                $('#ABO').delay(1200).velocity({width: '15vw', left: '30vw'}, 1000, 'easeOutExpo');
+                $('#WAP').delay(1600).velocity({width: '15vw', left: '5vw'}, 1000, 'easeOutExpo');
+            });
+
+            $(document).ready(function()  {
+                $('.bt').mouseenter(function()  {
+                    $(this).velocity({opacity: 0.7}, 100);
+                });
+                $('.bt').mouseleave(function()  {
+                    $(this).velocity({opacity: 1}, 100);
+                });
+                $('.bt').mousedown(function()  {
+                    $(this).css({opacity: 1, color: st[6], background: st[5]});
+                });
+                $('.bt').mouseup(function()  {
+                    $(this).css({opacity: 0.8, color: st[2], background: st[1]});
+                });
+                $('#WAP').click(function()  {
+                    if(ea == 0)  {
+                        console.log("Please don't do that.");
+                    }  else if(ea == 3)  {
+                        console.log("Really. It hurts, and is annoying.");
+                    }  else if(ea == 9)  {
+                        console.log("I'm serious. Stop it.");
+                    }  else if(ea == 12)  {
+                        console.log("Okay. Go on.");
+                    }  else if(ea == 15)  {
+                        document.write("Still funny?");
+                    }
+                    $('#NM, #SEQ, #RAN, #BRO, #SEA, #NAM, #THE, #EXP, #CON, #ABO').velocity({blur: 20}, 100, function()  {
+                        $('#NM, #SEQ, #RAN, #BRO, #SEA, #NAM, #THE, #EXP, #CON, #ABO').delay(500).velocity({blur: 0}, 250);
+                    });
+                    ea++;
+                });
+            });
+
+            // function dialog_announce(message, title = 'DIALOG')  {
+            //     $('#DT').html(title);
+            //     if($('#DL').css('top').split('px')[0] > sH)  {
+            //         $('#DL').velocity('stop');
+            //         var ch = (checksize(message) / sH) * 100;
+            //         $('#DA').html(message);
+            //         if(ch >= 37.5)  {
+            //             $('#DL').css({height: '50vh'});
+            //             $('#DA').css({height: (0.435 * sH) - 4});
+            //             $('#DL').velocity({top: '25%'}, 800, 'easeOutExpo');
+            //         }  else  {
+            //             $('#DL').css({height: (12.5 + ch) + 'vh'});
+            //             $('#DA').css({height: ch + 'vh'});
+            //             $('#DL').velocity({top: (33.75 - (ch / 2)) + '%'}, 800, 'easeOutExpo');
+            //         }
+            //     }  else  {
+            //         $('#DL').velocity('stop');
+            //         $('#DL').velocity({top: '110%'}, 400, 'easeInExpo', function()  {
+            //         });
+            //     }
+            // }
+
+            // function checksize(message)  {
+            //     $('#sizechk').html(message);
+            //     return +$('#sizechk').css('height').split('px')[0];
+            // }
+            /*
+                QUIRKS
+                    > WAPT: Write A Program To
+                    > NIN: Name INput
+                    > BHLC: Button HighLight Color
+                    > BHLBG: Button HighLight BackGround
+             */
+        </script>
+        <style>
+            input:focus  {
+                outline: 0;
+            }
+            span  {
+                position: absolute;
+                cursor: default;
+                user-select: none;
+            }
+            .b  {
+                width: 0;
+                height: 10vh;
+                left: -10%;
+                border: 1px solid black;
+                overflow: hidden;
+            }
+            .bt  {
+                top: 0;
+                left: 0;
+                width: 15vw;
+                height: 100%;
+                line-height: 10vh;
+                text-align: center;
+                font-variant: petite-caps;
+                font-size: 5vh;
+            }
+            #DB0, #DB1  {
+                text-align: center;
+                height: 4vh;
+                line-height: 4vh;
+                bottom: 0.5vh;
+                font-size: 2vh;
+                width: 12vw;
+                left: 38%;
+                letter-spacing: 1vh;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden;'>
+        <span class='b' id='SEQ' style='top: 7.5vh;'><span class='bt' id='SEQt'>sequential</span></span>
+        <span class='b' id='NAM' style='top: 32.5vh;'><span class='bt' id='NAMt'>name</span></span>
+        <span class='b' id='RAN' style='top: 32.5vh;'><span class='bt' id='RANt'>random</span></span>
+        <span class='b' id='CON' style='top: 57.5vh;'><span class='bt' id='CONt'>contribute</span></span>
+        <span class='b' id='THE' style='top: 57.5vh;'><span class='bt' id='THEt'>theme</span></span>
+        <span class='b' id='BRO' style='top: 57.5vh;'><span class='bt' id='BROt'>browse</span></span>
+        <span class='b' id='WAP' style='top: 82.5vh;'><span class='bt' id='WAPt'>WAPT</span></span>
+        <span class='b' id='ABO' style='top: 82.5vh;'><span class='bt' id='ABOt'>about</span></span>
+        <span class='b' id='EXP' style='top: 82.5vh;'><span class='bt' id='EXPt'>export</span></span>
+        <span class='b' id='SEA' style='top: 82.5vh;'><span class='bt' id='SEAt'>search</span></span>
+        <span id='NM' style='top: 5vh; width: 0; left: -10vw; height: 8vh; overflow: hidden;'><span id='NMt' style='top: 0; left: 0; width: 25vw; height: 100%; line-height: 8vh; font-size: 5vh; text-align: center;'></span></span>
+
+        <!-- <span id='DL' style='width: 50%; left: 25%; text-align: center; line-height: 4vh; font-size: 2vh; letter-spacing: 2vh; top: 120%;'>
+            <span id='DT' style='text-align: center; left: 0; width: 100%;'>DIALOG</span>
+            <span id='DA' style='top: calc(4vh + 2px); width: calc(100% - 2.5vh - 4px); left: 2px; box-shadow: inset 0 0 20px black; letter-spacing: initial; font-size: 3vh; line-height: 5vh; padding: 1.25vh;'>
+            </span>
+            <span id='DB0'>OKAY</span>
+            <span id='DB1'>SET</span>
+        </span>
+        <span id='sizechk' style='top: 200%; width: calc(50% - 2.5vh); height: auto; font-size: 3vh; line-height: 5vh;'></span> -->
+    </body>
+</html>

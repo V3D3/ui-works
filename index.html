@@ -99,9 +99,10 @@
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-auto-flow: dense;
             gap: 24px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             width: 100%;
         }
@@ -109,7 +110,7 @@
         .tile {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 24px;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -119,9 +120,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            aspect-ratio: 16/10;
+            min-height: 200px;
             text-align: center;
             backdrop-filter: blur(10px);
+            grid-column: span var(--span, 1);
         }
 
         .tile:hover {
@@ -129,6 +131,31 @@
             border-color: var(--primary);
             background: rgba(255, 157, 0, 0.05);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--primary);
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 150%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.15),
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transform: skewX(-20deg);
+            animation: shine 1.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
         }
 
         .tile::before {
@@ -268,38 +295,7 @@
     </div>
 
     <script>
-        const stuffdict = {
-            'Splash: BYTES': 'pages/bytes/bytes.html',
-            'Tool: Doorway': 'pages/doorway/doorway.html',
-            'Tool: Doorway X': 'pages/doorway/doorwayx.html',
-            'Splash/Menu: WAPT': 'pages/wapt/index.html',
-            'Splash/Menu: XPR': 'pages/xpr/xpr.html',
-            'Anim: XPR Logo': 'pages/xpr/xpr_logo.html',
-            'Anim: XPR CirC': 'pages/xpr/xpr_circ.html',
-            'Anim/Tool: XPR Circular': 'pages/xpr/xpr_circular.html',
-            'Tool: XPR Grid': 'pages/xpr/xpr_grid.html',
-            'XMS Logo': 'pages/xpr/xms_logo.html',
-            'Anim: XPR Chromafall': 'pages/xpr/xpr_chromafall.html',
-            'Anim: XPR Chromapitfall': 'pages/xpr/xpr_chromapitfall.html',
-            'Anim: XPR Chromarise': 'pages/xpr/xpr_chromarise.html',
-            'Anim: XPR Chromaswipe': 'pages/xpr/xpr_chromaswipe.html',
-            'Anim: XPR CirK': 'pages/xpr/xpr_cirk.html',
-            'Menu: XPR Engage': 'pages/xpr/xpr_engage.html',
-            'Anim: XPR Field': 'pages/xpr/xpr_field.html',
-            'Anim/Tool: XPR Focus': 'pages/xpr/xpr_focus.html',
-            'Anim: XPR Imitant': 'pages/xpr/xpr_imitant.html',
-            'Anim: XPR Tilt': 'pages/xpr/xpr_tilt.html',
-            'Anim: XPR Origin': 'pages/xpr/xpr_origin.html',
-            'Anim: XPR EXOrigin': 'pages/xpr/xpr_exorigin.html',
-            'Component: XPR Tipsy': 'pages/xpr/xpr_tipsy.html',
-            'Anim: XPR Crowd': 'pages/xpr/xpr_crowd.html',
-            'Menu: XPR Exhibit': 'pages/xpr/xpr_exhibit.html',
-            'Anim: XPR Frost': 'pages/xpr/xpr_frost.html',
-            'Anim: XPR Gradience': 'pages/xpr/xpr_gradience.html',
-            'Component: XPR Konami': 'pages/xpr/xpr_konami.html',
-            'Component: XPR Hyper': 'pages/xpr/xpr_hyper.html',
-        };
-
+        let projects = [];
         const container = document.getElementById('tile-container');
         const searchInput = document.getElementById('search-input');
         const overlay = document.getElementById('viewer-overlay');
@@ -307,26 +303,49 @@
         const viewerTitle = document.getElementById('viewer-title');
         const closeBtn = document.getElementById('close-btn');
 
+        async function init() {
+            try {
+                const response = await fetch('tiles.json');
+                if (!response.ok) throw new Error('Failed to load tiles.json');
+                projects = await response.json();
+                createTiles();
+            } catch (error) {
+                console.error('Error loading tiles:', error);
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #666; font-weight: 300;">
+                        <div style="font-size: 1.2rem; margin-bottom: 20px; color: var(--primary);">unable to load experiments</div>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">
+                            This usually happens when viewed via the <code>file://</code> protocol.<br>
+                            Please run a local server (e.g., <code>npx serve</code>) to view the gallery.
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
         function createTiles(filter = '') {
             container.innerHTML = '';
-            for (const [name, path] of Object.entries(stuffdict)) {
-                if (name.toLowerCase().includes(filter.toLowerCase())) {
+
+            projects.forEach(project => {
+                const searchStr = `${project.title} ${project.type} ${project.description || ''}`.toLowerCase();
+                if (searchStr.includes(filter.toLowerCase())) {
                     const tile = document.createElement('div');
                     tile.className = 'tile';
-
-                    const parts = name.split(': ');
-                    const type = parts.length > 1 ? parts[0] : 'Misc';
-                    const label = parts.length > 1 ? parts[1] : parts[0];
+                    tile.style.setProperty('--span', project.weight || 2);
 
                     tile.innerHTML = `
-                        <div class="tile-type">${type}</div>
-                        <div class="tile-name">${label}</div>
+                        <div class="tile-type">${project.type || 'Misc'}</div>
+                        <div class="tile-name">${project.title}</div>
                     `;
 
-                    tile.onclick = () => openViewer(name, path);
+                    if (project.description) {
+                        tile.title = project.description;
+                    }
+
+                    tile.onclick = () => openViewer(project.title, project.path);
                     container.appendChild(tile);
                 }
-            }
+            });
         }
 
         function openViewer(name, path) {
@@ -351,6 +370,20 @@
         searchInput.oninput = (e) => createTiles(e.target.value);
         closeBtn.onclick = closeViewer;
 
+        function triggerRandomShine() {
+            const tiles = document.querySelectorAll('.tile');
+            if (tiles.length > 0) {
+                const randomTile = tiles[Math.floor(Math.random() * tiles.length)];
+                randomTile.classList.add('shine-effect');
+                setTimeout(() => {
+                    randomTile.classList.remove('shine-effect');
+                }, 2000);
+            }
+
+            const nextDelay = Math.floor(Math.random() * 2000) + 5000; // 5-7s
+            setTimeout(triggerRandomShine, nextDelay);
+        }
+
         // Escape to close
         window.onkeydown = (e) => {
             if (e.key === 'Escape' && overlay.style.display === 'flex') {
@@ -359,7 +392,9 @@
         };
 
         // Initialize
-        createTiles();
+        init().then(() => {
+            setTimeout(triggerRandomShine, 5000); // Start after 5s
+        });
     </script>
 </body>
 </html>

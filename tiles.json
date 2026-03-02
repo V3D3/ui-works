@@ -1,0 +1,181 @@
+[
+    {
+        "title": "BYTES",
+        "type": "Splash",
+        "path": "pages/bytes/bytes.html",
+        "weight": 2,
+        "description": "Personalized splash experience."
+    },
+    {
+        "title": "XPR Logo",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_logo.html",
+        "weight": 1
+    },
+    {
+        "title": "Doorway",
+        "type": "Tool",
+        "path": "pages/doorway/doorway.html",
+        "weight": 2,
+        "description": "Minimalist text analysis utility."
+    },
+    {
+        "title": "XPR CirC",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_circ.html",
+        "weight": 1
+    },
+    {
+        "title": "WAPT",
+        "type": "Splash/Menu",
+        "path": "pages/wapt/index.html",
+        "weight": 2,
+        "description": "Themeable dashboard and menu system."
+    },
+    {
+        "title": "XPR Circular",
+        "type": "Anim/Tool",
+        "path": "pages/xpr/xpr_circular.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Grid",
+        "type": "Tool",
+        "path": "pages/xpr/xpr_grid.html",
+        "weight": 2
+    },
+    {
+        "title": "XMS Logo",
+        "type": "Anim",
+        "path": "pages/xpr/xms_logo.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Chromafall",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_chromafall.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR",
+        "type": "Splash/Menu",
+        "path": "pages/xpr/xpr.html",
+        "weight": 3,
+        "description": "Core interface for XPR experiments."
+    },
+    {
+        "title": "XPR Chromapitfall",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_chromapitfall.html",
+        "weight": 1
+    },
+    {
+        "title": "Doorway X",
+        "type": "Tool",
+        "path": "pages/doorway/doorwayx.html",
+        "weight": 2,
+        "description": "Advanced text analysis utility."
+    },
+    {
+        "title": "XPR Chromarise",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_chromarise.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Chromaswipe",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_chromaswipe.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR CirK",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_cirk.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR Engage",
+        "type": "Menu",
+        "path": "pages/xpr/xpr_engage.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Field",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_field.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Focus",
+        "type": "Anim/Tool",
+        "path": "pages/xpr/xpr_focus.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR Imitant",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_imitant.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Tilt",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_tilt.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Origin",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_origin.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR EXOrigin",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_exorigin.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Tipsy",
+        "type": "Component",
+        "path": "pages/xpr/xpr_tipsy.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Crowd",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_crowd.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR Exhibit",
+        "type": "Menu",
+        "path": "pages/xpr/xpr_exhibit.html",
+        "weight": 2
+    },
+    {
+        "title": "XPR Frost",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_frost.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Gradience",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_gradience.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Konami",
+        "type": "Component",
+        "path": "pages/xpr/xpr_konami.html",
+        "weight": 1
+    },
+    {
+        "title": "XPR Hyper",
+        "type": "Component",
+        "path": "pages/xpr/xpr_hyper.html",
+        "weight": 2
+    }
+]

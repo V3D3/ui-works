@@ -1,5 +1,4 @@
 # worx ui
-
 Interactive UI experiments by yours truly, viewable here: [v3d3.github.io/ui-works](https://v3d3.github.io/ui-works)
 
 Disclaimer: these projects are very old (2015-2018). I'm trying to fix the code with an LLM.

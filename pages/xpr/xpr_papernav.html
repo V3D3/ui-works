@@ -135,37 +135,55 @@
                 text-align: center;
                 cursor: default;
             }
+            .choice {
+                line-height: 20vh;
+                height: 20%;
+                background-color: orange;
+                z-index: 0;
+                box-shadow: 0 0 0 black;
+                font-variant-caps: petite-caps;
+            }
+            .content {
+                line-height: 100vh;
+                top: 0;
+                height: 100%;
+                background-color: black;
+                color: orange;
+                display: none;
+                transform: rotateY(180deg);
+                font-variant-caps: petite-caps;
+            }
         </style>
     </head>
     <body style="background-color: black; overflow: hidden; margin: 0px; transform: perspective(600px);">
-        <span id="choice1" style="line-height: 20vh; top: 0; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+        <span id="choice1" class="choice">
             Loaders
         </span>
-        <span id="choice2" style="line-height: 20vh; top: 20%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+        <span id="choice2" class="choice" style="top: 20%">
             Buttons
         </span>
-        <span id="choice3" style="line-height: 20vh; top: 40%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+        <span id="choice3" class="choice" style="top: 40%">
             Navigation
         </span>
-        <span id="choice4" style="line-height: 20vh; top: 60%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+        <span id="choice4" class="choice" style="top: 60%">
             Miscellaneous
         </span>
-        <span id="choice5" style="line-height: 20vh; top: 80%; height: 20%; background-color: orange; z-index: 0; color: black; box-shadow: 0 0 0 black;">
+        <span id="choice5" class="choice" style="top: 80%">
             About
         </span>
-        <span id="content1" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+        <span id="content1" class="content">
             Loaders
         </span>
-        <span id="content2" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+        <span id="content2" class="content">
             Buttons
         </span>
-        <span id="content3" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+        <span id="content3" class="content">
             Navigation
         </span>
-        <span id="content4" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+        <span id="content4" class="content">
             Miscellaneous
         </span>
-        <span id="content5" style="line-height: 100vh; top: 0; height: 100%; background-color: black; color: orange; display: none; transform: rotateY(180deg);">
+        <span id="content5" class="content">
             About
         </span>
     </body>

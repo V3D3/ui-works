@@ -280,5 +280,12 @@
         "path": "pages/involve/index.html",
         "weight": 2,
         "description": "Personalised onboarding experience with theme selection."
+    },
+    {
+        "title": "PunkWeb",
+        "type": "Splash/CLI",
+        "path": "pages/punkweb/index.html",
+        "weight": 2,
+        "description": "Basic CLI with easter eggs."
     }
 ]

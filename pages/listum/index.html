@@ -1,0 +1,208 @@
+<html>
+	<head>
+		<title>Listum.</title>
+		<style>
+			*  {
+				font-family: Segoe UI Black;
+				font-size: 4vh;
+			}
+			input:focus  {
+				outline: 0;
+			}
+			span  {
+				position: absolute;
+				line-height: 15vh;
+				text-align: center;
+				border-radius: 15px;
+				user-select: none;
+				cursor: default;
+			}
+			#data  {
+				display: none;
+			}
+		</style>
+	</head>
+	<body style='background: black;' onload='prepare()'>
+		<script>
+			var SIZEYC = 15, SIZEXC = 10;
+			var MARGINXC = 3, MARGINYC = 4;
+
+			var colorMemory = [];
+			var headColorMemory = [];
+
+			var rowContent = [];
+			var currY = MARGINYC;
+
+			var tempColor = getColor();
+			var nextColorParameters = [getGradient(tempColor), tempColor];
+			
+			var add_int_enabled = true;
+			var editableCoordinates = [-1, -1];
+
+			function prepare()  {
+				if(document.getElementById('data'))  {
+					loadData();
+				}  else  {
+					var styleArr = [
+								['border', '3px solid ' + nextColorParameters[1]],
+								['color', nextColorParameters[1]],
+								['left', MARGINXC + 'vw'],
+								['top', MARGINYC + 'vh'],
+								['height', SIZEYC + 'vh'],
+								['width', SIZEXC + 'vw']
+							];
+					
+					setStyleM('addY', styleArr);
+					setStyleM('editable', [['width', SIZEXC + 'vw'], ['height', SIZEYC + 'vh']]);
+				}
+			}
+			function getStyle(id)  {
+				return document.getElementById(id).style;
+			}
+			function setStyleM(id, arr)  {
+				for(var i = 0; i < arr.length; i++)  {
+					getStyle(id)[arr[i][0]] = arr[i][1];
+				}
+			}
+			function getColor()  {
+				return "rgb(" + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ", " + Math.round(Math.random() * 255) + ")";
+			}
+			function getGradient(defaultColor)  {
+				if(!defaultColor)  {defaultColor = getColor();}
+				return "linear-gradient(to bottom, " + defaultColor + ", " + getColor() + ")";
+			}
+			function reposEditable(color, posX, posY, sizeX = SIZEXC, sizeY = SIZEYC)  {
+				setStyleM('editable', [['top', posY + 'vh'], ['left', posX + 'vw'], ['width', sizeX + 'vw'], ['height', sizeY + 'vh'], ['background', color]]);
+				
+				//...unhealthy code ahead
+				var detX = (posX - MARGINXC) / (MARGINXC + SIZEXC);
+				var detY = (posY - MARGINYC) / (MARGINYC + SIZEYC);
+				editableCoordinates = [detX, detY];
+			}
+			function hideEditable()  {
+				setStyleM('editable', [['top', '-100%'], ['left', '-100%']]);
+				editableCoordinates = [-1, -1];
+			}
+			function addTile(id, text, color, posX, posY, sizeX = SIZEXC, sizeY = SIZEYC)  {
+				var template = "<span id='" + id + "' style='left: " + posX + "vw; top: " + posY + "vh; height: " + sizeY + "vh; width: " + sizeX + "vw; background: " + color + ";'>" + text + "</span>";
+				document.getElementsByTagName('body')[0].innerHTML += template;
+			}
+			function addRow()  {
+				rowContent.push(0);
+				reposEditable(nextColorParameters[0], MARGINXC, currY);
+				var template = "<span id='addX" + (rowContent.length - 1) + "' style='top: " + currY + "vh; left: " + (2 * MARGINXC + SIZEXC) + "vw; width: " + SIZEXC + "vw; height: " + SIZEYC + "vh; border: 3px solid " + nextColorParameters[1] + "; color: " + nextColorParameters[1] + "; font-family: Times New Roman; font-size: " + ((15 / 25) * SIZEYC) + "vh; margin-right: 5vw;' onmouseenter='addX_int(\"mouseenter\", " + (rowContent.length - 1) + ")' onmouseleave='addX_int(\"mouseleave\", " + (rowContent.length - 1) + ")' onclick='addX_int(\"click\", " + (rowContent.length - 1) + ")'>+</span>";
+				document.getElementsByTagName('body')[0].innerHTML += template;
+
+				currY += MARGINYC + SIZEYC;
+				setStyleM('addY', [['left', MARGINXC + 'vw'], ['top', currY + 'vh']]);
+				var tempColor = getColor();
+				headColorMemory.push(nextColorParameters[0]);
+				colorMemory.push(nextColorParameters[1]);
+				nextColorParameters = [getGradient(tempColor), tempColor];
+				getStyle('addY').border = '3px solid ' + nextColorParameters[1];
+				getStyle('addY').color = nextColorParameters[1];
+				add_int_enabled = false;
+				document.getElementById('editable').focus();
+			}
+			function finalizeEditable()  {
+				addTile(
+						'tile' + editableCoordinates[0] + 'x' + editableCoordinates[1],
+						document.getElementById('editable').value,
+						(!editableCoordinates[0])?headColorMemory[editableCoordinates[1]]:colorMemory[editableCoordinates[1]],
+						(editableCoordinates[0] * (MARGINXC + SIZEXC)) + MARGINXC,
+						(editableCoordinates[1] * (MARGINYC + SIZEYC)) + MARGINYC
+					);
+				hideEditable();
+				preserveData();
+				add_int_enabled = true;
+			}
+			function addCell(rowID)  {
+				rowContent[rowID]++;
+				var tempX = MARGINXC + (MARGINXC + SIZEXC) * rowContent[rowID];
+				var tempY = MARGINYC + (MARGINYC + SIZEYC) * rowID;
+
+				reposEditable(colorMemory[rowID], tempX, tempY);
+				setStyleM('addX' + rowID, [['left', (tempX + MARGINXC + SIZEXC) + 'vw']]);
+
+				add_int_enabled = false;
+				document.getElementById('editable').focus();
+			}
+			function addY_int(action)  {
+				if(add_int_enabled)  {
+					if(action == 'mouseenter')  {
+						getStyle('addY').background = nextColorParameters[1];
+						getStyle('addY').color = 'black';
+					}
+					if(action == 'mouseleave')  {
+						getStyle('addY').background = 'transparent';
+						getStyle('addY').color = nextColorParameters[1];
+					}
+					if(action == 'click')  {
+						getStyle('addY').background = 'transparent';
+						getStyle('addY').color = nextColorParameters[1];
+						addRow();
+					}
+				}
+			}
+			function addX_int(action, rowID)  {
+				if(add_int_enabled)  {
+					if(action == 'mouseenter')  {
+						getStyle('addX' + rowID).background = colorMemory[rowID];
+						getStyle('addX' + rowID).color = 'black';
+					}
+					if(action == 'mouseleave')  {
+						getStyle('addX' + rowID).background = 'transparent';
+						getStyle('addX' + rowID).color = colorMemory[rowID];
+					}
+					if(action == 'click')  {
+						getStyle('addX' + rowID).background = 'transparent';
+						getStyle('addX' + rowID).color = colorMemory[rowID];
+						addCell(rowID);
+					}
+				}
+			}
+
+			function convertArrayToText(arr)  {
+				if(arr.length == 0)  {return "[]";}
+				var str = "[" + arr[0];
+				for(var i = 1; i < arr.length; i++)  {
+					str += ", " + arr[i];
+				}
+				return str + "]";
+			}
+			function preserveData()  {
+				if(!document.getElementById('data'))  {
+					var data = convertArrayToText([SIZEXC, SIZEYC, MARGINXC, MARGINYC, currY, add_int_enabled]) + "^";
+					data += convertArrayToText(colorMemory) + "^" + convertArrayToText(headColorMemory) + "^" + convertArrayToText(rowContent) + "^";
+					data += convertArrayToText(nextColorParameters) + "^" + editableCoordinates + "^";
+					document.getElementsByTagName('body')[0].innerHTML += "<span id='data'>" + data + "</span>";
+				}  else  {
+					var data = convertArrayToText([SIZEXC, SIZEYC, MARGINXC, MARGINYC, currY, add_int_enabled]) + "^";
+					data += convertArrayToText(colorMemory) + "^" + convertArrayToText(headColorMemory) + "^" + convertArrayToText(rowContent) + "^";
+					data += convertArrayToText(nextColorParameters) + "^" + editableCoordinates + "^";
+					document.getElementById('data').innerHTML = data;
+				}
+			}
+			function loadData()  {
+				var arrT = document.getElementById('data').innerHTML.split('^');
+				var arrM = [];
+				for(var i = 0; i < arrT.length; i++)  {
+					arrM.push(eval(arrT[i]));
+				}
+				SIZEXC = arrM[0][0];
+				SIZEYC = arrM[0][1];
+				MARGINXC = arrM[0][2];
+				MARGINYC = arrM[0][3];
+				currY = arrM[0][4];
+				add_int_enabled = arrM[0][5];
+				colorMemory = arrM[1];
+				headColorMemory = arrM[2];
+				rowContent = arrM[3];
+				nextColorParameters = arrM[4];
+				editableCoordinates = arrM[5];
+			}
+		</script>
+		<span id='addY' style='top: 100%; left: 100%; height: 15vh; width: 15vw; font-size: 15vh; margin-bottom: 5vh; font-family: Times New Roman;' onmouseenter="addY_int('mouseenter')" onmouseleave="addY_int('mouseleave')" onclick="addY_int('click')">+</span>
+		<input id='editable' style='position: absolute; top: -100%; left: -100%; height: 20vh; width: 15vw; line-height: 15vh; border-radius: 15px; border: 0; text-align: center;' onblur='finalizeEditable()'></input>
+	</body>
+</html>

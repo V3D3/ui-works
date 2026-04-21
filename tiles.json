@@ -200,12 +200,6 @@
         "description": "Animated point mesh with colorful generative lines."
     },
     {
-        "title": "XPR Mesh II",
-        "type": "Anim",
-        "path": "pages/xpr/xpr_mesh2.html",
-        "weight": 1
-    },
-    {
         "title": "XPR PaperNav",
         "type": "Menu",
         "path": "pages/xpr/xpr_papernav.html",
@@ -225,17 +219,60 @@
         "weight": 1
     },
     {
-        "title": "XPR Protosel X",
-        "type": "Component",
-        "path": "pages/xpr/xpr_protoselx.html",
-        "weight": 1
-    },
-    {
         "title": "XPR Stack",
         "type": "Anim",
         "path": "pages/xpr/xpr_stack.html",
         "weight": 2,
         "description": "Layered depth stack animation."
+    },
+    {
+        "title": "XPR Elementary",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_elementary.html",
+        "weight": 2,
+        "description": "Randomly colored and sized lines."
+    },
+    {
+        "title": "XPR Rekt",
+        "type": "Anim",
+        "path": "pages/xpr/xpr_rekt.html",
+        "weight": 2,
+        "description": "Randomly colored and sized rectangles."
+    },
+    {
+        "title": "XPR Realism",
+        "type": "Menu",
+        "path": "pages/xpr/xpr_realism.html",
+        "weight": 2,
+        "description": "Simple menu with simulated depth-of-field effects."
+    },
+    {
+        "title": "XPR Metro",
+        "type": "Component",
+        "path": "pages/xpr/xpr_metro.html",
+        "weight": 2,
+        "description": "Metro UI tile styled button."
+    },
+    {
+        "title": "Vertex Logo 1",
+        "type": "Logo",
+        "path": "pages/vertex/logo_anim_1.html",
+        "weight": 1,
+        "description": "Vertex Design Scheme logo, animation variant 1."
+    },
+    {
+        "title": "Vertex Logo 2",
+        "type": "Logo",
+        "path": "pages/vertex/logo_anim_2.html",
+        "weight": 1,
+        "description": "Vertex Design Scheme logo, animation variant 2."
+    },
+    {
+        "title": "Vertex Design Scheme",
+        "type": "Splash/Menu",
+        "path": "pages/vertex/main.html",
+        "weight": 2,
+        "description": "Vertex Design Scheme splash and menu."
     },
     {
         "title": "Involve",

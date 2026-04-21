@@ -1,0 +1,473 @@
+<html>
+    <head>
+        <title> Vertex Design Scheme // V3D3
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <style>
+            #logo  {
+    position: absolute;
+    overflow: visible;
+    background-color: black;
+    margin: 0;
+    top: -7.737%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+#sc1  {
+    position: absolute;
+    top: 7.737%;
+    height: 84.526%;
+    width: 2px;
+    left: calc(50% - 1px);
+    overflow: visible;
+}
+#sc2  {
+    position: absolute;
+    width: 2px;
+    height: 115.473%;
+    left: 50%;
+    transform: rotate(-60deg);
+    top: -7.737%;
+    overflow: visible;
+}
+#sc3  {
+    position: absolute;
+    width: 2px;
+    height: 115.473%;
+    left: 50%;
+    transform: rotate(60deg);
+    top: -7.737%;
+    overflow: visible;
+}
+#sp1  {
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(to bottom, orange, black);
+}
+#sp2  {
+    position: absolute;
+    top: 150%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to top, orange, black);
+}
+#sp3  {
+    position: absolute;
+    top: 150%;
+    left: 0;
+    height: 2px;
+    width: 2px;
+    background: linear-gradient(to top, orange, black);
+}
+#point  {
+    position: absolute;
+    height: 150vw;
+    width: 150%;
+    border-radius: 50%;
+    border: 2px solid orange;
+    top: calc(50% - 75vw);
+    left: -25%;
+}
+#vt1, #vt2  {
+    position: absolute;
+    height: 100%;
+    width: 200%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    line-height: 100vh;
+    font-family: "Sequi Light";
+    font-size: 100px;
+    color: orange;
+    letter-spacing: 30px;
+}
+#vt2  {
+    position: absolute;
+    left: -100%;
+}
+.vtuc  {
+    position: absolute;
+    top: calc(50% + 70px);
+    width: 50%;
+    overflow-y: hidden;
+    overflow-x: visible;
+    left: 25%;
+    height: 50px;
+    overflow: visible;
+}
+.vtu  {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    left: 0;
+    width: 100%;
+    top: 0;
+    font-family: "Segoe UI Light";
+    font-size: 35px;
+    line-height: 50px;
+    overflow: visible;
+}
+#decl_1, #decl_2  {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+}
+#decl_2  {
+    left: 50%;
+}
+#decl  {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    transform: rotateZ(-100deg);
+    opacity: 0;
+}
+#trans  {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+#t1, #t2, #t3, #t4, #t5  {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    left: calc(50% - 0.5px);
+    top: calc(50% - 0.5px);
+    background-color: orange;
+}
+#menu  {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+#b_base, #b_enter, #b_uber, #b_xpr, #b_about  {
+    position: absolute;
+    top: -100%;
+    border-radius: 100vh;
+    background: transparent;
+    border: 1px solid black;
+	box-shadow: 0 0 25px black;
+}
+#b_base  {
+    height: 40%;
+    top: -70%;
+    left: calc(50% - 20vh);
+    width: 40vh;
+    filter: blur(0px);
+    z-index: 5;
+}
+#b_enter  {
+    height: 50%;
+    top: -75%;
+    left: calc(50% - 25vh);
+    width: 50vh;
+    filter: blur(2px);
+    z-index: 4;
+}
+#b_uber  {
+    height: 60%;
+    top: -80%;
+    left: calc(50% - 30vh);
+    width: 60vh;
+    filter: blur(4px);
+    z-index: 3;
+}
+#b_xpr  {
+    height: 70%;
+    top: -85%;
+    left: calc(50% - 35vh);
+    width: 70vh;
+    filter: blur(6px);
+    z-index: 2;
+}
+#b_about  {
+    height: 80%;
+    top: -90%;
+    left: calc(50% - 40vh);
+    width: 80vh;
+    filter: blur(8px);
+    z-index: 1;
+}
+#selected  {
+    position: absolute;
+    border-radius: 1000px;
+    border: 1px solid black;
+    height: 40%;
+    top: 30%;
+    left: calc(50% - 20vh);
+    width: 40vh;
+    filter: blur(0px);
+    z-index: 5;
+}
+#menu_tag  {
+    position: absolute;
+    height: 100%;
+    line-height: 100vh;
+    width: 30%;
+    text-align: center;
+    left: 100%;
+    top: 0;
+    font-family: "Segoe UI Light";
+    font-size: 30px;
+    color: black;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+        </style>
+<script>
+var sW = window.innerWidth;
+var sH = window.innerHeight;
+var chosen = 0;
+$(document).ready(function()  {
+    $("#point").velocity({top: (sH / 2) - 2, left: (sW / 2) - 2, height: 0, width: 0}, 2500, "easeOutQuint", function()  {
+        $("#sp1").velocity({top: "50%", height: "50%"}, 2000, "easeOutExpo");
+        $("#sp2").delay(500).velocity({top: "0", height: "50%"}, 2000, "easeOutExpo");
+        $("#sp3").delay(1000).velocity({top: "0", height: "50%"}, 2000, "easeOutExpo", function()  {
+            $("#logo").delay(250).velocity({rotateZ: 100, opacity: 0, left: "100%"}, 1000, "easeInExpo", function()  {
+                $("#decl").velocity({rotateZ: -100}, 0);
+                $("#decl").velocity({rotateZ: 0, opacity: 1, left: 0}, 1000, "easeOutExpo", function()  {
+                    $("#decl_1").velocity({top: "100%"}, 1500, "easeInExpo");
+                    $("#decl_2").delay(1000).velocity({top: "100%"}, 1500, "easeInExpo", function()  {continueanim();});
+                });
+            });
+        });
+    });
+});
+function continueanim()  {
+    $(document).ready(function()  {
+        $("#trans").velocity({top: 0}, 1500, "easeInOutExpo", function()  {
+            $("#t1, #t2, #t3, #t4, #t5").velocity({height: "100%", top: 0}, 750, "easeInOutExpo", function()  {
+                $("#t1").velocity({width: "20%", left: 0}, 1500, "easeInOutExpo");
+                $("#t5").velocity({width: "20%", left: "80%"}, 1500, "easeInOutExpo");
+                $("#t2").delay(250).velocity({width: "20%", left: "20%"}, 1500, "easeInOutExpo");
+                $("#t4").delay(250).velocity({width: "20%", left: "60%"}, 1500, "easeInOutExpo");
+                $("#t3").delay(500).velocity({width: "20%", left: "40%"}, 1500, "easeInOutExpo", function()  {
+                    $("body").css("background-color", "orange");
+                    $("#tbk").css("z-index", "-1");
+                    $("#menu").css("top", "0");
+                    $("#b_base").velocity({top: "30%"}, 800, "easeOutExpo");
+                    $("#b_enter").delay(150).velocity({top: "25%"}, 800, "easeOutExpo");
+                    $("#b_uber").delay(300).velocity({top: "20%"}, 800, "easeOutExpo");
+                    $("#b_xpr").delay(450).velocity({top: "15%"}, 800, "easeOutExpo");
+                    $("#b_about").delay(600).velocity({top: "10%"}, 800, "easeOutExpo", function()  {
+                        $("#menu").velocity({left: "-10%"}, 400, "easeInOutExpo");
+                        $("#menu_tag").velocity({left: "70%"}, 400, "easeInOutExpo");
+                    });
+                });
+            });
+        });
+    });
+}
+$(document).ready(function()  {
+    $("#b_enter").mouseenter(function()  {
+        if(chosen == 0)  {
+            $("#b_enter").velocity({blur: 0, boxShadowBlur: 25}, 200);
+            $("#b_uber, #b_base").velocity({blur: 2, boxShadowBlur: 0}, 200);
+            $("#b_xpr").velocity({blur: 4, boxShadowBlur: 0}, 200);
+            $("#b_about").velocity({blur: 6, boxShadowBlur: 0}, 200);
+            $("#menu_tag").velocity("stop");
+            $("#menu_tag").velocity({left: "100%"}, 200, "easeInExpo", function()  {
+                $("#menu_tag").html("enter");
+                $("#menu_tag").velocity({left: "70%"}, 200, "easeOutExpo");
+            });
+        }
+    });
+    $("#b_uber").mouseenter(function()  {
+        if(chosen == 0)  {
+            $("#b_enter, #b_xpr").velocity({blur: 2, boxShadowBlur: 0}, 200);
+            $("#b_uber").velocity({blur: 0, boxShadowBlur: 25}, 200);
+            $("#b_about, #b_base").velocity({blur: 4, boxShadowBlur: 0}, 200);
+            $("#menu_tag").velocity("stop");
+            $("#menu_tag").velocity({left: "100%"}, 200, "easeInExpo", function()  {
+                $("#menu_tag").html("uber");
+                $("#menu_tag").velocity({left: "70%"}, 200, "easeOutExpo");
+            });
+        }
+    });
+    $("#b_xpr").mouseenter(function()  {
+        if(chosen == 0)  {
+            $("#b_enter, #b_base").velocity({blur: 4, boxShadowBlur: 0}, 200);
+            $("#b_uber, #b_about").velocity({blur: 2, boxShadowBlur: 0}, 200);
+            $("#b_xpr").velocity({blur: 0, boxShadowBlur: 25}, 200);
+            $("#menu_tag").velocity("stop");
+            $("#menu_tag").velocity({left: "100%"}, 200, "easeInExpo", function()  {
+                $("#menu_tag").html("xpr");
+                $("#menu_tag").velocity({left: "70%"}, 200, "easeOutExpo");
+            });
+        }
+    });
+    $("#b_about").mouseenter(function()  {
+        if(chosen == 0)  {
+            $("#b_enter").velocity({blur: 6, boxShadowBlur: 0}, 200);
+            $("#b_uber").velocity({blur: 4, boxShadowBlur: 0}, 200);
+            $("#b_xpr").velocity({blur: 2, boxShadowBlur: 0}, 200);
+            $("#b_about").velocity({blur: 0, boxShadowBlur: 25}, 200);
+            $("#b_base").velocity({blur: 8, boxShadowBlur: 0}, 200);
+            $("#menu_tag").velocity("stop");
+            $("#menu_tag").velocity({left: "100%"}, 200, "easeInExpo", function()  {
+                $("#menu_tag").html("about");
+                $("#menu_tag").velocity({left: "70%"}, 200, "easeOutExpo");
+            });
+        }
+    });
+    $("#b_about, #b_xpr, #b_uber, #b_enter").mouseleave(function()  {
+        if(chosen == 0)  {
+            $("#b_enter").velocity({blur: 2, boxShadowBlur: 25}, 200);
+            $("#b_uber").velocity({blur: 4, boxShadowBlur: 25}, 200);
+            $("#b_xpr").velocity({blur: 6, boxShadowBlur: 25}, 200);
+            $("#b_about").velocity({blur: 8, boxShadowBlur: 25}, 200);
+            $("#b_base").velocity({blur: 0, boxShadowBlur: 25}, 200);
+            $("#menu_tag").velocity("stop");
+            $("#menu_tag").velocity({left: "100%"}, 200, "easeInExpo", function()  {
+                $("#menu_tag").html("highlight a ring");
+                $("#menu_tag").velocity({left: "70%"}, 200, "easeOutExpo");
+            });
+        }
+    });
+    $("#b_about").mousedown(function()  {
+        chosen = 4;
+        $("#b_base").velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_enter").delay(150).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_uber").delay(300).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_xpr").delay(450).velocity({left: "-100%"}, 1000, "easeInExpo", function()  {
+            $("#menu").velocity({left: 0}, 1000, "easeInOutExpo");
+            $("#b_about").velocity({left: (sW / 2) - (sH * 0.2), top: "30%", height: "40%", width: (sH * 0.4)}, 1000, "easeInOutExpo");
+            $("#menu_tag").velocity({left: 0, width: "100%"}, 1000, "easeInOutExpo", function()  {
+                $("#b_about").attr("id", "selected");
+                ccont();
+            });
+        });
+    });
+    $("#b_xpr").mousedown(function()  {
+        chosen = 3;
+        $("#b_base").velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_enter").delay(150).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_uber").delay(300).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_about").delay(450).velocity({left: "-100%"}, 1000, "easeInExpo", function()  {
+            $("#menu").velocity({left: 0}, 1000, "easeInOutExpo");
+            $("#b_xpr").velocity({left: (sW / 2) - (sH * 0.2), top: "30%", height: "40%", width: (sH * 0.4)}, 1000, "easeInOutExpo");
+            $("#menu_tag").velocity({left: 0, width: "100%"}, 1000, "easeInOutExpo", function()  {
+                $("#b_xpr").attr("id", "selected");
+                ccont();
+            });
+        });
+    });
+    $("#b_uber").mousedown(function()  {
+        chosen = 2;
+        $("#b_base").velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_enter").delay(150).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_xpr").delay(300).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_about").delay(450).velocity({left: "-100%"}, 1000, "easeInExpo", function()  {
+            $("#menu").velocity({left: 0}, 1000, "easeInOutExpo");
+            $("#b_uber").velocity({left: (sW / 2) - (sH * 0.2), top: "30%", height: "40%", width: (sH * 0.4)}, 1000, "easeInOutExpo");
+            $("#menu_tag").velocity({left: 0, width: "100%"}, 1000, "easeInOutExpo", function()  {
+                $("#b_uber").attr("id", "selected");
+                ccont();
+            });
+        });
+    });
+    $("#b_enter").mousedown(function()  {
+        chosen = 1;
+        $("#b_base").velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_uber").delay(150).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_xpr").delay(300).velocity({left: "-100%"}, 1000, "easeInExpo");
+        $("#b_about").delay(450).velocity({left: "-100%"}, 1000, "easeInExpo", function()  {
+            $("#menu").velocity({left: 0}, 1000, "easeInOutExpo");
+            $("#b_enter").velocity({left: (sW / 2) - (sH * 0.2), top: "30%", height: "40%", width: (sH * 0.4)}, 1000, "easeInOutExpo");
+            $("#menu_tag").velocity({left: 0, width: "100%"}, 1000, "easeInOutExpo", function()  {
+                $("#b_enter").attr("id", "selected");
+                ccont();
+            });
+        });
+    });
+    function ccont()  {
+        $("#trans").css("zIndex", "-1").css({height: "100%", width: "100%", top: 0, left: 0, opacity: "1", backgroundColor: "orange"});
+        $("body").css("background-color", "rgb(0, 0, 0)");
+        $("#t1, #t2, #t3, #t4, #t5, #trans").velocity("stop");
+        $("#logo, #decl").css("opacity", "0");
+        $("body").velocity({transformPerspective: "400px"}, 0);
+        $("body").velocity({rotateX: "90deg", transformPerspective: "400px"}, 1500, "easeInExpo", function()  {
+            $("#selected, #trans, #menu").css("opacity", "0");
+            $("#menu_tag").css({color: "rgb(255, 165, 0)", fontSize: "50px", letterSpacing: "10px", fontFamily: "Sequi", transform: "rotateX(180deg)", zIndex: "2"});
+            $("body").velocity({rotateX: "180deg"}, 1500, "easeOutExpo", function()  {
+                $("body").velocity("stop");
+                $("body").css("backgroundColor", "orange");
+                $("body").append("<span style='z-index: 1; top: 0; left: 0; position: absolute; height: 100%; width: 100%; background-color: black;'></span>");
+            });
+        });
+    }
+});
+</script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px; transform: perspective(400px) rotateX(0deg);">
+        <span id="logo">
+            <span id="sc1">
+                <span id="sp1">
+                </span>
+            </span>
+            <span id="sc2">
+                <span id="sp2">
+                </span>
+            </span>
+            <span id="sc3">
+                <span id="sp3">
+                </span>
+            </span>
+            <span id="point"></span>
+        </span>
+        <span id="decl">
+            <span id="decl_1">
+                <span id="vt1">
+                    Vertex
+                    <span class="vtuc">
+                        <p class="vtu">DESIGN SCHEME</p>
+                    </span>
+                </span>
+            </span>
+            <span id="decl_2">
+                <span id="vt2">
+                    Vertex
+                    <span class="vtuc">
+                        <p class="vtu">DESIGN SCHEME</p>
+                    </span>
+                </span>
+            </span>
+        </span>
+        <span id="trans">
+            <span id="t1"></span>
+            <span id="t2"></span>
+            <span id="t3"></span>
+            <span id="t4"></span>
+            <span id="t5"></span>
+        </span>
+        <span id="menu">
+            <span id="b_base"></span>
+            <span id="b_enter"></span>
+            <span id="b_uber"></span>
+            <span id="b_xpr"></span>
+            <span id="b_about"></span>
+        </span>
+        <p id="menu_tag">highlight a ring</p>
+    </body>
+</html>

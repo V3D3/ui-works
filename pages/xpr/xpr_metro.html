@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title> Metro (button) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var done = false;
+            $(document).ready(function()  {
+                $("#metroButton").mouseenter(function()  {
+                    if(!done)  {
+                        $("#metroButton").css("border", "4px solid rgb(0, 24, 135)").css("top", "calc(40% - 4px)").css("left", "calc(40% - 4px)");
+                    }
+                });
+                $("#metroButton").mouseleave(function()  {
+                    if(!done)  {
+                        $("#metroButton").css("border", "0px solid rgb(30, 144, 255)").css("top", "40%").css("left", "40%");
+                    }
+                });
+                $("#mB_center").mousedown(function()  {
+                    $("#metroButton").velocity({scaleX: 0.975, scaleY: 0.975}, 100);
+                });
+                $("#mB_left").mousedown(function()  {
+                    $("#metroButton").velocity({scaleX: 0.975, scaleY: 0.975, transformPerspective: "600px", rotateY: "-5deg"}, 100);
+                });
+                $("#mB_right").mousedown(function()  {
+                    $("#metroButton").velocity({scaleX: 0.975, scaleY: 0.975, transformPerspective: "600px",  rotateY: "5deg"}, 100);
+                });
+                $("#mB_up").mousedown(function()  {
+                    $("#metroButton").velocity({scaleX: 0.975, scaleY: 0.975, transformPerspective: "600px",  rotateX: "5deg"}, 100);
+                });
+                $("#mB_center, #mB_left, #mB_right, #mB_up, #mB_down").mouseup(function()  {
+                    done = true;
+                    $("#metroButton").velocity({scaleX: 1, scaleY: 1, transformPerspective: "600px",  rotateX: 0, rotateY: 0}, 100, function()  {
+                        $("#metroButton").velocity({scaleX: 2.5, scaleY: 2.5, transformPerspective: "600px", rotateX: 0, rotateY: "90deg"}, 350, "easeInCubic", function()  {
+                            document.getElementById("metroContent").innerHTML = "XPR";
+                            $("#metroContent").css({fontFamily: "Sequi", fontSize: "120px", lineHeight: "100vh", transform: "rotateY(180deg)"});
+                            $("#metroButton").css({border: "0px solid dodgerblue", top: 0, left: 0, height: "100%", width: "100%"});
+                            $("#metroButton").velocity({perspective: "600px", scaleX: 0.5, scaleY: 0.5}, 0);
+                            $("#metroButton").velocity({scaleX: 1, scaleY: 1, transformPerspective: "600px", rotateX: 0, rotateY: "180deg"}, 350, "easeOutCubic", function()  {
+                                $("#metroButton").delay(500).velocity({opacity: 0}, 300);
+                            });
+                        });
+                    });
+                });
+                $("#mB_down").mousedown(function()  {
+                    $("#metroButton").velocity({scaleX: 0.975, scaleY: 0.975, transformPerspective: "600px",  rotateX: "-5deg"}, 100);
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px;">
+        <span id="metroButton" style="border: 0px solid rgb(30, 144, 255); position: absolute; height: 20%; width: 20%; left: 40%; top: 40%; background-color: dodgerblue; transform: perspective(600px);">
+            <span id="metroContent" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; font-family: 'Segoe UI Light'; line-height: 20vh; text-align: center; font-size: 30px;">Metro</span>
+            <span id="mB_center" style="position: absolute; left: 20%; top: 20%; width: 60%; height: 60%; z-index: 1;"></span>
+            <span id="mB_left" style="position: absolute; left: 0; top: 0; height: 100%; width: 20%; z-index: 2;"></span>
+            <span id="mB_right" style="position: absolute; left: 80%; top: 0; height: 100%; width: 20%; z-index: 2;"></span>
+            <span id="mB_up" style="position: absolute; left: 0; top: 0; height: 20%; width: 100%; z-index: 1;"></span>
+            <span id="mB_down" style="position: absolute; left: 0; top: 80%; height: 20%; width: 100%; z-index: 1;"></span>
+        </span>
+    </body>
+</html>

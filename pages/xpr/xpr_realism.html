@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title> Realism (navigation) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                $("#origin").delay(1000).velocity({top: "10%"}, 1200, "easeOutExpo", function()  {
+                    $("#c1, #c2, #c3, #c4").css("opacity", "1");
+                    $("#origin").css("opacity", "0");
+                    $("#c1").delay(250).velocity({top: "43%", left: "8%", height: "14%", width: "15%", borderRadius: "0px"}, 1000, "easeInOutExpo");
+                    $("#c2").delay(500).velocity({top: "43%", left: "31%", height: "14%", width: "15%", borderRadius: "0px"}, 1000, "easeInOutExpo");
+                    $("#c3").delay(750).velocity({top: "43%", left: "54%", height: "14%", width: "15%", borderRadius: "0px"}, 1000, "easeInOutExpo");
+                    $("#c4").delay(1000).velocity({top: "43%", left: "77%", height: "14%", width: "15%", borderRadius: "0px"}, 1000, "easeInOutExpo");
+                });
+            });
+            
+            $(document).ready(function()  {
+                $("#c1").mouseenter(function()  {
+                    $("#c2, #c3, #c4").velocity({blur: "10px"}, 150);
+                    $("#c1").velocity({top: "41%", left: "6%", height: "18%", width: "21%"}, 150);
+                });
+                $("#c1").mouseleave(function()  {
+                    $("#c2, #c3, #c4").velocity({blur: "0px"}, 150);
+                    $("#c1").velocity({top: "43%", left: "8%", height: "14%", width: "15%"}, 150);
+                });
+                $("#c1").mouseup(function()  {
+                    $("#c2, #c3, #c4").velocity({blur: "25px"});
+                    $("#c1").velocity({left: 0, top: 0, height: "100%", width: "100%"}, "easeInExpo");
+                });
+                $("#c2").mouseenter(function()  {
+                    $("#c1, #c3, #c4").velocity({blur: "10px"}, 150);
+                    $("#c2").velocity({top: "41%", left: "29%", height: "18%", width: "21%"}, 150);
+                });
+                $("#c2").mouseleave(function()  {
+                    $("#c1, #c3, #c4").velocity({blur: "0px"}, 150);
+                    $("#c2").velocity({top: "43%", left: "31%", height: "14%", width: "15%"}, 150);
+                });
+                $("#c2").mouseup(function()  {
+                    $("#c1, #c3, #c4").velocity({blur: "25px"});
+                    $("#c2").velocity({left: 0, top: 0, height: "100%", width: "100%"}, "easeInExpo");
+                });
+                $("#c3").mouseenter(function()  {
+                    $("#c2, #c1, #c4").velocity({blur: "10px"}, 150);
+                    $("#c3").velocity({top: "41%", left: "52%", height: "18%", width: "21%"}, 150);
+                });
+                $("#c3").mouseleave(function()  {
+                    $("#c2, #c1, #c4").velocity({blur: "0px"}, 150);
+                    $("#c3").velocity({top: "43%", left: "54%", height: "14%", width: "15%"}, 150);
+                });
+                $("#c3").mouseup(function()  {
+                    $("#c2, #c1, #c4").velocity({blur: "25px"});
+                    $("#c3").velocity({left: 0, top: 0, height: "100%", width: "100%"}, "easeInExpo");
+                });
+                $("#c4").mouseenter(function()  {
+                    $("#c2, #c3, #c1").velocity({blur: "10px"}, 150);
+                    $("#c4").velocity({top: "41%", left: "75%", height: "18%", width: "21%"}, 150);
+                });
+                $("#c4").mouseleave(function()  {
+                    $("#c2, #c3, #c1").velocity({blur: "0px"}, 150);
+                    $("#c4").velocity({top: "43%", left: "77%", height: "14%", width: "15%"}, 150);
+                });
+                $("#c4").mouseup(function()  {
+                    $("#c2, #c3, #c1").velocity({blur: "25px"});
+                    $("#c4").velocity({left: 0, top: 0, height: "100%", width: "100%"}, "easeInExpo");
+                });
+            });
+        </script>
+    </head>
+    <body style="background-color: black; overflow: hidden;">
+        <span id="origin" style="position: absolute; height: 20px; width: 20px; border-radius: 100px; left: calc(50% - 10px); top: 120%; background-color: dodgerblue;"></span>
+        <span id="c1" style="position: absolute; height: 20px; width: 20px; border-radius: 100px; left: calc(50% - 10px); top: 10%; background-color: dodgerblue; opacity: 0;"></span>
+        <span id="c2" style="position: absolute; height: 20px; width: 20px; border-radius: 100px; left: calc(50% - 10px); top: 10%; background-color: dodgerblue; opacity: 0;"></span>
+        <span id="c3" style="position: absolute; height: 20px; width: 20px; border-radius: 100px; left: calc(50% - 10px); top: 10%; background-color: dodgerblue; opacity: 0;"></span>
+        <span id="c4" style="position: absolute; height: 20px; width: 20px; border-radius: 100px; left: calc(50% - 10px); top: 10%; background-color: dodgerblue; opacity: 0;"></span>
+    </body>
+</html>

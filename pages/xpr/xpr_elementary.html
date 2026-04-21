@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title> Elementary (misc) // XPR // VDS
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+			var id = -1;
+			var brk = 0;
+            $(document).ready(function()  {
+				exec();
+            });
+			function exec()  {
+				genS();
+				var u = "#stick" + id;
+				$(u).velocity({top: (sH / 2) - ($(u).height() / 2)}, 1000, "easeOutExpo", function()  {
+					var h = gCom(sW * 0.7);
+					var r = gCom(400) + 200;
+					$(u).velocity({transformPerspective: r}, 0);
+					$(u).velocity({top: ((sH / 2) - (h / 2)), height: h, rotateY: gCom(50), rotateZ: gCom(360) - 180, transformPerspective: r, blur: gCom(10) - 5}, 1000, "easeInOutCubic", function()  {
+						if(brk == 0)  {
+							exec();
+						}
+					});
+				});
+			}
+			$(document).ready(function()  {
+				$("#cont").keyup(function(e)  {
+					if(e.key == " ")  {
+						$("#cont").velocity({backgroundColor: "#" + gCom(255).toString(16) + gCom(255).toString(16) + gCom(255).toString(16)}, 400);
+					}
+					if(e.key.toLowerCase() == 'o')  {
+						brk = 1;
+					}
+					if(e.key.toLowerCase() == 'x')  {
+						brk = 1;
+						$("*").velocity("stop");
+						$('#cont').velocity({top: "100%"}, 600, "easeInExpo", function()  {
+							$("#cont").html("");
+							$("#cont").velocity({top: "0%"}, 600, "easeOutExpo", function()  {
+								brk = 0;
+								exec();
+							});
+						});
+					}
+					if(e.key.toLowerCase() == 'i')  {
+						brk = 0;
+						exec();
+					}
+				});
+			});
+            function gCol()  {
+                return "rgb(" + gCom(255) + ", " + gCom(255) + ", " + gCom(255) + ")";
+            }
+			function gCom(R)  {
+				return parseInt(Math.random() * R);
+			}
+			function genS()  {
+				id++;
+				var t = 5 + gCom(22);
+				document.getElementById("cont").innerHTML += "<span style='position: absolute; border-radius: 1000px; top: 100%; height: " + t + "px; width: " + t + "px; left: " + ((sW / 2) - (t / 2)) + "px; background-color: " + gCol() + "; z-index: " + id + ";' id='stick" + id + "'></span>";
+			}
+        </script>
+    </head>
+    <body id='cont' style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: rebeccapurple; overflow: hidden; margin: 0px;">
+        
+    </body>
+</html>

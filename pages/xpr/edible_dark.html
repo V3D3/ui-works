@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Edible Dark</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script>
+			$(document).ready(function()  {
+				$('#s1').delay(500).velocity({scaleX: 0.1, scaleY: 0.1}, 1250, "easeOutExpo");
+				$('#s0').delay(950).velocity({scaleX: 0.2, scaleY: 0.2}, 1250, "easeOutExpo", function()  {
+					$('#s1, #s0').delay(200).velocity({scaleX: 0.15, scaleY: 0.15}, 625, "easeInExpo", function()  {
+						$('#s1').css({boxShadow: 'inset 0 0 100px black'});
+						$('#s0').css({boxShadow: '0 0 100px black'});
+						$('#s1').velocity({scaleX: 0.1, scaleY: 0.1}, 625, "easeOutExpo");
+						$('#s0').velocity({scaleX: 0.2, scaleY: 0.2}, 625, "easeOutExpo", function()  {
+							$('#content').delay(1000).velocity({blur: 15}, 200, function()  {
+								$('#dialog').delay(250).velocity({top: '25%'}, 700, 'easeOutExpo');
+							});
+						});
+					});
+				});
+			});
+		</script>
+        <style>
+            @keyframes idk  {
+                from  { transform: rotate(0deg); }
+                to  { transform: rotate(360deg); }
+            }
+        </style>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0;'>
+		<span id='content' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; margin: 0;'>
+		  <span id='s0' style="position: absolute; height: 150vw; width: 150vw; left: -25%; top: calc(50% - 75vw); border-radius: 50%; background: orange; box-shadow: inset 0 0 100px black;"></span>
+		  <span id='s1' style="position: absolute; height: 150vw; width: 150vw; left: -25%; top: calc(50% - 75vw); border-radius: 50%; background: black; box-shadow: 0 0 100px black;"></span>
+	    </span>
+        <div id="dialog" style="position: absolute; top: 120%; left: 25%; width: 50%; height: 50%; background-color: orange; box-shadow: 0px 0px 50px orange; border: 1px solid orange; overflow: hidden;">
+            <span style="position: absolute; top: calc(50% - 100px); left: calc(50% - 100px); width: 0; height: 0; border: 100px solid transparent; border-top-color: #eeeeee; border-bottom-color: #eeeeee; animation: idk 10s linear infinite;"></span>
+        </div>
+	</body>
+</html>

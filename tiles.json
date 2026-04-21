@@ -287,5 +287,40 @@
         "path": "pages/punkweb/index.html",
         "weight": 2,
         "description": "Basic CLI with easter eggs."
+    },
+    {
+        "title": "Listum",
+        "type": "Tool",
+        "path": "pages/listum/index.html",
+        "weight": 2,
+        "description": "Minimalist task and list management."
+    },
+    {
+        "title": "ThinGuard",
+        "type": "Splash",
+        "path": "pages/thinguard/index.html",
+        "weight": 2,
+        "description": "Abstract splash with orange geometric animations."
+    },
+    {
+        "title": "Edible",
+        "type": "Splash",
+        "path": "pages/xpr/edible.html",
+        "weight": 1,
+        "description": "Bright red splash with a rotating logo."
+    },
+    {
+        "title": "Edible Dark",
+        "type": "Splash",
+        "path": "pages/xpr/edible_dark.html",
+        "weight": 1,
+        "description": "Gloomier variant of the Edible splash with orange accents."
+    },
+    {
+        "title": "Familiar",
+        "type": "Tool",
+        "path": "pages/familiar/index.html",
+        "weight": 2,
+        "description": "Interactive file renaming and matching utility."
     }
 ]

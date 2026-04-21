@@ -1,0 +1,279 @@
+<html>
+	<head>
+		<title>Familiar &lt;3</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script>
+			$(document).ready(function()  {
+				if(localStorage.getItem('familiaruser'))  {
+					load();
+				}  else  {
+					$('#bg').velocity({top: 0, height: '100%'}, 1000, 'easeOutExpo');
+					$('#init0').delay(300).velocity({top: '35vh'}, 1000, 'easeOutExpo', function()  {
+						$('#init0').delay(300).velocity({top: '20vh'}, 600);
+						$('#init1').delay(600).velocity({top: '52vh'}, 800, 'easeOutExpo');
+						$('#b0').delay(900).velocity({top: '85vh'}, 800, 'easeOutExpo');
+					});
+				}
+			});
+			$(document).ready(function()  {
+				$('#b0').mouseenter(function()  {
+					$(this).css({background: 'rgb(255, 68, 68)', color: 'white'});
+				});
+				$('#b0').mouseleave(function()  {
+					$(this).css({color: 'rgb(255, 68, 68)', background: 'transparent'});
+				});
+				$('#b0').mousedown(function()  {
+					$('#bg').css('background', 'rgb(255, 68, 68)');
+					$('#init0, #init1').css('color', 'white');
+					$(this).css({background: 'white', color: 'rgb(255, 68, 68)'});
+				});
+				$('#b0').mouseup(function()  {
+					$('#bg').css('background', 'white');
+					$('#init0, #init1').css('color', 'rgb(255, 68, 68)');
+					$(this).css({background: 'rgb(255, 68, 68)', color: 'white'});
+					localStorage.setItem('familiaruser', 1);
+					$('#bg').delay(100).velocity({height: 0}, 1000, 'easeInExpo', function()  {
+						load();
+					});
+				});
+				$('#t0l1, #t1l1, #t1l2').mouseenter(function()  {
+					$(this).css({background: 'white', color: 'rgb(255, 68, 68)'});
+				});
+				$('#t0l1, #t1l1, #t1l2').mouseleave(function()  {
+					$(this).css({background: 'transparent', color: 'white'});
+				});
+				$('#t1l2').mousedown(function()  {
+					$('#tx0').css({background: 'rgb(255, 68, 68)'});
+				});
+				$('#t1l1').mousedown(function()  {
+
+				});
+				$('#t1l1').mouseup(function()  {
+
+				});
+				$('#t1l2').mousedown(function()  {
+
+				});
+				$('#t1l2').mouseup(function()  {
+					alert("Renaming complete! (Simulated, as the PHP backend is gone).\nIn the real version, file names would have been updated in the 'input' folder based on your list.");
+					console.log("we done 'ere.");
+				});
+				$('#t0l1').mouseup(function()  {
+					$('#tx0').val('');
+					$('#tx0').css({background: 'white'});
+					ds(['0l0', '0l1'], function()  {
+						tx('0x', 'Reading...');
+						en(['0x'], function()  {
+							var r = prompt("The PHP backend is gone. Please enter filenames separated by colons (e.g. file1.png:file2.jpg).\nHint: PHP used to scan the 'input' folder and return something like 'picture.jpg:music.mp3'.", "");
+							if (r === null) r = "";
+							var k = r.split(':').join('\n');
+							$('#tx0').val(k);
+							ds(['0x', '1x', '1l0', '1l1', '1l2'], function()  {
+								if(k.split('\n').length == 1)  {
+									if(r == '')  {
+										tx('0x', 'I feel so alone. No files detected.');
+										en(['0x']);
+										tx('1x', "Kinda need files to rename them... Waiting...");
+										en(['1x']);
+									}  else  {
+										tx('0l0', 'Detected 1 file. <i>Seriously?</i>');
+										en(['0l0']);
+										tx('1x', "<i>*sighs*</i> Do it yourself.");
+										en(['1x']);
+									}
+								}  else  {
+									tx('0l0', 'Detected ' + k.split('\n').length + ' files.');
+									en(['0l0']);
+									var c = vertx1();
+									if(c[0])  {
+										tx('1x', "It's boring here. Please enter some naaaames...");
+										en(['1x']);
+									}  else if(c[1])  {
+										tx('1x', "There are some invalid thingamajigs there -->.");
+										en(['1x']);
+									}  else if(c[2])  {
+										tx('1x', "Cloning is illegal. But eh, there's just some duplicates here.");
+										en(['1x']);
+									}  else if(c[3] < k.split('\n').length)  {
+										tx('1x', "Names, names, need more names to continue...");
+										en(['1x']);
+									}  else  {
+										tx('1l0', 'Counted ' + c[3] + ' names. Whew.');
+										en(['1l0', '1l2']);
+									}
+								}
+								en(['0l1']);
+							});
+						});
+					});
+				});
+			});
+			function load()  {
+				$('#tx0').delay(200).velocity({height: '100%', top: 0}, 800, 'easeOutExpo', function()  {
+					$('#tx1').css({height: '50%', top: '50%'});
+					$('#tx0').css({height: '50%', top: 0});
+					$('#tx0').velocity({left: 0, width: '50%', paddingLeft: '0.5vw', paddingTop: '1vh', paddingBottom: '1vh'}, 600, 'easeInOutExpo');
+					$('#tx1').velocity({right: 0, width: '50%', paddingLeft: '0.5vw', paddingTop: '1vh', paddingBottom: '1vh'}, 600, 'easeInOutExpo', function()  {
+						ds(['0l0', '0l1'], function()  {
+							en(['0x'], function()  {
+								var r = prompt("The PHP backend is gone. Please enter filenames separated by colons (e.g. file1.png:file2.jpg).\nHint: PHP used to scan the 'input' folder and return something like 'picture.jpg:music.mp3'.", "");
+								if (r === null) r = "";
+								var k = r.split(':').join('\n');
+								$('#tx0').val(k);
+								ds(['0x', '1x', '1l0', '1l1', '1l2'], function()  {
+									if(k.split('\n').length == 1)  {
+										if(r == '')  {
+											tx('0x', 'I feel so alone. No files detected.');
+											en(['0x']);
+											tx('1x', "Kinda need files to rename them... Waiting...");
+											en(['1x']);
+										}  else  {
+											tx('0l0', 'Detected 1 file. <i>Seriously?</i>');
+											en(['0l0']);
+											tx('1x', "<i>*sighs*</i> Do it yourself.");
+											en(['1x']);
+										}
+									}  else  {
+										tx('0l0', 'Detected ' + k.split('\n').length + ' files.');
+										en(['0l0']);
+										var c = vertx1();
+										if(c[0])  {
+											tx('1x', "It's boring here. Please enter some naaaames...");
+											en(['1x']);
+										}  else if(c[1])  {
+											tx('1x', "There are some invalid thingamajigs there -->.");
+											en(['1x']);
+										}  else if(c[2])  {
+											tx('1x', "Cloning is illegal. But eh, there's just some duplicates here.");
+											en(['1x']);
+										}  else if(c[3] < k.split('\n').length)  {
+											tx('1x', "Names, names, need more names to continue...");
+											en(['1x']);
+										}  else  {
+											tx('1l0', 'Counted ' + c[3] + ' names. Whew.');
+											en(['1l0', '1l2']);;
+										}
+									}
+									en(['0l1']);
+								});
+							});
+						});
+					});
+				});
+			}
+			function tx(d, t)  {
+				$('#t' + d).html(t);
+			}
+			function en(d, callback = function(){})  {
+				var s = '#t' + d[0];
+				for(var i = 1; i < d.length; i++)  {
+					s += ', #t' + d[i];
+				}
+				$(s).velocity({opacity: 1}, 150, function()  {
+					callback();
+				});
+			}
+			function ds(d, callback = function(){})  {
+				var s = '#t' + d[0];
+				for(var i = 1; i < d.length; i++)  {
+					s += ', #t' + d[i];
+				}
+				$(s).velocity({opacity: 0}, 150, function()  {
+					callback();
+				});
+			}
+			function vertx1()  {
+				var flg = [false, false, false, -1];
+				var k = $('#tx1').val().split('\n');
+				var z = new Set();
+				flg[0] = ($('#tx1').val() == '')?true:false;
+				for(var i = 0; i < k.length; i++)  {
+					z.add(k[i]);
+					flg[1] = vnm(k[i]);
+				}
+				flg[3] = k.length;
+				if(z.size < k.length)  {
+					flg[2] = true;
+				}
+				return flg;
+			}
+			function vnm(s)  {
+				if(s == '')  {
+					return true;
+				}
+				var arr = ['/', '\\', '|', ':', '*', '?', '"', '<', '>'];
+				for(var i = 0; i < s.length; i++)  {
+					if(arr.indexOf(s[i]) > -1)  {
+						return true;
+					}
+				}
+				return false;
+			}
+		</script>
+		<style>
+			::-webkit-scrollbar  {
+				width: 6px;
+				height: 6px;
+			}
+			::-webkit-scrollbar-track  {
+				background: transparent;
+			}
+			::-webkit-scrollbar-thumb  {
+				background: rgba(255, 68, 68);
+				border-radius: 50px;
+				box-shadow: 0 0 20px;
+			}
+			button:focus, textarea:focus  {
+				outline: 0;
+			}
+			div  {
+				position: absolute;
+			}
+			button  {
+				position: absolute;
+				width: 15vw;
+				height: 8vh;
+				color: white;
+				background: transparent;
+				border: 2px solid white;
+				font-size: 3.5vh;
+				font-family: SF Pro Display Ultralight;
+				letter-spacing: 0.2vh;
+				border-radius: 5px;
+			}
+			.tl  {
+				width: 44%;
+				color: white;
+				font-size: 3.5vh;
+				font-family: SF Pro Display Thin;
+				letter-spacing: 0.2vh;
+				line-height: 5vh;
+				height: 5%;
+				opacity: 0;
+			}
+			.t0  {
+				left: 53%;
+			}
+			.t1  {
+				left: 3%;
+			}
+		</style>
+	</head>
+	<body style='background: rgb(255, 68, 68); overflow: hidden;'>
+		<div id='bg' style='position: absolute; top: 100%; width: 100%; height: 0; left: 0; background: white; overflow: hidden;'>
+			<div id='init0' style='position: absolute; top: 100vh; width: 100vw; text-align: center; font-size: 20vh; line-height: 30vh; height: 30vh; color: rgb(255, 68, 68); font-family: Lato Hairline;'>Familiar &lt;3</div>
+			<div id='init1' style='position: absolute; top: 100vh; width: 70vw; left: 15vw; text-align: center; font-size: 4vh; line-height: 7vh; height: 21vh; color: rgb(255, 68, 68); font-family: SF Pro Display Ultralight; letter-spacing: 0.2vh;'>Hi! You can use me <i>(yep)</i> to quickly rename a bunch of<br> not-so-nice sounding files to a list of names that you supply.<br>I'll match whichever sounds familiar to another.</div>
+			<button id='b0' style='color: rgb(255, 68, 68); border: 2px solid rgb(255, 68, 68); z-index: 1; left: 42.5vw; top: 150vh;'>Yay! Let's go!</button>
+		</div>
+		<textarea id='tx0' style='position: absolute; height: 1px; width: 1px; background: white; border: 0; top: 100%; left: calc(50% - 0.5px); resize: none; font-size: 2vh; line-height: 3vh; color: rgb(255, 68, 68); font-family: Consolas;' spellcheck='false' readonly></textarea>
+		<textarea id='tx1' style='position: absolute; height: 1px; width: 1px; background: white; border: 0; top: 100%; right: calc(50% - 0.5px); resize: none; font-size: 2vh; line-height: 3vh; color: rgb(255, 68, 68); font-family: Consolas;' spellcheck='false'></textarea>
+		<div id='t0x' class='tl t0' style='top: 22.5%;'>Reading...</div>
+		<div id='t0l0' class='tl t0' style='top: 2.5%;'>(*blushes*)</div>
+		<button id='t0l1' class='t0' style='top: 38%; opacity: 0;'>Refresh</button>
+		<div id='t1x' class='tl t1' style='top: 72.5%;'>Kinda need files to rename them... Waiting...</div>
+		<div id='t1l0' class='tl t1' style='top: 52.5%;'>(*blushes*)</div>
+		<button id='t1l1' class='t1' style='top: 88%; opacity: 0;'>Verify</button>
+		<button id='t1l2' class='t1' style='top: 88%; opacity: 0; right: 53%;'>Begin</button>
+	</body>
+</html>

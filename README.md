@@ -18,6 +18,21 @@ A massive suite of interactive animations, menus, and UI components, including:
 - Tools: Grid, Focus, Imitant.
 - Components: Tipsy (tooltips), Frost (dialogs), Exhibit (carousel), Konami (secret codes).
 
+### [PunkWeb](pages/punkweb/index.html)
+A retro CLI-style interface with a unique aesthetic, member bios, and interactive "pirojectes" list.
+
+### [Listum](pages/listum/index.html)
+A minimalist, dark-themed task and list management tool.
+
+### [ThinGuard](pages/thinguard/index.html)
+A high-contrast abstract splash page featuring complex geometric animations in orange.
+
+### [Edible](pages/xpr/edible.html)
+A bold, bright red splash page with a clean rotating logo animation.
+
+### [Familiar](pages/familiar/index.html)
+An interactive file management simulation that facilitates file renaming and type matching.
+
 ## Usage
 Let me know if you like anything, or wish to use it somewhere.
 Um, if you can't find me, make an issue here. Please do not PR.

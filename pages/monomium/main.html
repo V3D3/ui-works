@@ -1,0 +1,1735 @@
+<html>
+	<head>
+		<title> V3D3, the website</title>
+		<link rel="shortcut icon" type="image/x-icon" href="graphics/siteIcon.ico"/>
+		<link id="styleDefine" rel="stylesheet" type="text/css" href="unifiedStyleDefiner.css"/>
+		<link id="colorDefine" rel="stylesheet" type="text/css"/>
+        <link id="paceThemer" rel="stylesheet" type="text/css" href="pace_circular_light.css"/>
+		<script src="../../scripts/jq.js"></script>
+		<script src="../../scripts/jqc.js"></script>
+		<script id="UID" src="unifiedInteractivityDefiner.js"></script>
+        <script src="../../scripts/pace.js"></script>
+		<script>
+			// PROJECTS
+const projects = [
+  {
+    title: "Project Alpha",
+    content: "<p>Project Alpha is a lightweight rendering engine focused on minimal dependencies and high performance. It explores efficient draw call batching, memory pooling, and modular architecture.</p>"
+  },
+  {
+    title: "Project Beta",
+    content: "<p>Project Beta experiments with UI component systems. It implements a reactive model using plain JavaScript, avoiding frameworks while still supporting dynamic updates and state tracking.</p>"
+  },
+  {
+    title: "Project Gamma",
+    content: "<p>Project Gamma is a data processing pipeline designed for transforming structured inputs into optimized outputs. It includes parsing, validation, and transformation stages.</p>"
+  },
+  {
+    title: "Project Delta",
+    content: "<p>Project Delta focuses on CLI tooling. It provides utilities for automating repetitive development workflows, including file generation and batch processing.</p>"
+  }
+];
+
+// WRITINGS
+const writings = [
+  {
+    title: "On Simplicity",
+    content: "<p>Simplicity in software is not about removing features but about reducing unnecessary complexity. Clear abstractions and predictable behavior make systems easier to reason about and maintain.</p>"
+  },
+  {
+    title: "Architecture Notes",
+    content: "<p>Good architecture emerges from constraints. By limiting dependencies and enforcing boundaries, systems become more modular and resilient to change.</p>"
+  },
+  {
+    title: "Debugging Strategies",
+    content: "<p>Effective debugging starts with isolating the problem. Reproducing issues consistently and reducing scope are key steps toward identifying root causes.</p>"
+  },
+  {
+    title: "State and Flow",
+    content: "<p>Managing state is central to application design. Whether using global stores or localized state, understanding how data flows through a system is critical.</p>"
+  }
+];
+
+// CONCEPTS
+const concepts = [
+  {
+    title: "Abstraction Layers",
+    content: "<p>Abstraction layers help manage complexity by hiding implementation details. However, too many layers can obscure understanding and introduce overhead.</p>"
+  },
+  {
+    title: "State Machines",
+    content: "<p>State machines model systems as a series of states and transitions. They are particularly useful for predictable workflows and UI interactions.</p>"
+  },
+  {
+    title: "Reactive Systems",
+    content: "<p>Reactive systems respond to changes in data automatically. This paradigm simplifies UI updates but requires careful handling of dependencies.</p>"
+  },
+  {
+    title: "Immutability",
+    content: "<p>Immutability ensures that data does not change unexpectedly. It enables easier reasoning about state and can prevent entire classes of bugs.</p>"
+  }
+];
+			//The code below may seem messy and a bit inefficient. I currently am focusing
+			//on completing the site, so I'll look into code optimization later. Till then, please bear with
+			//me, user.
+			//                                                                                                                               - V3D3
+			var sH = window.innerHeight;
+			var sW = window.innerWidth;
+			var themeNum, skip2nd, pageActive; //pageActive: 1-Projects, 2-Writings and 3-Concepts.
+            var currWriting = 2, currProject = 2, currConcept = 2, contX, contY, contH, cContH, subTheme = 0;
+			if(sH < sW)  {
+				if(sH < 600)  {
+					alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+					skip2nd = true;
+				}
+				if(sW < 1000)  {
+					if(skip2nd == false)  {
+					alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+					}
+				}
+			}
+			else  {
+				alert("The website was built on and for a landscape oriented device. Configure your display settings accordingly for avoiding display errors.");
+			}
+			function CAST()  {
+				$("#imageCont").css("height", (sH - 85) + "px");
+				$("#projectsButton").css("top", "-100%");
+				$("#latestButton").css("top", "-100%");
+				$("#writingsButton").css("top", "-100%");
+				$("#updatesButton").css("top", "-100%");
+				$("#conceptsButton").css("top", "-100%");
+				$("#themeThumb_light").css("height", (sH - 81) + "px");
+				$("#themeThumb_dark").css("height", (sH - 81) + "px");
+				$("#themeThumb_standard").css("height", (sH - 81) + "px");
+				$("#subDock").css("left", ((sW / 2) - ($("#subDock").width() / 2)) + "px");
+				if (typeof(Storage) !== "undefined")  {
+					if(localStorage.getItem("theme") == undefined)  {
+						localStorage.setItem("theme", "light");
+						colorDefine.setAttribute("href", "themeColor_light.css");
+						themeNum = 2;
+					}
+					else  {
+						switch(localStorage.getItem("theme"))  {
+							case "light":
+								colorDefine.setAttribute("href", "themeColor_light.css");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+								themeNum = 2;
+							break;
+							case "dark":
+								colorDefine.setAttribute("href", "themeColor_dark.css");
+                                paceThemer.setAttribute("href", "pace_circular_dark.css");
+								themeNum = 3;
+							break;
+							case "standard":
+								colorDefine.setAttribute("href", "themeColor_standard.css");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+								themeNum = 1;
+							break;
+							case "none":
+								colorDefine.setAttribute("href", "");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+								themeNum = 0;
+							break;
+							default:
+								colorDefine.setAttribute("href", "themeColor_light.css");
+								localStorage.setItem("theme", "light");
+								themeNum = 2;
+							break;
+						}
+					}
+				}
+				else  {
+					alert("localStorage is not supported by your browser. Theme selections will not be remembered.");
+				}
+				document.getElementById("projectsButton").innerHTML = "Projects";
+				document.getElementById("latestButton").innerHTML = "Latest";
+				document.getElementById("writingsButton").innerHTML = "Writings";
+				document.getElementById("updatesButton").innerHTML = "Updates";
+				document.getElementById("conceptsButton").innerHTML = "Concepts";
+				var spareSpace = Math.round((sW - (750)) / 6)
+				$("#projectsButton").css("left", spareSpace + "px");
+				$("#latestButton").css("left", (spareSpace * 2 + 150) + "px");
+				$("#writingsButton").css("left", (spareSpace * 3 + 300) + "px");
+				$("#updatesButton").css("left", (spareSpace * 4 + 450) + "px");
+				$("#conceptsButton").css("left", (spareSpace * 5 + 600) + "px");
+				var commonCenter = ((sH / 2) - 25) + "px";
+				$("#themeSwitch_dark").css("top", commonCenter);
+				$("#themeSwitch_light_left").css("top", commonCenter);
+				$("#themeSwitch_light_right").css("top", commonCenter);
+				$("#themeSwitch_standard").css("top", commonCenter);
+                $("#leftShifter").css("top", commonCenter);
+                $("#rightShifter").css("top", commonCenter);
+                contX = ((sW / 2) - ($("#projectContainer").width() / 2));
+                contH = (sH - ($("#dock").height() + $("#buttonCont").height() + 120));
+                contY = ($("#buttonCont").height() + (((sH - ($("#dock").height() + $("#buttonCont").height())) - contH) / 2));
+                cContH = contH - $("#writings_contentHeader").height();
+				$("#projectContainer").css("height", contH + "px");
+				$("#projectContainer").css("left", contX + "px");
+				$("#latestContainer").css("height", contH + "px");
+				$("#latestContainer").css("left", contX + "px");
+				$("#writingContainer").css("height", contH + "px");
+				$("#writingContainer").css("left", contX + "px");
+				$("#updatesContainer").css("height", contH + "px");
+				$("#updatesContainer").css("left", contX + "px");
+				$("#conceptContainer").css("height", contH + "px");
+				$("#conceptContainer").css("left", contX + "px");
+                $("#nextContainer").css("height", contH + "px");
+                $("#prevContainer").css("height", contH + "px");
+                $("#nextContainer").css("top", contY + "px");
+                $("#prevContainer").css("top", contY + "px");
+                $("#projects_cCont").css("height", cContH + "px");
+                $("#writings_cCont").css("height", cContH + "px");
+                $("#concepts_cCont").css("height", cContH + "px");
+                $("#nextCCont").css("height", cContH + "px");
+                $("#prevCCont").css("height", cContH + "px");
+                $("#dock").width($("#subDock").width());/*
+                $("#settingsButton").css("left", "13%");
+                $("#dataButton").css("left", "32%");
+                $("#infoButton").css("left", "53%");
+                $("#aboutButton").css("left", "78%");*/
+				var spareSpace = ($("#dock").width() - 215) / 5;
+                var spareSpace_sD = (sW - (193 + $("#dock").width())) /5;
+				var commonCenter = (($("#dock").height() / 2) - 25) + "px";
+				$("#settingsButton").css("left", spareSpace + "px");
+				$("#settingsButton").css("top", commonCenter);
+				$("#infoButton").css("left", ((spareSpace * 2) + 50) + "px");
+				$("#infoButton").css("top", commonCenter);
+				$("#dataButton").css("left", ((spareSpace * 3) + 132) + "px");
+				$("#dataButton").css("top", commonCenter);
+				$("#aboutButton").css("left", ((spareSpace * 4) + 182) + "px");
+				$("#aboutButton").css("top", commonCenter);
+				$("#homeButton").css("left", spareSpace + "px");
+				$("#homeButton").css("top", commonCenter);
+				$("#filterButton").css("left", ((spareSpace * 2) + 36) + "px");
+				$("#filterButton").css("top", commonCenter);
+				$("#switchThemeButton").css("left", ((spareSpace * 3) + 90 + $("#dock").width()) + "px");
+				$("#switchThemeButton").css("top", commonCenter);
+				$("#downloadButton").css("left", ((spareSpace * 4) + 157 + $("#dock").width()) + "px");
+				$("#downloadButton").css("top", commonCenter);
+				$(document).ready(function()  {
+					$("#mainLoadIndicator").css("left", ((sW / 2) - ($("#mainLoadIndicator").width() / 2)) + "px");
+					$("#mainLoadIndicator").css("top", "47%");
+					$("#mainLoadIndicator").animate({top: "-20%", opacity: 0}, 600, function()  {
+						$("#projectsButton").animate({top: "20px", opacity: 1});
+						$("#conceptsButton").animate({top: "20px", opacity: 1}, function()  {
+							$("#latestButton").animate({top: "20px", opacity: 1});
+							$("#updatesButton").animate({top: "20px", opacity: 1}, function()  {
+								$("#writingsButton").animate({top: "20px", opacity: 1}, function()  {
+									switch(themeNum)  {
+										case 1:
+											aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+											settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+											dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+											infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+                                            leftShifter.setAttribute("src", "graphics/shiftLeft_light_standard_normal.png");
+                                            rightShifter.setAttribute("src", "graphics/shiftRight_light_standard_normal.png");
+											$("#themeThumb_standard").animate({top: "0px", opacity: 1}, 700, function()  {
+												$("#subDock").css("left", ((sW / 2) - ($("#subDock").width / 2)) + "px");
+												$("#subDock").animate({top: (sH - 90) + "px", opacity: 1}, function()  {
+													$("#themeSwitch_light_right").animate({left: "10px", opacity: 1});
+													$("#themeThumb_dark").css("top", "0px");
+													$("#themeThumb_dark").css("left", "-100%");
+													$("#themeThumb_light").css("top", "120%");
+												});
+											});
+										break;
+										case 3:
+											aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+											settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+											dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+											infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+                                            leftShifter.setAttribute("src", "graphics/shiftLeft_dark_normal.png");
+                                            rightShifter.setAttribute("src", "graphics/shiftRight_dark_normal.png");
+											$("#themeThumb_dark").animate({top: "0px", opacity: 1}, 700, function()  {
+												$("#subDock").css("left", ((sW / 2) - ($("#subDock").width / 2)) + "px");
+												$("#subDock").animate({top: (sH - 90) + "px", opacity: 1}, function()  {
+													$("#themeSwitch_light_left").animate({left: (sW - 60) + "px", opacity: 1});
+													$("#themeThumb_light").css("top", "100%");
+													$("#themeThumb_standard").css("top", "0px");
+													$("#themeThumb_standard").css("left", "100%");
+												});
+											});
+										break;
+										default:
+											themeNum = 2;
+											aboutButton.setAttribute("src", "graphics/infoButton_light_normal.png");
+											settingsButton.setAttribute("src", "graphics/settingsButton_light_normal.png");
+											dataButton.setAttribute("src", "graphics/dataButton_light_normal.png");
+											infoButton.setAttribute("src", "graphics/webInfoButton_light_normal.png");
+                                            leftShifter.setAttribute("src", "graphics/shiftLeft_light_standard_normal.png");
+                                            rightShifter.setAttribute("src", "graphics/shiftRight_light_standard_normal.png");
+											$("#themeThumb_light").animate({top: "0px", opacity: 1}, 700, function()  {
+												$("#subDock").css("left", ((sW / 2) - ($("#subDock").width / 2)) + "px");
+												$("#subDock").animate({top: (sH - 90) + "px", opacity: 1}, function()  {
+													$("#themeSwitch_dark").animate({left: "10px", opacity: 1});
+													$("#themeSwitch_standard").animate({left: (sW - 60) + "px", opacity: 1});
+													$("#themeThumb_dark").css("top", "0px");
+													$("#themeThumb_dark").css("left", "-100%");
+													$("#themeThumb_standard").css("top", "0px");
+													$("#themeThumb_standard").css("left", "100%");
+												});
+											});
+										break;
+									}
+								});
+							});
+						});
+					});
+				});
+			}
+
+			//Below: button emulation codes, separate for (pseudo) better organization.
+
+			$(document).ready(function()  {
+				$("#themeSwitch_dark").mousedown(function ()  {
+					themeSwitch_dark.setAttribute("src", "graphics/switchTheme_dark_inverted.png");
+				});
+				$("#themeSwitch_dark").mouseup(function ()  {
+					themeSwitch_dark.setAttribute("src", "graphics/switchTheme_dark_highlight.png");
+				});
+				$("#themeSwitch_dark").mouseenter(function()  {
+					themeSwitch_dark.setAttribute("src", "graphics/switchTheme_dark_highlight.png");
+				});
+				$("#themeSwitch_dark").mouseleave(function()  {
+					themeSwitch_dark.setAttribute("src", "graphics/switchTheme_dark_normal.png");
+				});
+				$("#themeSwitch_standard").mousedown(function ()  {
+					themeSwitch_standard.setAttribute("src", "graphics/switchTheme_standard_inverted.png");
+				});
+				$("#themeSwitch_standard").mouseup(function ()  {
+					themeSwitch_standard.setAttribute("src", "graphics/switchTheme_standard_highlight.png");
+				});
+				$("#themeSwitch_standard").mouseenter(function()  {
+					themeSwitch_standard.setAttribute("src", "graphics/switchTheme_standard_highlight.png");
+				});
+				$("#themeSwitch_standard").mouseleave(function()  {
+					themeSwitch_standard.setAttribute("src", "graphics/switchTheme_standard_normal.png");
+				});
+				$("#themeSwitch_light_left").mousedown(function ()  {
+					themeSwitch_light_left.setAttribute("src", "graphics/switchTheme_light_inverted.png");
+				});
+				$("#themeSwitch_light_left").mouseup(function ()  {
+					themeSwitch_light_left.setAttribute("src", "graphics/switchTheme_light_highlight.png");
+				});
+				$("#themeSwitch_light_left").mouseenter(function()  {
+					themeSwitch_light_left.setAttribute("src", "graphics/switchTheme_light_highlight.png");
+				});
+				$("#themeSwitch_light_left").mouseleave(function()  {
+					themeSwitch_light_left.setAttribute("src", "graphics/switchTheme_light_normal.png");
+				});
+				$("#themeSwitch_light_right").mousedown(function ()  {
+					themeSwitch_light_right.setAttribute("src", "graphics/switchTheme_light_inverted2.png");
+				});
+				$("#themeSwitch_light_right").mouseup(function ()  {
+					themeSwitch_light_right.setAttribute("src", "graphics/switchTheme_light_highlight2.png");
+				});
+				$("#themeSwitch_light_right").mouseenter(function()  {
+					themeSwitch_light_right.setAttribute("src", "graphics/switchTheme_light_highlight2.png");
+				});
+				$("#themeSwitch_light_right").mouseleave(function()  {
+					themeSwitch_light_right.setAttribute("src", "graphics/switchTheme_light_normal2.png");
+				});
+				$("#rightShifter").mousedown(function ()  {
+                    switch(themeNum)  {
+                            case 1:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_standard_inverted.png");
+                            break;
+                            case 2:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_light_inverted.png");
+                            break;
+                            case 3:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_dark_inverted.png");
+                            break;
+                    }
+				});
+				$("#rightShifter").mouseup(function ()  {
+                    switch(themeNum)  {
+                            case 1:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_standard_hover.png");
+                            break;
+                            case 2:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_light_hover.png");
+                            break;
+                            case 3:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_dark_hover.png");
+                            break;
+                    }
+				});
+				$("#rightShifter").mouseenter(function()  {
+                    switch(themeNum)  {
+                            case 1:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_standard_hover.png");
+                            break;
+                            case 2:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_light_hover.png");
+                            break;
+                            case 3:
+					           rightShifter.setAttribute("src", "graphics/shiftRight_dark_hover.png");
+                            break;
+                    }
+				});
+				$("#rightShifter").mouseleave(function()  {
+					if(themeNum == 3)  {
+					   rightShifter.setAttribute("src", "graphics/shiftRight_dark_normal.png");
+                    }
+                    else  {
+					   rightShifter.setAttribute("src", "graphics/shiftRight_light_standard_normal.png");
+                    }
+				});
+				$("#leftShifter").mousedown(function ()  {
+                    switch(themeNum)  {
+                            case 1:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_standard_inverted.png");
+                            break;
+                            case 2:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_light_inverted.png");
+                            break;
+                            case 3:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_dark_inverted.png");
+                            break;
+                    }
+				});
+				$("#leftShifter").mouseup(function ()  {
+                    switch(themeNum)  {
+                            case 1:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_standard_hover.png");
+                            break;
+                            case 2:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_light_hover.png");
+                            break;
+                            case 3:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_dark_hover.png");
+                            break;
+                    }
+				});
+				$("#leftShifter").mouseenter(function()  {
+                    switch(themeNum)  {
+                            case 1:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_standard_hover.png");
+                            break;
+                            case 2:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_light_hover.png");
+                            break;
+                            case 3:
+					           leftShifter.setAttribute("src", "graphics/shiftLeft_dark_hover.png");
+                            break;
+                    }
+				});
+				$("#leftShifter").mouseleave(function()  {
+					if(themeNum == 3)  {
+					   leftShifter.setAttribute("src", "graphics/shiftLeft_dark_normal.png");
+                    }
+                    else  {
+					   leftShifter.setAttribute("src", "graphics/shiftLeft_light_standard_normal.png");
+                    }
+				});
+				$("#aboutButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							aboutButton.setAttribute("src", "graphics/infoButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							aboutButton.setAttribute("src", "graphics/infoButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#aboutButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							aboutButton.setAttribute("src", "graphics/infoButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#aboutButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							aboutButton.setAttribute("src", "graphics/infoButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#aboutButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							aboutButton.setAttribute("src", "graphics/infoButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#settingsButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							settingsButton.setAttribute("src", "graphics/settingsButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							settingsButton.setAttribute("src", "graphics/settingsButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#settingsButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							settingsButton.setAttribute("src", "graphics/settingsButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#settingsButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							settingsButton.setAttribute("src", "graphics/settingsButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#settingsButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							settingsButton.setAttribute("src", "graphics/settingsButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#dataButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							dataButton.setAttribute("src", "graphics/dataButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							dataButton.setAttribute("src", "graphics/dataButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#dataButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							dataButton.setAttribute("src", "graphics/dataButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#dataButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							dataButton.setAttribute("src", "graphics/dataButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#dataButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							dataButton.setAttribute("src", "graphics/dataButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#infoButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							infoButton.setAttribute("src", "graphics/webInfoButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							infoButton.setAttribute("src", "graphics/webInfoButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#infoButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							infoButton.setAttribute("src", "graphics/webInfoButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#infoButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							infoButton.setAttribute("src", "graphics/webInfoButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#infoButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							infoButton.setAttribute("src", "graphics/webInfoButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#homeButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							homeButton.setAttribute("src", "graphics/homeButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							homeButton.setAttribute("src", "graphics/homeButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#homeButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							homeButton.setAttribute("src", "graphics/homeButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#homeButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							homeButton.setAttribute("src", "graphics/homeButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#homeButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							homeButton.setAttribute("src", "graphics/homeButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							homeButton.setAttribute("src", "graphics/homeButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#downloadButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							downloadButton.setAttribute("src", "graphics/downloadButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							downloadButton.setAttribute("src", "graphics/downloadButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#downloadButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							downloadButton.setAttribute("src", "graphics/downloadButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#downloadButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							downloadButton.setAttribute("src", "graphics/downloadButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#downloadButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							downloadButton.setAttribute("src", "graphics/downloadButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							downloadButton.setAttribute("src", "graphics/downloadButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#filterButton").mousedown(function()  {
+					switch(themeNum)  {
+						case 1:
+							filterButton.setAttribute("src", "graphics/filterButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						case 3:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_inverted.png");
+							$("#dock").css("background-color", "rgb(0, 0, 0)");
+							$("#subDock").css("background-color", "rgb(0, 0, 0)");
+						break;
+						default:
+							filterButton.setAttribute("src", "graphics/filterButton_light_standard_inverted.png");
+							$("#dock").css("background-color", "rgb(255, 255, 255)");
+							$("#subDock").css("background-color", "rgb(255, 255, 255)");
+						break;
+					}
+				});
+				$("#filterButton").mouseup(function()  {
+					switch(themeNum)  {
+						case 1:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							filterButton.setAttribute("src", "graphics/filterButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#filterButton").mouseenter(function()  {
+					switch(themeNum)  {
+						case 1:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_highlight.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							filterButton.setAttribute("src", "graphics/filterButton_light_highlight.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#filterButton").mouseleave(function()  {
+					switch(themeNum)  {
+						case 1:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+						case 3:
+							filterButton.setAttribute("src", "graphics/filterButton_dark_standard_normal.png");
+							$("#dock").css("background-color", "rgb(255, 165, 0)");
+							$("#subDock").css("background-color", "rgb(255, 165, 0)");
+						break;
+						default:
+							filterButton.setAttribute("src", "graphics/filterButton_light_normal.png");
+							$("#dock").css("background-color", "rgb(30, 144, 255)");
+							$("#subDock").css("background-color", "rgb(30, 144, 255)");
+						break;
+					}
+				});
+				$("#switchThemeButton").mouseenter(function()  {
+					if(subTheme == 0)  {
+						switch(themeNum)  {
+							case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight1.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_highlight1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+							case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight2.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_highlight2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+						}
+					}
+				});
+				$("#switchThemeButton").mouseleave(function()  {
+					if(subTheme == 0)  {
+						switch(themeNum)  {
+							case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_normal1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_normal1.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_normal1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+							case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_normal2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_standard_normal2.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_normal2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+							break;
+						}
+					}
+				});
+				$("#switchThemeButton").mousedown(function()  {
+					if(subTheme == 0)  {
+						switch(themeNum)  {
+                            case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_light_standard_inverted1.png";
+                                $("#dock").css("background-color", "rgb(0, 0, 0)");
+                                $("#subDock").css("background-color", "rgb(0, 0, 0)");
+                            break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_inverted1.png";
+                                $("#dock").css("background-color", "rgb(0, 0, 0)");
+                                $("#subDock").css("background-color", "rgb(0, 0, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_standard_inverted1.png";
+                                $("#dock").css("background-color", "rgb(255, 255, 255)");
+                                $("#subDock").css("background-color", "rgb(255, 255, 255)");
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+                            case 1:
+								switchThemeButton.src = "graphics/switchThemeButton_light_standard_inverted2.png";
+                                $("#dock").css("background-color", "rgb(0, 0, 0)");
+                                $("#subDock").css("background-color", "rgb(0, 0, 0)");
+                            break;
+							case 3:
+								switchThemeButton.src = "graphics/switchThemeButton_dark_inverted2.png";
+                                $("#dock").css("background-color", "rgb(0, 0, 0)");
+                                $("#subDock").css("background-color", "rgb(0, 0, 0)");
+							break;
+							default:
+								switchThemeButton.src = "graphics/switchThemeButton_light_standard_inverted2.png";
+                                $("#dock").css("background-color", "rgb(255, 255, 255)");
+                                $("#subDock").css("background-color", "rgb(255, 255, 255)");
+							break;
+						}
+					}
+				});
+				$("#switchThemeButton").mouseup(function()  {
+					if(subTheme == 0)  {
+                        switch(themeNum)  {
+                            case 1:
+                                switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+                            break;
+                            case 3:
+                                switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight1.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+                            break;
+                            default:
+                                switchThemeButton.src = "graphics/switchThemeButton_light_highlight1.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+                            break;
+                        }
+					}
+					else  {
+                        switch(themeNum)  {
+                            case 1:
+                                switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+                            break;
+                            case 3:
+                                switchThemeButton.src = "graphics/switchThemeButton_dark_standard_highlight2.png";
+                                $("#dock").css("background-color", "rgb(255, 165, 0)");
+                                $("#subDock").css("background-color", "rgb(255, 165, 0)");
+                            break;
+                            default:
+                                switchThemeButton.src = "graphics/switchThemeButton_light_highlight2.png";
+                                $("#dock").css("background-color", "rgb(30, 144, 255)");
+                                $("#subDock").css("background-color", "rgb(30, 144, 255)");
+                            break;
+                        }
+					}
+				});
+			});
+
+			//Below: theme switching codeblock.
+
+			function switchTheme(n)  {
+				$(document).ready(function()  {
+					switch(n)  {
+						case 1:
+							//Switch from light to dark
+							$("#themeSwitch_dark").animate({left: "-20%", opacity: 0});
+							$("#themeSwitch_standard").animate({left: "120%", opacity: 0}, function()  {
+								$("#themeThumb_light").animate({top: "100%", opacity: 0}, 1000, function()  {
+									$("body").animate({backgroundColor: "rgb(255, 165, 0)"}, function()  {
+										$("button.postload").animate({backgroundColor: "rgb(255, 165, 0)"});
+										$("button.postload").animate({color: "rgb(0, 0, 0)"});
+										$("button.postload").animate({borderColor: "rgb(0, 0, 0)"});
+										$("#subDock").animate({top: "120%"}, function()  {
+											$("#dock").css("background-color", "rgb(255, 165, 0)");
+											$("#subDock").css("background-color", "rgb(255, 165, 0)");
+											aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+											settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+											dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+											infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+											$("#subDock").animate({top: (sH - 90) + "px"}, function()  {
+												$("#themeThumb_dark").animate({left: "0%", opacity: 1}, 1000, function()  {
+													$("#themeSwitch_light_left").animate({left: (sW - 60) + "px", opacity: 1});
+													colorDefine.setAttribute("href", "themeColor_dark.css");
+												});
+											});
+										});
+									});
+								});
+							});
+							localStorage.setItem("theme", "dark");
+							themeNum = 3;
+                            updatCol();
+						break;
+						case 2:
+							//Switch from dark to light
+							$("#themeSwitch_light_left").animate({left: "120%", opacity: 0}, function()  {
+								$("#themeThumb_dark").animate({left: "-100%", opacity: 0}, 1000, function()  {
+									$("body").animate({backgroundColor: "rgb(30, 144, 255)"}, function()  {
+										$("button.postload").animate({backgroundColor: "rgb(30, 144, 255)"});
+										$("button.postload").animate({color: "rgb(255, 255, 255)"});
+										$("button.postload").animate({borderColor: "rgb(255, 255, 255)"});
+										$("#subDock").animate({top: "120%"}, function()  {
+											$("#dock").css("background-color", "rgb(30, 144, 255)");
+											$("#subDock").css("background-color", "rgb(30, 144, 255)");
+											aboutButton.setAttribute("src", "graphics/infoButton_light_normal.png");
+											settingsButton.setAttribute("src", "graphics/settingsButton_light_normal.png");
+											dataButton.setAttribute("src", "graphics/dataButton_light_normal.png");
+											infoButton.setAttribute("src", "graphics/webInfoButton_light_normal.png");
+											$("#subDock").animate({top: (sH - 90) + "px"}, function()  {
+												$("#themeThumb_light").animate({top: "0px", opacity: 1}, 1000, function()  {
+													$("#themeSwitch_dark").animate({left: "10px", opacity: 1});
+													$("#themeSwitch_standard").animate({left: (sW - 60) + "px", opacity: 1});
+													colorDefine.setAttribute("href", "themeColor_light.css");
+												});
+											});
+										});
+									});
+								});
+							});
+							localStorage.setItem("theme", "light");
+							themeNum = 2;
+                            updatCol();
+						break;
+						case 3:
+							//Switch from light to standard
+							$("#themeSwitch_dark").animate({left: "-20%", opacity: 0});
+							$("#themeSwitch_standard").animate({left: "120%", opacity: 0}, function()  {
+								$("#themeThumb_light").animate({top: "100%", opacity: 0}, 1000, function()  {
+									$("button.postload").animate({color: "rgb(0, 0, 0)"});
+									$("button.postload").animate({borderColor: "rgb(0, 0, 0)"}, function()  {
+										$("#themeThumb_standard").animate({left: "0%", opacity: 1}, 1000, function()  {
+											$("#themeSwitch_light_right").animate({left: "10px", opacity: 1}, function()  {
+												$("#subDock").animate({top: "120%", opacity: 1}, function()  {
+													$("#dock").css("background-color", "rgb(30, 144, 255)");
+													$("#subDock").css("background-color", "rgb(30, 144, 255)");
+													aboutButton.setAttribute("src", "graphics/infoButton_dark_standard_normal.png");
+													settingsButton.setAttribute("src", "graphics/settingsButton_dark_standard_normal.png");
+													dataButton.setAttribute("src", "graphics/dataButton_dark_standard_normal.png");
+													infoButton.setAttribute("src", "graphics/webInfoButton_dark_standard_normal.png");
+													$("#subDock").animate({top: (sH - 90) + "px"}, function()  {
+														colorDefine.setAttribute("href", "themeColor_standard.css");
+													});
+												});
+											});
+										});
+									});
+								});
+							});
+							localStorage.setItem("theme", "standard");
+							themeNum = 1;
+                            updatCol();
+						break;
+						case 4:
+							//Switch from standard to light
+							$("#themeSwitch_light_right").animate({left: "-20%", opacity: 0}, function()  {
+								$("#themeThumb_standard").animate({left: "100%", opacity: 0}, 1000, function()  {
+									$("button.postload").animate({color: "rgb(255, 255, 255)"});
+									$("button.postload").animate({borderColor: "rgb(255, 255, 255)"}, function()  {
+										$("#themeThumb_light").animate({top: "0px", opacity: 1}, 1000, function()  {
+											$("#themeSwitch_dark").animate({left: "10px", opacity: 1});
+											$("#themeSwitch_standard").animate({left: (sW - 60) + "px", opacity: 1}, function()  {
+												$("#subDock").animate({top: "120%"}, function()  {
+													$("#dock").css("background-color", "rgb(30, 144, 255)");
+													$("#subDock").css("background-color", "rgb(30, 144, 255)");
+													aboutButton.setAttribute("src", "graphics/infoButton_light_normal.png");
+													settingsButton.setAttribute("src", "graphics/settingsButton_light_normal.png");
+													dataButton.setAttribute("src", "graphics/dataButton_light_normal.png");
+													infoButton.setAttribute("src", "graphics/webInfoButton_light_normal.png");
+													$("#subDock").animate({top: (sH - 90) + "px"}, function()  {
+														colorDefine.setAttribute("href", "themeColor_light.css");
+													});
+												});
+											});
+										});
+									});
+								});
+							});
+							localStorage.setItem("theme", "light");
+							themeNum = 2;
+                            updatCol();
+						break;
+					}
+				});
+			}
+			function outro(n)  {
+				$(document).ready(function()  {
+					$("#projectsButton").animate({top: "-100%", opacity: 0});
+					$("#conceptsButton").animate({top: "-100%", opacity: 0}, function()  {
+						$("#latestButton").animate({top: "-100%", opacity: 0});
+						$("#updatesButton").animate({top: "-100%", opacity: 0}, function()  {
+							$("#writingsButton").animate({top: "-100%", opacity: 0}, function()  {
+								$("#themeSwitch_light_right").animate({left: "-20%", opacity: 0});
+								$("#themeSwitch_dark").animate({left: "-20%", opacity: 0});
+								$("#themeSwitch_standard").animate({left: "120%", opacity: 0});
+								$("#themeSwitch_light_left").animate({left: "120%", opacity: 0}, function()  {
+									switch(themeNum)  {
+										case 1:
+											$("#imageCont").css("background-color", "rgb(0, 0, 0)");
+											$("#themeThumb_standard").animate({top: "120%"}, function()  {
+												switch(n)  {
+													case 1:
+														loadProjects();
+                                                        pageActive = 1;
+													break;
+													case 2:
+														loadLatest();
+                                                        pageActive = 0;
+													break;
+													case 3:
+														loadWritings();
+                                                        pageActive = 2;
+													break;
+													case 4:
+														loadUpdates();
+                                                        pageActive = 0;
+													break;
+													case 5:
+														loadConcepts();
+                                                        pageActive = 3;
+													break;
+												}
+											});
+										break;
+										case 2:
+											$("#imageCont").css("background-color", "rgb(255, 255, 255)");
+											$("#themeThumb_light").animate({top: "120%"}, function()  {
+												switch(n)  {
+													case 1:
+														loadProjects();
+                                                        pageActive = 1;
+													break;
+													case 2:
+														loadLatest();
+                                                        pageActive = 0;
+													break;
+													case 3:
+														loadWritings();
+                                                        pageActive = 2;
+													break;
+													case 4:
+														loadUpdates();
+                                                        pageActive = 0;
+													break;
+													case 5:
+														loadConcepts();
+                                                        pageActive = 3;
+													break;
+												}
+											});
+										break;
+										case 3:
+											$("#imageCont").css("background-color", "rgb(0, 0, 0)");
+											$("#themeThumb_dark").animate({top: "120%"}, function()  {
+												switch(n)  {
+													case 1:
+														loadProjects();
+                                                        pageActive = 1;
+													break;
+													case 2:
+														loadLatest();
+                                                        pageActive = 0;
+													break;
+													case 3:
+														loadWritings();
+                                                        pageActive = 2;
+													break;
+													case 4:
+														loadUpdates();
+                                                        pageActive = 0;
+													break;
+													case 5:
+														loadConcepts();
+                                                        pageActive = 3;
+													break;
+												}
+											});
+										break;
+									}
+								});
+							});
+						});
+					});
+				});
+			}
+			function loadProjects()  {
+				document.getElementById("header").innerHTML = "Projects";
+				$("#header").css("left", ((sW / 2) - ($("#header").width() / 2)) + "px");
+				$("#header").animate({top: "0px", opacity: 1}, function()  {
+                    $("#dock").animate({left: ((sW / 2) - ($("#dock").width() / 2)) + "px"});
+                    $("#subDock").animate({width: "100%", left: "0%"}, function()  {
+					   $("#projectContainer").animate({top: contY + "px", opacity: 1}, 1000, function()  {
+                           if(currProject < projectsMax)  {
+                               $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                           }
+                           if(currProject > 2)  {
+                               $("#leftShifter").animate({left: "20px", opacity: 1});
+                           }
+                       });
+                    });
+				});
+			}
+			function loadLatest()  {
+				document.getElementById("header").innerHTML = "Latest";
+				$("#header").css("left", ((sW / 2) - ($("#header").width() / 2)) + "px");
+				$("#header").animate({top: "0px", opacity: 1}, function()  {
+                    $("#dock").animate({left: ((sW / 2) - ($("#dock").width() / 2)) + "px"});
+                    $("#subDock").animate({width: "100%", left: "0%"}, function()  {
+					   $("#latestContainer").animate({top: contY + "px", opacity: 1}, 1000);
+                    });
+				});
+			}
+			function loadWritings()  {
+				document.getElementById("header").innerHTML = "Writings";
+				$("#header").css("left", ((sW / 2) - ($("#header").width() / 2)) + "px");
+				$("#header").animate({top: "0px", opacity: 1}, function()  {
+                    $("#dock").animate({left: ((sW / 2) - ($("#dock").width() / 2)) + "px"});
+                    $("#subDock").animate({width: "100%", left: "0%"}, function()  {
+					   $("#writingContainer").animate({top: contY + "px", opacity: 1}, 1000, function()  {
+                           if(currWriting < writingsMax)  {
+                               $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                           }
+                           if(currWriting > 2)  {
+                               $("#leftShifter").animate({left: "20px", opacity: 1});
+                           }
+                       });
+                    });
+				});
+			}
+			function loadUpdates()  {
+				document.getElementById("header").innerHTML = "Updates";
+				$("#header").css("left", ((sW / 2) - ($("#header").width() / 2)) + "px");
+				$("#header").animate({top: "0px", opacity: 1}, function()  {
+                    $("#dock").animate({left: ((sW / 2) - ($("#dock").width() / 2)) + "px"});
+                    $("#subDock").animate({width: "100%", left: "0%"}, function()  {
+					   $("#updatesContainer").animate({top: contY + "px", opacity: 1}, 1000);
+                    });
+				});
+			}
+			function loadConcepts()  {
+				document.getElementById("header").innerHTML = "Concepts";
+				$("#header").css("left", ((sW / 2) - ($("#header").width() / 2)) + "px");
+				$("#header").animate({top: "0px", opacity: 1}, function()  {
+                    $("#dock").animate({left: ((sW / 2) - ($("#dock").width() / 2)) + "px"});
+                    $("#subDock").animate({width: "100%", left: "0%"}, function()  {
+					   $("#conceptContainer").animate({top: contY + "px", opacity: 1}, 1000, function()  {
+                           if(currConcept < conceptsMax)  {
+                               $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                           }
+                           if(currConcept > 2)  {
+                               $("#leftShifter").animate({left: "20px", opacity: 1});
+                           }
+                       });
+                    });
+				});
+			}
+			function switchToAbout()  {
+				$("#transitionElement").css("top", "0%");
+				$("#transitionElement").animate({height: "100%", opacity: 1}, 800, function()  {
+					$("#transitionElementX").css("top", "0%");
+					$("#transitionElement").animate({opacity: 0}, 800, function()  {
+                        window.location = "about.html";
+                    });
+				});
+			}
+			function switchToDataM()  {
+				$("#transitionElement").css("top", "0%");
+				$("#transitionElement").animate({height: "100%", opacity: 1}, 800, function()  {
+					$("#transitionElementX").css("top", "0%");
+					$("#transitionElement").animate({opacity: 0}, 800);
+				});
+			}
+			function switchToWebInfo()  {
+				$("#transitionElement").css("top", "0%");
+				$("#transitionElement").animate({height: "100%", opacity: 1}, 800, function()  {
+					$("#transitionElementX").css("top", "0%");
+					$("#transitionElement").animate({opacity: 0}, 800);
+				});
+			}
+			function switchToSettings()  {
+				$("#transitionElement").css("top", "0%");
+				$("#transitionElement").animate({height: "100%", opacity: 1}, 800, function()  {
+					$("#transitionElementX").css("top", "0%");
+					$("#transitionElement").animate({opacity: 0}, 800, function()  {
+						window.location = "settings.html";
+					});
+				});
+			}
+            function shiftRight()  {
+                switch(pageActive)  {
+                        case 1: //projects
+                            if(currProject < projectsMax)  {
+                                        var returnedArray = projects[currProject + 1];
+                                        document.getElementById("nextHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("nextContent").innerHTML = returnedArray.content;
+                                        $("#projectContainer").animate({left: "-100%", opacity: 0}, 1000, function()  {
+                                            $("#nextContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("projects_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("projects_content").innerHTML = returnedArray.content;
+                                                $("#projectContainer").css("left", contX + "px");
+                                                $("#projectContainer").css("opacity", 1);
+                                                $("#nextContainer").css("left", "100%");
+                                                $("#nextContainer").css("opacity", 0);
+                                                currProject += 1;
+                                                if(currProject == projectsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currProject == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                        case 2: //writings
+                            if(currWriting < writingsMax)  {
+                                        var returnedArray = writings[currWriting + 1];
+                                        document.getElementById("nextHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("nextContent").innerHTML = returnedArray.content;
+                                        $("#writingContainer").animate({left: "-100%", opacity: 0}, 1000, function()  {
+                                            $("#nextContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("writings_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("writings_content").innerHTML = returnedArray.content;
+                                                $("#writingContainer").css("left", contX + "px");
+                                                $("#writingContainer").css("opacity", 1);
+                                                $("#nextContainer").css("left", "100%");
+                                                $("#nextContainer").css("opacity", 0);
+                                                currWriting += 1;
+                                                if(currWriting == writingsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currWriting == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                        case 3: //concepts
+                            if(currConcept < conceptsMax)  {
+                                        var returnedArray = concepts[currConcept + 1];
+                                        document.getElementById("nextHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("nextContent").innerHTML = returnedArray.content;
+                                        $("#conceptContainer").animate({left: "-100%", opacity: 0}, 1000, function()  {
+                                            $("#nextContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("concepts_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("concepts_content").innerHTML = returnedArray.content;
+                                                $("#conceptContainer").css("left", contX + "px");
+                                                $("#conceptContainer").css("opacity", 1);
+                                                $("#nextContainer").css("left", "100%");
+                                                $("#nextContainer").css("opacity", 0);
+                                                currConcept += 1;
+                                                if(currConcept == conceptsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currConcept == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                }
+            }
+            function shiftLeft()  {
+                switch(pageActive)  {
+                        case 1: //projects
+                            if(currProject > 2)  {
+                                        var returnedArray = projects[currProject - 1];
+                                        document.getElementById("prevHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("prevContent").innerHTML = returnedArray.content;
+                                        $("#projectContainer").animate({left: "100%", opacity: 0}, 1000, function()  {
+                                            $("#prevContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("projects_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("projects_content").innerHTML = returnedArray.content;
+                                                $("#projectContainer").css("left", contX + "px");
+                                                $("#projectContainer").css("opacity", 1);
+                                                $("#prevContainer").css("left", "-100%");
+                                                $("#prevContainer").css("opacity", 0);
+                                                currProject -= 1;
+                                                if(currProject == projectsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currProject == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                        case 2: //writings
+                            if(currWriting > 2)  {
+                                        var returnedArray = writings[currWriting - 1];
+                                        document.getElementById("prevHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("prevContent").innerHTML = returnedArray.content;
+                                        $("#writingContainer").animate({left: "100%", opacity: 0}, 1000, function()  {
+                                            $("#prevContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("writings_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("writings_content").innerHTML = returnedArray.content;
+                                                $("#writingContainer").css("left", contX + "px");
+                                                $("#writingContainer").css("opacity", 1);
+                                                $("#prevContainer").css("left", "-100%");
+                                                $("#prevContainer").css("opacity", 0);
+                                                currWriting -= 1;
+                                                if(currWriting == writingsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currWriting == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                        case 3: //concepts
+                            if(currConcept > 1)  {
+                                        var returnedArray = concepts[currConcept - 1];
+                                        document.getElementById("prevHeader").innerHTML = returnedArray.title;
+                                        document.getElementById("prevContent").innerHTML = returnedArray.content;
+                                        $("#conceptContainer").animate({left: "100%", opacity: 0}, 1000, function()  {
+                                            $("#prevContainer").animate({left: contX + "px", opacity: 1}, 1000, function()  {
+                                                document.getElementById("concepts_contentHeader").innerHTML = returnedArray.title;
+                                                document.getElementById("concepts_content").innerHTML = returnedArray.content;
+                                                $("#conceptContainer").css("left", contX + "px");
+                                                $("#conceptContainer").css("opacity", 1);
+                                                $("#prevContainer").css("left", "-100%");
+                                                $("#prevContainer").css("opacity", 0);
+                                                currConcept -= 1;
+                                                if(currConcept == conceptsMax)  {
+                                                    $("#rightShifter").animate({left: "120%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#rightShifter").animate({left: (sW - 70) + "px", opacity: 1});
+                                                }
+                                                if(currConcept == 2)  {
+                                                    $("#leftShifter").animate({left: "-20%", opacity: 0});
+                                                }
+                                                else  {
+                                                    $("#leftShifter").animate({left: "20px", opacity: 1});
+                                                }
+                                            });
+                                        });
+                            }
+                        break;
+                }
+            }
+		</script>
+	</head>
+	<body class="postload" onload="CAST()">
+        <script>
+// Dummy data (instead of AJAX responses)
+const projectsData = [
+  "Projects Header",
+  "<p>Project content example</p>"
+];
+
+const writingsData = [
+  "Writings Header",
+  "<p>Writing content example</p>"
+];
+
+const conceptsData = [
+  "Concepts Header",
+  "<p>Concept content example</p>"
+];
+
+// Simulate what your AJAX success handlers were doing
+document.getElementById('projects_contentHeader').innerHTML = projectsData[0];
+document.getElementById('projects_content').innerHTML = projectsData[1];
+
+document.getElementById('writings_contentHeader').innerHTML = writingsData[0];
+document.getElementById('writings_content').innerHTML = writingsData[1];
+
+document.getElementById('concepts_contentHeader').innerHTML = conceptsData[0];
+document.getElementById('concepts_content').innerHTML = conceptsData[1];
+
+// Dummy replacements for PHP variables
+var tmp1 = "dummy_value_1";
+var tmp2 = "dummy_value_2";
+var tmp3 = "dummy_value_3";
+
+// Fake counts (replace with whatever you want)
+var writingsMax = 5 - 1;
+var projectsMax = 8 - 1;
+var conceptsMax = 4 - 1;
+</script>		<span id="buttonCont">
+			<button class="postload" id="projectsButton" onclick="outro(1)"></button>
+			<button class="postload" id="latestButton" onclick="outro(2)"></button>
+			<button class="postload" id="writingsButton" onclick="outro(3)"></button>
+			<button class="postload" id="updatesButton" onclick="outro(4)"></button>
+			<button class="postload" id="conceptsButton" onclick="outro(5)"></button>
+		</span>
+		<span id="imageCont">
+			<img id="themeThumb_light" src="graphics/V3D3Logo_light_thumb.png">
+			<img id="themeThumb_dark" src="graphics/V3D3Logo_dark_thumb.png">
+			<img id="themeThumb_standard" src="graphics/V3D3Logo_thumb.png">
+		</span>
+		<h2 id="mainLoadIndicator" class="postload" style="display: inline">loading scripts...</h2>
+		<img id="themeSwitch_dark" src="graphics/switchTheme_dark_normal.png" onclick="switchTheme(1)">
+		<!-- Below, right does not mean the button is pointing rightwards, it means that the button shall appear when the screen has displaced rightwards.-->
+		<img id="themeSwitch_light_left" src="graphics/switchTheme_light_normal.png" onclick="switchTheme(2)">
+		<img id="themeSwitch_standard" src="graphics/switchTheme_standard_normal.png" onclick="switchTheme(3)">
+		<img id="themeSwitch_light_right" src="graphics/switchTheme_light_normal2.png" onclick="switchTheme(4)">
+        <img id="leftShifter" src="graphics/shiftLeft_light_standard_normal.png" onclick="shiftLeft()">
+        <img id="rightShifter" src="graphics/shiftRight_light_standard_normal.png" onclick="shiftRight()">
+		<h2 id="header" class="postload" style="display: inline"></h2>
+		<span id="projectContainer" style="overflow: hidden">
+            <h2 id="projects_contentHeader" class="postload"></h2>
+            <span id="projects_cCont">
+			     <p id="projects_content" class="postload" style="display: inline"></p>
+            </span>
+		</span>
+		<span id="latestContainer"></span>
+		<span id="updatesContainer"></span>
+		<span id="writingContainer" style="overflow: hidden">
+            <h2 id="writings_contentHeader" class="postload"></h2>
+            <span id="writings_cCont">
+			     <p id="writings_content" class="postload" style="display: inline"></p>
+            </span>
+		</span>
+		<span id="conceptContainer" style="overflow: hidden">
+            <h2 id="concepts_contentHeader" class="postload"></h2>
+            <span id="concepts_cCont">
+			     <p id="concepts_content" class="postload" style="display: inline"></p>
+            </span>
+		</span>
+		<span id="nextContainer" style="overflow: hidden">
+            <h2 id="nextHeader" class="postload"></h2>
+            <span id="nextCCont">
+			     <p id="nextContent" class="postload" style="display: inline"></p>
+            </span>
+		</span>
+		<span id="prevContainer" style="overflow: hidden">
+            <h2 id="prevHeader" class="postload"></h2>
+            <span id="prevCCont">
+			     <p id="prevContent" class="postload" style="display: inline"></p>
+            </span>
+		</span>
+        <span id="subDock" style="display: inline">
+            <span id="dock" style="display: inline">
+                <img id="settingsButton" src="graphics/settingsButton_light_normal.png" onclick="switchToSettings()">
+                <img id="infoButton" src="graphics/webInfoButton_light_normal.png" onclick="switchToWebInfo()">
+                <img id="dataButton" src="graphics/dataButton_light_normal.png" onclick="switchToDataM()">
+                <img id="aboutButton" src="graphics/infoButton_light_normal.png" onclick="switchToAbout()">
+            </span>
+            <img id="homeButton" src="graphics/homeButton_light_normal.png" onclick="switchToMain()">
+            <img id="filterButton" src="graphics/filterButton_light_normal.png" onclick="switchToFilter()">
+            <img id="switchThemeButton" src="graphics/switchThemeButton_light_normal1.png" onclick="switchSubTheme()">
+            <img id="downloadButton" src="graphics/downloadButton_light_normal.png" onclick="downloadThingy()">
+        </span>
+		<span id="transitionElementX" class="postload">
+			<h2 id="transition_loadIndicator" class="preload"> loading...</h2>
+		</span>
+		<span id="transitionElement" class="postload"></span>
+	</body>
+</html>
+
+<!-- Yeah, the subDock contains the dock.
+So what? Why can't it?
+What ill has it done, that forbids the subDock to not be the parent of the dock?
+I do not permit stereotyping in my website. I won't. Ever.
+The subDock will contain the dock. That's final.
+Sorry dock, but not today, you won't bully subDock.
+Rise, subDock, to your throne. Ascend it, for you deserve it.-->
+
+<!-- BTW, The rest of the writings won't be as bad i promise pls dont click away -->

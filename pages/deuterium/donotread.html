@@ -1,0 +1,463 @@
+<!--UCB and Opera unsupported-->
+
+
+
+<html>
+	<head>
+		<title>V3D3, the website.</title>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jqc.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script src="../../scripts/shadow-anim.js"></script>
+		<script src="../../scripts/pace.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../stylesheets/pace_style.css"/>
+        <link rel="stylesheet" type="text/css" href="../../stylesheets/main.css"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="media/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="media/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="media/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="media/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="media/icons/apple-touch-icon-180x180.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="media/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="media/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="media/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="media/icons/apple-touch-icon-76x76.png">
+		<link rel="icon" type="image/png" href="media/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="media/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="media/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="media/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="shortcut icon" href="media/icons/favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="media/others/manifest.json">
+		<meta name="apple-mobile-web-app-title" content="V3D3Web">
+		<meta name="application-name" content="V3D3Web">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="mstile-144x144.png">
+		<meta name="theme-color" content="#ffa500">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <script>
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var mob = false;
+			var accent = "rgb(30, 144, 255)";
+            var thingy = '“Screw the world. Make it happen.”';
+            localStorage.setItem("to", "false");
+            var interbound = true;
+            if(sH > sW)  {
+                mob = true;
+            }
+            function cinInt()  {
+                $(document).ready(function()  {
+					$("#dLogo").css("left", (sW / 2) - 150);
+                    $("body").animate({backgroundColor: "black"}, 900, function()  {
+						var i = 25;
+                        function cinUnBlur() {
+		                    $("#dLogo").css("webkitFilter", "blur(" + i + "px)");
+		                    $("#dLogo").css("filter", "blur(" + i + "px)");
+		                    $("#dLogo").css("opacity", 1 - ((i * 4) / 100));
+							i--;
+                            if(i > -1){
+                                setTimeout(cinUnBlur, 60);
+							}
+							else  {
+								cinCont();
+                            }
+                        }
+						cinUnBlur();
+                    });
+                });
+            }
+			function cinCont()  {
+				$(document).ready(function()  {
+					$("#dLogo").velocity({
+										top: (sH / 2) - 75,
+										left: (sW / 2) - 75,
+										height: 150,
+										width: 150
+										}, 1500, "easeInOutQuad", function()  {
+						$("#dLogo").css("top", "calc(50% - 75px)").css("left", "calc(50% - 75px)");
+						$("#dLogo").animate({boxShadowBlur: "50px"}, 2000, function()  {
+							$("#dLogo").animate({boxShadowBlur: "0px"}, 2000, function()  {
+                                $("#stuff").css("opacity", "1");
+                                $("#customize").css("opacity", "1");
+                                $("#me_").css("opacity", "1");
+                                $("#website").css("opacity", "1");
+								$("#dLogo").velocity({top: "-50%"}, "easeInCirc", function()  {
+								    $("#stuff").velocity({left: (sW / 5) - 75}, 2000, "easeInOutExpo");
+								    $("#me_").velocity({left: (2 * (sW / 5)) - 75}, 2000, "easeInOutExpo");
+								    $("#customize").velocity({left: (3 * (sW / 5)) - 75}, 2000, "easeInOutExpo");
+								    $("#website").velocity({left: (4 * (sW / 5)) - 75}, 2000, "easeInOutExpo", function()  {
+                                        $("#stuff").css("left", "calc(20% - 75)");
+                                        $("#me_").css("left", "calc(20% - 75)");
+                                        $("#customize").css("left", "calc(20% - 75)");
+                                        $("#website").css("left", "calc(20% - 75)");
+                                        $("#stuff_text").css("left", 75 - ($("#stuff_text").width() / 2));
+                                        $("#me_text").css("left", 75 - ($("#me_text").width() / 2));
+                                        $("#customize_text").css("left", 75 - ($("#customize_text").width() / 2));
+                                        $("#website_text").css("left", 75 - ($("#website_text").width() / 2));
+										var i = 25;
+        				                function cUnBlur() {
+		                				    $("#stuff_text").css("webkitFilter", "blur(" + i + "px)");
+		                    				$("#stuff_text").css("filter", "blur(" + i + "px)");
+		                    				$("#stuff_text").css("opacity", 1 - ((i * 4) / 100));
+		                				    $("#me_text").css("webkitFilter", "blur(" + i + "px)");
+		                    				$("#me_text").css("filter", "blur(" + i + "px)");
+		                    				$("#me_text").css("opacity", 1 - ((i * 4) / 100));
+		                				    $("#customize_text").css("webkitFilter", "blur(" + i + "px)");
+		                    				$("#customize_text").css("filter", "blur(" + i + "px)");
+		                    				$("#customize_text").css("opacity", 1 - ((i * 4) / 100));
+		                				    $("#website_text").css("webkitFilter", "blur(" + i + "px)");
+		                    				$("#website_text").css("filter", "blur(" + i + "px)");
+		                    				$("#website_text").css("opacity", 1 - ((i * 4) / 100));
+											i--;
+                            				if(i > -1){
+                                				setTimeout(cUnBlur, 60);
+											}
+                        				}
+										cUnBlur();
+                                    });
+								});
+							});
+						});
+					});
+				});
+			}
+
+			$(document).ready(function()  {
+				$("#stuff").mouseenter(function()  {
+                    $("#stuff").animate({boxShadowBlur: "50px"});
+                    $("#stuff_text").velocity({top: 75 - ($("#stuff_text").height() / 2)}, "easeInOutExpo", function()  {
+                        $("#stuff_text").css("top", "calc(50% - " + ($("#stuff_text").height() / 2) + ")");
+                    });
+                });
+				$("#stuff").mouseleave(function()  {
+                    $("#stuff").animate({boxShadowBlur: "0px"});
+                    $("#stuff_text").velocity({top: "110%"}, "easeInOutExpo");
+                });
+                $("#stuff").mousedown(function()  {
+                    $("#stuff").css("background-color", "rgb(30, 144, 255)");
+                    $("#stuff_text").css("color", "black");
+                });
+                $("#stuff").mouseup(function()  {
+                    $("#stuff").css("background-color", "transparent");
+                    $("#stuff_text").css("color", "rgb(30, 144, 255)");
+					document.getElementById("stuff_text").id = "header";
+					document.getElementById("stuff").id = "thingy";
+                    transMain(1);
+                });
+				$("#customize").mouseenter(function()  {
+                    $("#customize").animate({boxShadowBlur: "50px"});
+                    $("#customize_text").velocity({top: 75 - ($("#customize_text").height() / 2)}, "easeInOutExpo", function()  {
+                        $("#customize_text").css("top", "calc(50% - " + ($("#customize_text").height() / 2) + ")");
+                    });
+                });
+				$("#customize").mouseleave(function()  {
+                    $("#customize").animate({boxShadowBlur: "0px"});
+                    $("#customize_text").velocity({top: "110%"}, "easeInOutExpo");
+                });
+                $("#customize").mousedown(function()  {
+                    $("#customize").css("background-color", "rgb(255, 38, 38)");
+                    $("#customize_text").css("color", "black");
+                });
+                $("#customize").mouseup(function()  {
+                    $("#customize").css("background-color", "transparent");
+                    $("#customize_text").css("color", "rgb(255, 38, 38)");
+					document.getElementById("customize_text").id = "header";
+					document.getElementById("customize").id = "thingy";
+                    transMain(3);
+                });
+				$("#me_").mouseenter(function()  {
+                    $("#me_").animate({boxShadowBlur: "50px"});
+                    $("#me_text").velocity({top: 75 - ($("#me_text").height() / 2)}, "easeInOutExpo", function()  {
+                        $("#me_text").css("top", "calc(50% - " + ($("#me_text").height() / 2) + ")");
+                    });
+                });
+				$("#me_").mouseleave(function()  {
+                    $("#me_").animate({boxShadowBlur: "0px"});
+                    $("#me_text").velocity({top: "110%"}, "easeInOutExpo");
+                });
+                $("#me_").mousedown(function()  {
+                    $("#me_").css("background-color", "rgb(224, 213, 0)");
+                    $("#me_text").css("color", "black");
+                });
+                $("#me_").mouseup(function()  {
+                    $("#me_").css("background-color", "transparent");
+                    $("#me_text").css("color", "rgb(224, 213, 0)");
+					document.getElementById("me_text").id = "header";
+					document.getElementById("me_").id = "thingy";
+                    transMain(2);
+                });
+				$("#website").mouseenter(function()  {
+                    $("#website").animate({boxShadowBlur: "50px"});
+                    $("#website_text").velocity({top: 75 - ($("#website_text").height() / 2)}, "easeInOutExpo", function()  {
+                        $("#website_text").css("top", "calc(50% - " + ($("#website_text").height() / 2) + ")");
+                    });
+                });
+				$("#website").mouseleave(function()  {
+                    $("#website").animate({boxShadowBlur: "0px"});
+                    $("#website_text").velocity({top: "110%"}, "easeInOutExpo");
+                });
+                $("#website").mousedown(function()  {
+                    $("#website").css("background-color", "rgb(129, 255, 25)");
+                    $("#website_text").css("color", "black");
+                });
+                $("#website").mouseup(function()  {
+                    $("#website").css("background-color", "transparent");
+                    $("#website_text").css("color", "rgb(129, 255, 25)");
+					document.getElementById("website_text").id = "header";
+					document.getElementById("website").id = "thingy";
+                    transMain(4);
+                });
+			});
+
+			//$("all").fly("away", "your earth");
+
+			//0 - error (or anything else)
+			//1 - stuff
+			//2 - me
+			//3 - customize
+			//4 - website
+
+			function transMain(whereto)  {
+				var i = 0;
+        		function cBlur() {
+		            $("#stuff_text").css("webkitFilter", "blur(" + i + "px)");
+		            $("#stuff_text").css("filter", "blur(" + i + "px)");
+		            $("#stuff_text").css("opacity", 1 - ((i * 4) / 100));
+		            $("#me_text").css("webkitFilter", "blur(" + i + "px)");
+		            $("#me_text").css("filter", "blur(" + i + "px)");
+		            $("#me_text").css("opacity", 1 - ((i * 4) / 100));
+		            $("#customize_text").css("webkitFilter", "blur(" + i + "px)");
+		            $("#customize_text").css("filter", "blur(" + i + "px)");
+		            $("#customize_text").css("opacity", 1 - ((i * 4) / 100));
+		            $("#website_text").css("webkitFilter", "blur(" + i + "px)");
+		            $("#website_text").css("filter", "blur(" + i + "px)");
+		            $("#website_text").css("opacity", 1 - ((i * 4) / 100));
+					i++;
+                 	if(i < 26){
+                		setTimeout(cBlur, 60);
+					}
+                    else  {
+                        $("#thingy").css("z-index", "3");
+                        $("#stuff").velocity({left: (sW / 2) - 75}, 2000, "easeInOutExpo");
+                        $("#me_").velocity({left: (sW / 2) - 75}, 2000, "easeInOutExpo");
+                        $("#customize").velocity({left: (sW / 2) - 75}, 2000, "easeInOutExpo");
+                        $("#website").velocity({left: (sW / 2) - 75}, 2000, "easeInOutExpo");
+                        $("#thingy").velocity({left: (sW / 2) - 75}, 2000, "easeInOutExpo", function()  {
+                            $("#stuff").css("opacity", "0");
+                            $("#me_").css("opacity", "0");
+                            $("#customize").css("opacity", "0");
+                            $("#website").css("opacity", "0");
+                            $("#thingy").velocity({borderRadius: "0px"}, {duration: 1500, queue: false});
+                            $("#thingy").animate({boxShadowBlur: "0px"}, 1500, function()  {
+                                $("#thingy").velocity({top: "-2px", height: "50px"}, {duration: 1500, queue: false, easing: "easeOutQuint"});
+                                $("#header").velocity({top: 6}, {duration: 1500, queue: false, easing: "easeOutQuint"});
+                                loaderLoad(whereto);
+                            });
+                        });
+                    }
+                }
+				cBlur();
+			}
+
+            function loaderLoad(where2)  {
+                //I know, lots of puns
+				//I know lots of puns
+				//DAMN!
+                $(document).ready(function()  {
+                    var redirpage = "";
+					switch(where2)  {
+						case 1:
+							accent = "rgb(30, 144, 255)";
+							$("#loadAnimer").html("<p class='activeLabel' id='writings' style='top: calc(25% - 66px);'>writings</p><p class='activeLabel' id='programs' style='top: calc(50% - 66px);'>programs</p><p class='activeLabel' id='miscellaneous' style='top: calc(75% - 66px);'>miscellaneous</p><p class='activeLabel' id='somethingelse' style='top: calc(50% - 66px); left: 200%; color: " + accent + "; width: 100%;'>" + thingy + "</p>");
+							$("#writings").css("left", "calc(50% - " + ($("#writings").width() / 2) + "px)");
+							$("#programs").css("left", "calc(50% - " + ($("#programs").width() / 2) + "px)");
+							$("#miscellaneous").css("left", "calc(50% - " + ($("#miscellaneous").width() / 2) + "px)");
+                            $("#somethingelse").css("top", "calc(50% - " + ($("#somethingelse").height() / 2) + "px)");
+                            redirpage = "0";
+						break;
+						case 2:
+                            accent = "rgb(224, 213, 0)";
+							$("#loadAnimer").html("<p class='activeLabel' id='something'>" + thingy + "</p>");
+                            redirpage = "me_";
+						break;
+						case 3:
+                            accent = "rgb(255, 38, 38)";
+							$("#loadAnimer").html("<p class='activeLabel' id='something'>" + thingy + "</p>");
+                            redirpage = "customize";
+						break;
+						case 4:
+                            accent = "rgb(129, 255, 25)";
+							$("#loadAnimer").html("<p class='activeLabel' id='something'>" + thingy + "</p>");
+                            redirpage = "website";
+						break;
+						default:
+							alert("The website has encountered an error. The redirection procedure has been aborted. Please refresh the page.");
+						break;
+					}
+					$("#loadAnimer").css("background-color", accent);
+                    $("#something").css("left", "calc(50% - " + ($("#something").width() / 2) + "px)").css("top", "calc(50% - " + ($("#something").height() / 2) + "px)");
+                    $("#loadAnimer").velocity({height: "100%", top: "0%"}, 2000, "easeOutExpo", function()  {
+                        if (!(redirpage == "0"))  {
+                            localStorage.setItem("to", "true");
+                            localStorage.setItem("sth", $("#something").height());
+                            localStorage.setItem("stw", $("#something").width());
+                            document.location = "resources/" + redirpage + "/index.html";
+                        }
+                        $(".logoDerivative").css("opacity", "0");
+                        $("#writings").mouseenter(function()  {
+                            if(interbound)  {
+                                $("#writings").css("opacity", "0.8").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+                        });
+                        $("#writings").mouseleave(function()  {
+                            if(interbound)  {
+                                $("#writings").css("opacity", "1").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+				        });
+                        $("#writings").mousedown(function()  {
+                            if(interbound)  {
+                                $("#writings").css("opacity", "1").css("color", accent);
+                                $("#loadAnimer").css("background-color", "white");
+                            }
+                        });
+                        $("#writings").mouseup(function()  {
+                            interbound = false;
+                            $("#writings").css("opacity", "1").css("color", accent);
+                            $("#loadAnimer").css("background-color", "white");
+                            $("#programs").css("z-index", "-1");
+                            $("#miscellaneous").css("z-index", "-1");
+                            $("#writings").velocity({top: (sH / 2) - 66}, 1100, function()  {
+                                $("#writings").css("top", "calc(50% - 66px)");
+                                $("#writings").velocity({left: "-100%"}, "easeInExpo", 1500, function()  {
+                                    $("#somethingelse").velocity({left: 0}, "easeOutExpo", 1300, function()  {
+                                        localStorage.setItem("to", "true");
+                                        localStorage.setItem("sth", $("#somethingelse").height());
+                                        localStorage.setItem("stw", $("#somethingelse").height());
+                                        document.location = "resources/stuff/writings/index.html";
+                                    });
+                                });
+                            });
+                        });
+                        $("#programs").mouseenter(function()  {
+                            if(interbound)  {
+                                $("#programs").css("opacity", "0.8").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+                        });
+                        $("#programs").mouseleave(function()  {
+                            if(interbound)  {
+                                $("#programs").css("opacity", "1").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+                        });
+                        $("#programs").mousedown(function()  {
+                            if(interbound)  {
+                                $("#programs").css("opacity", "1").css("color", accent);
+                                $("#loadAnimer").css("background-color", "white");
+                            }
+                        });
+                        $("#programs").mouseup(function()  {
+                            interbound = false;
+                            $("#programs").css("opacity", "1").css("color", accent);
+                            $("#loadAnimer").css("background-color", "white");
+                            $("#writings").css("z-index", "-1");
+                            $("#miscellaneous").css("z-index", "-1");
+                            $("#programs").velocity({top: (sH / 2) - 66}, 1100, function()  {
+                                $("#programs").css("top", "calc(50% - 66px)");
+                                $("#programs").velocity({left: "-100%"}, "easeInExpo", 1500, function()  {
+                                    $("#somethingelse").velocity({left: 0}, "easeOutExpo", 1300, function()  {
+                                        localStorage.setItem("to", "true");
+                                        localStorage.setItem("sth", $("#somethingelse").height());
+                                        localStorage.setItem("stw", $("#somethingelse").height());
+                                        document.location = "resources/stuff/programs/index.html";
+                                    });
+                                });
+                            });
+                        });
+                        $("#miscellaneous").mouseenter(function()  {
+                            if(interbound)  {
+                                $("#miscellaneous").css("opacity", "0.8").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+                        });
+                        $("#miscellaneous").mouseleave(function()  {
+                            if(interbound)  {
+                                $("#miscellaneous").css("opacity", "1").css("color", "white");
+                                $("#loadAnimer").css("background-color", accent);
+                            }
+                        });
+                        $("#miscellaneous").mousedown(function()  {
+                            if(interbound)  {
+                                $("#miscellaneous").css("opacity", "1").css("color", accent);
+                                $("#loadAnimer").css("background-color", "white");
+                            }
+                        });
+                        $("#miscellaneous").mouseup(function()  {
+                            interbound = false;
+                            $("#miscellaneous").css("opacity", "1").css("color", accent);
+                            $("#loadAnimer").css("background-color", "white");
+                            $("#writings").css("z-index", "-1");
+                            $("#programs").css("z-index", "-1");
+                            $("#miscellaneous").velocity({top: (sH / 2) - 66}, 1100, function()  {
+                                $("#miscellaneous").css("top", "calc(50% - 66px)");
+                                $("#miscellaneous").velocity({left: "-100%"}, "easeInExpo", 1500, function()  {
+                                    $("#somethingelse").velocity({left: 0}, "easeOutExpo", 1300, function()  {
+                                        localStorage.setItem("to", "true");
+                                        localStorage.setItem("sth", $("#somethingelse").height());
+                                        localStorage.setItem("stw", $("#somethingelse").height());
+                                        document.location = "resources/stuff/miscellaneous/index.html";
+                                    });
+                                });
+                            });
+                        });
+                    });
+				});
+			}
+
+			//Colors
+			//rgb(224, 213, 0)   yellow
+			//rgb(129, 255, 25)  green
+			//rgb(30, 144, 255)  dodgerblue
+			//rgb(255, 38, 38)   red
+
+
+            //Disable user interaction in activeLabels
+            //clearQueue after hover on derivatives
+            //Positioning code can be gotten rid of
+
+        </script>
+	</head>
+	<body onload="cinInt()" style="overflow: hidden;">
+        <div id="everything">
+            <span id="dLogo">
+            </span>
+            <span style="border: 2px solid rgb(30, 144, 255); box-shadow: 0px 0px 0px rgb(30, 144, 255);" id="stuff" class="logoDerivative">
+				<p style="color: rgb(30, 144, 255);" id="stuff_text" class="derivativeLabel">
+					stuff
+				</p>
+            </span>
+            <span style="border: 2px solid rgb(224, 213, 0); box-shadow: 0px 0px 0px rgb(224, 213, 0);" id="me_" class="logoDerivative">
+				<p style="color: rgb(224, 213, 0);" id="me_text" class="derivativeLabel">
+					me
+				</p>
+            </span>
+            <span style="border: 2px solid rgb(255, 38, 38); box-shadow: 0px 0px 0px rgb(255, 38, 38);" id="customize" class="logoDerivative">
+				<p style="color: rgb(255, 38, 38);" id="customize_text" class="derivativeLabel">
+					customize
+				</p>
+            </span>
+            <span style="border: 2px solid rgb(129, 255, 25); box-shadow: 0px 0px 0px rgb(129, 255, 25);" id="website" class="logoDerivative">
+				<p style="color: rgb(129, 255, 25);" id="website_text" class="derivativeLabel">
+					website
+				</p>
+            </span>
+            <span id="loadAnimer"></span>
+        </div>
+	</body>
+</html>
+
+<!-- More than a cinematic teaser. Everything. -->

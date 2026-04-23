@@ -1,0 +1,67 @@
+<html>
+    <head>
+		<title>About a monkey, V3D3.</title>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+        <script src="../../../../../scripts/jq.js"></script>
+        <script src="../../../../../scripts/jqc.js"></script>
+        <script src="../../../../../scripts/vm.js"></script>
+        <script src="../../../../../scripts/vum.js"></script>
+        <script src="../../../../../scripts/shadow-anim.js"></script>
+		<script src="../../../../../scripts/pace.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/pace_style_res.css"/>
+        <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/sub.css"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="/media/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/media/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/media/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/media/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/media/icons/apple-touch-icon-180x180.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="/media/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/media/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/media/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/media/icons/apple-touch-icon-76x76.png">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/media/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="shortcut icon" href="/media/icons/favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="/media/others/manifest.json">
+		<meta name="apple-mobile-web-app-title" content="V3D3Web">
+		<meta name="application-name" content="V3D3Web">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="mstile-144x144.png">
+		<meta name="theme-color" content="#ffa500">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <script>
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var mob = false;
+            if(sH > sW)  {
+                mob = true;
+            }
+            function cinInt()  {
+                $(document).ready(function()  {
+                    $("#me_sheader").velocity({width: "100%"}, 1500, "easeOutExpo", function()  {
+                        $("#me_sheader").velocity({width: "50%", left: "25%"}, 600, "easeInExpo", function()  {
+                            $("#me_sheader").css("height", "50%");
+                            $("#me_sheader").velocity({top: "25%"}, 600, "easeOutExpo", function()  {
+                                $("#me_sheader").velocity({opacity: 1}, 1000, function()  {
+                                    $("#me_sheader").velocity({top: 0, left: 0, width: "100%", height: "100%"}, "easeInOutExpo");
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+            $(document).ready(function()  {
+
+            });
+        </script>
+    </head>
+    <body onload="cinInt()" style="overflow: hidden; background-color: rgb(224, 213, 0);">
+        <span id="theWholeThing" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <span id="me_sheader" style="color: rgb(224, 213, 0); background-color: black; top: calc(100% - 50px); left: 0; width: 0; height: 50px; text-align: center;">About</span>
+            <img id="monkeyPic" src="/media/monkey.png"></img>
+        </span>
+    </body>
+</html>

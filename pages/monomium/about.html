@@ -1,0 +1,375 @@
+<html>
+    <head>
+        <title> V3D3, the website.</title>
+        <link rel="shortcut icon" href="graphics/siteIcon.ico"/>
+        <link id="styleDefine" rel="stylesheet" type="text/css" href="unifiedStyleDefiner.css"/>
+        <link id="colorDefine" rel="stylesheet" type="text/css"/>
+        <link id="paceThemer" rel="stylesheet" type="text/css" href="pace_circular_light.css"/>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jqc.js"></script>
+        <script id="UID" src="unifiedInteractivityDefiner.js"></script>
+        <script src="../../scripts/pace.js"></script>
+        <script>
+            //The code below may seem messy and a bit inefficient. I currently am focusing
+            //on completing the site, so I'll look into code optimization later. Till then, please bear with
+            //me, user.
+            //                                                                                                                               - V3D3
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var themeNum, navMenuOpen, skip2nd, selectedNav, bgCol, foreCol, highlightCol, picEnlarged, pic_iY, pic_iX, spareSpace_drv;
+            navMenuOpen = 0;
+            selectedNav = 1;
+            picEnlarged = 0;
+
+            if(sH < sW)  {
+                if(sH < 600)  {
+                    alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+                    skip2nd = true;
+                }
+                if(sW < 1000)  {
+                    if(skip2nd == false)  {
+                    alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+                    }
+                }
+            }
+            else  {
+                alert("The website was built on and for a landscape oriented device. Configure your display settings accordingly for avoiding display errors.");
+            }
+            function CAST()  {
+                if (typeof(Storage) !== "undefined")  {
+                    if(localStorage.getItem("theme") == undefined)  {
+                        localStorage.setItem("theme", "light");
+                        colorDefine.setAttribute("href", "themeColor_light.css");
+                        themeNum = 2;
+                    }
+                    else  {
+                        switch(localStorage.getItem("theme"))  {
+                            case "light":
+                                colorDefine.setAttribute("href", "themeColor_light.css");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+                                themeNum = 2;
+                            break;
+                            case "dark":
+                                colorDefine.setAttribute("href", "themeColor_dark.css");
+                                paceThemer.setAttribute("href", "pace_circular_dark.css");
+                                themeNum = 3;
+                            break;
+                            case "standard":
+                                colorDefine.setAttribute("href", "themeColor_standard.css");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+                                themeNum = 1;
+                            break;
+                            case "none":
+                                colorDefine.setAttribute("href", "");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+                                themeNum = 0;
+                            break;
+                            default:
+                                colorDefine.setAttribute("href", "themeColor_light.css");
+                                localStorage.setItem("theme", "light");
+                                themeNum = 2;
+                            break;
+                        }
+                    }
+                }
+                else  {
+                    alert("localStorage is not supported by your browser. Theme selections will not be remembered.");
+                }
+                switch(themeNum)  {
+                    case 1:
+                        navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+                        bgCol = "rgb(0, 0, 0)";
+                        foreCol = "rgb(30, 144, 255)";
+                        highlightCol = "rgb(20, 20, 20)";
+                    break;
+                    case 2:
+                        navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+                        bgCol = "rgb(255, 255, 255)";
+                        foreCol = "rgb(30, 144, 255)";
+                        highlightCol = "rgb(235, 235, 235)";
+                    break;
+                    case 3:
+                        navToggler.src = "graphics/navMenuButton_dark_normal.png";
+                        bgCol = "rgb(0, 0, 0)";
+                        foreCol = "rgb(255, 165, 0)";
+                        highlightCol = "rgb(20, 20, 20)";
+                    break;
+                }
+                pic_iX = (sW / 2) - 100;
+                $("#mePic").css("left", pic_iX + "px");
+                $("#navMenu").css("left", "-350px");
+                $("#subContent").css("height", (sH - 54) + "px");
+                $("#about_text").css("left", ((sW / 2) - ($("#about_text").width() / 2)) + "px");
+				$("#mainHeader").css("left", ((sW / 2) - ($("#mainHeader").width() / 2)) + "px");
+                $("#viewResumeButton").css("top", (($("#subContent").height() / 2) - ($("#viewResumeButton").height() / 2)) + "px");
+                $("#viewResumeButton").css("left", ((sW / 2) - ($("#viewResumeButton").width() / 2)) + "px");
+                pic_iY = ($("#subContent").height() / 2) - (($("#meName").height() + 230) / 2);
+                $("#stuffImg").css("left", ((sW / 2) - 683) + "px");
+                $("#about_MLI").animate({top: "-20%", opacity: 0}, function()  {
+                    $("#navToggler").animate({left: "0px"}, function()  {
+                        $("#meName").css("left", ((sW / 2) - ($("#meName").width() / 2)) + "px");
+                        $("#mePic").animate({top: pic_iY, left: pic_iX, opacity: 1}, 750, function()  {
+                            $("#meName").animate({top: pic_iY + 230, opacity: 1}, function()  {
+                                $("#about_text").css("opacity", "1");
+                            });
+                        });
+                    });
+                });
+            }
+
+            //interactions defining codeblock, the most extensive part of the code
+
+            $(document).ready(function()  {
+                $("#navToggler").mouseenter(function()  {
+                    if(navMenuOpen == 0)  {
+                        switch(themeNum)  {
+                            case 3:
+                                navToggler.src = "graphics/navMenuButton_dark_highlight.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_light_standard_highlight.png";
+                            break;
+                        }
+                    }
+                    else  {
+                        switch(themeNum)  {
+                            case 2:
+                                navToggler.src = "graphics/navMenuButton_light_inverted_highlight.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_dark_standard_inverted_highlight.png";
+                            break;
+                        }
+                    }
+                });
+                $("#navToggler").mouseleave(function()  {
+                    if(navMenuOpen == 0)  {
+                        switch(themeNum)  {
+                            case 3:
+                                navToggler.src = "graphics/navMenuButton_dark_normal.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+                            break;
+                        }
+                    }
+                    else  {
+                        switch(themeNum)  {
+                            case 2:
+                                navToggler.src = "graphics/navMenuButton_light_inverted.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_dark_standard_inverted.png";
+                            break;
+                        }
+                    }
+                });
+                $("#navToggler").mousedown(function()  {
+                    if(navMenuOpen == 0)  {
+                        switch(themeNum)  {
+                            case 2:
+                                navToggler.src = "graphics/navMenuButton_light_inverted_highlight.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_dark_standard_inverted_highlight.png";
+                            break;
+                        }
+                    }
+                    else  {
+                        switch(themeNum)  {
+                            case 3:
+                                navToggler.src = "graphics/navMenuButton_dark_highlight.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_light_standard_highlight.png";
+                            break;
+                        }
+                    }
+                });
+                $("#navToggler").mouseup(function()  {
+                    if(navMenuOpen == 0)  {
+                        switch(themeNum)  {
+                            case 2:
+                                navToggler.src = "graphics/navMenuButton_light_inverted.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_dark_standard_inverted.png";
+                            break;
+                        }
+                        $("#navBG").css("z-index", "2");
+                        $("#navBG").animate({opacity: 1}, function()  {
+                            $("#navMenu").animate({left: "0px"});
+                            $("#navToggler").animate({left: "348px"});
+                        });
+                        navMenuOpen = 1;
+                    }
+                    else  {
+                        switch(themeNum)  {
+                            case 3:
+                                navToggler.src = "graphics/navMenuButton_dark_normal.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+                            break;
+                        }
+                        $("#navMenu").animate({left: "-350px"});
+                        $("#navToggler").animate({left: "0px"}, function()  {
+                            $("#navBG").animate({opacity: 0}, function()  {
+                                $("#navBG").css("z-index", "-1");
+                            });
+                        });
+                        navMenuOpen = 0;
+                    }
+                });
+                $("#meTab").mouseup(function()  {
+                    unSelectNav(1);
+                    unloadContent();
+                    selectedNav = 1;
+                    loadContent(1);
+                });
+                $("#resumeTab").mouseup(function()  {
+                    unSelectNav(2);
+                    unloadContent();
+                    selectedNav = 2;
+                    loadContent(2);
+                });
+                $("#stuffTab").mouseup(function()  {
+                    unSelectNav(3);
+                    unloadContent();
+                    selectedNav = 3;
+                    loadContent(3);
+                });
+                $("#contactTab").mouseup(function()  {
+                    unSelectNav(4);
+                    unloadContent();
+                    selectedNav = 4;
+                    loadContent(4);
+                });
+                $("#backTab").mouseup(function()  {
+                    unSelectNav(6);
+                    unloadContent();
+                    selectedNav = 6;
+                    loadContent(6);
+                });
+                function unSelectNav(c)  {
+                    switch(selectedNav)  {
+                        case 1:
+                            if(c != 1)  {$("#meTab").animate({backgroundColor: bgCol, color: foreCol});}
+                        break;
+                        case 2:
+                            if(c != 2)  {$("#resumeTab").animate({backgroundColor: bgCol, color: foreCol});}
+                        break;
+                        case 3:
+                            if(c != 3)  {$("#stuffTab").animate({backgroundColor: bgCol, color: foreCol});}
+                        break;
+                        case 4:
+                            if(c != 4)  {$("#contactTab").animate({backgroundColor: bgCol, color: foreCol});}
+                        break;
+                    }
+                }
+            });
+            function unloadContent()  {
+                $(document).ready(function()  {
+                    switch(selectedNav)  {
+                            case 1:
+                                $("#mePic").css("display", "none");
+                                $("#meName").css("display", "none");
+                                $("#about_text").css("display", "none");
+                            break;
+                            case 2:
+                                $("#viewResumeButton").css("display", "none");
+                            break;
+                            case 3:
+                                $("#stuffImg").css("display", "none");
+                            break;
+                            case 4:
+                            break;
+                    }
+                });
+            }
+            function loadContent(q)  {
+                $(document).ready(function()  {
+                    switch(q)  {
+                        case 1:
+                            $("#mePic").css("display", "inline");
+                            $("#meName").css("display", "block");
+                            $("#about_text").css("display", "block");
+                            $("#mainHeader").css("top", "-20%");
+                        break;
+					   case 2:
+					       document.getElementById("mainHeader").innerHTML = "Resume";
+                            $("#mainHeader").css("top", "0px");
+                            $("#viewResumeButton").css("display", "inline");
+					   break;
+					   case 3:
+					       document.getElementById("mainHeader").innerHTML = "Stuff";
+                            $("#mainHeader").css("top", "0px");
+                            $("#stuffImg").css("display", "inline");
+					   break;
+					   case 4:
+                            document.getElementById("mainHeader").innerHTML = "Contact";
+                            $("#mainHeader").css("top", "0px");
+					   break;
+					   case 6:
+                            $("#mainHeader").css("top", "-20%");
+                            $(document).animate
+					   break;
+                    }
+                    $("#mainHeader").css("left", ((sW / 2) - ($("#mainHeader").width() / 2)) + "px");
+                });
+            }
+            function switchPic()  {
+                $(document).ready(function()  {
+                    if(picEnlarged == 0)  {
+                        $("#subContent").css("overflow", "hidden");
+                        $("#mePic").animate({borderRadius: 0, top: 0, left: 0}, function()  {
+                            $("#mePic").animate({width: sW, height: sH - 52}, function()  {
+                                $("#mePic").css("background-image", "url('graphics/authorPic_expanded.png')");
+                            });
+                        });
+                        picEnlarged = 1;
+                    }
+                    else  {
+                        $("#subContent").css("overflow", "auto");
+                        $("#subContent").css("overflow-x", "hidden");
+                        $("#mePic").css("background-image", "url('graphics/authorPic.png')");
+                       $("#mePic").animate({width: 200, height: 200, top: pic_iY, left: pic_iX}, function()  {
+                          $("#mePic").animate({borderRadius: 100});
+                       });
+                       picEnlarged = 0;
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body class="preload" onload="CAST()">
+        <h2 id="about_MLI" class="preload">loading...</h2>
+        <span id="navBG"></span>
+        <img id="navToggler" src="graphics/navMenuButton_light_standard_normal.png">
+        <span id="navMenu">
+            <button id="meTab" class="navElement">Me</button>
+            <button id="resumeTab" class="navElement">Resume</button>
+            <button id="stuffTab" class="navElement">Stuff</button>
+            <button id="contactTab" class="navElement">Contact</button>
+            <button id="backTab" class="navElement">Back</button>
+        </span>
+        <h4 id="mainHeader" class="preload"></h4>
+        <span id="subContent">
+            <button id="mePic" onclick="switchPic()" style="background-image: url('graphics/authorPic.png'); background-size: 100%;"></button>
+            <h1 class="preload" id="meName">Vedaant Alok Arya</h1>
+            <p id="about_text" class="preload">
+                Hey there! <br>
+                I'm Vedaant. Well, you probably know that by now... <br>
+                On the Internet, that is, here, I go by the letters, "V3D3". These mean:
+                VeDe, further Veloce-Developer. Now, Veloce is another little term I earlier coined
+                for myself. I'm weird, I know. <br> <br>
+                Anyways, info about me: <br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.<br>
+                Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.<br>
+                Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis.<br>
+            </p>
+            <button id="viewResumeButton" class="preload_magnified" onclick="window.open('content/resume.pdf')">View (193 KB)</button>
+            <img id="stuffImg" src="graphics/stuffImg.png">
+        </span>
+    </body>
+</html>

@@ -1,0 +1,715 @@
+@font-face  {
+	font-family: "commonFont";
+	src: url("segoeuil.ttf");
+}
+
+button  {
+	position: absolute;
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 1.5em;
+}
+
+body.preload  {
+	overflow: hidden;
+}
+
+body.postload  {
+	overflow: hidden;
+}
+
+p.preload  {
+    position: absolute;
+    font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+    font-size: 1.5em;
+    opacity: 1;
+    width: 80%;
+    top: 101%;
+    padding: 20px;
+    text-align: center;
+    border-radius: 30px;
+}
+
+p.postload  {
+    position: absolute;
+    font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+    font-size: 1.6em;
+    opacity: 1;
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+}
+
+h1.preload  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 5em;
+	font-weight: normal;
+	position: absolute;
+	top: -20%;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h1.postload  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 5em;
+	font-weight: normal;
+	position: absolute;
+	top: 120%;
+	opacity: 0;
+}
+
+h2.preload  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 3em;
+	font-weight: normal;
+	position: absolute;
+	top: -20%;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h2.postload  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 3.5em;
+	font-weight: normal;
+	position: absolute;
+	top: -20%;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h3.preload  {
+	position: absolute;
+	top: 120%;
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 1em;
+	font-weight: normal;
+	opacity: 1;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h3.postload  {
+	position: absolute;
+	top: 120%;
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 1em;
+	font-weight: normal;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h4.preload  {
+	position: absolute;
+	top: -20%;
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-size: 2.5em;
+	font-weight: normal;
+	opacity: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+button.preload  {
+	top: 120%;
+	opacity: 0;
+	padding: 5px 20px !important;
+}
+
+button.preload_magnified  {
+	font-size: 3em;
+    padding: 10px 40px !important;
+}
+
+button.postload  {
+	top: 120%;
+	opacity: 0;
+	padding: 5px 20px !important;
+	width: 150px;
+	height: 45px;
+	margin: 0px;
+}
+
+button.navElement  {
+	width: 350px;
+	height: 60px;
+	font-size: 2em;
+	left: 0%;
+	border: 0px;
+	text-align: left;
+}
+
+#projects_cCont  {
+    position: absolute;
+	margin-top: 0;
+	margin-bottom: 0;
+	top: 60px;
+	width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#writings_cCont  {
+    position: absolute;
+	margin-top: 0;
+	margin-bottom: 0;
+	top: 60px;
+	width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#concepts_cCont  {
+    position: absolute;
+	margin-top: 0;
+	margin-bottom: 0;
+	top: 60px;
+	width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#nextCCont  {
+    position: absolute;
+	margin-top: 0;
+	margin-bottom: 0;
+	top: 60px;
+	width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#prevCCont  {
+    position: absolute;
+	margin-top: 0;
+	margin-bottom: 0;
+	top: 60px;
+	width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#projects_contentHeader  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-weight: normal;
+	position: absolute;
+	font-size: 2.5em;
+	opacity: 1;
+	text-align: center;
+    border-radius: 27px 27px 0px 0px;
+    height: 60px;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+#writings_contentHeader  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-weight: normal;
+	position: absolute;
+	font-size: 2.5em;
+	opacity: 1;
+	text-align: center;
+    border-radius: 27px 27px 0px 0px;
+    height: 60px;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+#concepts_contentHeader  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-weight: normal;
+	position: absolute;
+	font-size: 2.5em;
+	opacity: 1;
+	text-align: center;
+    border-radius: 27px 27px 0px 0px;
+    height: 60px;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+#nextHeader  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-weight: normal;
+	position: absolute;
+	font-size: 2.5em;
+	opacity: 1;
+	text-align: center;
+    border-radius: 27px 27px 0px 0px;
+    height: 60px;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+#prevHeader  {
+	font-family: "Segoe UI Light", "Roboto Thin", "Helvetica Neue UltraLight", "Raleway Thin", commonFont;
+	font-weight: normal;
+	position: absolute;
+	font-size: 2.5em;
+	opacity: 1;
+	text-align: center;
+    border-radius: 27px 27px 0px 0px;
+    height: 60px;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+
+#proceedButton  {
+	width: 130px;
+}
+
+#skipIntroButton  {
+	width: 150px;
+}
+
+#continueButton  {
+	width: 150px;
+}
+
+#transitionElement  {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 0%;
+	width: 100%;
+	opacity: 0;
+}
+
+#transitionElementX  {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 0%;
+	width: 100%;
+	opacity: 0;
+}
+
+#V3D3Logo  {
+	width: 100%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	height: 0%;
+	opacity: 0;
+}
+
+#yeahButton  {
+	font-size: 1.75em;
+	width: 400px;
+}
+
+#continue2Button  {
+	font-size: 1.75em;
+	width: 550px;
+}
+
+#continue3Button  {
+	font-size: 1.75em;
+	width: 900px;
+}
+
+#mainLoadIndicator  {
+	opacity: 1;
+}
+
+#themeThumb_light  {
+	position: absolute;
+	opacity: 0;
+	top: 120%;
+	left: 0%;
+	width: 100%;
+}
+
+#themeThumb_dark  {
+	position: absolute;
+	opacity: 0;
+	top: 120%;
+	left: 0%;
+	width: 100%;
+}
+
+#themeThumb_standard  {
+	position: absolute;
+	opacity: 0;
+	top: 120%;
+	left: 0%;
+	width: 100%;
+}
+
+#themeSwitch_light_left  {
+	left: 120%;
+	position: absolute;
+	opacity: 0;
+	width: 50px;
+	height: 50px;
+}
+
+#themeSwitch_light_right  {
+	left: -20%;
+	position: absolute;
+	opacity: 0;
+	width: 50px;
+	height: 50px;
+}
+
+#themeSwitch_dark  {
+	left: -20%;
+	position: absolute;
+	opacity: 0;
+	width: 50px;
+	height: 50px;
+}
+
+#themeSwitch_standard  {
+	left: 120%;
+	position: absolute;
+	opacity: 0;
+	width: 50px;
+	height: 50px;
+}
+
+#leftShifter  {
+    left: -20%;
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 3;
+}
+
+#rightShifter  {
+    left: 120%;
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 3;
+}
+
+#buttonCont  {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 81px;
+}
+
+#imageCont  {
+	position: absolute;
+	top: 85px;
+	left: 0%;
+	width: 100%;
+}
+
+#dock  {
+	position: absolute;
+	top: 0%;
+    left: 0%;
+	height: 90px;
+	opacity: 1;
+    z-index: 5;
+}
+
+#subDock  {
+	position: absolute;
+	width: 55%;
+	top: 120%;
+	height: 90px;
+	opacity: 0;
+    z-index: 3;
+}
+
+#projectContainer  {
+	opacity: 0;
+	position: absolute;
+	top: 120%;
+	width: 70%;
+    border-radius: 31px 31px 0px 0px;
+    z-index: 2;
+}
+
+#latestContainer  {
+	opacity: 0;
+	position: absolute;
+	top: 120%;
+	width: 70%;
+	border-radius: 30px;
+    z-index: 2;
+}
+
+#writingContainer  {
+	opacity: 0;
+	position: absolute;
+	top: 120%;
+	width: 70%;
+    border-radius: 31px 31px 0px 0px;
+    z-index: 2;
+}
+
+#updatesContainer  {
+	opacity: 0;
+	position: absolute;
+	top: 120%;
+	width: 70%;
+	border-radius: 30px;
+    z-index: 2;
+}
+
+#conceptContainer  {
+	opacity: 0;
+	position: absolute;
+	top: 120%;
+	width: 70%;
+    border-radius: 31px 31px 0px 0px;
+    z-index: 2;
+}
+
+#nextContainer  {
+	opacity: 0;
+	position: absolute;
+    left: 100%;
+	width: 70%;
+    border-radius: 31px 31px 0px 0px;
+    z-index: 1;
+}
+
+#prevContainer  {
+	opacity: 0;
+	position: absolute;
+    left: -100%;
+	width: 70%;
+    border-radius: 31px 31px 0px 0px;
+    z-index: 1;
+}
+
+#transitionElementX.postload  {
+	position: absolute;
+	top: 100%;
+	left: 0%;
+	height: 100%;
+	width: 100%;
+	opacity: 1;
+    z-index: 10;
+}
+
+#transitionElement.postload  {
+	position: absolute;
+	top: 100%;
+	left: 0%;
+	height: 0%;
+	width: 100%;
+	opacity: 0;
+    z-index: 10;
+}
+
+#transition_loadIndicator  {
+	opacity: 1;
+	top: 45%;
+	left: 45%;
+    z-index: 10;
+}
+
+#aboutButton  {
+	position: absolute;
+	width: 31px;
+	height: 50px;
+    z-index: 6;
+}
+
+#settingsButton  {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+    z-index: 6;
+}
+
+#dataButton  {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+    z-index: 6;
+}
+
+#infoButton  {
+	position: absolute;
+	width: 82px;
+	height: 50px;
+    z-index: 6;
+}
+
+#homeButton  {
+	position: absolute;
+	width: 36px;
+	height: 50px;
+    z-index: 4;
+}
+
+#filterButton  {
+	position: absolute;
+	width: 54px;
+	height: 50px;
+    z-index: 4;
+}
+
+#switchThemeButton  {
+	position: absolute;
+	width: 67px;
+	height: 50px;
+    z-index: 4;
+}
+
+#downloadButton  {
+	position: absolute;
+	width: 36px;
+	height: 50px;
+    z-index: 4;
+}
+
+#navToggler  {
+	position: absolute;
+	width: 35px;
+	height: 30px;
+	left: -20%;
+	top: 0%;
+	padding: 10px;
+    z-index: 3;
+}
+
+#navMenu  {
+	position: absolute;
+	width: 350px;
+	height: 100%;
+	margin: 0px;
+	top: 0%;
+    z-index: 3;
+}
+
+#navBG  {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	top: 0%;
+	left: 0%;
+	z-index: -1;
+}
+
+#appearanceTab  {
+	top: 60px;
+}
+
+#dockTab  {
+	top: 120px;
+}
+
+#dataTab  {
+	top: 180px;
+}
+
+#animationsTab  {
+	top: 240px;
+}
+
+#supportTab  {
+	top: 300px;
+}
+
+#settings_MLI  {
+	top: 46.5%;
+	left: 45%;
+	opacity: 1;
+}
+
+#meTab  {
+	top: 60px;
+}
+
+#resumeTab  {
+	top: 120px;
+}
+
+#stuffTab  {
+	top: 180px;
+}
+
+#contactTab  {
+	top: 240px;
+}
+
+#backTab  {
+	top: 300px;
+}
+
+#about_MLI  {
+	top: 46.5%;
+	left: 45%;
+	opacity: 1;
+}
+
+#mePic  {
+	opacity: 0;
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+    border: 0px;
+	background-color: rgb(255, 255, 255);
+	top: 120%;
+	z-index: 1;
+    box-shadow: 0px 0px 30px #888888;
+}
+
+#stuffImg  {
+    opacity: 1;
+    position: absolute;
+    width: 1366px;
+    height: 1796px;
+    background-color: rgb(0, 0, 0);
+    top: 0%;
+    left: 0%;
+    z-index: 0;
+    display: none;
+}
+
+#subContent  {
+    position: absolute;
+    opacity: 1;
+    left: 0px;
+    top: 54px;
+    overflow: auto;
+    overflow-x: hidden;
+    display: block;
+    width: 100%;
+    z-index: 0;
+}
+
+#meName  {
+    top: 120%;
+}
+
+#mainHeader  {
+    opacity: 1;
+}
+
+#viewResumeButton  {
+    opacity: 1;
+    display: none;
+}
+
+::-webkit-scrollbar  {
+    width: 8px;
+}
+
+::-webkit-scrollbar-button  {
+    display: none;
+}

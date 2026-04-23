@@ -1,0 +1,196 @@
+body.preload  {
+	background-color: rgb(0, 0, 0);
+}
+
+body.postload  {
+	background-color: rgb(255, 165, 0);
+}
+
+p.preload  {
+    background-color: rgb(255, 165, 0);
+    color: rgb(0, 0, 0);
+    border: 5px solid rgb(0, 0, 0);
+}
+
+p.postload  {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 165, 0);
+}
+
+h1.preload  {
+	color: rgb(255, 165, 0);
+}
+
+h1.postload  {
+	color: rgb(0, 0, 0);
+}
+
+h2.preload  {
+	color: rgb(255, 165, 0);
+}
+
+h2.postload  {
+	color: rgb(0, 0, 0);
+}
+
+h3.preload  {
+	color: rgb(255, 165, 0);
+}
+
+h3.postload  {
+	color: rgb(0, 0, 0);
+}
+
+h4.preload  {
+	color: rgb(255, 165, 0);
+}
+
+button.preload, button.preload_magnified  {
+	color: rgb(255, 165, 0);
+	background-color: rgb(0, 0, 0);
+	border: 2px solid rgb(255, 165, 0);
+}
+
+button.postload  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+	border: 2px solid rgb(0, 0, 0);
+}
+
+button.navElement  {
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 165, 0);
+}
+
+#projects_contentHeader  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+}
+
+#writings_contentHeader  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+}
+
+#concepts_contentHeader  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+}
+
+#nextHeader  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+}
+
+#prevHeader  {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 165, 0);
+}
+
+#projects_cCont {
+    background-color: rgb(0, 0, 0);
+}
+
+#writings_cCont {
+    background-color: rgb(0, 0, 0);
+}
+
+#concepts_cCont {
+    background-color: rgb(0, 0, 0);
+}
+
+#nextCCont {
+    background-color: rgb(0, 0, 0);
+}
+
+#prevCCont {
+    background-color: rgb(0, 0, 0);
+}
+
+#transitionElement  {
+	background-color: rgb(255, 165, 0);
+	border: 2px solid rgb(255, 165, 0);
+}
+
+#transitionElementX  {
+	background-color: rgb(0, 0, 0);
+	border: 2px solid rgb(0, 0, 0);
+}
+
+#dock  {
+	background-color: rgb(255, 165, 0);
+}
+
+#subDock  {
+	background-color: rgb(255, 165, 0);
+}
+
+#transitionElementX.postload  {
+	background-color: rgb(0, 0, 0);
+}
+
+#transitionElement.postload  {
+	background-color: rgb(255, 165, 0);
+}
+
+#appearanceTab  {
+	background-color: rgb(255, 165, 0);
+	color: rgb(0, 0, 0);
+}
+
+#meTab  {
+	background-color: rgb(255, 165, 0);
+	color: rgb(0, 0, 0);
+}
+
+#navToggler  {
+	border: 2px solid rgb(0, 0, 0);
+}
+
+#navMenu  {
+	background-color: rgb(0, 0, 0);
+}
+
+#navBG  {
+	background-color: rgb(255, 165, 0);
+}
+
+#projectContainer  {
+    border: 2px solid rgb(255, 165, 0);
+}
+
+#writingContainer  {
+    border: 2px solid rgb(255, 165, 0);
+}
+
+#conceptContainer  {
+    border: 2px solid rgb(255, 165, 0);
+}
+
+#nextContainer  {
+    border: 2px solid rgb(255, 165, 0);
+}
+
+#prevContainer  {
+    border: 2px solid rgb(255, 165, 0);
+}
+
+::-webkit-scrollbar-track  {
+    background-color: rgb(35, 35, 35);
+}
+
+::-webkit-scrollbar-track:hover  {
+    background-color: rgb(15, 15, 15);
+}
+
+::-webkit-scrollbar-thumb  {
+    background-color: rgb(235, 145, 0);
+}
+
+::-webkit-scrollbar-thumb:hover  {
+    background-color: rgb(255, 165, 0);
+}
+
+::-webkit-scrollbar-corner  {
+    background-color: rgb(0, 0, 0);
+}

@@ -1,0 +1,129 @@
+________________________________________________________________________________________________________________________
+Changelog begins - after a few developments.
+________________________________________________________________________________________________________________________
+New entries begin with '#'.
+New, important changes begin with '$', and are situated separate from the main changelog.
+Entries to be implemented immediately after the website's BETA stages are over, are marked with "!".
+Conceptual entries begin with '~'.
+Server/domain based entries begin with '@".
+________________________________________________________________________________________________________________________
+
+# Added the changelog.
+# Fixed the font bug, and the site now loads the font from it's own resources.
+# Added a thumbnail (favicon) for the website.
+# Shifted all elements' position CSS property to absolute.
+# Positioned all preload h(n) elements (except h3) to top: -20% and preload buttons to top: 120%. Improved animations.
+# Bug spotted (1): mainLoadIndicator (in main.html) is not being positioned in the center, and is also ignoring individual CSS values. To be resolved later.
+# Optimized all unifiedStyleDefiners.
+# All elements except loadIndicators now receive innerHTML after stylesheets get defined. Their positions get defined pre-CAST.
+# Declared a new variable, centreVar to store temporary element (x) centering value. Doesn't work. Trying to fix it.
+# Ditched the variable approach. Directly added centering values to jQuery's css method. Works.
+# Facing bugs with headings: center alignment for newline text is unavailable. Trying to fix them.
+# Starting to use a third-party centering method. Has the same bug.
+# Found the bug (2): it was caused by styleSheet's loading delay. An element first reports it's width and then changes it's size according to the styleSheet, hence causing the bug.
+# Started implementing my original method for centering. For bugfix, I created a separate function for positioning of elements, occuring after the styleSheet gets loaded.
+# Fixed the bugs (1, 2), and also completed the horizontal centering method for all elements. Encountered but dodged a few errors during that.
+# Added a screen resolution checker. The user would be notified if the resolution is below recommended values.
+# Ditched the triple unifiedStyleDefiner approach. Now there are four files, one of which defines the size, positioning and such essential properties for elements, whereas the other three files contain color data for themes. This approach will also improve page load, prevent further bugs in size referencing and will reduce data usage for visitors.
+@ Tried shifting to Hostinger for web hosting, but the application was rejected, hence sticking to cuccfree.
+# Concept of a new theme formulated (theme_none). Will be implemented in experimental stages.
+# Completed the vertical centering method for all elements. Also fixed a bug with the thumb image in main.html.
+
+$ The site's intro (and basics of the main site) is now compatible with higher resolutions than 720p. Devices fulfilling the resolution requirements shall also not experience any interface display errors.
+
+# Created a folder titled "graphics" to organize the site better. All images will be shifted to this folder.
+# Created images for theme-switching buttons.
+# Started work on themeSwitch buttons and method.
+# For preventing extensive-r data usage (by having to download jQuery's extension for CSS color names), switched all existing color names to their RGB values.
+@ Tried shifting to a new host, 5gbfree, but the main URL is not loading, hence sticking to cuccfree.
+
+$ Completed the theme switch engine. Now, the user can switch between styles in the main page of the website. Also completed element animation during the process.
+
+~ Ability for the user to add his/her own theme.
+# Bug spotted (3): Light logo's thumb is not showing up after switching back (originally) from dark or standard themes.
+# Bug spotted (4): After switching themes, the switching buttons re-appear (for dark to light and standard to light). To be fixed later.
+# Started work on outro animations.
+# Bug fixed (3).
+# Completed work on outro animations. Setting up code for external html calling.
+# Ditched the external calling approach. Now the whole content loading scripts-block will be situated in main.html.
+# Created a dock's basic frame, after a little work, fixed it's centering.
+# Created dock's theme-switching animations. Starting work on dock icons.
+# Started work on projectContainer.
+# Bug spotted (5): The dock gets in a loop (4 or 6 cycles) after switching theme to standard. To be fixed later.
+# Created separate directories for storing containers' content. Organized under /content.
+# Completed work on dock icons. Changed dock's switch animation on theme change.
+# Started and completed work on outro-to-about animation.
+# Created a proper header for projectContainer.
+~ Ability to switch between rounded corner view and solid corner view.
+# Added outros to all dock actions. Also created further timeline for other header options.
+# Started work on making the dock buttons interfaceable.
+! Organize dock button's theme-switch-image-defaulting code according to order of initialization.
+# Finished work on dock buttons' interface. Positioning also completed.
+
+$ Website's main.html's basic framework is now complete, with only two bugs (4 and 5) to be fixed. Will be looked into later.
+
+~ Network speed based image optimization.
+# Created web pages (blank files) for settings, about, info and data management. Stored in /content/html.
+# Started work on settings.html.
+# Shifted the new web pages to base directory, due to file-fetching errors.
+# Created a navigation menu. First of it's kind (if the website isn't already).
+# Started work on making navMenu tabs interactive. These will be the first button-styled elements of the website to get animation-based interactivity.
+~ Add animation-based interactivity to all elements.
+# Completed work on making navMenu tabs interactive.
+# Started work on creating a separate, interactivity defining javascript file.
+! Add an easter egg ("voices on the web") in the console.
+# Deleted preload button's hover keys in color definers.
+# Completed UID code for intro.html. Encountered but dodged a few bugs during it's creation.
+
+$ Started work on switching interactivity defines from CSS to jQuery in intro.html. Focused development on UID. Also started work on a UID enabling/disabling functionality (enabled by default).
+
+# Started work on about.html.
+# Bug spotted (6): navBG is causing some elements to be non-interactive. Will be fixed immediately.
+# Bug fixed (6), using live z-axis CSS modification.
+# Ditched the scrollDownButton approach for scrolling. Will now use malihu's custom scroll bar plug-in.
+~ Switch domain to v3d3.in.
+# Switched to Adobe's Brackets as an IDE.
+# Focused work on about.html.
+# Bug spotted (7): Brackets uses spaces for indentation, rather than hard-tabspaces. Will need to fix this manually post development.
+# As mCSB is not functioning, switching scrollbar to Kevin Luck's jScrollPane.
+# Neither is jSP working. Ditching all external methods and customizing scrollbar through webkit.
+# Customized (webkit) toolbar works. Added theme keys for it.
+# Completed work on "Me" section of about.html.
+# Started work on unselection and selection. Fixed a minor bug with "Back" tab.
+# Started work on "Resume" section of about.html.
+# Created buttons for viewing and downloading resume. Will now embed the PDF.
+# Didn't find a suitable downloading method for a file. Removed the download button, and set the view button to open the PDF in a new tab.
+# Completed work on "Resume" section of about.html.
+# Completed work on "Stuff" section of about.html.
+# Starting work on "Contact" section of about.html. Also starting work on a switch control for settings.html.
+# Continuing later.
+# Changed navMenu animations for all pages utilizing it.
+# Built index.html for the website, indicating the Under Construction status, and a link to still continue to the website.
+# Added a loader, pace.min.js for every page of the site (except index.html).
+# Re-engineered the projects', writings' and concepts' containers. Encountered and fixed bugs during this.
+# Fixed contentReader.php. It is currently just a testing script.
+# Shifted the main page's extension from HTML to PHP, for proper parsing.
+# Added PHP based content loading to the main page.
+# Added dummy files in content/concepts and content/projects. Added real files to content/writings.
+
+$ The website now has file-loading capabilities.
+
+@ Shifted webhost to 000webhost. Will be re-shifted to cuccfree later.
+
+# Started addition of dock actions for subPages of main.html.
+# Added a subDock to encover the dock and provide extra actions.
+# Added an expansion animation for the subDock.
+# Added a real file to content/concepts. Deleted dummies.
+# Completed work on the file-fetching section, with the help of AJAX and PHP.
+# Added animation to changing of current writing/project/concept. (simplified some positioning code during that)
+# Bug spotted (8): The subDock overlaps the dock on a theme change. Will be fixed soon.
+# Bug spotted (9): LOC of themeColor_light and themeColor_dark/standard are mismatching. Will be revised soon.
+# Optimized button borders in themeColor files.
+# Bug fixed (8).
+# Bug spotted (10): Due to the new configurations of z-index, the transition to a subpage from main.html is overlapped by a few elements. Will be fixed soon.
+# Bug fixed (10).
+------------------------------------------------------------------------------------------------------------------------
+Prevailing bugs: 4, 5, 7, 9
+________________________________________________________________________________________________________________________
+@2015, V3D3Web, by V3D3.
+________________________________________________________________________________________________________________________

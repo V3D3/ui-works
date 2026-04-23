@@ -322,5 +322,26 @@
         "path": "pages/familiar/index.html",
         "weight": 2,
         "description": "Interactive file renaming and matching utility."
+    },
+    {
+        "title": "Deuterium",
+        "type": "Experience/V3D3Web",
+        "path": "pages/deuterium/index.html",
+        "weight": 3,
+        "description": "A cinematic interactive portal and experience hub."
+    },
+    {
+        "title": "IDKIDC",
+        "type": "Splash",
+        "path": "pages/xpr/idkidc.html",
+        "weight": 1,
+        "description": "Minimalist typographic splash animation."
+    },
+    {
+        "title": "Monomium",
+        "type": "Experience/V3D3Web",
+        "path": "pages/monomium/intro.html",
+        "weight": 3,
+        "description": "A complex, multi-themed dashboard and interactive interface."
     }
 ]

@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>V3D3, ALPHA.</title>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jqc.js"></script>
+		<script src="../../scripts/pace.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../stylesheets/pace_style.css"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="media/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="media/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="media/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="media/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="media/icons/apple-touch-icon-180x180.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="media/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="media/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="media/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="media/icons/apple-touch-icon-76x76.png">
+		<link rel="icon" type="image/png" href="media/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="media/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="media/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="media/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="shortcut icon" href="media/icons/favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="media/others/manifest.json">
+		<meta name="apple-mobile-web-app-title" content="V3D3Web">
+		<meta name="application-name" content="V3D3Web">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="mstile-144x144.png">
+		<meta name="theme-color" content="#ffa500">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var mob = false;
+            var no = false;
+            if(sH > sW)  {
+                mob = true;
+            }
+
+			$(document).ready(function()  {
+                $("#imarobot").mouseenter(function()  {
+                    if(!no)  {$("#imarobot").css("background-color", "orange").css("color", "black");}
+                });
+                $("#imarobot").mouseup(function()  {
+                    if(!no)  {doit();}
+                });
+                $("#imarobot").mouseleave(function()  {
+                    if(!no)  {$("#imarobot").css("background-color", "black").css("color", "orange");}
+                });
+                $("#imarobot").mousedown(function()  {
+                    if(!no) {$("#imarobot").css("background-color", "black").css("color", "orange");}
+                });
+            });
+
+            function doit()  {
+                no = true;
+                $(document).ready(function()  {
+                    var i = 0;
+                    function cinBlur() {
+                        $("#everything").css("webkitFilter", "blur(" + i + "px)");
+                        $("#everything").css("filter", "blur(" + i++ + "px)");
+                        if(i < 40){
+                            setTimeout(cinBlur, 60);
+                        }
+                        else  {
+                            $("#everything").animate({opacity: 0}, 1500, function()  {
+                                document.location = "donotread.html";
+                            });
+                        }
+                    }
+                    cinBlur();
+                });
+            }
+        </script>
+	</head>
+	<body onload="cinInt()" style="overflow: hidden;">
+        <div id="everything" style="position: absolute; top: -1000; left: -1000; height: 100%; width: 100%; background-color: black; border: 1000px solid black;">
+            <p style="position: absolute; top: calc(50% - 90px); left: 0; width: 100%; margin: 0; text-align: center; color: orange; font-family: 'Segoe UI Light', 'Roboto Thin', 'Ubuntu Light', 'Helvetica Neue Ultralight', sans-serif; font-size: 65px;">
+                Website under development. (w00)
+            </p>
+            <button id="imarobot" style="position: absolute; height: 60px; width: 400px; font-family: 'Segoe UI Light', 'Roboto Thin', 'Ubuntu Light', 'Helvetica Neue Ultralight', sans-serif; font-size: 28px; color: orange; border: 0px; background-color: transparent; left: calc(50% - 200px); top: calc(100% - 80px);">Yeah. Whatever. I'm going in.</button>
+        </div>
+	</body>
+</html>

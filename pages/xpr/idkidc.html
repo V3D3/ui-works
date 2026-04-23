@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>ID</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <script>
+            $(document).ready(function()  {
+                $('#tex0').velocity({left: 0, width: '33%'}, 1500, 'easeOutCirc');
+                $('#tex1').delay(400).velocity({left: '33%', width: '34%'}, 1500, 'easeOutCirc');
+                $('#tex2').delay(800).velocity({left: '67%', width: '33%'}, 1500, 'easeOutCirc');
+
+                $('#tex3').delay(2000).velocity({left: 0, width: '100%'}, 1500, 'easeOutCirc');
+                $('#tex4').delay(2500).velocity({left: 0, width: '100%'}, 1500, 'easeOutCirc');
+                $('#tex5').delay(3000).velocity({left: 0, width: '100%'}, 1500, 'easeOutCirc');
+            });
+
+        </script>
+        <style>
+            *  {
+                font-family: Segoe UI Light;
+                width: 0;
+            }
+            .t, .tl  {
+                position: absolute;
+                text-align: center;
+                font-size: 20vh;
+            }
+            .t  {
+                color: orange;
+                background: black;
+            }
+            .tl  {
+                color: black;
+                background: orange;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <span id='tex0' class='tl' style='line-height: 100vh; height: 100%; left: -100%; z-index: 3;'>i</span>
+        <span id='tex1' class='t' style='line-height: 100vh; height: 100%; left: -100%; z-index: 2;'>don't</span>
+        <span id='tex2' class='tl' style='line-height: 100vh; height: 100%; left: -100%; z-index: 1;'>know</span>
+        <span id='tex3' class='t' style='line-height: 33vh; height: 33%; top: 0; z-index: 6; left: -100%;'>i</span>
+        <span id='tex4' class='tl' style='line-height: 34vh; height: 34%; top: 33%; z-index: 5; left: -100%;'>don't</span>
+        <span id='tex5' class='t' style='line-height: 33vh; height: 33%; top: 67%; z-index: 4; left: -100%;'>care</span>
+    </body>
+</html>

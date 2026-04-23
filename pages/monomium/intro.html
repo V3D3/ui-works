@@ -1,0 +1,335 @@
+<html>
+	<!-- Thanks to: -->
+	<!-- W3Schools, for 70% of what I've learned in web development. -->
+	<!-- cu.cc, for providing a domain name. -->
+	<!-- cuccfree, for providing site's files' hosting. (early stages) -->
+	<!-- The jQuery team, for their jQuery module, which greatly eased animation-making. -->
+    <!-- 000webhost, for providing site's files' hosting. -->
+    <!-- The Pace team, for pace.js. -->
+	<head>
+		<title> V3D3, the website</title>
+		<link rel="shortcut icon" href="graphics/siteIcon.ico"/>
+		<link id="styleDefine" rel="stylesheet" type="text/css" href="unifiedStyleDefiner.css"/>
+		<link id="colorDefine" rel="stylesheet" type="text/css"/>
+        <link id="paceThemer" rel="stylesheet" type="text/css" href="pace_circular_light.css"/>
+		<script src="../../scripts/jq.js"></script>
+		<script src="../../scripts/jqc.js"></script>
+		<script id="UID" src="unifiedInteractivityDefiner.js"></script>
+        <script src="../../scripts/pace.js"></script>
+		<script>
+			//The code below may seem messy and a bit inefficient. I currently am focusing
+			//on completing the site, so I'll look into code optimization later. Till then, please bear with
+			//me, user. Thanks.
+			//                                                                                                                               - V3D3
+			var sH = window.innerHeight;
+			var sW = window.innerWidth;
+			var skip2nd;
+			if(sH < sW)  {
+				if(sH < 650)  {
+					alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential. \n Thanks! \n V3D3");
+					skip2nd = true;
+				}
+				if(sW < 1100)  {
+					if(skip2nd == false)  {
+						alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential. \n Thanks! \n V3D3");
+					}
+				}
+			}
+			else  {
+				alert("The website was built on and for a landscape oriented device. Configure your display settings accordingly for avoiding display errors.");
+			}
+			var interactorY1, intro2L1CY1, intro2L1CY2, intro2L2Y1, intro2L2Y2, intro2L3Y1;
+			var intro2L3Y2, intro2L4Y1, intro2L4Y2, intro2L5Y1, intro2L5Y2, intro2L6Y1, intro2L6Y2;
+			var proceedY, skipY, continueY, yeahY, continue2Y, continue3Y, interactorY2, subInteractorY, buttonAnim;
+			function CAST()  {
+				if (typeof(Storage) !== "undefined")  {
+					if(localStorage.getItem("buttonAnim") == "1")  {
+					}
+					else  {
+                        if(localStorage.getItem("buttonAnim") == "0")  {
+
+                        }
+                        else  {
+                            UID.setAttribute("src", "unifiedInteractivityDefiner.js");
+                            buttonAnim = 1;
+                            localStorage.setItem("buttonAnim", "1");
+                        }
+					}
+					if(localStorage.getItem("theme") == "undefined")  {
+						localStorage.setItem("theme", "light");
+						colorDefine.setAttribute("href", "themeColor_light.css");
+						V3D3Logo.setAttribute("src", "graphics/V3D3Logo_light.png");
+					}
+					else  {
+						switch(localStorage.getItem("theme"))  {
+							case "light":
+								colorDefine.setAttribute("href", "themeColor_light.css");
+								V3D3Logo.setAttribute("src", "graphics/V3D3Logo_light.png");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+							break;
+							case "dark":
+								colorDefine.setAttribute("href", "themeColor_dark.css");
+								V3D3Logo.setAttribute("src", "graphics/V3D3Logo_dark.png");
+                                paceThemer.setAttribute("href", "pace_circular_dark.css");
+							break;
+							case "standard":
+								colorDefine.setAttribute("href", "themeColor_standard.css");
+								V3D3Logo.setAttribute("src", "graphics/V3D3Logo.png");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+							break;
+							case "none":
+								themeDefine.setAttribute("href", "");
+                                paceThemer.setAttribute("href", "pace_circular_light.css");
+								themeNum = 0;
+							break;
+							default:
+								colorDefine.setAttribute("href", "themeColor_light.css");
+								V3D3Logo.setAttribute("src", "graphics/V3D3Logo_light.png");
+							break;
+						}
+					}
+				}
+				else  {
+					alert("localStorage is not supported by your browser. Updating to a newer browser is recommended. The website will emulate saving, i.e., it will not save data but will still notify you of data modifications.");
+				}
+				document.getElementById("proceedButton").innerHTML = "Proceed";
+				$("#proceedButton").css("left", ((sW / 2) - 43) + "px");
+				setContentAndCenter();
+				$("#interactor").css("left", (sW / 2) - ($("#interactor").width() / 2) + "px");
+				document.getElementById("interactor").innerHTML = "Hi!";
+				$(document).ready(function()  {
+					$("#interactor").animate({top: "40%", left: (sW / 2) - ($("#interactor").width() / 2) + "px", opacity: 1}, function()  {
+						$("#loadIndicator").animate({top: "120%", opacity: 0}, function()  {
+							$("#proceedButton").animate({top: "92%", left: ((sW / 2) - 43) + "px", opacity: 1}, function()  {
+								setContentAndCenter();
+							});
+						});
+					});
+				});
+			}
+			//Made a separate function due to styleSheet loading delay.
+			function setContentAndCenter()  {
+				document.getElementById("skipIntroButton").innerHTML = "Skip";
+				$("#skipIntroButton").css("left", ((sW / 2) - 175) + "px");
+				document.getElementById("continueButton").innerHTML = "Continue";
+				$("#continueButton").css("left", ((sW / 2) + 25) + "px");
+				document.getElementById("yeahButton").innerHTML = "Yeah, whatever, continue...";
+				$("#yeahButton").css("left", ((sW / 2) - 225) + "px");
+				document.getElementById("continue2Button").innerHTML = "First useful thing you said. Continue.";
+				$("#continue2Button").css("left", ((sW / 2) - 275) + "px");
+				document.getElementById("continue3Button").innerHTML = "You could've said that in the last screen. Now take me to the main site.";
+				$("#continue3Button").css("left", ((sW / 2) - 450) + "px");
+				document.getElementById("subInteractor").innerHTML = "Would you like to go through the intro, or skip the chatter (recommended)?";
+				$("#subInteractor").css("left", ((sW / 2) - ($("#subInteractor").width() / 2)) + "px");
+				document.getElementById("intro2L1C").innerHTML = "Okay, so you may be wondering what (the hell) V3D3 means. If you are, the answer is:";
+				document.getElementById("intro2L2").innerHTML = "It is a name. Of a person.";
+				document.getElementById("intro2L3").innerHTML = "Of the creator of this (crappily designed) website.";
+				document.getElementById("intro2L4").innerHTML = "In case you're wondering, that's not my REAL name.";
+				document.getElementById("intro2L5").innerHTML = "It's an avatar, which stands for Ve-De, further Veloce-Developer.";
+				document.getElementById("intro2L6").innerHTML = "My real name... is Vedaant Arya.";
+				$("#intro2L1C").css("left", ((sW / 2) - ($("#intro2L1C").width() / 2)) + "px");
+				$("#intro2L2").css("left", ((sW / 2) - ($("#intro2L2").width() / 2)) + "px");
+				$("#intro2L3").css("left", ((sW / 2) - ($("#intro2L3").width() / 2)) + "px");
+				$("#intro2L4").css("left", ((sW / 2) - ($("#intro2L4").width() / 2)) + "px");
+				$("#intro2L5").css("left", ((sW / 2) - ($("#intro2L5").width() / 2)) + "px");
+				$("#intro2L6").css("left", ((sW / 2) - ($("#intro2L6").width() / 2)) + "px");
+				continueY = sH - ($("#continueButton").height() + 30);
+				skipY = continueY;
+				interactorY = (continueY / 2) - (($("#interactor").height() + 30 + $("#subInteractor").height()) / 2);
+				subInteractorY1 = interactorY + 30 + $("#interactor").height();
+				yeahY = sH - ($("#yeahButton").height() + 30);
+				continue2Y = sH - ($("#continue2Button").height() + 30);
+				continue3Y = sH - ($("#continue3Button").height() + 30);
+				intro2L1CY1 = (yeahY / 2) - (($("#intro2L1C").height() + 20 + $("#intro2L2").height() + 20 + $("#intro2L3").height() + 20 + $("#intro2L4").height() + 20 + $("#intro2L5").height() + 20 + $("#intro2L6").height()) / 2);
+				intro2L2Y1 = intro2L1CY1 + 20 + $("#intro2L1C").height();
+				intro2L3Y1 = intro2L2Y1 + 20 + $("#intro2L2").height();
+				intro2L4Y1 = intro2L3Y1 + 20 + $("#intro2L3").height();
+				intro2L5Y1 = intro2L4Y1 + 20 + $("#intro2L4").height();
+				intro2L6Y1 = intro2L5Y1 + 20 + $("#intro2L5").height();
+			}
+			function intro1Load()  {
+				$(document).ready(function()  {
+					$("#interactor").animate({top: "-20%", opacity: 0}, function()  {
+						document.getElementById("interactor").innerHTML = "Welcome to V3D3's website.";
+						$("#interactor").css("left", ((sW / 2) - ($("#interactor").width() / 2)) + "px");
+						$("#interactor").css("left", ((sW / 2) - ($("#interactor").width() / 2)) + "px");
+						$("#proceedButton").animate({top: "120%", opacity: 0}, 1000);
+						$("#interactor").animate({top: interactorY + "px", opacity: 1}, 400, function()  {
+							$("#subInteractor").animate({top: subInteractorY1 + "px", opacity: 1}, 400);
+							$("#skipIntroButton").animate({top: skipY + "px", opacity: 1}, 400);
+							$("#continueButton").animate({top: continueY + "px", opacity: 1}, 400);
+						});
+					});
+				});
+			}
+			function switchToMain()  {
+				$(document).ready(function()  {
+					$("#transitionElement").animate({height: "100%", opacity: 1}, 1000, function()  {
+						$("#transitionElementX").css("height", "100%");
+						$("#transitionElementX").animate({opacity: 1}, 1000, function()  {
+							$("#transitionElement").css("height", "0%");
+							$("#V3D3Logo").css("height", "100%");
+							$("#V3D3Logo").animate({opacity: 1}, 2500, function()  {
+								$("#V3D3Logo").animate({opacity: 0}, 2500, function()  {
+									$("#transitionElementX").css("height", "100%");
+									$("#transitionElement").css("height", "100%");
+									$("#transitionElementX").animate({opacity: 0}, 1000, function()  {
+										window.location = "main.html";
+									});
+								});
+							});
+						});
+					});
+				});
+			}
+			function intro2Load()  {
+				$(document).ready(function()  {
+					$("#interactor").animate({top: "-20%", opacity: 0}, function()  {
+						$("#subInteractor").animate({top: "-20%", opacity: 0}, function()  {
+							$("#skipIntroButton").animate({top: "120%", opacity: 0});
+							$("#continueButton").animate({top: "120%", opacity: 0}, function()  {
+								$("#intro2L1C").animate({top: intro2L1CY1 + "px", opacity: 1}, function()  {
+									$("#intro2L2").animate({top: intro2L2Y1 + "px", opacity: 1}, function()  {
+										$("#intro2L3").animate({top: intro2L3Y1 + "px", opacity: 1}, function()  {
+											$("#intro2L4").animate({top: intro2L4Y1 + "px", opacity: 1}, function()  {
+												$("#intro2L5").animate({top: intro2L5Y1 + "px", opacity: 1}, function()  {
+													$("#intro2L6").animate({top: intro2L6Y1 + "px", opacity: 1}, function()  {
+													   $("#yeahButton").animate({top: yeahY + "px", opacity: 1});
+                                                    });
+												});
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			}
+			function intro3Load()  {
+				$(document).ready(function()  {
+					$("#yeahButton").animate({top: "120%", opacity: 0}, function()  {
+						$("#intro2L6").animate({top: "120%", opacity: 0}, function()  {
+							$("#intro2L5").animate({top: "120%", opacity: 0}, function()  {
+								$("#intro2L4").animate({top: "120%", opacity: 0}, function()  {
+									$("#intro2L3").animate({top: "120%", opacity: 0}, function()  {
+										$("#intro2L2").animate({top: "120%", opacity: 0}, function()  {
+											$("#intro2L1C").animate({top: "120%", opacity: 0}, function()  {
+												intro3LP2();
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			}
+			function intro3LP2()  {
+				document.getElementById("intro2L1C").innerHTML = "Now, let's move on to what this site actually is.";
+				document.getElementById("intro2L2").innerHTML = "It's... a lot of things. Some are: ";
+				document.getElementById("intro2L3").innerHTML = "• A project host, of my existing and ongoing projects.";
+				document.getElementById("intro2L4").innerHTML = "• A promotion thingy. I post stuff about new stuff I put together.";
+				document.getElementById("intro2L5").innerHTML = "• A sorta public diary. I may add my thoughts/events that have happened to/with me.";
+				document.getElementById("intro2L6").innerHTML = "• A method through which I can communicate with people, also take project requests from them.";
+				$("#intro2L1C").css("left", ((sW / 2) - ($("#intro2L1C").width() / 2)) + "px");
+				$("#intro2L2").css("left", ((sW / 2) - ($("#intro2L2").width() / 2)) + "px");
+				$("#intro2L3").css("left", ((sW / 2) - ($("#intro2L3").width() / 2)) + "px");
+				$("#intro2L4").css("left", ((sW / 2) - ($("#intro2L4").width() / 2)) + "px");
+				$("#intro2L5").css("left", "0px");
+				$("#intro2L6").css("left", "0px");
+				if($("intro2L5").width() < sW - 10)  {
+					$("#intro2L5").css("left", ((sW / 2) - ($("#intro2L5").width() / 2)) + "px");
+				}
+				if($("intro2L6").width() < sW - 10)  {
+					$("#intro2L6").css("left", ((sW / 2) - ($("#intro2L6").width() / 2)) + "px");
+				}
+				intro2L1CY2 = (continue2Y / 2) - (($("#intro2L1C").height() + 20 + $("#intro2L2").height() + 20 + $("#intro2L3").height() + 20 + $("#intro2L4").height() + 20 + $("#intro2L5").height() + 20 + $("#intro2L6").height()) / 2);
+				intro2L2Y2 = intro2L1CY2 + 20 + $("#intro2L1C").height();
+				intro2L3Y2 = intro2L2Y2 + 20 + $("#intro2L2").height();
+				intro2L4Y2 = intro2L3Y2 + 20 + $("#intro2L3").height();
+				intro2L5Y2 = intro2L4Y2 + 20 + $("#intro2L4").height();
+				intro2L6Y2 = intro2L5Y2 + 20 + $("#intro2L5").height();
+				$(document).ready(function()  {
+					$("#intro2L1C").animate({top: intro2L1CY2 + "px", opacity: 1}, function()  {
+						$("#intro2L2").animate({top: intro2L2Y2 + "px", opacity: 1}, function()  {
+							$("#intro2L3").animate({top: intro2L3Y2 + "px", opacity: 1}, function()  {
+								$("#intro2L4").animate({top: intro2L4Y2 + "px", opacity: 1}, function()  {
+									$("#intro2L5").animate({top: intro2L5Y2 + "px", opacity: 1}, function()  {
+										$("#intro2L6").animate({top: intro2L6Y2 + "px", opacity: 1}, function()  {
+										  $("#continue2Button").animate({top: continue2Y + "px", opacity: 1});
+                                        });
+									});
+								});
+							});
+						});
+					});
+				});
+			}
+			function intro4Load()  {
+				$(document).ready(function()  {
+					$("#continue2Button").animate({top: "120%", opacity: 0}, function()  {
+						$("#intro2L6").animate({top: "120%", opacity: 0}, function()  {
+							$("#intro2L5").animate({top: "120%", opacity: 0}, function()  {
+								$("#intro2L4").animate({top: "120%", opacity: 0}, function()  {
+									$("#intro2L3").animate({top: "120%", opacity: 0}, function()  {
+										$("#intro2L2").animate({top: "120%", opacity: 0}, function()  {
+											$("#intro2L1C").animate({top: "120%", opacity: 0}, function()  {
+												subInteractorY2 = (continue3Y / 2) - ($("#subInteractor").height() / 2);
+												intro4LP2();
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			}
+			function intro4LP2()  {
+				$(document).ready(function()  {
+					document.getElementById("subInteractor").innerHTML = "And... I dunno, I may use it for other thingies too. God knows the possible number of things you can do with a website!"
+					$("#subInteractor").animate({top: subInteractorY2 + "px", opacity: 1}, function()  {
+						$("#continue3Button").animate({top: continue3Y + "px", opacity: 1});
+					});
+				});
+			}
+			function switchToMainPrep()  {
+				$(document).ready(function()  {
+					alert("One last thing: you can configure data usage in settings on the main site. By default, it loads all scripts and images before usage, which may affect data usage but improve performance.");
+					switchToMain();
+				});
+			}
+			$(document).ready(function()  {
+				if(buttonAnim == 0)  {
+
+
+
+
+
+
+				}
+			});
+		</script>
+	</head>
+	<body onload="CAST()" class="preload">
+		<h1 class="preload" id="interactor" style="display: inline; text-align: center;"></h1>
+		<h2 class="preload" id="subInteractor" style="display: inline; text-align: center;"></h2>
+		<h3 class="preload" id="loadIndicator" style="display: inline"> loading scripts...</h3>
+		<button class="preload" id="proceedButton" onclick="intro1Load()"></button>
+		<button class="preload" id="skipIntroButton" onclick="switchToMain()"></button>
+		<button class="preload" id="continueButton" onclick="intro2Load()"></button>
+		<h4 class="preload" id="intro2L1C" style="display: inline; text-align: center;"></h4>
+		<h4 class="preload" id="intro2L2" style="display: inline; text-align: center;"></h4>
+		<h4 class="preload" id="intro2L3" style="display: inline; text-align: center;"></h4>
+		<h4 class="preload" id="intro2L4" style="display: inline; text-align: center;"></h4>
+		<h4 class="preload" id="intro2L5" style="display: inline; text-align: center;"></h4>
+		<h4 class="preload" id="intro2L6" style="display: inline; text-align: center;"></h4>
+		<button class="preload" id="yeahButton" onclick="intro3Load()"></button>
+		<button class="preload" id="continue2Button" onclick="intro4Load()"></button>
+		<button class="preload" id="continue3Button" onclick="switchToMainPrep()"></button>
+		<button id="transitionElement"></button>
+		<button id="transitionElementX"></button>
+		<img id="V3D3Logo"></img>
+	</body>
+</html>

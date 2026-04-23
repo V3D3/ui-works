@@ -1,0 +1,297 @@
+<html>
+	<head>
+		<title> V3D3, the website.</title>
+		<link rel="shortcut icon" href="graphics/siteIcon.ico"/>
+		<link id="styleDefine" rel="stylesheet" type="text/css" href="unifiedStyleDefiner.css"/>
+		<link id="colorDefine" rel="stylesheet" type="text/css"/>
+        <link id="paceThemer" rel="stylesheet" type="text/css" href="pace_circular_light.css"/>
+		<script src="../../scripts/jq.js"></script>
+		<script src="../../scripts/jqc.js"></script>
+        <script id="UID" src="unifiedInteractivityDefiner.js"></script>
+        <script src="../../scripts/pace.js"></script>
+		<script>
+			//The code below may seem messy and a bit inefficient. I currently am focusing
+			//on completing the site, so I'll look into code optimization later. Till then, please bear with
+			//me, user.
+			//                                                                                                                               - V3D3
+			var sH = window.innerHeight;
+			var sW = window.innerWidth;
+			var themeNum, navMenuOpen, skip2nd, selectedNav, bgCol, foreCol, highlightCol;
+			navMenuOpen = 0;
+            selectedNav = 1;
+
+			if(sH < sW)  {
+				if(sH < 600)  {
+					alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+					skip2nd = true;
+				}
+				if(sW < 1000)  {
+					if(skip2nd == false)  {
+					alert("The website is not engineered to support your current resolution. You may experience display errors. To have the optimum experience, resolutions of 720p (1280 * 720) and higher are essential.\nYou may also see this dialog due to an improperly configured browser.\nThanks!\nV3D3");
+					}
+				}
+			}
+			else  {
+				alert("The website was built on and for a landscape oriented device. Configure your display settings accordingly for avoiding display errors.");
+			}
+			function CAST()  {
+				if (typeof(Storage) !== "undefined")  {
+					if(localStorage.getItem("theme") == undefined)  {
+						localStorage.setItem("theme", "light");
+						colorDefine.setAttribute("href", "themeColor_light.css");
+						themeNum = 2;
+					}
+					else  {
+						switch(localStorage.getItem("theme"))  {
+							case "light":
+								colorDefine.setAttribute("href", "themeColor_light.css");
+								themeNum = 2;
+							break;
+							case "dark":
+								colorDefine.setAttribute("href", "themeColor_dark.css");
+								themeNum = 3;
+							break;
+							case "standard":
+								colorDefine.setAttribute("href", "themeColor_standard.css");
+								themeNum = 1;
+							break;
+							case "none":
+								colorDefine.setAttribute("href", "");
+								themeNum = 0;
+							break;
+							default:
+								colorDefine.setAttribute("href", "themeColor_light.css");
+								localStorage.setItem("theme", "light");
+								themeNum = 2;
+							break;
+						}
+					}
+				}
+				else  {
+					alert("localStorage is not supported by your browser. Theme selections will not be remembered.");
+				}
+				switch(themeNum)  {
+					case 1:
+						navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+						bgCol = "rgb(0, 0, 0)";
+						foreCol = "rgb(30, 144, 255)";
+						highlightCol = "rgb(20, 20, 20)";
+					break;
+					case 2:
+						navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+						bgCol = "rgb(255, 255, 255)";
+						foreCol = "rgb(30, 144, 255)";
+						highlightCol = "rgb(235, 235, 235)";
+					break;
+					case 3:
+						navToggler.src = "graphics/navMenuButton_dark_normal.png";
+						bgCol = "rgb(0, 0, 0)";
+						foreCol = "rgb(255, 165, 0)";
+						highlightCol = "rgb(20, 20, 20)";
+					break;
+				}
+				$("#navMenu").css("left", "-350px");
+				$("#mainHeader").css("left", ((sW / 2) - ($("#mainHeader").width() / 2)) + "px");
+				$("#settings_MLI").animate({top: "-20%", opacity: 0}, function()  {
+					$("#navToggler").animate({left: "0px"}, function()  {
+						$("#mainHeader").animate({top: "0px", opacity: 1}, function()  {
+
+						});
+					});
+				});
+			}
+
+			//interactions defining codeblock, the most extensive part of the code
+
+			$(document).ready(function()  {
+				$("#navToggler").mouseenter(function()  {
+					if(navMenuOpen == 0)  {
+						switch(themeNum)  {
+							case 3:
+								navToggler.src = "graphics/navMenuButton_dark_highlight.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_light_standard_highlight.png";
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+							case 2:
+								navToggler.src = "graphics/navMenuButton_light_inverted_highlight.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_dark_standard_inverted_highlight.png";
+							break;
+						}
+					}
+				});
+				$("#navToggler").mouseleave(function()  {
+					if(navMenuOpen == 0)  {
+						switch(themeNum)  {
+							case 3:
+								navToggler.src = "graphics/navMenuButton_dark_normal.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+							case 2:
+								navToggler.src = "graphics/navMenuButton_light_inverted.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_dark_standard_inverted.png";
+							break;
+						}
+					}
+				});
+				$("#navToggler").mousedown(function()  {
+					if(navMenuOpen == 0)  {
+						switch(themeNum)  {
+							case 2:
+								navToggler.src = "graphics/navMenuButton_light_inverted_highlight.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_dark_standard_inverted_highlight.png";
+							break;
+						}
+					}
+					else  {
+						switch(themeNum)  {
+							case 3:
+								navToggler.src = "graphics/navMenuButton_dark_highlight.png";
+							break;
+							default:
+								navToggler.src = "graphics/navMenuButton_light_standard_highlight.png";
+							break;
+						}
+					}
+				});
+				$("#navToggler").mouseup(function()  {
+					if(navMenuOpen == 0)  {
+                        switch(themeNum)  {
+                            case 2:
+                                navToggler.src = "graphics/navMenuButton_light_inverted.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_dark_standard_inverted.png";
+                            break;
+                        }
+                        $("#navBG").css("z-index", "0");
+						$("#navBG").animate({opacity: 1}, function()  {
+							$("#navMenu").animate({left: "0px"});
+							$("#navToggler").animate({left: "348px"});
+						});
+						navMenuOpen = 1;
+					}
+					else  {
+                        switch(themeNum)  {
+                            case 3:
+                                navToggler.src = "graphics/navMenuButton_dark_normal.png";
+                            break;
+                            default:
+                                navToggler.src = "graphics/navMenuButton_light_standard_normal.png";
+                            break;
+                        }
+						$("#navMenu").animate({left: "-350px"});
+				        $("#navToggler").animate({left: "0px"}, function()  {
+						    $("#navBG").animate({opacity: 0}, function()  {
+                                $("#navBG").css("z-index", "-1");
+                            });
+						});
+						navMenuOpen = 0;
+					}
+				});
+				$("#appearanceTab").mouseup(function()  {
+					unSelectNav(1);
+					selectedNav = 1;
+					loadContent(1);
+				});
+				$("#dockTab").mouseup(function()  {
+					unSelectNav(2);
+					selectedNav = 2;
+					loadContent(2);
+				});
+				$("#dataTab").mouseup(function()  {
+					unSelectNav(3);
+					selectedNav = 3;
+					loadContent(3);
+				});
+				$("#animationsTab").mouseup(function()  {
+					unSelectNav(4);
+					selectedNav = 4;
+					loadContent(4);
+				});
+				$("#supportTab").mouseup(function()  {
+					unSelectNav(5);
+					selectedNav = 5;
+					loadContent(5);
+				});
+				$("#backTab").mouseup(function()  {
+					unSelectNav(6);
+					selectedNav = 6;
+					loadContent(6);
+				});
+				function unSelectNav(c)  {
+					switch(selectedNav)  {
+						case 1:
+							if(c != 1)  {$("#appearanceTab").animate({backgroundColor: bgCol, color: foreCol});}
+						break;
+						case 2:
+							if(c != 2)  {$("#dockTab").animate({backgroundColor: bgCol, color: foreCol});}
+						break;
+						case 3:
+							if(c != 3)  {$("#dataTab").animate({backgroundColor: bgCol, color: foreCol});}
+						break;
+						case 4:
+							if(c != 4)  {$("#animationsTab").animate({backgroundColor: bgCol, color: foreCol});}
+						break;
+						case 5:
+							if(c != 5)  {$("#supportTab").animate({backgroundColor: bgCol, color: foreCol});}
+						break;
+					}
+				}
+				function loadContent(p)  {
+					switch(p)  {
+						case 1:
+							document.getElementById("mainHeader").innerHTML = "Appearance";
+						break;
+						case 2:
+							document.getElementById("mainHeader").innerHTML = "Dock";
+						break;
+						case 3:
+							document.getElementById("mainHeader").innerHTML = "Data usage";
+						break;
+						case 4:
+							document.getElementById("mainHeader").innerHTML = "Animations";
+						break;
+						case 5:
+							document.getElementById("mainHeader").innerHTML = "Support";
+						break;
+						case 6:
+							document.getElementById("mainHeader").innerHTML = "";
+						break;
+					}
+					$("#mainHeader").css("left", ((sW / 2) - ($("#mainHeader").width() / 2)) + "px");
+				}
+			});
+		</script>
+	</head>
+	<body class="preload" onload="CAST()">
+		<h2 id="settings_MLI" class="preload">loading...</h2>
+		<h4 id="mainHeader" class="preload">Appearance</h4>
+		<span id="navBG"></span>
+		<img id="navToggler" src="graphics/navMenuButton_light_standard_normal.png">
+		<span id="navMenu">
+			<button id="appearanceTab" class="navElement">Appearance</button>
+			<button id="dockTab" class="navElement">Dock</button>
+			<button id="dataTab" class="navElement">Data usage</button>
+			<button id="animationsTab" class="navElement">Animations</button>
+			<button id="supportTab" class="navElement">Support</button>
+			<button id="backTab" class="navElement">Back</button>
+		</span>
+	</body>
+</html>

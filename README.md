@@ -30,6 +30,15 @@ A high-contrast abstract splash page featuring complex geometric animations in o
 ### [Edible](pages/xpr/edible.html)
 A bold, bright red splash page with a clean rotating logo animation.
 
+### [Monomium](pages/monomium/index.html)
+A complex, multi-themed dashboard and interactive interface.
+
+### [Deuterium](pages/deuterium/index.html)
+A cinematic interactive portal and experience hub.
+
+### [IDKIDC Splash](pages/xpr/idkidc.html)
+A minimalist typographic splash animation exploring the "I don't know, I don't care" motif.
+
 ### [Familiar](pages/familiar/index.html)
 An interactive file management simulation that facilitates file renaming and type matching.
 

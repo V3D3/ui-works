@@ -1,0 +1,227 @@
+<html>
+    <head>
+		<title>Me, V3D3.</title>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+        <script src="../../../../scripts/jq.js"></script>
+        <script src="../../../../scripts/jqc.js"></script>
+        <script src="../../../../scripts/vm.js"></script>
+        <script src="../../../../scripts/vum.js"></script>
+        <script src="../../../../scripts/shadow-anim.js"></script>
+		<script src="../../../../scripts/pace.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../../stylesheets/pace_style_res.css"/>
+        <link rel="stylesheet" type="text/css" href="../../../../stylesheets/sub.css"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="/media/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/media/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/media/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/media/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/media/icons/apple-touch-icon-180x180.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="/media/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/media/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/media/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/media/icons/apple-touch-icon-76x76.png">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/media/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="shortcut icon" href="/media/icons/favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="/media/others/manifest.json">
+		<meta name="apple-mobile-web-app-title" content="V3D3Web">
+		<meta name="application-name" content="V3D3Web">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="mstile-144x144.png">
+		<meta name="theme-color" content="#ffa500">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <script>
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var mob = false;
+            var sel = false;
+			var accent = "rgb(224, 213, 0)";
+            var thingy = '“Screw the world. Make it happen.”';
+            if(sH > sW)  {
+                mob = true;
+            }
+            function cinInt()  {
+                $("#twt_standard").css("top", (sH / 2) - ($("#twt_standard").height() / 2));
+                $("#twt_standardx").css("top", (sH / 2) - ($("#twt_standard").height() / 2));
+                $("#twt_inverted").css("top", (sH / 2) - ($("#twt_inverted").height() / 2));
+                $("#twt_main").css("top", (sH / 2) - ($("#twt_main").height() / 2));
+                $("#bidt1").css("top", "calc(50% - " + ($("#bidt1").height() / 2) + "px)").css("left", "calc(100% - " + ($("#bidt1").width() + 80) + "px)");
+                $("#bidt2").css("top", "calc(100% - " + ($("#bidt2").height() + 80) + "px)").css("left", "calc(50% - " + ($("#bidt1").width() / 2) + "px)");
+                $("#bidt3").css("top", "calc(50% - " + ($("#bidt3").height() / 2) + "px)").css("left", "80px");
+                $("#front").velocity({height: 0}, 1500, "easeInExpo", function()  {
+                    $("#front").css("z-index", "1").css("height", "100%");
+                    $("#mid").velocity({height: 0}, 600, function()  {
+                        $("body").css("backgroundColor", "black");
+                        $("#front").velocity({height: 0}, 1500, "easeOutExpo", function()  {
+                            $("#twt_inverted").velocity({left: "100%"}, 800, "easeInExpo", function()  {
+                                $("#twt_main").velocity({left: "0%"}, 800, "easeOutExpo", function()  {
+                                    $("#twt_main").velocity({fontSize: "22px", top: 9}, 700, "easeInExpo", function()  {
+                                        $("#back").velocity({height: "50px", width: "150px", top: 0, left: (sW / 2) - 75}, 700, "easeOutExpo", function()  {
+                                            $("#bunitdown").velocity({height: "100%"}, 200, function()  {
+                                                $("#back").velocity({top: (sH / 2) - 165, height: 330, left: (sW / 2) - 165, width: 330}, 1200, "easeInOutExpo", function()  {
+                                                    cont();
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+            function cont()  {
+                //extra function just to keep it not-so-crappily-formatted.
+                //it is, however
+                //dangit
+                //i'm gonna shift this to external js later
+                //later
+                //LATER
+                //that stupid word
+                //i hate you. get outta my code
+                //gtfo
+                //GTFO
+                //that stupid abbreviation...
+
+                var espace = sW / 4;
+                $("#back").css("opacity", 0);
+                $("#bidp1, #bidp2, #bidp3").css("opacity", 1);
+                $("#bidp1").velocity({left: espace - 1}, "easeInExpo");
+                $("#bidp3").velocity({left: (espace * 3) - 109}, "easeInExpo", function()  {
+                    $("#bidp1").velocity({width: 2}, "easeOutExpo");
+                    $("#bidp2").velocity({width: 2, left: (espace * 2) - 1}, "easeOutExpo");
+                    $("#bidp3").velocity({width: 2, left: (espace * 3) - 1}, "easeOutExpo", function()  {
+                        $("#bidp1, #bidp2, #bidp3").velocity({height: 2, top: (sH / 2) - 1}, "easeInOutExpo", function()  {
+                            $("#bidp1, #bidp2, #bidp3").css("background-color", "transparent").css("border", "1px solid " + accent);
+                            document.getElementById("bidp1").innerHTML = "<p class='bidtext' id='bdta'>About</p>";
+                            document.getElementById("bidp2").innerHTML = "<p class='bidtext' id='bdtb'>Resume</p>";
+                            document.getElementById("bidp3").innerHTML = "<p class=' bidtext' id='bdtc'>Contact</p>";
+                            $("#bidp1").velocity({left: espace - 75, width: 148}, "easeInExpo");
+                            $("#bidp2").velocity({left: (espace * 2) - 75, width: 148}, "easeInExpo");
+                            $("#bidp3").velocity({left: (espace * 3) - 75, width: 148}, "easeInExpo", function()  {
+                                 $("#bidp1, #bidp2, #bidp3").velocity({top: (sH / 2) - 30, height: 60}, "easeOutExpo");
+                            });
+                        });
+                    });
+                });
+            }
+            $(document).ready(function()  {
+                $("#bidp1").mouseenter(function()  {
+                    if(!sel)  {
+                        $("#bidp1").css("color", "black").css("background-color", accent).css("border-color", accent);
+                        $("body").css("background-color", "black");
+                    }
+                });
+                $("#bidp1").mouseleave(function()  {
+                    if(!sel)  {
+                        $("#bidp1").css("color", accent).css("background-color", "transparent").css("border-color", accent);
+                        $("body").css("background-color", "black");
+                        $("#bidt1").css("opacity", "0");
+                    }
+                });
+                $("#bidp1").mousedown(function()  {
+                    $("#bidp1").css("color", accent).css("background-color", "black").css("border-color", "black");
+                    $("body").css("background-color", accent);
+                    $("#bidt1").css("opacity", "1");
+                    $("#bidp2, #bidp3").css("opacity", "0");
+                });
+                $("#bidp1").mouseup(function()  {
+                    sel = true;
+                    $("#bdta").velocity({left: "100%"}, 600, "easeInExpo", function()  {
+                        $("#bdta").css("opacity", "0");
+                        $("#bidp1").velocity({left: "100%"}, 600, "easeInExpo", function()  {
+                            $("#bidt1").velocity({left: "100%"}, 600, "easeInExpo", function()  {
+                                document.location = "about/index.html";
+                            });
+                        });
+                    });
+                });
+                $("#bidp2").mouseenter(function()  {
+                    if(!sel)  {
+                        $("#bidp2").css("color", "black").css("background-color", accent).css("border-color", accent);
+                        $("body").css("background-color", "black");
+                    }
+                });
+                $("#bidp2").mouseleave(function()  {
+                    if(!sel)  {
+                        $("#bidp2").css("color", accent).css("background-color", "transparent").css("border-color", accent);
+                        $("body").css("background-color", "black");
+                        $("#bidt2").css("opacity", "0");
+                    }
+                });
+                $("#bidp2").mousedown(function()  {
+                    $("#bidp2").css("color", accent).css("background-color", "black").css("border-color", "black");
+                    $("body").css("background-color", accent);
+                    $("#bidt2").css("opacity", "1");
+                    $("#bidp1, #bidp3").css("opacity", "0");
+                });
+                $("#bidp2").mouseup(function()  {
+                    sel = true;
+                    $("#bdtb").velocity({top: "-100%"}, 600, "easeInExpo", function()  {
+                        $("#bdtb").css("opacity", "0");
+                        $("#bidp2").velocity({top: "-150px"}, 600, "easeInExpo", function()  {
+                            $("#bidt2").velocity({top: -($("#bidt2").height())}, 600, "easeInExpo", function()  {
+                                document.location = "resume/index.html";
+                            });
+                        });
+                    });
+                });
+                $("#bidp3").mouseenter(function()  {
+                    if(!sel)  {
+                        $("#bidp3").css("color", "black").css("background-color", accent).css("border-color", accent);
+                        $("body").css("background-color", "black");
+                    }
+                });
+                $("#bidp3").mouseleave(function()  {
+                    if(!sel)  {
+                        $("#bidp3").css("color", accent).css("background-color", "transparent").css("border-color", accent);
+                        $("body").css("background-color", "black");
+                        $("#bidt3").css("opacity", "0");
+                    }
+                });
+                $("#bidp3").mousedown(function()  {
+                    $("#bidp3").css("color", accent).css("background-color", "black").css("border-color", "black");
+                    $("body").css("background-color", accent);
+                    $("#bidt3").css("opacity", "1");
+                    $("#bidp1, #bidp2").css("opacity", "0");
+                });
+                $("#bidp3").mouseup(function()  {
+                    sel = true;
+                    $("#bdtc").velocity({left: "-100%"}, 600, "easeInExpo", function()  {
+                        $("#bdtc").css("opacity", "0");
+                        $("#bidp3").velocity({left: "-150px"}, 600, "easeInExpo", function()  {
+                            $("#bidt3").velocity({left: -($("#bidt3").width())}, 600, "easeInExpo", function()  {
+                                document.location = "contact/index.html";
+                            });
+                        });
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body onload="cinInt()" style="overflow: hidden; background-color: rgb(224, 213, 0);">
+        <span id="theWholeThing" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <!-- Below are custom, hardcoded animation elements. Ignore them (they last till the end of time).-->
+            <span id="front" style="position: absolute; z-index: 3; background-color: rgb(224, 213, 0); top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+                <p class='activeLabel' id='twt_standard' style="color: white; width: 100%;">“Screw the world. Make it happen.”</p>
+            </span>
+            <span id="mid" style="position: absolute; z-index: 2; background-color: white; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+                <p class='activeLabel' id='twt_standardx' style="color: rgb(224, 213, 0); width: 100%;">“Screw the world. Make it happen.”</p>
+            </span>
+            <span id="back" style="position: absolute; z-index: 0; background-color: black; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; border: 2px solid rgb(224, 213, 0);">
+                <p class='activeLabel' id='twt_inverted' style="color: rgb(224, 213, 0); width: 100%;">“Screw the world. Make it happen.”</p>
+                <p class='activeLabel' id='twt_main' style="color: rgb(224, 213, 0); width: 100%; left: -100%;">me</p>
+                <span id="bunitdown" style="position: absolute; top: 0; left: 0; height: 0%; width: 100%; background-color: rgb(224, 213, 0);">
+                </span>
+            </span>
+            <span class="bidp" id="bidp1" style="left: calc(50% - 165px);"></span>
+            <span class="bidp" id="bidp2" style="left: calc(50% - 55px);"></span>
+            <span class="bidp" id="bidp3" style="left: calc(50% + 55px);"></span>
+            <p class="announcer" id="bidt1">behold</p>
+            <p class="announcer" id="bidt2">beware</p>
+            <p class="announcer" id="bidt3">bedazzle</p>
+        </span>
+    </body>
+</html>

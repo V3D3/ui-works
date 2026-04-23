@@ -1,0 +1,82 @@
+<html>
+    <head>
+		<title>Customize, V3D3.</title>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+        <script src="../../../../../scripts/jq.js"></script>
+        <script src="../../../../../scripts/jqc.js"></script>
+        <script src="../../../../../scripts/vm.js"></script>
+        <script src="../../../../../scripts/vum.js"></script>
+        <script src="../../../../../scripts/shadow-anim.js"></script>
+		<script src="../../../../../scripts/pace.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/pace_style_res.css"/>
+        <link rel="stylesheet" type="text/css" href="../../../../../stylesheets/main.css"/>
+		<link rel="apple-touch-icon" sizes="114x114" href="/media/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/media/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/media/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/media/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/media/icons/apple-touch-icon-180x180.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="/media/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/media/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/media/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/media/icons/apple-touch-icon-76x76.png">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/media/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="/media/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="shortcut icon" href="/media/icons/favicon.ico" type="image/x-icon" />
+		<link rel="manifest" href="/media/others/manifest.json">
+		<meta name="apple-mobile-web-app-title" content="V3D3Web">
+		<meta name="application-name" content="V3D3Web">
+		<meta name="msapplication-TileColor" content="#603cba">
+		<meta name="msapplication-TileImage" content="mstile-144x144.png">
+		<meta name="theme-color" content="#ffa500">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <script>
+            var sH = window.innerHeight;
+            var sW = window.innerWidth;
+            var mob = false;
+			var accent = "rgb(30, 144, 255)";
+            var thingy = '“Screw the world. Make it happen.”';
+            if(sH > sW)  {
+                mob = true;
+            }
+            function cinInt()  {
+                $("#twt_standard").css("top", (sH / 2) - ($("#twt_standard").height() / 2));
+                $("#twt_standardx").css("top", (sH / 2) - ($("#twt_standard").height() / 2));
+                $("#twt_inverted").css("top", (sH / 2) - ($("#twt_inverted").height() / 2));
+                $("#twt_main").css("top", (sH / 2) - ($("#twt_main").height() / 2));
+                $("#front").velocity({height: 0}, 1500, "easeInExpo", function()  {
+                    $("#front").css("z-index", "1").css("height", "100%");
+                    $("#mid").velocity({height: 0}, 600, function()  {
+                        $("body").css("backgroundColor", "black");
+                        $("#front").velocity({height: 0}, 1500, "easeOutExpo", function()  {
+                            $("#twt_inverted").velocity({left: "100%"}, 800, "easeInExpo", function()  {
+                                $("#twt_main").velocity({left: "0%"}, 800, "easeOutExpo", function()  {
+                                    $("#twt_main").velocity({fontSize: "22px", top: 9}, 700, "easeInExpo", function()  {
+                                        $("#back").velocity({height: "50px", width: "150px", top: 0, left: (sW / 2) - 75}, 700, "easeOutExpo");
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+        </script>
+    </head>
+    <body onload="cinInt()" style="overflow: hidden; background-color: rgb(255, 38, 38);">
+        <span id="theWholeThing" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <!-- Below are custom, hardcoded animation elements. Ignore them (they last till the end of the second span).-->
+            <span id="front" style="position: absolute; z-index: 3; background-color: rgb(255, 38, 38); top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+                <p class='activeLabel' id='twt_standard' style="color: white; width: 100%;">“Screw the world. Make it happen.”</p>
+            </span>
+            <span id="mid" style="position: absolute; z-index: 2; background-color: white; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;">
+                <p class='activeLabel' id='twt_standardx' style="color: rgb(255, 38, 38); width: 100%;">“Screw the world. Make it happen.”</p>
+            </span>
+            <span id="back" style="position: absolute; z-index: 0; background-color: black; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; border: 2px solid rgb(255, 38, 38);">
+                <p class='activeLabel' id='twt_inverted' style="color: rgb(255, 38, 38); width: 100%;">“Screw the world. Make it happen.”</p>
+                <p class='activeLabel' id='twt_main' style="color: rgb(255, 38, 38); width: 100%; left: -100%;">customize</p>
+            </span>
+        </span>
+    </body>
+</html>

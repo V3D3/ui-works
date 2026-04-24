@@ -1,0 +1,121 @@
+@keyframes idk  {
+    from  {
+        transform: rotate(0deg);
+    }
+    to  {
+        transform: rotate(360deg);
+    }
+}
+.cspk  {
+    position: absolute;
+    top: 15.153%;
+    left: 50%;
+    height: 70%;
+    width: 0.153vh;
+    background-color: white;
+}
+#easterClose  {
+    position: absolute;
+    height: 5vh;
+    width: 5vh;
+    top: calc(100% - 10vh);
+    left: calc(50% - 2.5vh);
+    border-radius: 50%;
+    border: 0.153vh solid white;
+}
+#urlIn  {
+    position: absolute;
+    top: 150%;
+    left: calc(50% - 2.675vh);
+    width: 5.35vh;
+    height: 5.35vh;
+    font-family: "Segoe UI";
+    font-size: 3.06vh;
+    color: white;
+    background-color: red;
+    text-align: center;
+    border: 0;
+    border-radius: 50%;
+}
+#urlIn:focus  {
+    outline: 0;
+}
+#act  {
+    position: absolute;
+    top: 100%;
+    left: calc(50% - 1.525vh);
+    height: 3.05vh;
+    width: 3.05vh;
+    border: 0.305vh solid red;
+    border-radius: 50%;
+}
+#errorText  {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    line-height: 10vh;
+    color: #eeeeee;
+    font-family: monospace;
+    font-size: 3.06vh;
+    opacity: 0;
+    text-align: center;
+}
+.rGM  {
+    border: 2px solid #ffffff;
+    position: absolute;
+    background: red;
+    opacity: 0;
+}
+#gridInfo  {
+    position: absolute;
+    width: 20%;
+    height: 10vh;
+    font-family: "Segoe UI Light";
+    font-size: 5vh;
+    color: red;
+    top: calc(50% - 5vh);
+    left: 40%;
+    line-height: 10vh;
+    text-align: center;
+    z-index: 8;
+    pointer-events: none;
+}
+#gridInfoX  {
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+    font-family: "Segoe UI Light";
+    font-size: 4vh;
+    color: red;
+    top: calc(50% - 7.5vh);
+    left: calc(50% - 7.5vh);
+    line-height: 15vh;
+    text-align: center;
+    z-index: 3;
+    border-radius: 50%;
+    pointer-events: none;
+}
+#resGrid  {
+    position: absolute;
+    height: 42%;
+    width: 100%;
+    left: 0;
+    top: -100%;
+    z-index: 5;
+    background: red;
+    box-shadow: 0px 0px 60px black;
+}
+.barBut  {
+    position: absolute;
+    width: 20%;
+    top: 150%;
+    height: 10%;
+    font-family: "Segoe UI Light";
+    font-size: 5vh;
+    line-height: 10vh;
+    text-align: center;
+    box-shadow: 0px 0px 20px gray;
+    z-index: 5;
+}

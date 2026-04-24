@@ -1,6 +1,0 @@
-{
-    "dependencies": {
-        "electron": "^2.0.0-beta.1",
-        "serialport": "^6.0.5"
-    }
-}

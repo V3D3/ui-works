@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Logo // YCMS // V3D3</title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <meta charset="utf-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <script>
+            $(document).ready(function()  {
+                $('#sp').velocity({left: 0}, 800, 'easeOutCirc');
+                $('#cn').velocity({left: '50%'}, 1200, 'easeOutCirc');
+                for(var i = 0; i < 7; i++)  {
+                    $('#a' + i + ', #b' + i).velocity({left: (i - 15) + 'vh', width: ((3 * i) + 2) + 'vh'}, 1600, 'easeOutCirc');
+                }
+                $('#c').velocity({width: '22vh', left: '-8vh'}, 1600, 'easeOutCirc');
+            });
+        </script>
+        <style>
+            span  {
+                position: absolute;
+                width: 0;
+                height: 2px;
+                left: 0;
+                background: white;
+            }
+        </style>
+    </head>
+    <body style="background: rgba(0, 0, 0, 0); overflow: hidden; margin: 0px;">
+        <span id='sp' style='width: 100%; height: 100%; left: -100%; top: 0; background: red; overflow; visible;'>
+            <span id='cn' style='top: 50%; left: -10%; overflow: visible; height: 0; background: transparent;'>
+                <span id='a0' style='top: -20vh;'></span>
+                <span id='a1' style='top: -17.14vh;'></span>
+                <span id='a2' style='top: -14.28vh;'></span>
+                <span id='a3' style='top: -11.43vh;'></span>
+                <span id='a4' style='top: -8.57vh;'></span>
+                <span id='a5' style='top: -5.71vh;'></span>
+                <span id='a6' style='top: -2.86vh;'></span>
+                <span id='c' style='top: 0;'></span>
+                <span id='b0' style='top: 20vh;'></span>
+                <span id='b1' style='top: 17.14vh;'></span>
+                <span id='b2' style='top: 14.28vh;'></span>
+                <span id='b3' style='top: 11.43vh;'></span>
+                <span id='b4' style='top: 8.57vh;'></span>
+                <span id='b5' style='top: 5.71vh;'></span>
+                <span id='b6' style='top: 2.86vh;'></span>
+            </span>
+        </span>
+    </body>
+</html>

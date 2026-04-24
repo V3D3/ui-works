@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title> YouMirror
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script src="main.js"></script>
+        <meta charset="utf-8"></meta>
+        <link href="styles.css" type="text/css" rel="stylesheet" />
+        <meta name=viewport content="width=device-width, initial-scale=1">
+    </head>
+    <body style="background-color: black; overflow: hidden; margin: 0px; transform: perspective(600px) rotateY(0deg);">
+        <span id="mainContent" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #eeeeee; z-index: 1;">
+            <span id="logo" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%">
+                <span id="ylogobg" style="z-index: 2; position: absolute; top: -100%; left: calc(50% - 16.3vh); height: 32.6vh; width: 32.6vh; border-radius: 50%; background-color: red;"></span>
+                <span id="ylogo" style="position: absolute; z-index: 3; top: calc(50% - 9vh); left: calc(50% - 9vh); width: 0; height: 0; border: 9vh solid transparent; border-top-color: #eeeeee; border-bottom-color: #eeeeee; animation-name: idk; animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: linear;"></span>
+            </span>
+            <input id="urlIn" value="">
+            <span id="act"></span>
+            <span id="errorText"></span>
+            <span id="cover" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: -1; background-color: black; opacity: 0;"></span>
+            <span id="resGrid">
+                <span style="position: absolute; top: 0; left: 0; width: 50%; height: 100%;">
+                    <span class="rGM resM" id="144p" style="height: 10vh; width: 20%; top: calc(50% - 5vh); left: 40%; z-index: 7"></span>
+                    <span class="rGM resM" id="240p" style="height: 14vh; width: 28%; top: calc(50% - 7vh); left: 36%; z-index: 6;"></span>
+                    <span class="rGM resM" id="360p" style="height: 18vh; width: 36%; top: calc(50% - 9vh); left: 32%; z-index: 5;"></span>
+                    <span class="rGM resM" id="480p" style="height: 22vh; width: 44%; top: calc(50% - 11vh); left: 28%; z-index: 4;"></span>
+                    <span class="rGM resM" id="720p" style="height: 26vh; width: 52%; top: calc(50% - 13vh); left: 24%; z-index: 3;"></span>
+                    <span class="rGM resM" id="1080p" style="height: 30vh; width: 60%; top: calc(50% - 15vh); left: 20%; z-index: 2;"></span>
+                    <span class="rGM resM" id="1440p" style="height: 34vh; width: 68%; top: calc(50% - 17vh); left: 16%; z-index: 1;"></span>
+                    <span class="rGM resM" id="2160p" style="height: 38vh; width: 76%; top: calc(50% - 19vh); left: 12%; z-index: 0;"></span>
+                    <span id="gridInfo">144p</span>
+                </span>
+                <span style="position: absolute; top: 0; left: 50%; width: 50%; height: 100%">
+                    <span class="rGM btrM" id="64k" style="height: 15vh; width: 15vh; border-radius: 50%; top: calc(50% - 7.5vh); left: calc(50% - 7.5vh); z-index: 2;"></span>
+                    <span class="rGM btrM" id="128k" style="height: 25vh; width: 25vh; border-radius: 50%; top: calc(50% - 12.5vh); left: calc(50% - 12.5vh); z-index: 1;"></span>
+                    <span class="rGM btrM" id="192k" style="height: 35vh; width: 35vh; border-radius: 50%; top: calc(50% - 17.5vh); left: calc(50% - 17.5vh); z-index: 0;"></span>
+                    <span id="gridInfoX">64kbps</span>
+                </span>
+            </span>
+            <span class="barBut" id="dvideo" style="left: 15%; color: red; border: 2px solid red; background-color: white;">Download Video</span>
+            <span class="barBut" id="cancel" style="left: 40%; color: white; border: 2px solid white; background-color: red;">Cancel</span>
+            <span class="barBut" id="daudio" style="left: 65%; color: red; border: 2px solid red; background-color: white;">Download Audio</span>
+        </span>
+        <span id="easterContent" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: red; z-index: 0; transform: rotateY(180deg);">
+            <span style="position: absolute; top: 0; left: 0; width: 100%; text-align: center; font-family: 'Segoe UI Light'; font-size: 13vh; height: 50%; line-height: 50vh; color: white;">Created with 🔔</span>
+            <span style="position: absolute; top: 50%; left: 0; width: 100%; text-align: center; font-family: 'Segoe UI Light'; font-size: 6.5vh; height: 25%; line-height: 25vh; color: white;">by V3D3 and LittlEvil.</span>
+            <span id="easterClose">
+                <span class="cspk" style="transform: rotate(-45deg);"></span>
+                <span class="cspk" style="transform: rotate(45deg);"></span>
+            </span>
+        </span>
+    </body>
+</html>

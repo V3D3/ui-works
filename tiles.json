@@ -350,5 +350,19 @@
 	"path": "pages/arbot-four/index.html",
 	"weight": 2,
 	"description": "A page to scan serial ports on the machine and pick one. Required Node to run."
+    },
+    {
+	"title": "YCMS Logo",
+	"type": "Logo",
+	"path": "pages/xpr/ycms-logo.html",
+	"weight": 1,
+	"description": "A logo for a YouTube video downloading service."
+    },
+    {
+	"title": "YouMirror",
+	"type": "Tool",
+	"path": "pages/youmirror/ymr.html",
+	"weight": 2,
+	"description": "A YouTube downloader."
     }
 ]

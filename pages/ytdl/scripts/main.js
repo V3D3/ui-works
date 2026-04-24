@@ -83,10 +83,7 @@ function urlValidate()  {
     }
 }
 function submiturl(url)  {
-    $.ajax({url: 'ytdl.php', dataType: "text", type: "get", data: {id: url}, success: function(r)  {
-            parse(r);
-        }
-    });
+    parse("abcd(evilwa)def\nfghi(evilwa)ghi");
 }
 function parse(x)  {
     x = x.split('\n');

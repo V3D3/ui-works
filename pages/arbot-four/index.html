@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <title>Four.</title>
+        <script src='q.js'></script>
+        <script src='v.js'></script>
+        <style>
+            ::-webkit-scrollbar  {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-track  {
+                background: orange;
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: black;
+                border-radius: 50px;
+            }
+            span  {
+                position: absolute;
+            }
+            input:focus  {
+                outline: 0;
+            }
+            .el  {
+                left: 10%;
+                width: 80%;
+                padding-left: 2%;
+                background: black;
+                box-shadow: 0 0 12px black;
+                color: orange;
+                font-family: Segoe UI Light;
+                height: 8%;
+                top: 108%;
+                line-height: 8vh;
+                z-index: 102;
+                font-size: 4vh;
+                letter-spacing: 3vh;
+            }
+        </style>
+    </head>
+    <body style='background: black; margin: 0; overflow: hidden;'>
+        <span id='cov0' style='width: 100%; height: 100%; top: 100%; left: 0; background: orange; z-index: 100;'></span>
+        <iframe id='load0' style="position: absolute; top: 120%; left: 25%; width: 50%; height: 50%; background-color: orange; box-shadow: 0px 0px 50px black; border: 1px solid orange; z-index: 101;" frameBorder="0" src="minor.html"></iframe>
+        <script>
+            var sp = '';
+            if(localStorage.getItem('firstrundone') == null)  {
+                $(document).ready(function()  {
+                    $('#cov0').velocity({top: 0}, 1000, 'easeOutExpo');
+                    $('#load0').delay(500).velocity({top: '25%'}, 1000, 'easeOutExpo', function()  {
+                        scansp(function(ls)  {
+                            $('#load0').velocity({top: '-100%'}, 1000, 'easeInExpo', function()  {
+                                for(var i = 0; i < ls.length; i++)  {
+                                    $('body').append('<span class="el" id="sp' + i + '">' + ls[i] + '</span>')
+                                    $('#sp' + i).delay(i * 200).velocity({top: (8 * (i + i + 1)) + '%'}, 1000, 'easeOutExpo', function()  {
+                                        bindspt($(this).attr('id'));
+                                        if(i > 5)  {
+                                            $('body').css('overflow', 'auto');
+                                            $('#cov0').css({height: ((8 * (ls.length + ls.length + 1))) + '%'});
+                                        }
+                                    });
+                                }
+                                if(ls.length == 0)  {
+                                    $('body').append('<span class="el" id="nosp">NO PORTS AVAILABLE</span>');
+                                    $('body').append('<span class="el" id="nosp2">PAGE RELOAD IN 10</span>');
+                                    $('#nosp').velocity({top: '46%'}, 1000, 'easeOutExpo', function()  {
+                                        $('#nosp').delay(2000).velocity({top: '-100%'}, 1000, 'easeInExpo', function()  {
+                                            $('#nosp2').velocity({top: '46%'}, 1000, 'easeOutExpo', function()  {
+                                                $('body').append('<span class="el" id="nosp2c" style="background: orange; opacity: 0.2; width: 0; top: 46%;"></span>')
+                                                $('#nosp2c').velocity({width: '80%'}, 10000, 'linear', function()  {
+                                                    $('#nosp2, #nosp2c').velocity({top: '-100%'}, 1000, 'easeInExpo');
+                                                    $('#cov0').delay(500).velocity({top: '-100%'}, 1000, 'easeInExpo', function()  {
+                                                        window.history.go(0);
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                }
+                            });
+                        });
+                    });
+                });
+                
+                function scansp(callback)  {
+                    var ls = [];
+                    //ls = getSerialPorts();
+                    callback(ls);
+                }
+                function bindspt(id)  {
+                    $('#' + id).mouseenter(function()  {
+                        $(document).ready(function()  {
+                            if(sp == '')  {
+                                $('#' + id).velocity('stop');
+                                $('#' + id).velocity({scale: 1.02, boxShadowBlur: 20}, 150);
+                            }
+                        });
+                    });
+                    $('#' + id).mouseleave(function()  {
+                        $(document).ready(function()  {
+                            if(sp == '')  {
+                                $('#' + id).velocity('stop');
+                                $('#' + id).velocity({scale: 1, boxShadowBlur: 12}, 150);
+                            }
+                        });
+                    });
+                    $('#' + id).mousedown(function()  {
+                        $(document).ready(function()  {
+                            if(sp == '')  {
+                                $('#' + id).velocity('stop');
+                                $('#' + id).velocity({scale: 0.98, boxShadowBlur: 0}, 150);
+                                sp = $('#' + id).html();
+                            }
+                        });
+                    });
+                    $('#' + id).mouseup(function()  {
+                        $(document).ready(function()  {
+                            if(sp == $('#' + id).html())  {
+                                $('#' + id).velocity('stop');
+                                $('#' + id).velocity({scale: 1, boxShadowBlur: 12}, 150);
+                            }
+                        });
+                    });
+                }
+            }  else  {
+                localStorage.setItem('firstrundone', 'true');
+            }
+        </script>
+    </body>
+</html>

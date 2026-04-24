@@ -343,5 +343,12 @@
         "path": "pages/monomium/intro.html",
         "weight": 3,
         "description": "A complex, multi-themed dashboard and interactive interface."
+    },
+    {
+	"title": "ArBot Four",
+	"type": "Splash/Menu",
+	"path": "pages/arbot-four/index.html",
+	"weight": 2,
+	"description": "A page to scan serial ports on the machine and pick one. Required Node to run."
     }
 ]

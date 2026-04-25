@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>V3D3 // LOGO</title>
+        <style>
+            @keyframes rot_0_360  {
+                from  {
+                    transform: rotate(0deg);
+                }
+                to  {
+                    transform: rotate(360deg);
+                }
+            }
+            @keyframes rot_360_0  {
+                from  {
+                    transform: rotate(360deg);
+                }
+
+                to  {
+                    transform: rotate(0deg);
+                }
+            }
+            span  {
+                position: absolute;
+            }
+            #left, #middle, #right  {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 33.333%;
+            }
+        </style>
+        <script src='../../scripts/jq.js'></script>
+    </head>
+    <body style='background: black; margin: 0; overflow: hidden;'>
+        <div id="left" style="left:0;">
+
+        </div>
+        <div id="middle" style="left:33.333%;">
+
+
+        </div>
+        <div id="right" style="left:66.666%; background: orange;">
+
+        </div>
+    </body>
+    <script>
+        var t0 = Date.now();
+        var sW = window.innerWidth / 3, sH = window.innerHeight;
+        $(document).ready(function()  {
+
+            // color
+            for(var i = 0; i < 300; i++)  {
+                var el = '<span style="border-radius: 50%; animation-iteration-count: infinite; animation-timing-function: linear;';
+                var t1 = gR(20, 51);
+                var t2 = gR(20, 51);
+                el += ' height: ' + t1 + 'vh;';
+                el += ' width: ' + t2 + 'vh;';
+                el += ' top: calc(50% - ' + (t1 / 2) + 'vh);';
+                el += ' left: calc(50% - ' + (t2 / 2) + 'vh);';
+                el += ' box-shadow: 0 0 ' + gR(15, 30) + 'px rgba(' + gR(0, 255) + ',' + gR(0, 255) + ',' + gR(0, 255) + ',' +gR(0, 255) + ');';
+                el += ' transform: rotate(' + gR(0, 360) + 'deg);';
+                el += ' animation-duration: ' + gR(8, 100) + 's;';
+                el += ' animation-name: ' + (gR(0, 1)?'rot_0_360':'rot_360_0') + ';'
+                $('#middle').append(el + '"></span>');
+                if(i == 99)  {console.log(Date.now() - t0);}
+            }
+
+
+            // craze invert
+            for(var i = 0; i < 100; i++)  {
+                var el = '<span style="border-radius: 50%; animation-iteration-count: infinite; animation-timing-function: linear;';
+                var t1 = gR(20, 31);
+                var t2 = gR(20, 31);
+                el += ' height: ' + t1 + 'vh;';
+                el += ' width: ' + t2 + 'vh;';
+                el += ' top: calc(50% - ' + (t1 / 2) + 'vh);';
+                el += ' left: calc(50% - ' + (t2 / 2) + 'vh);';
+                el += ' box-shadow: 0 0 ' + gR(50, 100) + 'px rgba(0, 0, 0, 0.2);';
+                el += ' transform: rotate(' + gR(0, 360) + 'deg);';
+                el += ' animation-duration: ' + gR(8, 13) + 's;';
+                el += ' animation-name: ' + (gR(0, 1)?'rot_0_360':'rot_360_0') + ';'
+                $('#right').append(el + '"></span>');
+            }
+
+
+            // craze
+            for(var i = 0; i < 100; i++)  {
+                var el = '<span style="border-radius: 50%; animation-iteration-count: infinite; animation-timing-function: linear;';
+                var t1 = gR(20, 31);
+                var t2 = gR(20, 31);
+                el += ' height: ' + t1 + 'vh;';
+                el += ' width: ' + t2 + 'vh;';
+                el += ' top: calc(50% - ' + (t1 / 2) + 'vh);';
+                el += ' left: calc(50% - ' + (t2 / 2) + 'vh);';
+                el += ' box-shadow: 0 0 ' + gR(50, 100) + 'px rgba(255, 165, 0, 0.2);';
+                el += ' transform: rotate(' + gR(0, 360) + 'deg);';
+                el += ' animation-duration: ' + gR(8, 13) + 's;';
+                el += ' animation-name: ' + (gR(0, 1)?'rot_0_360':'rot_360_0') + ';'
+                $('#left').append(el + '"></span>');
+            }
+        });
+
+        function gR(x, y)  {
+            return Math.round(x + (y - x) * Math.random());
+        }
+
+        console.log('<3 JS. <3 CSS.');
+    </script>
+</html>

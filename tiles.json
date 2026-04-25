@@ -371,5 +371,26 @@
         "path": "pages/tritium/index.html",
         "weight": 3,
         "description": "Unified index and interactive portal."
+    },
+    {
+        "title": "Craze",
+        "type": "Logo",
+        "path": "pages/logos/craze.html",
+        "weight": 2,
+        "description": "Erratic variants of the V3D3 logo."
+    },
+    {
+        "title": "V3D3",
+        "type": "Logo",
+        "path": "pages/logos/logo-normal.html",
+        "weight": 1,
+        "description": "My logo."
+    },
+    {
+        "title": "V3D3 (invert)",
+        "type": "Logo",
+        "path": "pages/logos/logo-invert.html",
+        "weight": 1,
+        "description": "My logo (inverted)."
     }
 ]

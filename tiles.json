@@ -4,393 +4,563 @@
         "type": "Splash",
         "path": "pages/bytes/bytes.html",
         "weight": 2,
-        "description": "Personalized splash experience."
+        "description": "Personalized splash experience.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Logo",
         "type": "Anim",
         "path": "pages/xpr/xpr_logo.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR CirC",
         "type": "Anim",
         "path": "pages/xpr/xpr_circ.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "WAPT",
         "type": "Splash/Menu",
         "path": "pages/wapt/index.html",
         "weight": 2,
-        "description": "Themeable dashboard and menu system."
+        "description": "Themeable dashboard and menu system.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Circular",
         "type": "Anim/Tool",
         "path": "pages/xpr/xpr_circular.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Grid",
         "type": "Tool",
         "path": "pages/xpr/xpr_grid.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XMS Logo",
         "type": "Anim",
         "path": "pages/xpr/xms_logo.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Chromafall",
         "type": "Anim",
         "path": "pages/xpr/xpr_chromafall.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR",
         "type": "Splash/Menu",
         "path": "pages/xpr/xpr.html",
         "weight": 3,
-        "description": "Core interface for XPR experiments."
+        "description": "Core interface for XPR experiments.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Chromapitfall",
         "type": "Anim",
         "path": "pages/xpr/xpr_chromapitfall.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "Doorway X",
         "type": "Tool",
         "path": "pages/doorway/doorwayx.html",
         "weight": 2,
-        "description": "Advanced text analysis utility."
+        "description": "Advanced text analysis utility.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Chromarise",
         "type": "Anim",
         "path": "pages/xpr/xpr_chromarise.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Chromaswipe",
         "type": "Anim",
         "path": "pages/xpr/xpr_chromaswipe.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR CirK",
         "type": "Anim",
         "path": "pages/xpr/xpr_cirk.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR Engage",
         "type": "Menu",
         "path": "pages/xpr/xpr_engage.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Field",
         "type": "Anim",
         "path": "pages/xpr/xpr_field.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Focus",
         "type": "Anim/Tool",
         "path": "pages/xpr/xpr_focus.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR Imitant",
         "type": "Anim",
         "path": "pages/xpr/xpr_imitant.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Tilt",
         "type": "Anim",
         "path": "pages/xpr/xpr_tilt.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Origin",
         "type": "Anim",
         "path": "pages/xpr/xpr_origin.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR EXOrigin",
         "type": "Anim",
         "path": "pages/xpr/xpr_exorigin.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Tipsy",
         "type": "Component",
         "path": "pages/xpr/xpr_tipsy.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Crowd",
         "type": "Anim",
         "path": "pages/xpr/xpr_crowd.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR Exhibit",
         "type": "Menu",
         "path": "pages/xpr/xpr_exhibit.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "XPR Frost",
         "type": "Anim",
         "path": "pages/xpr/xpr_frost.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Gradience",
         "type": "Anim",
         "path": "pages/xpr/xpr_gradience.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Konami",
         "type": "Component",
         "path": "pages/xpr/xpr_konami.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Hyper",
         "type": "Component",
         "path": "pages/xpr/xpr_hyper.html",
-        "weight": 2
+        "weight": 2,
+        "entry_type": "page"
     },
     {
         "title": "Pixie",
         "type": "Tool/Anim",
         "path": "pages/pixie/index.html",
         "weight": 2,
-        "description": "Minimalist file navigation and visualization."
+        "description": "Minimalist file navigation and visualization.",
+        "entry_type": "page"
     },
     {
         "title": "Uber Dashboard",
         "type": "Menu/Tool",
         "path": "pages/uber/index.html",
         "weight": 2,
-        "description": "Collection of Uber-style UI components and animations."
+        "description": "Collection of Uber-style UI components and animations.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Mesh",
         "type": "Anim",
         "path": "pages/xpr/xpr_mesh.html",
         "weight": 2,
-        "description": "Animated point mesh with colorful generative lines."
+        "description": "Animated point mesh with colorful generative lines.",
+        "entry_type": "page"
     },
     {
         "title": "XPR PaperNav",
         "type": "Menu",
         "path": "pages/xpr/xpr_papernav.html",
         "weight": 2,
-        "description": "Cinematic paper-fold navigation menu."
+        "description": "Cinematic paper-fold navigation menu.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Pieta",
         "type": "Anim",
         "path": "pages/xpr/xpr_pieta.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Protosel",
         "type": "Component",
         "path": "pages/xpr/xpr_protosel.html",
-        "weight": 1
+        "weight": 1,
+        "entry_type": "page"
     },
     {
         "title": "XPR Stack",
         "type": "Anim",
         "path": "pages/xpr/xpr_stack.html",
         "weight": 2,
-        "description": "Layered depth stack animation."
+        "description": "Layered depth stack animation.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Elementary",
         "type": "Anim",
         "path": "pages/xpr/xpr_elementary.html",
         "weight": 2,
-        "description": "Randomly colored and sized lines."
+        "description": "Randomly colored and sized lines.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Rekt",
         "type": "Anim",
         "path": "pages/xpr/xpr_rekt.html",
         "weight": 2,
-        "description": "Randomly colored and sized rectangles."
+        "description": "Randomly colored and sized rectangles.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Realism",
         "type": "Menu",
         "path": "pages/xpr/xpr_realism.html",
         "weight": 2,
-        "description": "Simple menu with simulated depth-of-field effects."
+        "description": "Simple menu with simulated depth-of-field effects.",
+        "entry_type": "page"
     },
     {
         "title": "XPR Metro",
         "type": "Component",
         "path": "pages/xpr/xpr_metro.html",
         "weight": 2,
-        "description": "Metro UI tile styled button."
+        "description": "Metro UI tile styled button.",
+        "entry_type": "page"
     },
     {
         "title": "Vertex Logo 1",
         "type": "Logo",
         "path": "pages/vertex/logo_anim_1.html",
         "weight": 1,
-        "description": "Vertex Design Scheme logo, animation variant 1."
+        "description": "Vertex Design Scheme logo, animation variant 1.",
+        "entry_type": "page"
     },
     {
         "title": "Vertex Logo 2",
         "type": "Logo",
         "path": "pages/vertex/logo_anim_2.html",
         "weight": 1,
-        "description": "Vertex Design Scheme logo, animation variant 2."
+        "description": "Vertex Design Scheme logo, animation variant 2.",
+        "entry_type": "page"
     },
     {
         "title": "Vertex Design Scheme",
         "type": "Splash/Menu",
         "path": "pages/vertex/main.html",
         "weight": 2,
-        "description": "Vertex Design Scheme splash and menu."
+        "description": "Vertex Design Scheme splash and menu.",
+        "entry_type": "page"
     },
     {
         "title": "Involve",
         "type": "Splash/Tool",
         "path": "pages/involve/index.html",
         "weight": 2,
-        "description": "Personalised onboarding experience with theme selection."
+        "description": "Personalised onboarding experience with theme selection.",
+        "entry_type": "page"
     },
     {
         "title": "PunkWeb",
         "type": "Splash/CLI",
         "path": "pages/punkweb/index.html",
         "weight": 2,
-        "description": "Basic CLI with easter eggs."
+        "description": "Basic CLI with easter eggs.",
+        "entry_type": "page"
     },
     {
         "title": "Listum",
         "type": "Tool",
         "path": "pages/listum/index.html",
         "weight": 2,
-        "description": "Minimalist task and list management."
+        "description": "Minimalist task and list management.",
+        "entry_type": "page"
     },
     {
         "title": "ThinGuard",
         "type": "Splash",
         "path": "pages/thinguard/index.html",
         "weight": 2,
-        "description": "Abstract splash with orange geometric animations."
+        "description": "Abstract splash with orange geometric animations.",
+        "entry_type": "page"
     },
     {
         "title": "Edible",
         "type": "Splash",
         "path": "pages/xpr/edible.html",
         "weight": 1,
-        "description": "Bright red splash with a rotating logo."
+        "description": "Bright red splash with a rotating logo.",
+        "entry_type": "page"
     },
     {
         "title": "Edible Dark",
         "type": "Splash",
         "path": "pages/xpr/edible_dark.html",
         "weight": 1,
-        "description": "Gloomier variant of the Edible splash with orange accents."
+        "description": "Gloomier variant of the Edible splash with orange accents.",
+        "entry_type": "page"
     },
     {
         "title": "Familiar",
         "type": "Tool",
         "path": "pages/familiar/index.html",
         "weight": 2,
-        "description": "Interactive file renaming and matching utility."
+        "description": "Interactive file renaming and matching utility.",
+        "entry_type": "page"
     },
     {
         "title": "Deuterium",
         "type": "Experience/V3D3Web",
         "path": "pages/deuterium/index.html",
         "weight": 3,
-        "description": "A cinematic interactive portal and experience hub."
+        "description": "A cinematic interactive portal and experience hub.",
+        "entry_type": "page"
     },
     {
         "title": "IDKIDC",
         "type": "Splash",
         "path": "pages/xpr/idkidc.html",
         "weight": 1,
-        "description": "Minimalist typographic splash animation."
+        "description": "Minimalist typographic splash animation.",
+        "entry_type": "page"
     },
     {
         "title": "Monomium",
         "type": "Experience/V3D3Web",
         "path": "pages/monomium/intro.html",
         "weight": 3,
-        "description": "A complex, multi-themed dashboard and interactive interface."
+        "description": "A complex, multi-themed dashboard and interactive interface.",
+        "entry_type": "page"
     },
     {
         "title": "ArBot Four",
         "type": "Splash/Menu",
         "path": "pages/arbot-four/index.html",
         "weight": 2,
-        "description": "A page to scan serial ports on the machine and pick one. Required Node to run."
+        "description": "A page to scan serial ports on the machine and pick one. Required Node to run.",
+        "entry_type": "page"
     },
     {
         "title": "YCMS Logo",
         "type": "Logo",
         "path": "pages/xpr/ycms-logo.html",
         "weight": 1,
-        "description": "A logo for a YouTube video downloading service."
+        "description": "A logo for a YouTube video downloading service.",
+        "entry_type": "page"
     },
     {
         "title": "YouMirror",
         "type": "Tool",
         "path": "pages/youmirror/ymr.html",
         "weight": 2,
-        "description": "A YouTube downloader."
+        "description": "A YouTube downloader.",
+        "entry_type": "page"
     },
     {
         "title": "Doorway",
         "type": "Tool",
         "path": "pages/doorway/doorway.html",
         "weight": 1,
-        "description": "Minimalist text analysis utility."
+        "description": "Minimalist text analysis utility.",
+        "entry_type": "page"
     },
     {
+        "entry_type": "group",
         "title": "Tritium",
-        "type": "Experience / V3D3Web",
-        "path": "pages/tritium/index.html",
-        "weight": 3,
-        "description": "Unified index and interactive portal."
+        "description": "Personal website prototype.",
+        "entries": [
+            {
+                "title": "XGraphics",
+                "type": "Splash",
+                "path": "pages/tritium/xgraphics.html",
+                "weight": 1,
+                "description": "A page for warming up blurring and other effects.",
+                "entry_type": "page"
+            },
+            {
+                "title": "PreviewGuard",
+                "type": "Login",
+                "path": "pages/tritium/previewguard.html",
+                "weight": 1,
+                "description": "A login page for viewing the website.",
+                "entry_type": "page"
+            },
+            {
+                "title": "PreviewGuard (razorview)",
+                "type": "Login",
+                "path": "pages/tritium/previewguard_rv.html",
+                "weight": 1,
+                "description": "A login page for viewing the website (mobile).",
+                "entry_type": "page"
+            },
+            {
+                "title": "Tritium",
+                "type": "Menu",
+                "path": "pages/tritium/tritium.html",
+                "weight": 1,
+                "description": "Main menu for Tritium.",
+                "entry_type": "page"
+            },
+            {
+                "title": "404",
+                "type": "Error",
+                "path": "pages/tritium/huhwhatwhere.html",
+                "weight": 1,
+                "description": "404 page for Tritium.",
+                "entry_type": "page"
+            },
+            {
+                "title": "404 (invert)",
+                "type": "Error",
+                "path": "pages/tritium/huhwhatwherex.html",
+                "weight": 1,
+                "description": "404 page for Tritium (inverted).",
+                "entry_type": "page"
+            },
+            {
+                "title": "About Tritium / WEBv3",
+                "type": "Menu",
+                "path": "pages/tritium/webv3.html",
+                "weight": 1,
+                "description": "About page for Tritium.",
+                "entry_type": "page"
+            },
+            {
+                "title": "Razorview Logo",
+                "type": "Logo",
+                "path": "pages/tritium/razorview_logo.html",
+                "weight": 1,
+                "description": "Logo for Tritium (mobile).",
+                "entry_type": "page"
+            },
+            {
+                "title": "About V3D3",
+                "type": "Menu",
+                "path": "pages/tritium/v3d3.html",
+                "weight": 1,
+                "description": "About page for V3D3.",
+                "entry_type": "page"
+            },
+            {
+                "title": "Web Content",
+                "type": "Menu",
+                "path": "pages/tritium/webworx.html",
+                "weight": 1,
+                "description": "Page for web content.",
+                "entry_type": "page"
+            },
+            {
+                "title": "Content",
+                "type": "Menu",
+                "path": "pages/tritium/worx.html",
+                "weight": 1,
+                "description": "Page for content.",
+                "entry_type": "page"
+            },
+            {
+                "title": "About Tritium / WEBv3 (old)",
+                "type": "Menu",
+                "path": "pages/tritium/DEP_webv3.html",
+                "weight": 1,
+                "description": "About page for Tritium (first version).",
+                "entry_type": "page"
+            },
+            {
+                "title": "Tritium Logo",
+                "type": "Logo",
+                "path": "pages/tritium/tritium_logo.html",
+                "weight": 1,
+                "description": "Tritium logo.",
+                "entry_type": "page"
+            }
+        ]
     },
     {
-        "title": "Craze",
-        "type": "Logo",
-        "path": "pages/logos/craze.html",
-        "weight": 2,
-        "description": "Erratic variants of the V3D3 logo."
-    },
-    {
-        "title": "V3D3",
-        "type": "Logo",
-        "path": "pages/logos/logo-normal.html",
-        "weight": 1,
-        "description": "My logo."
-    },
-    {
-        "title": "V3D3 (invert)",
-        "type": "Logo",
-        "path": "pages/logos/logo-invert.html",
-        "weight": 1,
-        "description": "My logo (inverted)."
+        "entry_type": "group",
+        "title": "V3D3 Logos",
+        "description": "V3D3 logo variants.",
+        "entries": [
+            {
+                "title": "Craze",
+                "type": "Logo",
+                "path": "pages/logos/craze.html",
+                "weight": 2,
+                "description": "Erratic variants of the V3D3 logo.",
+                "entry_type": "page"
+            },
+            {
+                "title": "V3D3",
+                "type": "Logo",
+                "path": "pages/logos/logo-normal.html",
+                "weight": 1,
+                "description": "My logo.",
+                "entry_type": "page"
+            },
+            {
+                "title": "V3D3 (invert)",
+                "type": "Logo",
+                "path": "pages/logos/logo-invert.html",
+                "weight": 1,
+                "description": "My logo (inverted).",
+                "entry_type": "page"
+            }
+        ]
     }
 ]

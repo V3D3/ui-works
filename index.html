@@ -158,6 +158,47 @@
             100% { left: 150%; }
         }
 
+        /* Group Styling */
+        .tile-group {
+            position: relative;
+        }
+
+        .tile-group::before,
+        .tile-group::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            z-index: -1;
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tile-group::before {
+            transform: translate(6px, 6px);
+            opacity: 0.6;
+        }
+
+        .tile-group::after {
+            transform: translate(12px, 12px);
+            opacity: 0.3;
+        }
+
+        .tile-group:hover::before {
+            transform: translate(10px, 10px);
+            opacity: 0.8;
+        }
+
+        .tile-group:hover::after {
+            transform: translate(20px, 20px);
+            opacity: 0.5;
+        }
+
         .tile::before {
             content: '';
             position: absolute;
@@ -197,6 +238,20 @@
 
         .tile:hover .tile-name {
             color: #fff;
+        }
+
+        .tile-desc {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 10px;
+            font-weight: 300;
+            line-height: 1.4;
+            max-width: 80%;
+            transition: color 0.3s ease;
+        }
+
+        .tile:hover .tile-desc {
+            color: #ccc;
         }
 
         /* Viewer Overlay */
@@ -247,6 +302,24 @@
             box-shadow: 0 0 15px var(--primary-glow);
         }
 
+        /* Loading Indicator */
+        .loading-spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 157, 0, 0.1);
+            border-top-color: var(--primary);
+            border-bottom-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         #viewer-frame {
             flex: 1;
             border: none;
@@ -288,7 +361,10 @@
 
     <div id="viewer-overlay">
         <div id="viewer-header">
-            <span id="viewer-title">experiment</span>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span id="viewer-title">experiment</span>
+                <div id="loading-indicator" class="loading-spinner"></div>
+            </div>
             <button id="close-btn">close</button>
         </div>
         <iframe id="viewer-frame" src=""></iframe>
@@ -296,19 +372,23 @@
 
     <script>
         let projects = [];
+        let currentProjects = [];
+        let navigationStack = [];
         const container = document.getElementById('tile-container');
         const searchInput = document.getElementById('search-input');
         const overlay = document.getElementById('viewer-overlay');
         const frame = document.getElementById('viewer-frame');
         const viewerTitle = document.getElementById('viewer-title');
         const closeBtn = document.getElementById('close-btn');
+        const loadingIndicator = document.getElementById('loading-indicator');
 
         async function init() {
             try {
                 const response = await fetch('tiles.json');
                 if (!response.ok) throw new Error('Failed to load tiles.json');
                 projects = await response.json();
-                createTiles();
+                currentProjects = projects;
+                createTiles(currentProjects);
             } catch (error) {
                 console.error('Error loading tiles:', error);
                 container.innerHTML = `
@@ -323,33 +403,68 @@
             }
         }
 
-        function createTiles(filter = '') {
+        function createTiles(items, filter = '') {
             container.innerHTML = '';
 
-            projects.forEach(project => {
-                const searchStr = `${project.title} ${project.type} ${project.description || ''}`.toLowerCase();
+            // Add back button if in a group
+            if (navigationStack.length > 0) {
+                const backTile = document.createElement('div');
+                backTile.className = 'tile';
+                backTile.innerHTML = `
+                    <div class="tile-type">Navigation</div>
+                    <div class="tile-name">← Back</div>
+                `;
+                backTile.onclick = goBack;
+                container.appendChild(backTile);
+            }
+
+            items.forEach(project => {
+                const searchStr = `${project.title} ${project.type || ''} ${project.description || ''}`.toLowerCase();
                 if (searchStr.includes(filter.toLowerCase())) {
                     const tile = document.createElement('div');
-                    tile.className = 'tile';
+                    tile.className = 'tile' + (project.entry_type === 'group' ? ' tile-group' : '');
                     tile.style.setProperty('--span', project.weight || 2);
 
                     tile.innerHTML = `
-                        <div class="tile-type">${project.type || 'Misc'}</div>
+                        <div class="tile-type">${project.type || (project.entry_type === 'group' ? 'Group' : 'Misc')}</div>
                         <div class="tile-name">${project.title}</div>
+                        ${project.entry_type === 'group' && project.description ? `<div class="tile-desc">${project.description}</div>` : ''}
                     `;
 
                     if (project.description) {
                         tile.title = project.description;
                     }
 
-                    tile.onclick = () => openViewer(project.title, project.path);
+                    if (project.entry_type === 'group') {
+                        tile.onclick = () => enterGroup(project);
+                    } else {
+                        tile.onclick = () => openViewer(project.title, project.path);
+                    }
                     container.appendChild(tile);
                 }
             });
         }
 
+        function enterGroup(group) {
+            navigationStack.push(currentProjects);
+            currentProjects = group.entries || [];
+            createTiles(currentProjects);
+            searchInput.value = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            if (navigationStack.length > 0) {
+                currentProjects = navigationStack.pop();
+                createTiles(currentProjects);
+                searchInput.value = '';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
         function openViewer(name, path) {
             viewerTitle.textContent = name.toLowerCase();
+            loadingIndicator.style.display = 'block';
             frame.src = path;
             overlay.style.display = 'flex';
             setTimeout(() => {
@@ -357,6 +472,21 @@
             }, 10);
             document.body.style.overflow = 'hidden';
         }
+
+        frame.onload = () => {
+            loadingIndicator.style.display = 'none';
+
+            // Try to detect navigation within the frame if same-origin
+            try {
+                if (frame.contentWindow) {
+                    frame.contentWindow.addEventListener('unload', () => {
+                        loadingIndicator.style.display = 'block';
+                    });
+                }
+            } catch (e) {
+                // Cross-origin restriction - can't detect internal navigation start
+            }
+        };
 
         function closeViewer() {
             overlay.style.opacity = '0';
@@ -367,7 +497,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        searchInput.oninput = (e) => createTiles(e.target.value);
+        searchInput.oninput = (e) => createTiles(currentProjects, e.target.value);
         closeBtn.onclick = closeViewer;
 
         function triggerRandomShine() {

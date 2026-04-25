@@ -116,8 +116,7 @@
 						$("#authI").css("top", "100%");
 						$("#authIC").delay(1500).velocity({top: "-100%"}, 1000, "easeInExpo");
 						$("#authI").delay(2300).velocity({top: "-100%"}, 1000, "easeInExpo", function()  {
-							var prefix = window.location.search ? '&' : '?';
-							window.location.href = window.location.href.split('#')[0].split('?')[0] + prefix + "coin=" + $("#coIn").val() + "&nav=tritium";
+							window.location.href = window.location.href.split('#')[0].split('?')[0] + "?coin=" + $("#coIn").val() + "&nav=tritium";
 						});
 					});
 				}

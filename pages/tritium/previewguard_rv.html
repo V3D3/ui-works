@@ -1,0 +1,128 @@
+<html>
+	<head>
+		<title>PREV // V3D3</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			var aD = false;
+			var v = 0;
+			$(document).ready(function()  {
+				$('#a0').delay(1000).velocity({top: 0, height: sH, rotateZ: 90}, 1200, 'easeOutExpo', function()  {
+					$('#in, #a1, #a2').css({opacity: 1});
+					$('#a0').remove();
+					$('#in').delay(200).velocity({top: 0.44 * sH, height: 0.12 * sH}, 750, 'easeInOutExpo');
+					$('#a1').delay(200).velocity({top: 0.44 * sH}, 750, 'easeInOutExpo');
+					$('#a2').delay(200).velocity({top: 0.56 * sH}, 750, 'easeInOutExpo', function()  {
+						$('#in, #a1, #a2').delay(200).velocity({translateY: '1vh'}, 300);
+						$('#t0').delay(200).velocity({opacity: 1});
+						$('#in, #a1, #a2').velocity({translateY: '2vh'}, 300);
+						$('#t1').delay(500).velocity({opacity: 1});
+						$('#in, #a1, #a2').velocity({translateY: '3vh'}, 300);
+						$('#t2').delay(800).velocity({opacity: 1});
+						$('#in, #a1, #a2').velocity({translateY: '4vh'}, 300);
+						$('#t3').delay(1100).velocity({opacity: 1}, function()  {
+							$('#in').focus();
+						});
+					});
+				});
+			});
+			$(document).ready(function()  {
+				//auth();
+
+				function kill()  {
+					document.write("<html><head><title>Page destroyed.</title></head><body style='background:#000;'><span style='position:absolute;top:0;left:0;height:100%;width:100%;text-align:center;line-height:100vh;color:orange;font-size:12vh;font-family:Segoe UI Light,sans-serif;'>Preview session destroyed.</span></body></html>");
+				}
+				$('#in').keyup(function()  {
+					if($('#in').val().length == 16)  {
+						$('#acB').velocity({top: '90%'}, 'easeOutExpo', 600);
+					}  else  {
+						$('#acB').velocity({top: '100%'}, 'easeInExpo', 600);
+					}
+				});
+				$('#acB').mousedown(function()  {
+					$('#acB').css({background: 'orange'});
+				});
+				$('#acB').mouseup(function()  {
+					$('#acB').css({background: 'transparent'});
+				});
+			});
+			function auth()  {
+				var b = 1;
+				$("#authI").velocity({top: 0}, 1000, "easeOutExpo", function()  {
+					if(b != -1)  { authexec(b); }  else  { a = 1; }
+				});
+				//I have no idea what a and b manage.
+			}
+			function authexec(b)  {
+				if(b == 2)  {
+					//timeout
+				}  else if(b == 0)  {
+					//invalid code
+				}  else if(b == 1)  {
+					//valid code
+					//window.location += "&coin=" + [code] + "&nav=tritium";
+				}
+			}
+		</script>
+		<style>
+			#weirdo  {
+				position: absolute;
+				left: 0;
+				width: 100%;
+				height: 30vh;
+				top: 7vh;
+			}
+			#t0, #t1, #t2, #t3  {
+				position: absolute;
+				height: 7.5vh;
+				line-height: 7.5vh;
+				text-align: center;
+				font-family: Segoe UI Light;
+				font-size: 5vh;
+				color: orange;
+				opacity: 0;
+				left: 0;
+				width: 100%;
+			}
+			#t0  {
+				top: 0;
+			}
+			#t1  {
+				top: 25%;
+			}
+			#t2  {
+				top: 50%;
+			}
+			#t3  {
+				top: 75%;
+			}
+			#acB  {
+				position: absolute;
+				border: 3px solid orange;
+				border-radius: 50%;
+				top: 100%;
+				height: 4vh;
+				width: 4vh;
+				left: calc(50% - 2vh);
+			}
+		</style>
+	</head>
+	<body style="background: black; overflow: hidden; margin: 0;">
+		<span id='weirdo'>
+			<span id='t0'>enter</span>
+			<span id='t1'>your</span>
+			<span id='t2'>preview</span>
+			<span id='t3'>code</span>
+		</span>
+		<span id='a0' style='position: absolute; top: 150%; left: calc(50% - 2px); height: 2px; width: 4px; background: orange;'></span>
+		<input id='in' style='position: absolute; top: calc(50% - 1px); left: 0; height: 0; width: 100%; background: rgba(255, 255, 255, 0.05); font-family: Segoe UI Light; font-size: 5vh; opacity: 0; color: orange; text-align: center; line-height: 12vh; border: 0;' maxlength=16>
+		<span id='a1' style='position: absolute; top: calc(50% - 2px); left: 0; height: 2px; width: 100%; background: orange; opacity: 0;'></span>
+		<span id='a2' style='position: absolute; top: 50%; left: 0; height: 2px; width: 100%; background: orange; opacity: 0;'></span>
+		<span id='acB'></span>
+	</body>
+</html>

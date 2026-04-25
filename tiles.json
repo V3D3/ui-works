@@ -13,13 +13,6 @@
         "weight": 1
     },
     {
-        "title": "Doorway",
-        "type": "Tool",
-        "path": "pages/doorway/doorway.html",
-        "weight": 2,
-        "description": "Minimalist text analysis utility."
-    },
-    {
         "title": "XPR CirC",
         "type": "Anim",
         "path": "pages/xpr/xpr_circ.html",
@@ -345,24 +338,38 @@
         "description": "A complex, multi-themed dashboard and interactive interface."
     },
     {
-	"title": "ArBot Four",
-	"type": "Splash/Menu",
-	"path": "pages/arbot-four/index.html",
-	"weight": 2,
-	"description": "A page to scan serial ports on the machine and pick one. Required Node to run."
+        "title": "ArBot Four",
+        "type": "Splash/Menu",
+        "path": "pages/arbot-four/index.html",
+        "weight": 2,
+        "description": "A page to scan serial ports on the machine and pick one. Required Node to run."
     },
     {
-	"title": "YCMS Logo",
-	"type": "Logo",
-	"path": "pages/xpr/ycms-logo.html",
-	"weight": 1,
-	"description": "A logo for a YouTube video downloading service."
+        "title": "YCMS Logo",
+        "type": "Logo",
+        "path": "pages/xpr/ycms-logo.html",
+        "weight": 1,
+        "description": "A logo for a YouTube video downloading service."
     },
     {
-	"title": "YouMirror",
-	"type": "Tool",
-	"path": "pages/youmirror/ymr.html",
-	"weight": 2,
-	"description": "A YouTube downloader."
+        "title": "YouMirror",
+        "type": "Tool",
+        "path": "pages/youmirror/ymr.html",
+        "weight": 2,
+        "description": "A YouTube downloader."
+    },
+    {
+        "title": "Doorway",
+        "type": "Tool",
+        "path": "pages/doorway/doorway.html",
+        "weight": 1,
+        "description": "Minimalist text analysis utility."
+    },
+    {
+        "title": "Tritium",
+        "type": "Experience / V3D3Web",
+        "path": "pages/tritium/index.html",
+        "weight": 3,
+        "description": "Unified index and interactive portal."
     }
 ]

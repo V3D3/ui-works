@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>WebXMS // Vedaant Arya</title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+            var sW = window.innerWidth, sH = window.innerHeight;
+            $(document).ready(function()  {
+                $("#layW").velocity({top: 0}, 1000, "easeOutExpo");
+                $("#layX").delay(350).velocity({top: 0}, 1000, "easeOutExpo");
+                $("#layM").delay(700).velocity({bottom: 0}, 1000, "easeOutExpo");
+                $("#layS").delay(1050).velocity({bottom: 0}, 1000, "easeOutExpo", function()  {
+                    $("#layW, #layX, #layM, #layS").velocity({transformPerspective: 280}, 0);
+                    $("#layW").velocity({boxShadowX: -17, boxShadowY: -17, boxShadowBlur: 196, rotateX: 15, rotateY: -15}, 1000, "easeInOutExpo");
+                    $("#layX").velocity({boxShadowX: 17, boxShadowY: -17, boxShadowBlur: 196, rotateX: 15, rotateY: 15}, 1000, "easeInOutExpo");
+                    $("#layM").velocity({boxShadowX: -17, boxShadowY: 17, boxShadowBlur: 196, rotateX: -15, rotateY: -15}, 1000, "easeInOutExpo");
+                    $("#layS").velocity({boxShadowX: 17, boxShadowY: 17, boxShadowBlur: 196, rotateX: -15, rotateY: 15}, 1000, "easeInOutExpo", function()  {
+						$('#layS').delay(1500).velocity({translateZ: '500px'/*, translateY: '-500px', translateX: '-500px'*/}, 2000, 'easeInExpo');
+						$('#layM').delay(1800).velocity({translateZ: '500px'/*, translateY: '-500px', translateX: '500px'*/}, 2000, 'easeInExpo');
+						$('#layX').delay(2100).velocity({translateZ: '500px'/*, translateY: '500px', translateX: '-500px'*/}, 2000, 'easeInExpo');
+						$('#layW').delay(2500).velocity({translateZ: '500px'/*, translateY: '500px', translateX: '500px'*/}, 2000, 'easeInExpo', function()  {
+							window.location = 'webxms.html';
+						});
+					});
+                });
+            });
+        </script>
+    </head>
+    <body style="background: black; margin: 0; overflow: hidden;">
+        <span id="cont" style="height: 40%; width: 40vh; position: absolute; top: 30%; left: calc(50% - 20vh); overflow: visible; font-family: &quot;Segoe UI Light&quot;; color: black; font-size: 12vh; line-height: 16vh; text-align: center;">
+            <span id="layW" style="position: absolute; top: 300%; left: 0; height: 45%; width: 45%; background: orange; transform: perspective(280px); box-shadow: 0px 0px 0px orange;">W</span>
+            <span id="layX" style="position: absolute; top: 300%; right: 0; height: 45%; width: 45%; background: lime; transform: perspective(280px); box-shadow: 0px 0px 0px lime;">X</span>
+            <span id="layM" style="position: absolute; left: 0; bottom: -300%; height: 45%; width: 45%; background: dodgerblue; transform: perspective(280px); box-shadow: 0px 0px 0px dodgerblue;">M</span>
+            <span id="layS" style="position: absolute; right: 0; bottom: -300%; height: 45%; width: 45%; background: rgb(255, 50, 50); transform: perspective(280px); box-shadow: 0px 0px 0px rgb(255, 50, 50);">S</span>
+        </span>
+    </body>
+</html>

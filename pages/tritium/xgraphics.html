@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<title>XGPC // V3D3
+		</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			document.cookie='xgrpc=1;max-age=3600';
+			$(document).ready(function()  {
+				$("#expo0").velocity({top: 0}, 1000, "easeOutExpo", function()  {
+					$("#expo0").delay(500).velocity({top: "-100%"}, 500, "easeInExpo", function()  {
+						for(var i = 0; i < 6; i++)  {
+							$("#expo" + (i + 1)).delay(i * 300).velocity({top: (sH * 0.35)}, 1000, 'easeOutExpo');
+						}
+						$("#expo7").delay(1800).velocity({top: (sH * 0.35)}, 1000, 'easeOutExpo', function()  {
+							for(var i = 0; i < 6; i++)  {
+								$('#blur' + (6 - i)).delay(300 + (i * 500)).velocity({left: (sW / 2) - (sH * 0.15), blur: '20px'}, 1000, 'easeOutExpo');
+							}
+							$("#blur0").delay(3300).velocity({left: (sW / 2) - (sH * 0.15), blur: '20px'}, 1000, 'easeOutExpo', function()  {
+								$("#expo1, #expo2, #expo3, #expo4, #expo5, #expo6, #expo7").velocity({height: 0, width: 0, top: '50%', left: '50%', rotateZ: 2000, transformPerspective: 400}, 3000, 'easeInOutExpo');
+								$("#blur0, #blur1, #blur2, #blur3, #blur4, #blur5, #blur6").velocity({height: 0, width: 0, top: '50%', left: '50%', rotateZ: -2000, transformPerspective: 400}, 3000, 'easeInOutExpo', function()  {
+									for(var i = 0; i < 6; i++)  {
+										$("#expo" + (i + 1) + ", #blur" + i).delay((i + 1) * 300).velocity({top: '-50%', transformPerspective: 400, rotateY: 1080, rotateZ: 0}, 1000, 'easeInExpo');
+									}
+									$("#expo7, #blur6").delay(2100).velocity({top: '-50%', transformPerspective: 400, rotateY: 1080, rotateZ: 0}, 1000, 'easeInExpo', function()  {
+										$('#redoquery').velocity({top: '25%'}, 1000, 'easeOutExpo');
+										$('#yespls').delay(200).velocity({top: '75%'}, 1000, 'easeOutExpo');
+										$('#nofkof').delay(400).velocity({top: '75%'}, 1000, 'easeOutExpo');
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+			$(document).ready(function()  {
+				$("#yespls").mouseenter(function()  {
+					$(this).velocity({boxShadowBlur: 10}, 300);
+				});
+				$("#nofkof").mouseenter(function()  {
+					$(this).velocity({boxShadowBlur: 10}, 300);
+				});
+				$("#yespls").mouseleave(function()  {
+					$(this).velocity({boxShadowBlur: 0}, 300);
+					$(this).css('background', 'black');
+					$(this).css('color', 'orange');
+				});
+				$("#nofkof").mouseleave(function()  {
+					$(this).velocity({boxShadowBlur: 0}, 300);
+					$(this).css('background', 'black');
+					$(this).css('color', 'orange');
+				});
+				$("#yespls, #nofkof").mousedown(function()  {
+					$(this).css('background', 'orange');
+					$(this).css('color', 'black');
+				});
+				$("#yespls").mouseup(function()  {
+					$(this).css('background', 'black');
+					$(this).css('color', 'orange');
+					$(this).velocity({boxShadowBlur: 0}, 300);
+					$('#bodyder').velocity({scale: 0.8}, 1000, 'easeInOutExpo', function()  {
+						$('#bodyder').velocity({transformPerspective: 600}, 0);
+						$('#bodyder').delay(100).velocity({transformPerspective: 600, rotateX: 90, scale: 0.8}, 1000, 'easeInExpo', function()  {
+							$('#bodyder').html("");
+							$('#bodyder').velocity({transformPerspective: 600, rotateX: 180}, 1000, 'easeOutExpo', function()  {
+								$('#bodyder').velocity({transformPerspective: 600, scale: 1}, 1000, 'easeInOutExpo', function()  {
+									window.location = '/?nav=tritium';
+								});
+							});
+						});
+					});
+				});
+				$("#nofkof").mouseup(function()  {
+					$(this).css('background', 'black');
+					$(this).css('color', 'orange');
+					$(this).velocity({boxShadowBlur: 0}, 300);
+					$('#redoquery').velocity({top: '-100%'}, 1000, 'easeInExpo');
+					$('#yespls').delay(200).velocity({top: '-100%'}, 1000, 'easeInExpo');
+					$('#nofkof').delay(400).velocity({top: '-100%'}, 1000, 'easeInExpo', function()  {
+						window.location = window.location.origin;
+					});
+				});
+			});
+		</script>
+	</head>
+	<body style='margin: 0; overflow: hidden;'>
+		<span id='bodyder' style='background: black; overflow: hidden; position: absolute; top: 0; left: 0; height: 100%; width: 100%;'>
+			<span id='expo0' style='position: absolute; top: 100%; left: 0; width: 100%; height: 100%; line-height: 100vh; text-align: center; color: orange; font-family: "Segoe UI Light"; font-size: 12vh;'>optimizing graphics...</span>
+			<span id='expo1' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo2' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo3' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo4' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo5' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo6' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='expo7' style='position: absolute; top: 100%; left: calc(50% - 15vh); height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 2;'></span>
+			<span id='blur0' style='position: absolute; top: 35%; left: 120%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur1' style='position: absolute; top: 35%; left: -50%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur2' style='position: absolute; top: 35%; left: 120%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur3' style='position: absolute; top: 35%; left: -50%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur4' style='position: absolute; top: 35%; left: 120%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur5' style='position: absolute; top: 35%; left: -50%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='blur6' style='position: absolute; top: 35%; left: 120%; height: 30%; width: 30vh; border-radius: 50%; border: 10px solid orange; z-index: 0'></span>
+			<span id='redoquery' style='position: absolute; color: orange; height: 30%; width: 100%; font-family: "Segoe UI Light"; font-size: 8vh; line-height: 30vh; text-align: center; top: 100%; left: 0%;'>Was there any lag in the final animation?</span>
+			<span id='yespls' style='position: absolute; color: orange; height: 10%; width: 20%; font-family: "Segoe UI Light"; font-size: 5vh; line-height: 10vh; text-align: center; top: 100%; left: 23%; border: 2px solid orange; box-shadow: 0 0 0 orange;'>Yes. Reload.</span>
+			<span id='nofkof' style='position: absolute; color: orange; height: 10%; width: 20%; font-family: "Segoe UI Light"; font-size: 5vh; line-height: 10vh; text-align: center; top: 100%; right: 23%; border: 2px solid orange; box-shadow: 0 0 0 orange;'>No. Continue.</span>
+		</span>
+	</body>
+</html>

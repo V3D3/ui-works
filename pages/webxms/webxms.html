@@ -1,0 +1,687 @@
+<html>
+    <head>
+        <title>WebXMS // Vedaant Arya</title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+    var sAr = [
+        "Galactic Conquest", "Neon Nights", "Quantum Paradox", "Shadow Protocol",
+        "The Last Frontier", "Cipher Zero", "Neural Link", "Obsidian Sky",
+        "Titan's Wake", "Apex Legends: The Series", "Virtual Reality", "Steam Punk Era",
+        "Bio Hazard", "Zero Gravity", "Orbital Station", "Deep Space Nine-X",
+        "Synthwave", "Cyber Drifter", "Code Runners", "Data Burst"
+    ];
+
+    var eAr = [
+        ['Season 1', 'Season 2', 'Season 3'], // Galactic Conquest
+        ['Season 1', 'Season 2'],             // Neon Nights
+        ['Season 1', 'Season 2', 'Season 3', 'Season 4'], // Quantum Paradox
+        ['Season 1'],                         // Shadow Protocol
+        ['Season 1', 'Season 2', 'Season 3'], // The Last Frontier
+        ['Season 1', 'Season 2'],             // Cipher Zero
+        ['Season 1', 'Season 2', 'Season 3', 'Season 4', 'Season 5'], // Neural Link
+        ['Season 1'],                         // Obsidian Sky
+        ['Season 1', 'Season 2'],             // Titan's Wake
+        ['Season 1', 'Season 2', 'Season 3'], // Apex Legends
+        ['Season 1', 'Season 2'],             // Virtual Reality
+        ['Season 1', 'Season 2', 'Season 3'], // Steam Punk Era
+        ['Season 1'],                         // Bio Hazard
+        ['Season 1', 'Season 2'],             // Zero Gravity
+        ['Season 1', 'Season 2', 'Season 3'], // Orbital Station
+        ['Season 1', 'Season 2', 'Season 4'], // Deep Space Nine-X
+        ['Season 1'],                         // Synthwave
+        ['Season 1', 'Season 2'],             // Cyber Drifter
+        ['Season 1', 'Season 2', 'Season 3'], // Code Runners
+        ['Season 1', 'Season 2']              // Data Burst
+    ];
+
+    var aAr = [
+        ['4', '4', '3'], // Galactic Conquest
+        ['4', '2'],      // Neon Nights
+        ['4', '4', '4', '4'], // Quantum Paradox
+        ['1'],           // Shadow Protocol
+        ['4', '4', '2'], // The Last Frontier
+        ['4', '1'],      // Cipher Zero
+        ['4', '4', '4', '3', '0'], // Neural Link
+        ['2'],           // Obsidian Sky
+        ['4', '3'],      // Titan's Wake
+        ['4', '4', '2'], // Apex Legends
+        ['4', '2'],      // Virtual Reality
+        ['4', '4', '1'], // Steam Punk Era
+        ['3'],           // Bio Hazard
+        ['4', '2'],      // Zero Gravity
+        ['4', '4', '3'], // Orbital Station
+        ['4', '4', '2'], // Deep Space Nine-X
+        ['4'],           // Synthwave
+        ['4', '2'],      // Cyber Drifter
+        ['4', '4', '1'], // Code Runners
+        ['4', '3']       // Data Burst
+    ];
+
+    var yAr = [
+        ['2019', '2020', '2021'], // Galactic Conquest
+        ['2020', '2021'],       // Neon Nights
+        ['2018', '2019', '2020', '2021'], // Quantum Paradox
+        ['2022'],               // Shadow Protocol
+        ['2017', '2018', '2019'], // The Last Frontier
+        ['2021', '2022'],       // Cipher Zero
+        ['2016', '2017', '2018', '2019', '2020'], // Neural Link
+        ['2022'],               // Obsidian Sky
+        ['2020', '2021'],       // Titan's Wake
+        ['2019', '2020', '2021'], // Apex Legends
+        ['2021', '2022'],       // Virtual Reality
+        ['2018', '2019', '2020'], // Steam Punk Era
+        ['2022'],               // Bio Hazard
+        ['2020', '2021'],       // Zero Gravity
+        ['2019', '2020', '2021'], // Orbital Station
+        ['2018', '2019', '2021'], // Deep Space Nine-X
+        ['2021'],               // Synthwave
+        ['2020', '2021'],       // Cyber Drifter
+        ['2019', '2020', '2021'], // Code Runners
+        ['2021', '2022']        // Data Burst
+    ];
+
+    var dAr = [
+        "A sweeping epic about the struggle for control over the known galaxy.",
+        "A gritty detective story set in a neon-drenched futuristic metropolis.",
+        "Scientists discover a rift in time and space, leading to unexpected consequences.",
+        "An elite team of hackers and operatives must stop a global conspiracy.",
+        "The crew of a small exploration vessel ventures into the farthest reaches of space.",
+        "A lone hacker uncovers a secret that could destroy the digital world.",
+        "In a world where minds are linked, one man must find a way to stay disconnected.",
+        "A bleak future where the sun has disappeared and humanity lives in the shadows.",
+        "Colossal machines battle for dominance on a dying planet.",
+        "Following the legends of the games as they face their greatest challenges yet.",
+        "A group of friends gets trapped in a high-stakes virtual reality game.",
+        "Victorian technology meets a world of magic and airships.",
+        "A deadly virus breaks out, and a small group must survive the nightmare.",
+        "Experience the thrill and danger of life beyond the Earth's atmosphere.",
+        "The daily lives and political intrigues of people living on a massive space station.",
+        "Deep space exploration beyond the nine known sectors.",
+        "A musical journey through a retro-futuristic landscape.",
+        "High-speed chases and illegal street racing in a cyberpunk setting.",
+        "The fastest coders in the world compete in a high-stakes hacking tournament.",
+        "A short-form series capturing the most intense moments of the digital age."
+    ];
+
+    var gAr = [
+        "Sci-Fi,Action", "Noir,Thriller", "Sci-Fi,Drama", "Spy,Action",
+        "Adventure,Sci-Fi", "Cyberpunk,Mystery", "Sci-Fi,Psychological", "Drama,Sci-Fi",
+        "Mecha,Action", "Gaming,Action", "VR,Adventure", "Steampunk,Fantasy",
+        "Survival,Horror", "Space,Adventure", "Sci-Fi,Diplomacy", "Sci-Fi,Adventure",
+        "Aesthetic,Music", "Cyberpunk,Drift", "Coding,Thriller", "Action,Digital"
+    ];
+</script>
+<script>
+    var sW = window.innerWidth, sH = window.innerHeight;
+    var sel = "tTab";
+    var tvISel = -1;
+    var mnk = true;
+    $(document).ready(function()  {
+        render();
+        $("#movieTab, #youtubeTab, #tvTab").velocity({transformPerspective: 600}, 0);
+    });
+    $(document).ready(function()  {
+        $(".tabb").mouseenter(function()  {
+            var id = $(this).attr("id");
+            var c = Number($("#" + sel).css("left").slice(0, -2));
+            var d = Number($("#" + id).css("left").slice(0, -2));
+            var w = Number($("#" + sel).css("width").slice(0, -2));
+            if(c > d)  {
+                $("#slcN").velocity({left: d, width: (c - d) + w}, 200, "easeInOutExpo");
+            }  else  {
+                $("#slcN").velocity({width: (d - c) + w}, 200, "easeInOutExpo");
+            }
+        });
+        $(".tabb").mouseleave(function()  {
+            var c = Number($("#" + sel).css("left").slice(0, -2));
+            var w = Number($("#" + sel).css("width").slice(0, -2));
+            $("#slcN").velocity({left: c, width: w}, 200, "easeInOutExpo");
+        });
+        $(".tabb").mousedown(function()  {
+            sel = $(this).attr("id");
+            var c = Number($("#" + sel).css("left").slice(0, -2));
+            var w = Number($("#" + sel).css("width").slice(0, -2));
+            $("#slcN").velocity({left: c, width: w}, 200, "easeInOutExpo");
+            var col = "";
+            if(sel == "mTab")  {
+                col = "#ffff00";
+            }  else if(sel == "tTab")  {
+                col = "#1e90ff";
+            }  else  {
+                col = "#ff0000";
+            }
+            $(".tabb").velocity({color: col}, 400);
+            $("#slcN").velocity({backgroundColor: col}, 400);
+            twerk();
+        });
+        $(".tvItem").mouseenter(function()  {
+            if(mnk)  {
+                $("*").velocity("stop");
+                tvISel = $(this).attr("id").split("Item")[1];
+                $("#itEmulH").html($("#tvItemHead" + tvISel).html());
+                $("#itEmulF").html($("#tvItemFoot" + tvISel).html());
+                var lft = Number($(this).css("left").slice(0, -2)) - $("#tvTab").scrollLeft();
+                while(lft > sW)  {
+                    lft -= sW;
+                }
+                $("#itEmul").css({left: lft, top: getProp("tv", tvISel, "top") + 0.1 * sH, width: $(this).css("width"), height: $(this).css("height")});
+                $(".tvItem").velocity({blur: 5}, 250);
+            }
+        });
+        $("#itEmul").mouseleave(function()  {
+            if(mnk)  {
+                $("*").velocity("stop");
+                $(".tvItem").velocity({blur: 0}, 250, function()  {
+                    $("#itEmul").css({height: 0, width: 0, left: 0, top: 0});
+                });
+            }
+        });
+        $("#itEmul").mousedown(function()  {
+            if(mnk)  {
+                mnk = false;
+                $(".tvItem").velocity({blur: 10}, 500, function()  {
+                    load(tvISel - 1);
+                });
+            }
+        });
+    });
+
+    function twerk()  {
+        $(document).ready(function()  {
+            if(sel == "tTab")  {
+                $("#movieTab").velocity({transformPerspective: 600, left: "-200%", opacity: 0.5, rotateY: -45}, "easeInExpo");
+                $("#youtubeTab").velocity({transformPerspective: 600, left: "200%", opacity: 0.5, rotateY: 45}, "easeInExpo", function()  {
+                    $("#tvTab").velocity({transformPerspective: 600, left: 0, opacity: 1, rotateY: 0}, "easeOutExpo", function()  {
+                    });
+                    $("#movieTab, #youtubeTab").css("z-index", "-1");
+                    $("#tvTab").css("z-index", "0");
+                });
+            }  else if(sel == "mTab")  {
+                $("#tvTab, #youtubeTab").velocity({transformPerspective: 600, left: "200%", opacity: 0.5, rotateY: 45}, "easeInExpo", function()  {
+                    $("#movieTab").velocity({transformPerspective: 600, left: 0, opacity: 1, rotateY: 0}, "easeOutExpo", function()  {
+                    });
+                    $("#tvTab, #youtubeTab").css("z-index", "-1");
+                    $("#movieTab").css("z-index", "0");
+                });
+            }  else  {
+                $("#tvTab, #movieTab").velocity({transformPerspective: 600, left: "-200%", opacity: 0.5, rotateY: -45}, "easeInExpo", function()  {
+                    $("#youtubeTab").velocity({transformPerspective: 600, left: 0, opacity: 1, rotateY: 0}, "easeOutExpo", function()  {
+                    });
+                    $("#movieTab, #tvTab").css("z-index", "-1");
+                    $("#youtubeTab").css("z-index", "0");
+                });
+            }
+        });
+    }
+
+    function render()  {
+        var itms = 1;
+        for(var i = 0; i < sAr.length; i++)  {
+            addHtm("tv", "<span class='tvItem' id='tvItem" + itms + "'><span class='tvItemHead' id='tvItemHead" + itms + "'>" + sAr[i] + "</span><span class='tvItemFoot' id='tvItemFoot" + itms + "'></span>");
+            var itml = [];
+            var num = [];
+            for(var j = 0; j < eAr[i].length; j++)  {
+                var tp = eAr[i][j].split(" ")[0];
+                if(itml.indexOf(tp) == -1)  {
+                    itml.push(tp);
+                    num.push(1);
+                }  else  {
+                    num[itml.indexOf(tp)]++;
+                }
+            }
+            var str = num[0] + " " + itml[0] + "(s)";
+            for(var j = 1; j < itml.length; j++)  {
+                str += ", " + num[j] + " " + itml[j] + "(s)";
+            }
+            $("#tvItemFoot" + itms).html(str);
+            if(i < 3)  {
+                if(i == 0)  {
+                    $("#tvItem" + itms).css({top: "6.5%", left: "5%"});
+                }  else if(i == 1)  {
+                    $("#tvItem" + itms).css({top: "37.5%", left: "5%"});
+                }  else  {
+                    $("#tvItem" + itms).css({top: "68.5%", left: "5%"});
+                }
+            }  else  {
+                if(i % 3 == 0)  {
+                    $("#tvItem" + itms).css({top: "6.5%"});
+                }  else if(i % 3 == 1)  {
+                    $("#tvItem" + itms).css({top: "37.5%"});
+                }  else  {
+                    $("#tvItem" + itms).css({top: "68.5%"});
+                }
+                $("#tvItem" + itms).css({left: getProp("tv", itms - 3, "left") + (0.08 * sW) + getProp("tv", itms - 3, "width")});
+            }
+            if(i == sAr.length - 1)  {
+                addHtm("tv", "<span style='position: absolute; width: 8%; height: 100%; top: 0; left: " + (getProp("tv", itms, "left") + getProp("tv", itms, "width")) + "px;'></span>")
+            }
+            itms++;
+        }
+    }
+    function addHtm(it, mu)  {
+        $("#" + it + "Tab").html($("#" + it + "Tab").html() + mu);
+    }
+    function getProp(it, nm, pr)  {
+        return Number($("#" + it + "Item" + nm).css(pr).slice(0, -2));
+    }
+    function load(x)  {
+        $("#itEmulF").velocity({lineHeight: "20vh", height: "100%", fontSize: "5vh"}, "easeInOutExpo");
+        $("#itEmulH").velocity({height: 0}, "easeInOutExpo", function()  {
+            $("#itEmulF").velocity({lineHeight: "100vh"}, "easeInOutExpo", 1000);
+            $("#itEmul").velocity({top: 0, left: 0, height: "100%", width: "100%"}, "easeInOutExpo", 1000, function()  {
+                $("#itEmulF").velocity({height: "40%"}, 1000, "easeInOutExpo", function()  {
+                    $("#itAImg").attr("src", "non.png");
+                    $("#itEmulC").css("height", "60%");
+                    $("#itEmulF").css("z-index", 0);
+                    $("#itImg").css("z-index", 1).css("opacity", "1");
+                    $("#itEmulC").velocity({boxShadowBlur: "100px"}, function()  {
+                        $("#itImg").velocity({top: (0.05 * sH)}, "easeInOutExpo", function()  {
+                            $("#itEmulC").velocity({boxShadowBlur: "0px"}, function()  {
+                                $("#itHdr").css({top: 0, height: "40%"});
+                                $("#itEmulF").css({top: 0, height: 0});
+
+                                // Static data mock for AJAX
+                                $("#itDet").html(dAr[x]);
+                                var gList = gAr[x].split(",");
+                                for(var z = 0; z < gList.length; z++)  {
+                                    $("#itGen").html($("#itGen").html() + "<span class='genTile' id='itGen" + z + "'>" + gList[z] + "</span>");
+                                }
+
+                                $("#itImg").velocity({left: "15%"}, "easeInOutExpo", 1000);
+                                $("#itDet").delay(200).velocity({left: "30%"}, "easeInOutExpo", 1000);
+                                $("#itGen").delay(400).velocity({left: "30%"}, "easeInOutExpo", 1000, function()  {
+                                    tvLoadCont(x);
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    }
+    function tvLoadCont(x)  {
+        var actAr = eAr[x];
+        var avaAr = aAr[x];
+        var s = "";
+        for(var i = 0; i < actAr.length; i++)  {
+            $("#itCnt").html($("#itCnt").html() + "<span class='itCntE' id='itCntE" + i + "'>" + actAr[i] + " - " + yAr[x][i] + "<span class='stat" + avaAr[i] + " itCntES' id='itCntES" + i + "'>" + stCnv(avaAr[i]) + "</span></span>");
+            s += ", #itCntE" + i;
+        }
+        $(s.substring(2)).velocity("transition.flipXIn", {stagger: 100});
+        $("#itImg").css("z-index", "5");
+        $("#itHdr").css("z-index", "3");
+        $("#itHdr").velocity({boxShadowBlur: "10px"}, function()  {
+            $("#itEmulAcB").velocity({height: "10%", bottom: 0}, "easeInOutExpo");
+        });
+    }
+    function stCnv(x)  {
+        switch(Number(x))  {
+            case 0:
+                return "Unavailable";
+            case 1:
+                return "Downloading";
+            case 2:
+                return "Downloaded";
+            case 3:
+                return "Watching";
+            case 4:
+                return "Watched";
+        }
+    }
+    function resetIt()  {
+
+    }
+    function modIt()  {
+
+    }
+</script><style>
+    #tabC  {
+        position: absolute;
+        top: 0;
+        height: 10%;
+        width: 100%;
+        left: 0;
+    }
+    .tabb  {
+        position: absolute;
+        height: 50%;
+        color: dodgerblue;
+        font-family: "Segoe UI Light";
+        font-size: 2.5vh;
+        line-height: 5vh;
+        text-align: center;
+        top: 25%;
+        width: 10%;
+        border: 0;
+        background: transparent;
+    }
+    #mTab  {
+        left: 32.5%;
+    }
+    #tTab  {
+        left: 45%;
+    }
+    #yTab  {
+        left: 57.5%;
+    }
+    .tabb:focus  {
+        outline: 0;
+    }
+    .tabb:hover  {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    #slcN  {
+        position: absolute;
+        top: 76%;
+        width: 10%;
+        height: 2%;
+        background: dodgerblue;
+        left: 45%;
+    }
+    .tab  {
+        position: absolute;
+        top: 10%;
+        width: 100%;
+        padding-top: 3.5%;
+        padding-bottom: 0;
+        height: 83%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    ::-webkit-scrollbar  {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgb(50, 50, 50);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: radial-gradient(circle, dodgerblue 5%, black 250%);
+    }
+    #movieTab  {
+        z-index: -1;
+        left: -200%;
+        transform: perspective(600px) rotateY(-45deg);
+        opacity: 0.5;
+    }
+    #tvTab  {
+        z-index: 0;
+        left: 0;
+        transform: perspective(600px) rotateY(0deg);
+    }
+    #youtubeTab  {
+        z-index: -1;
+        left: 200%;
+        transform: perspective(600px) rotateY(45deg);
+        opacity: 0.5;
+    }
+    .tvItem  {
+        position: absolute;
+        color: white;
+        font-family: "Segoe UI Light";
+        height: 22%;
+        width: 24%;
+        background: dodgerblue;
+        z-index: 1;
+    }
+    .tvItemHead  {
+        display: block;
+        margin: 0;
+        margin-left: 3%;
+        height: 75%;
+        width: 94%;
+        line-height: 14.85vh;
+        text-align: center;
+        font-size: 4vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .tvItemFoot  {
+        display: block;
+        margin: 0;
+        height: 25%;
+        width: 100%;
+        line-height: 4.5vh;
+        text-align: center;
+        background-color: #0e70df;
+    }
+    #itEmul  {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        z-index: 2;
+        color: white;
+        font-family: "Segoe UI Light";
+        background: dodgerblue;
+    }
+    #itEmulH  {
+        display: block;
+        margin: 0;
+        margin-left: 3%;
+        height: 75%;
+        width: 94%;
+        line-height: 14.85vh;
+        text-align: center;
+        font-size: 4vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    #itEmulF  {
+        display: block;
+        margin: 0;
+        height: 25%;
+        width: 100%;
+        line-height: 4.5vh;
+        text-align: center;
+        background-color: #0e70df;
+        overflow: hidden;
+    }
+    #itImg  {
+        position: absolute;
+        width: 20vh;
+        height: 30vh;
+        background-color: black;
+        z-index: 0;
+        opacity: 0;
+        box-shadow: 0px 0px 20px black;
+        top: 100%;
+        left: calc(50% - 5vh);
+    }
+    #itAImg  {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    #itEmulC  {
+        position: absolute;
+        bottom: 0;
+        height: 0;
+        left: 0;
+        width: 100%;
+        background: dodgerblue;
+        z-index: 2;
+        box-shadow: 0px 0px 0px black;
+    }
+    #itHdr  {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0;
+        width: 100%;
+        background-color: #0e70df;
+        z-index: 0;
+        box-shadow: 0px 0px 0px black;
+    }
+    #itDet  {
+        position: absolute;
+        height: 50%;
+        width: 60%;
+        left: 100%;
+        top: 10%;
+        font-family: "Segoe UI Light";
+        text-align: left;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-size: 3vh;
+        color: white;
+        padding: 1vh;
+        border: 1px solid dodgerblue;
+    }
+    #itDet::-webkit-scrollbar  {
+        width: 2px;
+        height: 2px;
+    }
+    #itDet::-webkit-scrollbar-track  {
+        background: dodgerblue;
+    }
+    #itDet::-webkit-scrollbar-thumb  {
+        background: radial-gradient(circle, white 5%, dodgerblue 250%);
+    }
+    #itGen  {
+        position: absolute;
+        top: 70%;
+        height: 15%;
+        width: 100%;
+        left: 100%;
+        overflow-x: visible;
+        overflow-y: hidden;
+    }
+    .genTile  {
+        position: relative;
+        margin: 1vw;
+        background: dodgerblue;
+        color: white;
+        font-family: "Segoe UI Light";
+        padding: 2vh;
+        font-size: 2.5vh;
+        line-height: 6vh;
+    }
+    #itCnt  {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 90%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .itCntE  {
+        position: relative;
+        margin-top: 3vh;
+        opacity: 0;
+        font-family: "Segoe UI Light";
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        display: block;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        font-size: 2.5vh;
+        line-height: 2.5vh;
+        height: 2.5vh;
+        padding: 2vh 0 2vh 3vh;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .itCntES  {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 3vh 0 3vh;
+        color: dodgerblue;
+        height: 100%;
+        line-height: 6.5vh;
+        width: 50%;
+        text-align: right;
+    }
+    #itCnt::-webkit-scrollbar  {
+        width: 5px;
+        height: 5px;
+    }
+    #itCnt::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    #itCnt::-webkit-scrollbar-thumb {
+        background: radial-gradient(circle, white 5%, dodgerblue 250%);
+    }
+    .stat0  {
+        background: linear-gradient(to right, transparent, transparent, white);
+    }
+    .stat1  {
+        background: linear-gradient(to right, transparent, white);
+    }
+    .stat2  {
+        background: linear-gradient(to right, transparent, white, white);
+    }
+    .stat3  {
+        background: linear-gradient(to right, transparent, white, white, white);
+    }
+    .stat4  {
+        background: white;
+    }
+    #itEmulAcB  {
+        position: absolute;
+        bottom: -10%;
+        left: 0;
+        height: 0;
+        width: 100%;
+        background: radial-gradient(circle, #0e70df 5%, white 250%);
+        overflow: hidden;
+        box-shadow: 0px 0px 20px black;
+    }
+    .itAcBB  {
+        display: block;
+        height: 100%;
+        width: 10%;
+        font-family: "Segoe UI Light";
+        font-size: 2.5vh;
+        color: white;
+        float: right;
+        line-height: 6vh;
+        background: black;
+    }
+</style>        <meta charset="utf-8" />
+    </head>
+    <body style="background: black; overflow: hidden; margin: 0;">
+        <span id="tabC">
+            <button class="tabb" id="mTab">Movies</button>
+            <button class="tabb" id="tTab">TV</button>
+            <button class="tabb" id="yTab">YouTube</button>
+            <span id="slcN"></span>
+        </span>
+        <span class="tab" id="tvTab">
+        </span>
+        <span class="tab" id="movieTab">
+        </span>
+        <span class="tab" id="youtubeTab">
+        </span>
+        <span id="itEmul">
+            <span id="itEmulH"></span>
+            <span id="itEmulF"></span>
+            <span id="itImg">
+                <img id="itAImg" src="db/img/non.png"></img>
+            </span>
+            <span id="itHdr">
+                <span id="itDet"></span>
+                <span id="itGen"></span>
+            </span>
+            <span id="itEmulC">
+                <span id="itCnt"></span>
+                <span id="itEmulAcB">
+                    <span class="itAcBB" id="itExB">Close</span>
+                    <span class="itAcBB" id="itRmB">Remove</span>
+                </span>
+            </span>
+        </span>
+    </body>
+</html>

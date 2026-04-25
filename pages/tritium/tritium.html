@@ -1,0 +1,214 @@
+<html>
+	<head>
+		<title>TRTM // V3D3
+		</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+		<script src='../../scripts/xpr.tipsy.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight, chs = -2;
+			var hvcl = '#000000';
+			var b;
+			var cs = false, cont = false;
+			var h = x => '#' + x.match(/\d+/g).map(y = z => ((+z < 16)?'0':'') + (+z).toString(16)).join('');
+			$(document).ready(function()  {
+				//$.protect();
+
+				$.tipsy('#wx0', "Programs I've written, writings I've written, photos I've clicked, etcetera", {color: '#ff2626', borderColor: '#ff2626', boxShadow: '5px 5px 25px rgba(0, 0, 0, 0.7)', fontSize: '2.3vh', fontFamily: 'Segoe UI Light'});
+				$.tipsy('#wx1', "An introduction to... well... me, my résumé, contact me, etcetera", {color: '#1e90ff', borderColor: '#1e90ff', boxShadow: '5px 5px 25px rgba(0, 0, 0, 0.7)', fontSize: '2.3vh', fontFamily: 'Segoe UI Light'});
+				$.tipsy('#wx2', "Other websites I've made (which didn't make it to the web), random designs, etcetera", {color: '#d1d100', borderColor: '#d1d100', boxShadow: '5px 5px 25px rgba(0, 0, 0, 0.7)', fontSize: '2.3vh', fontFamily: 'Segoe UI Light'});
+				$.tipsy('#wx3', "What this site's made of, what it's called, what it weighs, etcetera", {color: '#00ff00', borderColor: '#00ff00', boxShadow: '5px 5px 25px rgba(0, 0, 0, 0.7)', fontSize: '2.3vh', fontFamily: 'Segoe UI Light'});
+
+				if(sH > sW)  {
+					alert("There must've been a razorweb prompt, which didn't happen. This interface isn't built for mobile/portrait devices - razorweb is.")
+					kill();
+				}
+
+				b = o => h($(o).css('background-color'));
+				$("#nwx").css("display", "none");
+				fetchThought();
+
+				$('#wxldc').delay(100).css('top', (sH / 2) - ($('#wxldc').height() / 2));
+
+				$('#wxl').velocity({perspective: 600, rotateY: 969, scaleX: 10, scaleY: 10}, 0, function()  { //89 1.5 1.5
+					$('#wxl').velocity({perspective: 600, rotateY: 0, scaleX: 1, scaleY: 1}, 2000, 'easeOutQuint', function()  {
+						$('#wxl').delay(250).velocity({boxShadowBlur: "7.32vw", borderWidth: 2, top: (sH / 2) - 102, left: (sW / 2) - 102}, 1000, 'easeInOutCirc', function()  {
+							$('#wxl').delay(250).velocity({top: "-100vh", left: (sW / 2) - (1.5 * sH), width: "300vh", height: "300vh", boxShadowBlur: 300, borderWidth: 10}, 800, 'easeInQuint', function()  {
+								$('#wx0, #wx1, #wx2, #wx3, #wxin0, #wxin1, #wxin2, #wxin3').velocity({transformPerspective: 600, rotateY: 0}, 0);
+								$('#unwcont').velocity({top: 0}, 1000, 'easeOutExpo', function()  {
+									$('#wx0').velocity({left: '2.5%', transformPerspective: 600, rotateY: 28}, 1000, 'easeInOutExpo');
+									$('#wx1').velocity({left: '27%', transformPerspective: 600, rotateY: 28}, 1000, 'easeInOutExpo');
+									$('#wx2').velocity({left: '51.5%', transformPerspective: 600, rotateY: 28}, 1000, 'easeInOutExpo');
+									$('#wx3').velocity({left: '76%', transformPerspective: 600, rotateY: 28}, 1000, 'easeInOutExpo', function()  {
+										chs = -1;
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+
+			$(document).ready(function()  {
+				$('#wx0, #wx1, #wx2, #wx3').mouseenter(function()  {
+					if(chs == -1)  {
+						$(this).velocity('stop');
+						$(this).velocity({transformPerspective: 600, rotateY: 0}, 600, 'easeInOutExpo');
+					}
+				});
+				$('#wx0, #wx1, #wx2, #wx3').mouseleave(function()  {
+					if(chs == -1)  {
+						$(this).velocity('stop');
+						$(this).velocity({transformPerspective: 600, rotateY: 28}, 600, 'easeInOutExpo');
+					}
+				});
+				$('#wx0, #wx1, #wx2, #wx3').mousedown(function()  {
+					if(chs == -1)  {
+						chs = +$(this).attr('id')[2];
+						$(this).velocity('stop');
+						$(this).css('z-index', 6);
+						$("body").velocity({backgroundColor: b(this)}, 400);
+						$(this).velocity({transformPerspective: 600, rotateY: 90, left: "19.625%", top: "5.625%", width: '60.75%', height: '88.75%', lineHeight: '88.75vh'}, 400, 'easeInQuint', function()  {
+							$(this).css('cursor', 'url("../../sprites/' + b(this).substring(1) + '.svg"), default');
+							$(this).css({color: b(this), backgroundColor: "#000000", fontFamily: "Sequi"});
+							$('#wxin' + $(this).attr('id')[2]).velocity({rotateY: -180}, 400, "easeOutQuint");
+							$(this).velocity({transformPerspective: 600, rotateY: 180, top: 0, left: 0, width: '100%', height: '100%', lineHeight: '100vh'}, 400, 'easeOutQuint', function()  {
+								$("#wxld").css("background", $(this).css("color"));
+
+								//well, design discrepancy. any solutions? please write to webmaster@v3d3.cf
+
+								$(this).delay(1000).velocity({width: 0}, 1000, "easeInOutExpo");
+								$("#wxld").delay(1000).velocity({left: 0}, 1000, "easeInOutExpo", function()  {
+									localStorage.setItem('qt', $("#wxldc").html());
+									localStorage.setItem('qh', $("#wxldc").css('top'));
+									localStorage.setItem('ql', $("#wxldc").css('font-style'));
+									var arr = ['worx', 'v3d3', 'webworx', 'webv3'];
+									window.location = '/?coin=' + document.cookie.split(';')[document.cookie.split(';').map(function(e)  {return e.split('=')[0].trim();}).indexOf('coin')].split('=')[1] + '&nav=' + arr[chs];
+								});
+							});
+						});
+					}  else if(chs != +$(this).attr('id').substring(2, 3))  {
+						kill();
+					}
+				});
+			});
+			function kill()  {
+				document.write("<html><head><title>Destroyed.</title></head><body style='background: black; overflow: hidden;'><p style='position: absolute; top: 0; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 25vh; line-height: 50vh; margin: 0; text-align: center;'>Fatal Error.</p><p style='position: absolute; top: 50%; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 5vh; line-height: 50vh; margin: 0; text-align: center;'>Page destroyed. Please report this to webmaster@v3d3.cf.</p></body></html>");
+			}
+			function fetchThought()  {
+				$('#wxldc').css('font-style', 'normal');
+				$('#wxldc').html("Screw the world. Make it happen.");
+				$('#wxldc').delay(100).css('top', (sH / 2) - ($('#wxldc').height() / 2));
+			}
+		</script>
+		<style>
+			*  {
+				user-select: none;
+			}
+			body  {
+				cursor: url('../../sprites/ffa500.svg'), default;
+			}
+			#wx0  {
+				top: 15%;
+				left: 40%;
+				height: 70%;
+				width: 20%;
+				line-height: 70vh;
+				background: #ff2626;
+				z-index: 0;
+			}
+			#wx1  {
+				top: 12.5%;
+				left: 39.5%;
+				height: 75%;
+				width: 21%;
+				line-height: 75vh;
+				background: #1e90ff;
+				z-index: 1;
+			}
+			#wx2  {
+				top: 10%;
+				left: 39%;
+				height: 80%;
+				width: 22%;
+				line-height: 80vh;
+				background: #d1d100;
+				z-index: 2;
+			}
+			#wx3  {
+				top: 7.5%;
+				left: 38.5%;
+				height: 85%;
+				width: 23%;
+				line-height: 85vh;
+				background: #00ff00;
+				z-index: 3;
+			}
+			#unwcont  {
+				position: absolute;
+				top: 300%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+			}
+			#wx0, #wx1, #wx2, #wx3  {
+				box-shadow: 0 0 14.64vw 1.464vw black;
+				position: absolute;
+				font-family: 'Segoe UI Light';
+				color: black;
+				font-size: 5vh;
+				overflow: hidden;
+				cursor: url('../../sprites/000000.svg'), default;
+			}
+			#wxin0, #wxin1, #wxin2, #wxin3  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				text-align: center;
+				color: inherit;
+				font: inherit;
+				line-height: inherit;
+			}
+			#wxld  {
+				position: absolute;
+				top: 0;
+				left: 100%;
+				width: 100%;
+				height: 100%;
+				font-family: "Segoe UI Light";
+				font-size: 10vh;
+				font-style: italic;
+				z-index: 90;
+				cursor: url('../../sprites/ffffff.svg'), default;
+			}
+			#wxldc  {
+				position: absolute;
+				left: 0;
+				width: 80%;
+				padding-left: 10%;
+				padding-right: 10%;
+				text-align: center;
+				font: inherit;
+				color: white;
+			}
+		</style>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0;'>
+		<span id='wxl' style='position: absolute; border: 0.73vw solid orange; border-radius: 50%; background: transparent; top: calc(50% - 8.05vw); left: 41.95%; height: 14.64vw; width: 14.64vw; box-shadow: 0 0 0 orange;'></span>
+		<span id='nwx' style='position: absolute; top: calc(50% + 10.98vw); height: 20%; line-height: 5vh; text-align: center; left: 0; width: 100%; color: orange; font-family: "Segoe UI Light", sans-serif;'>Script execution error. Switch to a better browser. Chrome/Edge/Safari/Firefox. If on one of these already, ignore me.</span>
+		<span id='unwcont'>
+			<span id='wx0'><span id='wxin0'>Treasure/Junk</span></span>
+			<span id='wx1'><span id='wxin1'>Yours Truly</span></span>
+			<span id='wx2'><span id='wxin2'>Minions</span></span>
+			<span id='wx3'><span id='wxin3'>Ima Website</span></span>
+		</span>
+		<span id='wxld'><span id='wxldc'>Oh, well, this is embarassing. I was supposed to be an awesome thought, but turns out, I didn't load correctly. The next page is loading, nevertheless.</span></span>
+	</body>
+</html>

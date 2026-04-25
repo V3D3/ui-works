@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>WWRX // V3D3
+		</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			$(document).ready(function()  {
+				$("#wxldc").velocity({top: "100%"}, 600, "easeInExpo");
+				$("#wxld").delay(400).velocity({top: "100%"}, 600, "easeInExpo", function()  {
+					
+				});
+			});
+			
+			$(document).ready(function()  {
+				
+			});
+			function kill()  {
+				document.write("<html><head><title>Destroyed.</title></head><body style='background: black; overflow: hidden;'><p style='position: absolute; top: 0; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 25vh; line-height: 50vh; margin: 0; text-align: center;'>Fatal Error.</p><p style='position: absolute; top: 50%; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 5vh; line-height: 50vh; margin: 0; text-align: center;'>Page destroyed. Please report this to webmaster@v3d3.cf.</p></body></html>");
+			}
+		</script>
+		<style>
+			#wxld  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				font-family: "Segoe UI Light";
+				font-size: 10vh;
+				z-index: 90;
+				background: #d1d100;
+				overflow: hidden;
+			}
+			#wxldc  {
+				position: absolute;
+				left: 0;
+				width: 80%;
+				padding-left: 10%;
+				padding-right: 10%;
+				text-align: center;
+				font: inherit;
+				color: white;
+			}
+		</style>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0;'>
+		<span id='wxld'><span id='wxldc'>Oh, well, this is embarassing. I was supposed to be an awesome thought, but turns out, I didn't load correctly. The next page is loading, nevertheless.</span></span>
+		<script>document.getElementById('wxldc').innerHTML = localStorage.getItem('qt');document.getElementById('wxldc').style.top = localStorage.getItem('qh');document.getElementById('wxldc').style.fontStyle = localStorage.getItem('ql');</script>
+	</body>
+</html>

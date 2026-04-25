@@ -1,0 +1,245 @@
+<html>
+	<head>
+		<title>PREV // V3D3</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth,
+				sH = window.innerHeight;
+			var aD = false;
+			var v = 0;
+			w = el => $('#' + el).width();
+			$(document).ready(function()  {
+				if(sH > sW || sW < 1280)  {
+					document.write('Restricted. The closed preview is limited to desktop, non-scalable (yet responsive) layouts.')
+				}
+				posT();
+				$("body").velocity({top: 0}, 1500, "easeOutExpo");
+			});
+			$(document).ready(function()  {
+				$("#coIn").keyup(function(e)  {
+					//e.key.toLowerCase()
+					if($("#coIn").val().length == 16 && aD == false)  {
+						aD = true;
+						var midx = (0.2 * sW) + (((0.5 * sW) - ($("#yourTx").width() + $("#previewTx").width() + $("#codeTx").width())) / 2);
+						$("#coIn").attr("readonly", "true");
+						$("#coIn").velocity({blur: 5}, 600);
+						$('#ySc').velocity({fontSize: "5vh"}, 600, "easeInOutExpo");
+						$('#pSc').delay(300).velocity({fontSize: "5vh"}, 600, "easeInOutExpo");
+						$('#cSc').delay(600).velocity({fontSize: "5vh"}, 600, "easeInOutExpo");
+						$('#yourT').velocity({top: "47%", left: midx, letterSpacing: "2vh"}, 600, "easeInOutExpo");
+						$('#previewT').delay(300).velocity({top: "47%", left: (midx + $("#yourTx").width() + (sW * 0.05)), letterSpacing: "2vh"}, 600, "easeInOutExpo");
+						$('#codeT').delay(600).velocity({top: "47%", left: (midx + $("#yourTx").width() + $("#previewTx").width() + (sW * 0.1)), letterSpacing: "2vh"}, 600, "easeInOutExpo");
+						$("#enterT").delay(500).velocity({left: (sW / 2) - ($("#enterTx").width() / 2), letterSpacing: "2vh"}, 600, "easeInOutExpo");
+						$("#eSc").delay(500).velocity({fontSize: "5vh"}, 600, "easeInOutExpo", function()  {
+							v = 1;
+						});
+					}
+				});
+
+				$("body").keydown(function(e)  {
+					x = e.key.toLowerCase();
+					if(['control', 'alt', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12'].indexOf(e.key.toLowerCase()) != -1)  {
+						document.write("<html><head><title>Page destroyed.</title></head><body style='background:#000;'><span style='position:absolute;top:0;left:0;height:100%;width:100%;text-align:center;line-height:100vh;color:orange;font-size:12vh;font-family:Segoe UI Light,sans-serif;'>Preview session destroyed.</span></body></html>");
+					}
+				});
+				$("#enterT").mouseenter(function()  {
+					if(v == 1)  {
+						$("#coIn").velocity({blur: 0}, 300);
+						$("#yourT, #previewT, #codeT").velocity({blur: 7}, 300);
+						$("#enterB").velocity({top: "78.5%", height: $("#enterT").height() + (sH * 0.03)}, 600, "easeOutExpo");
+					}
+				});
+				$("#enterT").mouseleave(function()  {
+					if(v == 1)  {
+						$("#enterB").css("background", "transparent");
+						$("#enterT").css("color", "orange");
+						$("#coIn").velocity({blur: 5}, 300);
+						$("#yourT, #previewT, #codeT").velocity({blur: 0}, 300);
+						$("#enterB").velocity({top: "120%"}, 600, "easeInExpo");
+					}
+				});
+				$("#enterT").mousedown(function()  {
+					if(v == 1)  {
+						$("#enterT").css("color", "black");
+						$("#enterB").css("background", "orange");
+						$("#coIn").velocity({blur: 5}, 300);
+					}
+				});
+				$("#enterT").mouseup(function()  {
+					if(v == 1)  {
+						$("#enterT").css("color", "orange");
+						$("#enterB").css("background", "black");
+						v = 2;
+						auth();
+					}
+				});
+			});
+			function auth()  {
+				var b = 1;
+
+				if ($("#coIn").val().trim() == "2LIOC0G944HDKV2S") {
+					b = 0
+				}
+				$("#authI").velocity({top: 0}, 1000, "easeOutExpo", function()  {
+					authexec(b);
+				});
+				//I have no idea what a and b manage.
+			}
+			function authexec(b)  {
+				if(b == 2)  {
+					$("#authIT").velocity({top: 0}, 1000, "easeOutExpo", function()  {
+						$("body").css("top", "-100%");
+						$("#authI").css("top", "100%");
+						$("#authIT").delay(2000).velocity({top: "-100%"}, 1000, "easeInExpo");
+						$("#authI").delay(2800).velocity({top: "-100%"}, 1000, "easeInExpo", function()  {
+							window.history.go(0);
+						});
+					});
+				}  else if(b == 0)  {
+					$(".authII").velocity({top: "49.5%"}, 1000, "easeOutExpo", function()  {
+						$("body").css("top", "-100%");
+						$("#authI").css("top", "100%");
+						$(".authII").delay(1500).velocity({top: "-100%"}, 1000, "easeInExpo");
+						$("#authI").delay(2300).velocity({top: "-100%"}, 1000, "easeInExpo", function()  {
+							window.history.go(0);
+						});
+					});
+				}  else if(b == 1)  {
+					$("#authIC").velocity({top: 0}, 1000, "easeOutExpo", function()  {
+						$("body").css("top", "-100%");
+						$("#authI").css("top", "100%");
+						$("#authIC").delay(1500).velocity({top: "-100%"}, 1000, "easeInExpo");
+						$("#authI").delay(2300).velocity({top: "-100%"}, 1000, "easeInExpo", function()  {
+							var prefix = window.location.search ? '&' : '?';
+							window.location.href = window.location.href.split('#')[0].split('?')[0] + prefix + "coin=" + $("#coIn").val() + "&nav=tritium";
+						});
+					});
+				}
+			}
+			function posT()  {
+				var midrx = (sW - (w('enterT') + w('yourT') + w('previewT') + w('codeT') + (sW * 0.12))) / 2;
+				$('#enterT').css('left', midrx);
+				$('#yourT').css('left', midrx + (sW * 0.04) + w('enterT'));
+				$('#previewT').css('left', midrx + (sW * 0.08) + w('enterT') + w('yourT'));
+				$('#codeT').css('left', midrx + (sW * 0.12) + w('enterT') + w('yourT') + w('previewT'));
+				$("#enterB").css('width', $("#enterT").width() + (sW * 0.08) - (sH * 0.02));
+				$("#enterB").css('left', (sW * 0.46) - ($("#enterT").width() / 2));
+			}
+		</script>
+		<style>
+			body  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+			}
+			#enterT, #yourT, #previewT, #codeT  {
+				position: absolute;
+				height: 5vh;
+				width: auto;
+				overflow: visible;
+				font-family: "Sequi";
+				color: orange;
+				top: 80%;
+				letter-spacing: 1vh;
+				user-select: none;
+				z-index: 300;
+				cursor: default;
+			}
+			#enterTx, #yourTx, #previewTx, #codeTx  {
+				position: absolute;
+				height: 5vh;
+				width: auto;
+				overflow: visible;
+				font-family: "Sequi";
+				color: orange;
+				top: -200%;
+				letter-spacing: 2vh;
+			}
+			#coIn:focus  {
+				outline: 0;
+			}
+			.fC  {
+				font-size: 5vh;
+			}
+			.sC  {
+				font-size: 3.5vh;
+			}
+			.sCx  {
+				font-size: 5vh;
+			}
+			#enterB  {
+				height: 0;
+				border: 2px solid orange;
+				position: absolute;
+				top: 120%;
+				z-index: 0;
+			}
+			#authI  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background: orange;
+				z-index: 500;
+				overflow: hidden;
+			}
+			.authII  {
+				position: absolute;
+				top: 149.5%;
+				left: 35%;
+				width: 30%;
+				height: 1%;
+				background: black;
+				border-radius: 50%;
+			}
+			#authIC, #authIT  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				font-family: "Segoe UI Light";
+				color: black;
+				font-size: 15vh;
+				line-height: 100vh;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body style="background: black; overflow: hidden; margin: 0;">
+		<span style="position: absolute; height: 15vh; width: 100%; top: 5%; left: 0; font-family: &quot;Segoe UI Light&quot;; line-height: 15vh; text-align: center; font-size: 10vh; color: orange;">tickets, please</span>
+		<span id='perfCont' style="position: absolute; top: 23.5%; left: 45%; height: 2px; width: 10%; background: orange;"></span>
+		<span style="position: absolute; height: 30vh; width: 30vh; background: transparent; border: 10px solid orange; border-radius: 50%; top: calc(50% - 15vh - 10px); left: calc(50% - 15vh - 10px);"></span>
+		<span style="top: 46%; left: 0; width: 100%; height: 8%; z-index: 10; position: absolute; background: black; overflow:  hidden;">
+			<span style="position: absolute; height: 30vh; width: 30vh; border: 10px solid orange; border-radius: 50%; top: calc(50% - 15vh - 10px); left: calc(50% - 15vh - 10px); filter: blur(7px);"></span>
+			<input id='coIn' style="position: absolute; top: 0; left: 15%; height: 100%; width: 70%; border-radius: 20px; border: 0; text-align: center; line-height: 8vh; color: orange; background: rgba(255, 255, 255, 0.05); font-size: 4vh; font-family: Segoe UI Light;" maxlength=16>
+		</span>
+
+		<span id='enterT'><span class='fC'>E</span><span id='eSc' class='sC'>NTER</span></span>
+		<span id='yourT'><span class='fC'>Y</span><span id='ySc' class='sC'>OUR</span></span>
+		<span id='previewT'><span class='fC'>P</span><span id='pSc' class='sC'>REVIEW</span></span>
+		<span id='codeT'><span class='fC'>C</span><span id='cSc' class='sC'>ODE</span></span>
+		<span id='enterTx'><span class='fC'>E</span><span class='sCx'>NTER</span></span>
+		<span id='yourTx'><span class='fC'>Y</span><span class='sCx'>OUR</span></span>
+		<span id='previewTx'><span class='fC'>P</span><span class='sCx'>REVIEW</span></span>
+		<span id='codeTx'><span class='fC'>C</span><span class='sCx'>ODE</span></span>
+		<span id='enterB'></span>
+		<span id='authI'>
+			<span id='authIT'>Timeout. Reloading.</span>
+			<span id='authIC'>
+				<span style="position:absolute;top:25%;width:100%;height:50%;left:-7%;overflow:hidden;"><span style="position:absolute;top:100%;background:black;width:30%;height:2%;border-radius:50%;transform:rotate(45deg);left:35%;"></span><span style="position:absolute;height:2%;background:black;left:20%;width:60%;border-radius:0 50% 50% 0;transform:rotate(-45deg);top:98%;"></span></span>
+			</span>
+			<span class='authII' style='transform:rotate(45deg);'></span>
+			<span class='authII' style='transform:rotate(-45deg);'></span>
+		</span>
+	</body>
+</html>

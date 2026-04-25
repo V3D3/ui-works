@@ -1,0 +1,238 @@
+<html>
+	<head>
+		<title>SITE // V3D3
+		</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+		<script src='../../scripts/xpr.tipsy.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<style>
+			#wxld  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				font-family: "Segoe UI Light";
+				font-size: 10vh;
+				z-index: 90;
+				background: lime;
+				overflow: hidden;
+				cursor: url('../..../../sprites/ffffff.svg'), default;
+			}
+			#wxldc  {
+				position: absolute;
+				left: 0;
+				width: 80%;
+				padding-left: 10%;
+				padding-right: 10%;
+				text-align: center;
+				font: inherit;
+				color: white;
+				cursor: url('../..../../sprites/ffffff.svg'), default;
+			}
+			#logocont  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				z-index: 2;
+			}
+			#dercont  {
+				position: absolute;
+				top: 0;
+				left: 100%;
+				width: 25%;
+				height: 100%;
+				z-index: 3;
+			}
+			.bxc  {
+				position: absolute;
+				left: 10%;
+				width: 80%;
+				height: 10%;
+				line-height: 10vh;
+				text-align: center;
+				font-family: Sequi;
+				font-size: 5vh;
+				overflow: hidden;
+				transform: skewX(-20deg);
+			}
+			.bt  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				font: inherit;
+			}
+			.bw  {
+				position: absolute;
+				top: 0;
+				left: 100%;
+				width: 0;
+				height: 100%;
+				overflow: hidden;
+				color: black;
+				font: inherit;
+				cursor: url('../..../../sprites/000000.svg'), default;
+			}
+			#splash  {
+				position: absolute;
+				width: 200%;
+				height: 100%;
+				left: 150%;
+				top: 0;
+				transform: skew(-40deg);
+				z-index: 990;
+				background: rgb(255, 38, 38);
+				cursor: url('../..../../sprites/000000.svg'), default;
+			}
+			#back  {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				height: 100%;
+				width: 100%;
+				transform: skewX(-45deg);
+				cursor: url('../..../../sprites/000000.svg'), default;
+			}
+			#bcsp  {
+				position: absolute;
+				bottom: 2%;
+				left: 2%;
+				height: 5%;
+				width: 5vh;
+				overflow: hidden;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0; cursor: url("../..../../sprites/00ff00.svg"), default;'>
+		<span id='wxld'><span id='wxldc'>Oh, well, this is embarassing. I was supposed to be an awesome thought, but turns out, I didn't load correctly. The next page is loading, nevertheless.</span></span>
+		<script>document.getElementById('wxldc').innerHTML = localStorage.getItem('qt');document.getElementById('wxldc').style.top = localStorage.getItem('qh');document.getElementById('wxldc').style.fontStyle = localStorage.getItem('ql');</script>
+		<span id='logocont'>
+			<span id='p2' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:2;'>
+				<span id='neu2' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: white; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px white; transform: rotate(45deg);">
+				</span>
+			</span>
+			<span id='p1' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:0;'>
+				<span id='neu1' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: orange; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px orange; transform: rotate(45deg);">
+				</span>
+			</span>
+			<span id='p0' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:1;'>
+				<span id='neu0' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: dodgerblue; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px dodgerblue; transform: rotate(45deg);">
+				</span>
+			</span>
+		</span>
+		<span id='dercont'>
+			<span class='bxc' style="border: 2px solid dodgerblue; box-shadow: 0 0 0 dodgerblue; color: dodgerblue; top: calc(25% - 5vh - 2px); cursor: url('../..../../sprites/1e90ff.svg'), default;">
+				<span class='bt' id='bt0'>version</span>
+				<span class='bw' id='bw0' style='background: dodgerblue;'>version</span>
+			</span>
+			<span class='bxc' style="border: 2px solid white; box-shadow: 0 0 0 white; color: white; top: calc(50% - 5vh - 2px); cursor: url('../..../../sprites/ffffff.svg'), default;">
+				<span class='bt' id='bt1'>metrics</span>
+				<span class='bw' id='bw1' style='background: white;'>metrics</span>
+			</span>
+			<span class='bxc' style="border: 2px solid orange; box-shadow: 0 0 0 orange; color: orange; top: calc(75% - 5vh - 2px); cursor: url('../..../../sprites/ffa500.svg'), default;">
+				<span class='bt' id='bt2'>sources</span>
+				<span class='bw' id='bw2' style='background: orange;'>sources</span>
+			</span>
+		</span>
+		<span id='splash'></span>
+		<span id='bcsp'>
+			<span id='back'></span>
+		</span>
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			$(document).ready(function()  {
+				$('#wxld').velocity({transformPerspective: 600}, 0);
+				$('#wxld').velocity({transformPerspective: 600, rotateX: 90, top: '100%'}, 1200, 'easeInExpo', function()  {
+					$('#logocont').velocity({top: '-5%'}, 1200, 'easeOutExpo', function()  {
+						$('#logocont').velocity({top: '5%'}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p2").delay(500).velocity({top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p1").delay(500).velocity({rotateZ: 120, top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p0").delay(500).velocity({rotateZ: -120, top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800, complete: function()  {
+							$('#logocont').delay(250).velocity({left: '-15%'}, 1200, 'easeOutExpo');
+							$('#dercont').delay(500).velocity({left: '65%'}, 1200, 'easeOutExpo');
+						}});
+					});
+				});
+			});
+			
+			$(document).ready(function()  {
+				$('.bxc').mouseenter(function()  {
+					$(this).velocity({boxShadowBlur: 20}, 300);
+				});
+				$('.bxc').mouseleave(function()  {
+					$(this).velocity({boxShadowBlur: 0}, 300);
+				});
+				$('.bt').mousedown(function()  {
+					var d = $(this).attr('id').substr(-1);
+					$(this).velocity({left: '-100%'}, 500, 'easeInExpo', function()  {
+						$('#bw' + d).velocity({width: '100%', left: 0}, 500, 'easeOutExpo', function()  {
+							var b = $('#bw' + d).css('background-color');
+							console.log(b, '0 0 0 ' + b);
+							$('#back').css({background: b, boxShadow: '0 0 0 ' + b});
+							$('#splash').css('background', b);
+							$('#splash').velocity({left: '-25%'}, 1500, 'easeInOutExpo', function()  {
+								build(d);
+							});
+						});
+					});
+				});
+				$('#back').mouseenter(function()  {
+					$('#back').velocity({boxShadowBlur: 5}, 200);
+				});
+				$('#back').mouseleave(function()  {
+					$('#back').velocity({boxShadowBlur: 0}, 200);
+				});
+				$('#back').mousedown(function()  {
+					$('#back').velocity({left: '-50%'}, 800, 'easeInOutExpo', function()  {
+						$('#splash').velocity({left: '-25%'}, 1500, 'easeInOutExpo', function()  {
+							rebuildMain();
+						});
+					});
+				});
+			});
+			function kill()  {
+				document.write("<html><head><title>Destroyed.</title></head><body style='background: black; overflow: hidden;'><p style='position: absolute; top: 0; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 25vh; line-height: 50vh; margin: 0; text-align: center;'>Fatal Error.</p><p style='position: absolute; top: 50%; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 5vh; line-height: 50vh; margin: 0; text-align: center;'>Page destroyed. Please report this to webmaster@v3d3.cf.</p></body></html>");
+			}
+			function build(n)  {
+				$('#bcsp').css({opacity: 1});
+				$('#logocont, #dercont').css({display: 'none'});
+				var cr = ["url('../..../../sprites/1e90ff.svg'), default", "url('../..../../sprites/ffffff.svg'), default", "url('../..../../sprites/ffa500.svg'), default"];
+				$('body').css({cursor: cr[n]});
+				switch(n)  {
+					case 0:
+						
+					break;
+					case 1:
+						
+					break;
+					case 2:
+						
+					break;
+				}
+				$('#splash').velocity({left: '-225%'}, 1500, 'easeOutExpo');
+			}
+			function rebuildMain()  {
+				$('#bcsp').css({opacity: 0});
+				$('#back').css({left: '50%'});
+				$('#logocont, #dercont').css({display: 'block'});
+				$('.bxc').css({boxShadowBlur: 0});
+				$('.bw').css({left: '100%', width: 0});
+				$('.bt').css({left: 0});
+				$('body').css({cursor: "url('../..../../sprites/00ff00.svg'), default"});
+				$('#splash').velocity({left: '150%'}, 800, 'easeInOutExpo');
+			}
+		</script>
+	</body>
+</html>

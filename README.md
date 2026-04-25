@@ -6,6 +6,9 @@ Disclaimer: these projects are very old (2015-2018). I'm trying to fix the code 
 ### [BYTES](pages/bytes/bytes.html)
 Intended to be a bytes-based speed math game, but just a splash screen that asks for your name. Splash animation may be a random choice from two.
 
+### [WebXMS](scratch/webxms/webxms.html)
+A modular TV and Movie tracking system. Currently refactored into a unified static file for easier assimilation.
+
 ### [Doorway](pages/doorway/doorwayx.html)
 Minimalist utilities for text analysis (line, word, and character counting). Just wanted to show the X version.
 
@@ -41,6 +44,9 @@ A minimalist typographic splash animation exploring the "I don't know, I don't c
 
 ### [Familiar](pages/familiar/index.html)
 An interactive file management simulation that facilitates file renaming and type matching.
+
+### [Tritium](pages/tritium/index.html)
+A cinematic interactive portal and experience hub. Unified index and dispatcher for various V3D3 web experiments.
 
 ## Usage
 Let me know if you like anything, or wish to use it somewhere.

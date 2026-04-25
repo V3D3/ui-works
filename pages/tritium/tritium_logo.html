@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<script src="../../scripts/jq.js"></script>
+		<script src="../../scripts/vm.js"></script>
+		<script src="../../scripts/vum.js"></script>
+		<script>
+			$(document).ready(function()  {
+				$("#p2").velocity({top: 0}, "easeInOutCirc");
+				$("#p1").velocity({rotateZ: 120, top: 0}, "easeInOutCirc");
+				$("#p0").velocity({rotateZ: -120, top: 0}, "easeInOutCirc");
+			});
+		</script>
+	</head>
+	<body style="background: black; margin: 0; overflow: hidden;">
+		<!--TRITIUMV2 (SCALABLE)-->
+		<span id='p2' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:2;'>
+			<span id='neu2' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background: white; border-radius: 50% 50% 0 50%;box-shadow: 0 0 50px white; transform: rotate(45deg);">
+			</span>
+		</span>
+		<span id='p1' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:0;'>
+			<span id='neu1' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background: orange; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px orange; transform: rotate(45deg);">
+			</span>
+		</span>
+		<span id='p0' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:1;'>
+			<span id='neu0' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background: dodgerblue; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px dodgerblue; transform: rotate(45deg);">
+			</span>
+		</span>
+	</body>
+</html>

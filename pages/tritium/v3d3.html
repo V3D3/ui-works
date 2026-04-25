@@ -1,0 +1,287 @@
+<html>
+	<head>
+		<title id='iiztitlek'>ME // V3D3</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			var ninit = 1;
+			var f = 0;
+			$(document).ready(function()  {
+				$('#wxldc').delay(100).velocity({textShadowBlur: '20px', fontSize: '11vh'}, "easeInOutExpo", function()  {
+					$('#wxldc').delay(200).velocity({top: '100%'}, "easeInQuint", function()  {
+						$('.sel, .selx').css('display', 'block');
+						$('.sel').delay(200).velocity({boxShadowBlur: '40px', scale: 1.1}, 600, 'easeInOutExpo', function()  {
+							$('#wxld').velocity({top: '100%'}, 600, "easeInQuint", function()  {
+								$('.sel').velocity({top: '44.5%'}, 600, 'easeInOutExpo');
+								$('#sel0').velocity({left: (sW / 4) - (sH * 0.055)}, 600, 'easeInOutExpo');
+								$('#sel2').velocity({left: (sW * 0.75) - (sH * 0.055)}, 600, 'easeInOutExpo', function()  {
+									$('.seltext').css('display', 'block');
+									$('.sel').velocity({scale: 0.91}, 600, 'easeInOutExpo');
+									$('#sel0t, #sel1t, #sel2t').velocity({translateX: -(sH * 0.0166)}, 0);
+									$('.seltext').velocity({top: sH * 0.62}, 600, 'easeInOutExpo', function()  {
+										$('#sel0t, #sel1t, #sel2t').velocity({width: '8%', translateX: -((sW * 0.04) + (sH * 0.0166))}, 400, 'easeInOutExpo', function()  {
+											bind();
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+			
+			function bind()  {
+				$(document).ready(function()  {
+					$('.sel').mouseenter(function()  {
+						if(ninit == 1)  {
+							$(this).velocity('stop');
+							$('#' + $(this).attr('id') + 't').velocity('stop');
+							$(this).velocity({scale: 1.1}, 400, 'easeInOutExpo');
+							$('#' + $(this).attr('id') + 't').velocity({translateX: -(sH * 0.0166), top: sH * 0.4395, width: '1.68vh'}, 400, 'easeInOutExpo');
+						}
+					});
+					$('.sel').mouseleave(function()  {
+						if(ninit == 1)  {
+							$(this).velocity('stop');
+							$('#' + $(this).attr('id') + 't').velocity('stop');
+							$(this).velocity({scale: 0.91}, 400, 'easeInOutExpo');
+							$('#' + $(this).attr('id') + 't').velocity({translateX: -((sW * 0.04) + (sH * 0.0166)), top: sH * 0.62, width: '8%'}, 400, 'easeInOutExpo');
+						}
+					});
+					$('.sel').mousedown(function()  {
+						if(ninit == 1)  {
+							ninit = 0;
+							$('.sel').css('z-index', -1);
+							$(this).css('z-index', 2);
+							$(this).velocity({top: (sH / 2) - sW, left: -(sW / 2), width: sW * 2, height: sW * 2}, 400, 'easeInExpo', function()  {
+								f = $(this).attr('id')[3];
+								$('body').css('background', '#1e90ff');
+								$('body').css('cursor', 'url("../..../../sprites/000000.svg"), default');
+								$('.sel, .seltext, #wxld').remove(); //unnecessary?
+								cbuild();
+							});
+						}  else  {
+							kill();
+						}
+					});
+				});
+			}
+			function kill()  {
+				document.write("<html><head><title>Destroyed.</title></head><body style='background: black; overflow: hidden;'><p style='position: absolute; top: 0; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 25vh; line-height: 50vh; margin: 0; text-align: center;'>Fatal Error.</p><p style='position: absolute; top: 50%; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 5vh; line-height: 50vh; margin: 0; text-align: center;'>Page destroyed. Please report this to webmaster@v3d3.cf.</p></body></html>");
+			}
+			function cbuild()  {
+				$('#menuhl').css('display', 'block');
+				$('body').css('background', '#000000').css('cursor', 'url("../..../../sprites/1e90ff.svg"), default');
+				$('#ps' + f).css('background', '#1e90ff').css('cursor', 'url("../..../../sprites/000000.svg"), default').css('color', 'black');
+				$('#panel' + f).css('display', 'block');
+				$('#menu, #menuhl').velocity({right: 0}, 600, 'easeOutExpo', function()  { //another.
+					$('#menu').delay(300).velocity({right: "100vw"}, 400, 'easeInExpo', function()  {
+						$('#menuhl').delay(300).velocity({right: "99.5vw"}, 400, 'easeInOutExpo', function()  {
+							ninit = 2;
+						});
+					});
+				});
+			}
+			$(document).ready(function()  {
+				$('#menuhl').mouseenter(function()  {
+					if(ninit == 2)  {
+						$(this).velocity({right: '99vw'}, 100);
+					}
+				});
+				$('#menuhl').mouseleave(function()  {
+					if(ninit == 2)  {
+						$(this).velocity({right: '99.5vw'}, 100);
+					}
+				});
+				$('#menuhl').mousedown(function()  {
+					if(ninit == 2)  {
+						$(this).velocity({right: '0vw'}, 600, "easeOutExpo", function()  {
+							$('#menu').velocity({right: '0vw'}, 600, "easeOutExpo");
+						});
+					}
+				});
+			});
+			
+			
+			/*
+				parent dim: 6 - 5vh
+				parent ar dim: 11vh
+				child: 3.32vh
+				
+				a/r/c/back
+				
+				y = -(0.707sW - 0.5sH)
+				x = -0.207sW
+			*/
+		</script>
+		<style>
+			#wxld  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				font-family: "Segoe UI Light";
+				font-size: 10vh;
+				z-index: 2;
+				background: #1e90ff;
+				overflow: hidden;
+				cursor: url('../..../../sprites/ffffff.svg'), default;
+			}
+			#wxldc  {
+				position: absolute;
+				left: 0;
+				width: 80%;
+				padding-left: 10%;
+				padding-right: 10%;
+				text-align: center;
+				font: inherit;
+				color: white;
+				text-shadow: 0 0 0px black;
+			}
+			*  {
+				user-select: none;
+			}
+			.selx  {
+				position: absolute;
+				height: 10%;
+				width: 10vh;
+				top: 45%;
+				background: black;
+				border-radius: 50%;
+				z-index: -1;
+				display: none;
+			}
+			.sel  {
+				position: absolute;
+				height: 11%;
+				width: 11vh;
+				background: #1e90ff;
+				border-radius: 50%;
+				z-index: 3;
+				display: none;
+				box-shadow: 0 0 0 black;
+			}
+			.seltext  {
+				position: absolute;
+				display: none;
+				background: #1e90ff;
+				color: black;
+				height: 3.32%;
+				width: 1.68vh;
+				top: calc(50% - 1.26vh);
+				border-radius: 2vh;
+				font-size: 2.5vh;
+				line-height: 3.32vh;
+				padding-left: 0.82vh;
+				padding-right: 0.82vh;
+				text-overflow: clip;
+				word-break: break-all;
+				transform: translateX(-1.66vh);
+			}
+			.panel  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				display: none;
+				z-index: 0;
+			}
+			#menuhl  {
+				position: absolute;
+				background: #1e90ff;
+				top: calc(-70.7vw + 50vh);
+				right: -20.7%;
+				height: 141.4vw;
+				width: 141.4vw;
+				display: none;
+				border-radius: 50%;
+				z-index: 90;
+			}
+			#menu  {
+				position: absolute;
+				width: 100vw;
+				height: 100vh;
+				right: -100vw;
+				top: calc(50% - 50vh);
+			}
+			.panelsel  {
+				position: absolute;
+				top: 23vh;
+				height: 19vh;
+				width: 19vh;
+				border-radius: 50%;
+				color: #1e90ff;
+				background: black;
+				font-size: 15vh;
+				line-height: 15vh;
+				border: 0.5vh solid black;
+			}
+			.title  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 8%;
+				width: 100%;
+				line-height: 8vh;
+				background: #1e90ff;
+				color: black;
+				font-size: 5vh;
+				z-index: 45;
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+			}
+			.d  {
+				cursor: url('../..../../sprites/1e90ff.svg'), default;
+			}
+			.l  {
+				cursor: url('../..../../sprites/000000.svg'), default;
+			}
+			.t  {
+				text-align: center;
+				font-family: 'Segoe UI Light';
+			}
+		</style>
+	</head>
+	<body class='d' style='background: black; overflow: hidden; margin: 0;'>
+		<span id='wxld'>
+			<span id='wxldc'>Oh, well, this is embarassing. I was supposed to be an awesome thought, but turns out, I didn't load correctly. The next page is loading, nevertheless.</span>
+			<span class='selx d' style='top: 69.5%; left: calc(33% - 5vh);'></span>
+			<span class='selx d' style='top: 19.5%; left: calc(50% - 5vh);'></span>
+			<span class='selx d' style='top: 69.5%; left: calc(67% - 5vh);'></span>
+		</span>
+		<span class='sel l' id='sel0' style='top: 69.5%; left: calc(33% - 5.5vh);'></span>
+		<span class='sel l' id='sel1' style='top: 19.5%; left: calc(50% - 5.5vh);'></span>
+		<span class='sel l' id='sel2' style='top: 69.5%; left: calc(67% - 5.5vh);'></span>
+		<span class='seltext l t' id='sel0t' style='left: 25%;'>about</span>
+		<span class='seltext l t' id='sel1t' style='left: 50%;'>résumé</span>
+		<span class='seltext l t' id='sel2t' style='left: 75%;'>contact</span>
+		<script>document.getElementById('wxldc').innerHTML = localStorage.getItem('qt');document.getElementById('wxldc').style.top = localStorage.getItem('qh');document.getElementById('wxldc').style.fontStyle = localStorage.getItem('ql');</script>
+		<span class='l' id='menuhl'>
+			<span class='l' id='menu'>
+				<span class='panelsel d t' id='ps0' style='left: 15%;'>a</span>
+				<span class='panelsel d t' id='ps1' style='left: 40%;'>r</span>
+				<span class='panelsel d t' id='ps2' style='left: 65%;'>c</span>
+				<span class='panelsel d t' id='psx' style='left: 15%; top: 57vh; line-height: 17vh;'><</span>
+			</span>
+		</span>
+		<span class='panel d' id='panel0'>
+			<span class='title l t'>ABOUT</span>
+			<span class='content'>
+				
+			</span>
+		</span>
+		<span class='panel d' id='panel1'>
+			<span class='title l t'>RÉSUMÉ</span>
+		</span>
+		<span class='panel d' id='panel2'>
+			<span class='title l t'>CONTACT</span>
+		</span>
+	</body>
+</html>

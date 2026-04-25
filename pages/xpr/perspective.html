@@ -1,0 +1,39 @@
+<html>
+    <head></head>
+    <body style="background: black;">
+        <span id='stage' style="position:absolute;top: 20%;left: calc(50% - 30vh);height: 60%;width: 60vh;background: orange;transform: perspective(600px);z-index: 1;"></span>
+        <span id='ob1' style="position:absolute;top: 44%;left: calc(50% - 6vh);height: 12vh;width: 12vh;background: rebeccapurple;border-radius: 50%;transform: perspective(600px); z-index: 3;"></span>
+        <span id='ob1s' style="position:absolute;top: 44%;left: calc(50% - 6vh);height: 12vh;width: 12vh;background: black;border-radius: 50%;opacity: 0.3;transform: perspective(600px);z-index: 2;filter:blur(20px);"></span>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            $(document).ready(function()  {
+                var s = 1;
+                $('body').keyup(function(e)  {
+                    if(e.key == 'ArrowDown')  {
+                        $('#stage').velocity({transformPerspective: [600, 600], rotateX: [0, 63]}, 2000, 'easeInOutExpo');
+                        $('#ob1s').velocity({transformPerspective: [600, 600], rotateX: [0, 63], scale: [1, 2]}, 2000, 'easeInOutExpo', function()  {
+                            s = 1;
+                        });
+                        $('#ob1').velocity({transformPerspective: [600, 600], rotateX: [0, 63], translateZ: [0, 100]}, 2000, 'easeInOutExpo');
+                    }  else if(e.key == 'ArrowUp')  {
+                        $('#stage').velocity({transformPerspective: [600, 600], rotateX: [63, 0]}, 2000, 'easeInOutExpo');
+                        $('#ob1s').velocity({transformPerspective: [600, 600], rotateX: [63, 0], scale: [2, 1]}, 2000, 'easeInOutExpo', function()  {
+                            s = 2;
+                        });
+                        $('#ob1').velocity({transformPerspective: [600, 600], rotateX: [63, 0], translateZ: [100, 0]}, 2000, 'easeInOutExpo');
+                    }
+                });
+                
+                $('#ob1').mouseenter(function()  {
+                    $('#ob1').css({filter: 'brightness(1.2)'});
+                });
+                $('#ob1').mouseleave(function()  {
+                    $('#ob1').css({filter: 'brightness(1)'});
+                });
+            });
+        </script>
+    </body>
+</html>

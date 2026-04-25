@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>DataFetch // WebXMS // Vedaant Arya</title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/jui.js"></script>
+        <script src="../../scripts/toast.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script src="../../scripts/vum.js"></script>
+        <script>
+            $(document).ready(function()  {
+                log("Waiting.")
+                $("#bx1").mouseenter(function()  {
+                    $("#bx1").velocity({color: "#1e90ff"}, 200);
+                });
+                $("#bx1").mouseleave(function()  {
+                    $("#bx1").velocity({color: "#ffa500"}, 200);
+                });
+                $("#bx2").mouseenter(function()  {
+                    $("#bx2").velocity({color: "#ffa500"}, 200);
+                });
+                $("#bx2").mouseleave(function()  {
+                    $("#bx2").velocity({color: "#1e90ff"}, 200);
+                });
+                $("#bx1").mousedown(function()  {
+                    $("#bx1").velocity({paddingLeft: "20vw", width: 0}, 400, "easeInExpo", function()  {
+                        log("Running imgFetch...", true);
+                        $("#bx2").velocity({width: "20%"}, 400, "easeOutExpo", function()  {
+                            fetchImg();
+                        });
+                    });
+                });
+                $("#bx2").mousedown(function()  {
+                    $("#bx2").velocity({width: 0}, 400, "easeInExpo", function()  {
+                        log("Cancelling run...");
+                        $("#bx1").velocity({paddingLeft: 0, width: "20%"}, 400, "easeOutExpo");
+                    });
+                });
+            });
+            
+            function fetchImg()  {
+                log("Requesting dataFetch entries from scripts/datafetch");
+            }
+            
+            function log(s, cls = false)  {
+                if(cls)  {
+                    $("#log").html("");
+                }
+                $("#log").append(s + "<br>");
+                $("#log").animate({scrollTop: ($("#log")[0].scrollHeight) - $("#log").height()}, 10);
+            }
+        </script>
+        <style>
+            #b3  {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 50%;
+                width: 100%;
+            }
+            #log  {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                height: 47%;
+                width: 98%;
+                background: black;
+                color: lime;
+                font-family: "Consolas", monospace;
+                font-size: 2.5vh;
+                padding-top: 1%;
+                padding-left: 1%;
+                padding-right: 1%;
+                padding-bottom: 2%;
+                overflow: auto;
+            }
+            ::-webkit-scrollbar  {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-track  {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: darkgray;
+            }
+            #bx1  {
+                position: absolute;
+                top: 40%;
+                height: 20%;
+                width: 20%;
+                left: 40%;
+                background: black;
+                transform: skewX(-20deg);
+                text-align: center;
+                color: orange;
+                font-family: "Sequi";
+                font-size: 5vh;
+                line-height: 10vh;
+                z-index: 1;
+                overflow: hidden;
+            }
+            #bx2  {
+                position: absolute;
+                top: 40%;
+                height: 20%;
+                width: 0;
+                left: 40%;
+                background: white;
+                transform: skewX(-20deg);
+                text-align: center;
+                color: dodgerblue;
+                font-family: "Sequi";
+                font-size: 5vh;
+                line-height: 10vh;
+                z-index: 2;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body style="background: #222222; margin: 0; overflow: hidden;">
+        <span id="b3">
+            <span id="bx1">run</span>
+            <span id="bx2">cancel</span>
+        </span>
+        <span id="log"></span>
+    </body>
+</html>

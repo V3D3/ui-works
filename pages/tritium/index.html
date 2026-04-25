@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatcher</title>
+    <script>
+        (function() {
+            // Configuration
+            const REQUIRED_COIN = "2LIOC0G944HDKV2S";
+            const NAV_MAP = {
+                'tritium': 'tritium.html',
+                'worx': 'worx.html',
+                'v3d3': 'v3d3.html',
+                'webv3': 'webv3.html',
+                'webworx': 'webworx.html',
+                'razorweb': 'razorweb.html'
+            };
+            const PREVIEW_GUARD = 'previewguard.html';
+            const DEFAULT_NAV = 'tritium';
+            const LOGIN_REDIRECT = 'xgraphics.html';
+
+            // Helper to get weight
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            // Helper to set cookies
+            function setCookie(name, value) {
+                document.cookie = `${name}=${value}; path=/`;
+            }
+
+            // Validation logic
+            function isValidCoin(c) {
+                return c && c.toUpperCase() === REQUIRED_COIN;
+            }
+
+            // Load logic
+            function serveContent(page) {
+                fetch(page)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.open();
+                        document.write(html);
+                        document.close();
+                    })
+                    .catch(err => {
+                        console.error('Failed to load page:', err);
+                    });
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const coinParam = urlParams.get('coin');
+            const coinCookie = getCookie('coin');
+            const nav = urlParams.get('nav');
+
+            // 1. Identify active coin
+            let activeCoin = null;
+            if (isValidCoin(coinParam)) {
+                activeCoin = coinParam;
+                setCookie('coin', coinParam);
+            } else if (isValidCoin(coinCookie)) {
+                activeCoin = coinCookie;
+            }
+
+            // 2. Routing logic
+            if (activeCoin) {
+                // Check for xgrpc (login requirement)
+                if (!getCookie('xgrpc')) {
+                    window.location.replace(LOGIN_REDIRECT);
+                    return;
+                }
+
+                // Load requested nav or default
+                const target = NAV_MAP[nav] || NAV_MAP[DEFAULT_NAV];
+                serveContent(target);
+            } else {
+                // No valid coin -> show PreviewGuard
+                serveContent(PREVIEW_GUARD);
+            }
+        })();
+    </script>
+</head>
+<body style="background: black;">
+    <!-- Dispatcher Hub -->
+</body>
+</html>

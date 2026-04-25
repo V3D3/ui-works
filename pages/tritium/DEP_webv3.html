@@ -1,0 +1,267 @@
+<html>
+	<head>
+		<title>SITE // V3D3
+		</title>
+		<script src='../../scripts/jq.js'></script>
+		<script src='../../scripts/jui.js'></script>
+		<script src='../../scripts/vm.js'></script>
+		<script src='../../scripts/vum.js'></script>
+<!--		<script src='xpr.closure.js'></script>-->
+		<meta name=viewport content='width=device-width, initial-scale=1'>
+		<meta charset="utf-8" />
+		<style>
+			#wxld  {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				font-family: "Segoe UI Light";
+				font-size: 10vh;
+				z-index: 90;
+				background: lime;
+				overflow: hidden;
+			}
+			#wxldc  {
+				position: absolute;
+				left: 0;
+				width: 80%;
+				padding-left: 10%;
+				padding-right: 10%;
+				text-align: center;
+				font: inherit;
+				color: white;
+			}
+			#logocont  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				z-index: 2;
+			}
+			#dercont  {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				height: 25%;
+				z-index: 3;
+			}
+			.der  {
+				position: absolute;
+				height: 15vh;
+				width: 15vh;
+				top: 5vh;
+				border-radius: 50%;
+				font-family: Segoe UI Light;
+				font-size: 7vh;
+				border-width: 2px;
+				border-style: solid;
+				line-height: 14vh;
+				text-align: center;
+				overflow: hidden;
+			}
+			#cir0, #cir1, #cir2  {
+				position: absolute;
+				top: -110%;
+				left: -110%;
+				width: 110%;
+				height: 110%;
+				border-radius: 50%;
+				z-index: -1;
+			}
+		</style>
+	</head>
+	<body style='background: black; overflow: hidden; margin: 0;'>
+		<span id='wxld'><span id='wxldc'>Oh, well, this is embarassing. I was supposed to be an awesome thought, but turns out, I didn't load correctly. The next page is loading, nevertheless.</span></span>
+		<script>document.getElementById('wxldc').innerHTML = localStorage.getItem('qt');document.getElementById('wxldc').style.top = localStorage.getItem('qh');document.getElementById('wxldc').style.fontStyle = localStorage.getItem('ql');</script>
+		<span id='pnltitle' style='position: absolute; top: 0; left: 0; height: 0; width: 0; font-family: Sequi; font-size: 4vh; text-align: center; line-height: 7vh; overflow: hidden; border-style: solid; border-width: 0px 0px 1px 0px;'>undef</span>
+		<span id='logocont'>
+			<span id='p2' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:2;'>
+				<span id='neu2' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: white; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px white; transform: rotate(45deg);">
+				</span>
+			</span>
+			<span id='p1' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:0;'>
+				<span id='neu1' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: orange; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px orange; transform: rotate(45deg);">
+				</span>
+			</span>
+			<span id='p0' style='position:absolute;top:20%;left:0;height:100%;width:100%;z-index:1;'>
+				<span id='neu0' style="position: absolute; top: 25.86%; left: calc(50% - 10vh); width: 20vh; height: 20vh; background-color: dodgerblue; border-radius: 50% 50% 0 50%; box-shadow: 0 0 50px dodgerblue; transform: rotate(45deg);">
+				</span>
+			</span>
+		</span>
+		<span id='dercont'>
+			<span class='der' id='der0' style='border-color: dodgerblue; box-shadow: 0 0 30px dodgerblue; color: dodgerblue; left: calc(25% - 7.5vh);'>
+				v
+				<span id='cir0' style='background: dodgerblue;'></span>
+			</span>
+			<span class='der' id='der1' style='border-color: white; box-shadow: 0 0 30px white; color: white; left: calc(50% - 7.5vh);'>
+				m
+				<span id='cir1' style='background: white;'></span>
+			</span>
+			<span class='der' id='der2' style='border-color: orange; box-shadow: 0 0 30px orange; color: orange; left: calc(75% - 7.5vh);'>
+				s
+				<span id='cir2' style='background: orange;'></span>
+			</span>
+			<span id='xpnldiv' style='position: absolute; height: 2px; width: 0; left: 0; top: 0;'></span>
+		</span>
+		
+		<script>
+			var sW = window.innerWidth, sH = window.innerHeight;
+			var carr = ['#1e90ff', '#ffffff', '#ffa500'];
+			var fn = false;
+			var repl = false;
+			$(document).ready(function()  {
+				$('#wxld').velocity({transformPerspective: 600}, 0);
+				$('#wxld').velocity({transformPerspective: 600, rotateX: 90, top: '100%'}, 1200, 'easeInExpo', function()  {
+					$('#logocont').velocity({top: '-10%'}, 1200, 'easeOutExpo', function()  {
+						$('#logocont').velocity({top: '0'}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p2").delay(500).velocity({top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p1").delay(500).velocity({rotateZ: 120, top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800});
+						$("#p0").delay(500).velocity({rotateZ: -120, top: 0}, {easing: "easeInOutCirc", queue: false, duration: 800, complete: function()  {
+							$('#logocont').velocity({top: '-5%'}, 1200, 'easeInOutExpo');
+							$('#dercont').velocity({top: '75%'}, 1200, 'easeInOutExpo');
+						}});
+					});
+				});
+			});
+			
+			$(document).ready(function()  {
+				$('#der0, #der1, #der2').mouseenter(function()  {
+					if(!fn)  {
+						$('#der0, #der1, #der2').velocity('stop');
+						var n = $(this).attr('id').substr(-1);
+						$('#der' + n).velocity({blur: 0}, 400);
+						(n != 0)?$('#der0').velocity({blur: 6}, 400):0;
+						(n != 1)?$('#der1').velocity({blur: 6}, 400):0;
+						(n != 2)?$('#der2').velocity({blur: 6}, 400):0;
+					}
+				});
+				$('#der0, #der1, #der2').mouseleave(function()  {
+					if(!fn)  {
+						dermx($(this).attr('id').substr(-1), false);
+					}
+				});
+				$('#der0, #der1, #der2').mouseup(function()  {
+					if(!fn)  {
+						dermx($(this).attr('id').substr(-1), true);
+						fn = true;
+					}
+				})
+				$('#der0, #der1, #der2').mousedown(function()  {
+					if(!fn)  {
+						var n = $(this).attr('id').substr(-1);
+						$('#cir' + n + ', #der' + n).velocity("stop");
+						$('#cir' + n).velocity({top: '-5%', left: '-5%'}, 400, 'easeOutExpo');
+						$('#der' + n).velocity({color: '#000000'}, 400, 'easeOutExpo');
+					}
+				});
+			});
+			function kill()  {
+				document.write("<html><head><title>Destroyed.</title></head><body style='background: black; overflow: hidden;'><p style='position: absolute; top: 0; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 25vh; line-height: 50vh; margin: 0; text-align: center;'>Fatal Error.</p><p style='position: absolute; top: 50%; left: 0; width: 100%; height: 50%; color: lime; font-family: monospace; font-size: 5vh; line-height: 50vh; margin: 0; text-align: center;'>Page destroyed. Please report this to webmaster@v3d3.cf.</p></body></html>");
+			}
+			function dermx(n, f)  {
+				$(document).ready(function()  {
+					$('#der0, #der1, #der2').velocity('stop');
+					(n != 0)?$('#der0').velocity({blur: 0, color: '#1e90ff'}, 400):0;
+					(n != 1)?$('#der1').velocity({blur: 0, color: '#ffffff'}, 400):0;
+					(n != 2)?$('#der2').velocity({blur: 0, color: '#ffa500'}, 400):0;
+					(n != 0)?$('#cir0').velocity({top: '-110%', left: '-110%'}, 400):0;
+					(n != 1)?$('#cir1').velocity({top: '-110%', left: '-110%'}, 400):0;
+					(n != 2)?$('#cir2').velocity({top: '-110%', left: '-110%'}, 400):0;
+					if(f)  {
+						if(!repl)  {
+							repl = true;
+							switch(parseInt(n))  {
+								case 0:
+									$('#pnltitle').html('version');
+									$('#der0').velocity({left: '-50%'}, 600, 'easeInExpo');
+									$('#der1').velocity({top: '5vh', left: (0.333 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo');
+									$('#der2').velocity({left: (0.666 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo', function()  {
+										$('#pnltitle').css({color: 'dodgerblue', borderBottomColor: 'dodgerblue', left: '100%', top: 0, height: '7%', width: 0});
+										$('#xpnldiv').css({left: '100%', background: 'dodgerblue'});
+										$('#pnltitle, #xpnldiv').velocity({left: 0, width: '100%'}, 800, 'easeOutExpo', function()  {
+											buildVS();
+										});
+									});
+									break;
+								case 1:
+									$('#pnltitle').html('sources');
+									$('#der1').velocity({top: '120%'}, 600, 'easeInExpo');
+									$('#der0').velocity({left: (0.333 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo');
+									$('#der2').velocity({left: (0.666 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo', function()  {
+										$('#pnltitle').css({color: 'white', borderBottomColor: 'white', left: 0, top: 0, height: 0, lineHeight: 0, width: '100%'});
+										$('#xpnldiv').css({top: '100%', background: 'white', width: '100%'});
+										$('#pnltitle').velocity({height: '7%', lineHeight: '7vh'}, 800, 'easeOutExpo');
+										$('#xpnldiv').velocity({top: 0}, 800, 'easeOutExpo');
+										$('#logocont').velocity({blur: 6}, 800, function()  {
+											buildMX();
+										});
+									});
+									break;
+								case 2:
+									$('#pnltitle').html('metrics');
+									$('#der2').velocity({left: '120%'}, 600, 'easeInExpo');
+									$('#der0').velocity({left: (0.333 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo');
+									$('#der1').velocity({top: '5vh', left: (0.666 * sW) - (0.075 * sH)}, 600, 'easeInOutExpo', function()  {
+										$('#pnltitle').css({color: 'orange', borderBottomColor: 'orange', left: 0, top: 0, height: '7%', width: 0});
+										$('#xpnldiv').css({background: 'orange'});
+										$('#pnltitle, #xpnldiv').velocity({width: '100%'}, 800, 'easeOutExpo');
+										$('#logocont').velocity({blur: 6}, 800, function()  {
+											buildSC();
+										});
+									});
+									break;
+							}
+						}  else  {
+							switch(parseInt(n))  {
+								case 0:
+									$('#logocont').velocity({blur: 0}, 800);
+									$('#pnltitle').velocity({left: '-100%'}, 800, 'easeInExpo');
+									$('#xpnldiv').velocity({left: '-100%'}, 800, 'easeInExpo', function()  {
+										$('#pnltitle').css({left: 0, top: 0, width: 0, height: 0, lineHeight: '7vh'});
+										$('#xpnldiv').css({left: 0, top: 0, width: 0});
+										dermx(n, true);
+									});
+									break;
+								case 1:
+									$('#logocont').velocity({blur: 6}, 800);
+									$('#pnltitle').velocity({height: 0, lineHeight: 0}, 800, 'easeInExpo');
+									$('#xpnldiv').velocity({top: '100%'}, 800, 'easeInExpo', function()  {
+										$('#pnltitle').css({left: 0, top: 0, width: 0, height: 0, lineHeight: '7vh'});
+										$('#xpnldiv').css({left: 0, top: 0, width: 0});
+										dermx(n, true);
+									});
+									break;
+								case 2:
+									$('#logocont').velocity({blur: 6}, 800);
+									$('#pnltitle').velocity({left: '100%'}, 800, 'easeInExpo');
+									$('#xpnldiv').velocity({left: '100%'}, 800, 'easeInExpo', function()  {
+										$('#pnltitle').css({left: 0, top: 0, width: 0, height: 0, lineHeight: '7vh'});
+										$('#xpnldiv').css({left: 0, top: 0, width: 0});
+										dermx(n, true);
+									});
+									break;
+							}
+							repl = false;
+						}
+					}  else  {
+						$('#cir' + n).velocity({top: '-110%', left: '-110%'}, 400, 'easeInExpo');
+						$('#der' + n).velocity({color: carr[n]}, 400, 'easeInExpo');
+					}
+				});
+			}
+			function buildMX()  {
+				fn = false;
+			}
+			function buildVS()  {
+				fn = false;
+			}
+			function buildSC()  {
+				fn = false;
+			}
+		</script>
+	</body>
+</html>

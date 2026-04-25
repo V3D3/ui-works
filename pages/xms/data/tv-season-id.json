@@ -1,0 +1,349 @@
+{
+    "_id": "57b4c2b6c3a3686a11001495",
+    "air_date": "2017-11-21",
+    "episodes": [
+        {
+            "air_date": "2017-11-21",
+            "crew": [
+                {
+                    "credit_id": "5a4268f6c3a36858c503b28c",
+                    "department": "Directing",
+                    "gender": 2,
+                    "id": 102109,
+                    "job": "Generic Job 2",
+                    "name": "Generic Name 1517",
+                    "profile_path": "/fake_profile.jpg"
+                },
+                {
+                    "credit_id": "5a4269069251411f4f04e315",
+                    "department": "Writing",
+                    "gender": 2,
+                    "id": 168798,
+                    "job": "Generic Job 37",
+                    "name": "Generic Name 1717",
+                    "profile_path": "/fake_profile.jpg"
+                },
+                {
+                    "credit_id": "5a426915c3a36858e003bd6d",
+                    "department": "Writing",
+                    "gender": 1,
+                    "id": 168812,
+                    "job": "Generic Job 45",
+                    "name": "Generic Name 3764",
+                    "profile_path": null
+                }
+            ],
+            "episode_number": 1,
+            "guest_stars": [],
+            "name": "Generic Name 2558",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1215640,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 5,
+            "vote_count": 3
+        },
+        {
+            "air_date": "2017-11-21",
+            "crew": [
+                {
+                    "credit_id": "5a4269069251411f4f04e315",
+                    "department": "Writing",
+                    "gender": 2,
+                    "id": 168798,
+                    "job": "Generic Job 30",
+                    "name": "Generic Name 2334",
+                    "profile_path": "/fake_profile.jpg"
+                },
+                {
+                    "credit_id": "5a426915c3a36858e003bd6d",
+                    "department": "Writing",
+                    "gender": 1,
+                    "id": 168812,
+                    "job": "Generic Job 43",
+                    "name": "Generic Name 2746",
+                    "profile_path": "/fake_profile.jpg"
+                },
+                {
+                    "credit_id": "5a4269309251411f5104ec3a",
+                    "department": "Directing",
+                    "gender": 1,
+                    "id": 34396,
+                    "job": "Generic Job 49",
+                    "name": "Generic Name 1804",
+                    "profile_path": "/fake_profile.jpg"
+                }
+            ],
+            "episode_number": 2,
+            "guest_stars": [],
+            "name": "Generic Name 199",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1378905,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 6.5,
+            "vote_count": 2
+        },
+        {
+            "air_date": "2017-11-21",
+            "crew": [
+                {
+                    "credit_id": "5a4269719251411f3e04d201",
+                    "department": "Directing",
+                    "gender": 1,
+                    "id": 1122804,
+                    "job": "Generic Job 7",
+                    "name": "Generic Name 3430",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a42697b0e0a264fd2038396",
+                    "department": "Writing",
+                    "gender": 0,
+                    "id": 1230678,
+                    "job": "Generic Job 7",
+                    "name": "Generic Name 4728",
+                    "profile_path": null
+                }
+            ],
+            "episode_number": 3,
+            "guest_stars": [],
+            "name": "Generic Name 3885",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1390713,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 7,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2017-11-28",
+            "crew": [
+                {
+                    "credit_id": "5a42698f9251411f3e04d227",
+                    "department": "Directing",
+                    "gender": 0,
+                    "id": 59423,
+                    "job": "Generic Job 26",
+                    "name": "Generic Name 2445",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a4269a5c3a36858e4037c7a",
+                    "department": "Writing",
+                    "gender": 0,
+                    "id": 1948268,
+                    "job": "Generic Job 48",
+                    "name": "Generic Name 1390",
+                    "profile_path": null
+                }
+            ],
+            "episode_number": 4,
+            "guest_stars": [],
+            "name": "Generic Name 975",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1393196,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 6,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2017-12-05",
+            "crew": [
+                {
+                    "credit_id": "5a4269c40e0a2620e0052395",
+                    "department": "Directing",
+                    "gender": 0,
+                    "id": 109695,
+                    "job": "Generic Job 45",
+                    "name": "Generic Name 221",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a4269cf0e0a2620e00523a1",
+                    "department": "Writing",
+                    "gender": 2,
+                    "id": 1214872,
+                    "job": "Generic Job 38",
+                    "name": "Generic Name 3596",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a4269dfc3a368586c038510",
+                    "department": "Writing",
+                    "gender": 0,
+                    "id": 1948269,
+                    "job": "Generic Job 35",
+                    "name": "Generic Name 1834",
+                    "profile_path": null
+                }
+            ],
+            "episode_number": 5,
+            "guest_stars": [],
+            "name": "Generic Name 1057",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1399377,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 8,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2017-12-12",
+            "crew": [
+                {
+                    "credit_id": "5a42697b0e0a264fd2038396",
+                    "department": "Writing",
+                    "gender": 0,
+                    "id": 1230678,
+                    "job": "Generic Job 14",
+                    "name": "Generic Name 2970",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a4269f99251411fd504f52b",
+                    "department": "Directing",
+                    "gender": 0,
+                    "id": 1320710,
+                    "job": "Generic Job 17",
+                    "name": "Generic Name 3644",
+                    "profile_path": null
+                }
+            ],
+            "episode_number": 6,
+            "guest_stars": [],
+            "name": "Generic Name 1920",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1399378,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 8,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2017-12-19",
+            "crew": [
+                {
+                    "credit_id": "5a426a2d0e0a264fd203845f",
+                    "department": "Directing",
+                    "gender": 0,
+                    "id": 208453,
+                    "job": "Generic Job 32",
+                    "name": "Generic Name 2155",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a426a380e0a264fb9039d1d",
+                    "department": "Writing",
+                    "gender": 2,
+                    "id": 221664,
+                    "job": "Generic Job 4",
+                    "name": "Generic Name 3126",
+                    "profile_path": "/fake_profile.jpg"
+                }
+            ],
+            "episode_number": 7,
+            "guest_stars": [
+                {
+                    "character": "Anonymized Character 26",
+                    "credit_id": "5a4ed5839251417a5e003a13",
+                    "gender": 2,
+                    "id": 1954046,
+                    "name": "Generic Name 1005",
+                    "order": 1,
+                    "profile_path": "/fake_profile.jpg"
+                }
+            ],
+            "name": "Generic Name 2693",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1399379,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 6,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2017-12-26",
+            "crew": [
+                {
+                    "credit_id": "5a4269cf0e0a2620e00523a1",
+                    "department": "Writing",
+                    "gender": 2,
+                    "id": 1214872,
+                    "job": "Generic Job 30",
+                    "name": "Generic Name 3962",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a4269dfc3a368586c038510",
+                    "department": "Writing",
+                    "gender": 0,
+                    "id": 1948269,
+                    "job": "Generic Job 25",
+                    "name": "Generic Name 2553",
+                    "profile_path": null
+                },
+                {
+                    "credit_id": "5a426a549251411fd204e71c",
+                    "department": "Directing",
+                    "gender": 1,
+                    "id": 1214641,
+                    "job": "Generic Job 10",
+                    "name": "Generic Name 3966",
+                    "profile_path": "/fake_profile.jpg"
+                }
+            ],
+            "episode_number": 8,
+            "guest_stars": [],
+            "name": "Generic Name 3732",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1404444,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 5,
+            "vote_count": 1
+        },
+        {
+            "air_date": "2018-01-02",
+            "crew": [],
+            "episode_number": 9,
+            "guest_stars": [],
+            "name": "Generic Name 4866",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1404445,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 8,
+            "vote_count": 2
+        },
+        {
+            "air_date": "2018-01-09",
+            "crew": [],
+            "episode_number": 10,
+            "guest_stars": [],
+            "name": "Generic Name 3782",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "id": 1404446,
+            "production_code": null,
+            "season_number": 1,
+            "still_path": "/fake_still.jpg",
+            "vote_average": 6,
+            "vote_count": 1
+        }
+    ],
+    "name": "Generic Name 4524",
+    "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+    "id": 79336,
+    "poster_path": "/fake_poster.jpg",
+    "season_number": 1
+}

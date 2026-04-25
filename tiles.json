@@ -562,5 +562,60 @@
                 "entry_type": "page"
             }
         ]
+    },
+    {
+        "entry_type": "group",
+        "title": "XMS",
+        "description": "XMS",
+        "entries": [
+            {
+                "title": "Involve",
+                "type": "Intro",
+                "path": "pages/xms/xms_init.html",
+                "weight": 1,
+                "description": "Initial user setup page.",
+                "entry_type": "page"
+            },
+            {
+                "title": "Config",
+                "type": "Tool",
+                "path": "pages/xms/xms_config.html",
+                "weight": 1,
+                "description": "Configuration page.",
+                "entry_type": "page"
+            },
+            {
+                "title": "XMS",
+                "type": "Menu",
+                "path": "pages/xms/xms.html",
+                "weight": 1,
+                "description": "XMS main menu.",
+                "entry_type": "page"
+            },
+            {
+                "title": "DataFetch Menu",
+                "type": "Menu",
+                "path": "pages/xms/datafetch4.html",
+                "weight": 1,
+                "description": "Datafetch menu.",
+                "entry_type": "page"
+            },
+            {
+                "title": "SpeccyFetch",
+                "type": "Menu",
+                "path": "pages/xms/datafetch/speccyfetch.html",
+                "weight": 1,
+                "description": "DataFetch for specific items.",
+                "entry_type": "page"
+            },
+            {
+                "title": "BulkFetch",
+                "type": "Menu",
+                "path": "pages/xms/datafetch/bulkfetch.html",
+                "weight": 1,
+                "description": "DataFetch for items in bulk.",
+                "entry_type": "page"
+            }
+        ]
     }
 ]

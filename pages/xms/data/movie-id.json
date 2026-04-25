@@ -1,0 +1,55 @@
+{
+    "adult": false,
+    "backdrop_path": "/fake_backdrop.jpg",
+    "belongs_to_collection": null,
+    "budget": 0,
+    "genres": [
+        {
+            "id": 18,
+            "name": "Generic Name 2319"
+        }
+    ],
+    "homepage": "http://sonyclassics.com/saintlaurent/",
+    "id": 221667,
+    "imdb_id": "tt2707848",
+    "original_language": "fr",
+    "original_title": "Fake Movie Title 3683",
+    "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+    "popularity": 5.277389,
+    "poster_path": "/fake_poster.jpg",
+    "production_companies": [
+        {
+            "id": 6896,
+            "logo_path": "/2Q89KvzxTKB5BAv9RqFIPI1qb7E.png",
+            "name": "Generic Name 1619",
+            "origin_country": "FR"
+        },
+        {
+            "id": 12096,
+            "logo_path": null,
+            "name": "Generic Name 1758",
+            "origin_country": ""
+        }
+    ],
+    "production_countries": [
+        {
+            "iso_3166_1": "FR",
+            "name": "Generic Name 983"
+        }
+    ],
+    "release_date": "2014-09-23",
+    "revenue": 0,
+    "runtime": 150,
+    "spoken_languages": [
+        {
+            "iso_639_1": "fr",
+            "name": "Generic Name 2585"
+        }
+    ],
+    "status": "Released",
+    "tagline": "The story that has never been told before",
+    "title": "Fake Movie Title 6511",
+    "video": false,
+    "vote_average": 6.2,
+    "vote_count": 108
+}

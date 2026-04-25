@@ -1,0 +1,63 @@
+{
+    "page": 1,
+    "total_results": 3,
+    "total_pages": 1,
+    "results": [
+        {
+            "original_name": "Generic Name 1541",
+            "id": 67466,
+            "name": "Generic Name 4370",
+            "vote_count": 66,
+            "vote_average": 7.33,
+            "poster_path": "/fake_poster.jpg",
+            "first_air_date": "2017-11-21",
+            "popularity": 11.223264,
+            "genre_ids": [
+                10759,
+                80,
+                18,
+                10765
+            ],
+            "original_language": "en",
+            "backdrop_path": "/fake_backdrop.jpg",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "origin_country": [
+                "US"
+            ]
+        },
+        {
+            "original_name": "Generic Name 159",
+            "id": 26015,
+            "name": "Generic Name 2689",
+            "vote_count": 0,
+            "vote_average": 0,
+            "poster_path": null,
+            "first_air_date": "1978-04-27",
+            "popularity": 0.191629,
+            "genre_ids": [],
+            "original_language": "en",
+            "backdrop_path": null,
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "origin_country": [
+                "US"
+            ]
+        },
+        {
+            "original_name": "Generic Name 895",
+            "id": 28858,
+            "name": "Generic Name 839",
+            "vote_count": 0,
+            "vote_average": 0,
+            "poster_path": null,
+            "first_air_date": "2006-10-19",
+            "popularity": 0.000248,
+            "genre_ids": [],
+            "original_language": "en",
+            "backdrop_path": null,
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "origin_country": [
+                "GB"
+            ]
+        }
+    ]
+}

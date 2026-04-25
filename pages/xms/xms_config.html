@@ -1,0 +1,184 @@
+<html>
+    <head>
+        <title>XMS - CONFIG</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <style>
+            *  {
+                font-family: SF Pro Display Thin;
+            }
+            span  {
+                position: absolute;
+                cursor: default;
+			}
+			::-webkit-scrollbar  {
+				width: 6px;
+				height: 6px;
+			}
+			::-webkit-scrollbar-corner, ::-webkit-scrollbar-track  {
+				background: transparent;
+			}
+			::-webkit-scrollbar-thumb  {
+				background: rgba(255, 255, 255, 0.5);
+				border-radius: 50px;
+			}
+			.B  {
+				left: 0;
+				width: 100%;
+				height: 20%;
+				background: rgba(255, 255, 255, 0.1);
+			}
+			.T  {
+				left: 0;
+				top: 0;
+				height: 100%;
+				line-height: 12vh;
+				text-align: right;
+				font-size: 4.5vh;
+			}
+			.I  {
+				position: absolute;
+				background: rgba(255, 255, 255, 0.1);
+				padding-left: 5%;
+				text-align: left;
+				line-height: 12vh;
+				font-size: 5vh;
+				height: 100%;
+				top: 0;
+				border: 0;
+			}
+			.I:focus  {
+				outline: rgba(255, 255, 255, 0.2);
+			}
+			.E  {
+				left: 0;
+				width: 6%;
+				height: 100%;
+				line-height: 12vh;
+				background: rgba(255, 255, 255, 0.1);
+				text-align: center;
+				font-size: 4vh;
+			}
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <img src='images/lowperf_xmsbg.png' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: -1;'>
+		<span id='HDR' style='top: 0; left: 0; height: 100%; width: 100%; line-height: 100vh; text-align: center; letter-spacing: 1vw; font-size: 12vh; background: rgba(255, 255, 255, 0.1);'>configuration</span>
+		<span id='OPC' style='top: 100%; left: 0; height: 62%; width: 100%; overflow: auto;'>
+			<span id='B00' class='B' style='top: 0;'>
+				<span id='T00' class='T' style='width: 25%;'>name</span>
+				<input id='I00' class='I' style='left: 30%; width: 70%;' value='jane doe' spellcheck=false>
+			</span>
+			<span id='B01' class='B' style='top: 25%;'>
+				<span id='T01' class='T' style='width: 25%;'>tmdb api key</span>
+				<input id='I01' class='I' style='left: 30%; width: 70%;' value='dummydummydummydumumdumumdumdums' spellcheck=false>
+			</span>
+			<span id='B02' class='B' style='top: 50%;'>
+				<span class='E'>EXP</span>
+				<span id='T02' class='T' style='width: 25%;'>df retheme</span>
+				<input id='I02' class='I' style='left: 30%; width: 70%;' value='false' spellcheck=false>
+			</span>
+			<span id='B03' class='B' style='top: 75%;'>
+				<span class='E'>EXP</span>
+				<span id='T03' class='T' style='width: 25%;'>xms_bg</span>
+				<input id='I03' class='I' style='left: 30%; width: 70%;' value='lowperf_xmsbg.png' spellcheck=false>
+			</span>
+			<span id='B04' class='B' style='top: 100%;'>
+				<span class='E'>EXP</span>
+				<span id='T04' class='T' style='width: 25%;'>xms_mvtile_bg</span>
+				<input id='I04' class='I' style='left: 30%; width: 70%;' value='highperf_movtilebg.png' spellcheck=false>
+			</span>
+			<span id='B05' class='B' style='top: 125%;'>
+				<span class='E'>EXP</span>
+				<span id='T05' class='T' style='width: 25%;'>xms_tvtile_bg</span>
+				<input id='I05' class='I' style='left: 30%; width: 70%;' value='highperf_tvtilebg.png' spellcheck=false>
+			</span>
+			<span id='B06' class='B' style='top: 150%;'>
+				<span class='E'>EXP</span>
+				<span id='T06' class='T' style='width: 25%;'>xms_arttile_bg</span>
+				<input id='I06' class='I' style='left: 30%; width: 70%;' value='highperf_arttilebg.png' spellcheck=false>
+			</span>
+			<span id='B07' class='B' style='top: 175%;'>
+				<span class='E'>EXP</span>
+				<span id='T07' class='T' style='width: 25%;'>global font</span>
+				<input id='I07' class='I' style='left: 30%; width: 70%;' value='SF Pro Display Thin' spellcheck=false>
+			</span>
+			<span id='B08' class='B' style='top: 200%;'>
+				<span class='E'>EXP</span>
+				<span id='T08' class='T' style='width: 25%;'>xms_interfacemode</span>
+				<input id='I08' class='I' style='left: 30%; width: 70%;' value='default' spellcheck=false>
+			</span>
+		</span>
+		<span id='SBT' style='height: 8%; width: 15%; text-align: center; line-height: 8vh; font-size: 5vh; top: 185%; left: 42.5%;'>submit
+			<span id='SBG' style='height: 100%; width: 100%; top: 0; left: 0; background-color: #ffffff; opacity: 0.05;'></span>
+		</span>
+        <script>
+			var cfgarr = 	[
+								['00', 'username'],
+								['01', 'tmdbapikey'],
+								['02', 'df_retheme'],
+								['03', 'main_bg'],
+								['04', 'main_mvtilebg'],
+								['05', 'main_tvtilebg'],
+								['06', 'main_artilebg'],
+								['07', 'font'],
+                                ['08', 'main_intm']
+							];
+            var s02 = '';
+            var s08 = '';
+            $(document).ready(function()  {
+				cfgload();
+				$('#HDR').delay(2000).velocity({height: '20%', lineHeight: '20vh'}, 800, 'easeOutExpo');
+				$('#OPC').delay(2200).velocity({top: '25%'}, 800, 'easeOutExpo');
+				$('#SBT').delay(2400).velocity({top: '90%'}, 1800, 'easeOutExpo');
+			});
+			$(document).ready(function()  {
+				$('#SBT').mouseenter(function()  {
+					$('#SBG').velocity({opacity: 0.1}, 100);
+				});
+				$('#SBT').mouseleave(function()  {
+					$('#SBG').velocity({opacity: 0.05}, 100);
+				});
+				$('#SBT').mousedown(function()  {
+					$('#SBG').velocity({backgroundColor: '#000000'}, 100);
+					$('#SBT').velocity({scale: 0.95}, 150);
+				});
+				$('#SBT').mouseup(function()  {
+					$('#SBG').velocity({backgroundColor: '#ffffff'}, 100);
+					$('#SBT').velocity({scale: 1}, 150);
+					cfgsave();
+				});
+				$('#I02').blur(function()  {
+                    var dfrta = ['false', 'true'];
+					if(dfrta.indexOf($('#I02').val().toLowerCase()) == -1)  {
+						$('#I02').val(s02);
+					}
+				});
+                $('#I02').focus(function()  {
+                    s02 = $('#I02').val();
+                });
+                $('#I08').focus(function()  {
+                    s08 = $('#I08').val();
+                });
+				$('#I08').blur(function()  {
+                    var xmia = ['default', 'gen'];
+					if(xmia.indexOf($('#I08').val().toLowerCase()) == -1)  {
+						$('#I08').val(s08);
+					}
+				});
+			});
+			function cfgload()  {
+				for(var i = 0; i < cfgarr.length; i++) {
+					cfgul(cfgarr[i][1], cfgarr[i][0]);
+				}
+			}
+			function cfgsave()  {
+				for(var i = 0; i < cfgarr.length; i++) {
+					cfg(cfgarr[i][1], cfgarr[i][0]);
+				}
+			}
+			cfg = (x, y) => localStorage.setItem('xms_' + x, $('#I' + y).val());
+			cfgul = (x, y) => $('#I' + y).val(localStorage.getItem('xms_' + x));
+        </script>
+    </body>
+</html>

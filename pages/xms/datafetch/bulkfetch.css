@@ -1,0 +1,125 @@
+::-webkit-scrollbar  {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-track  {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb  {
+	background: rgba(0, 255, 0, 0.5);
+	border-radius: 50px;
+}
+*  {
+	font-family: SF Pro Display Ultralight;
+}
+textarea:focus  {
+    outline: 0;
+}
+span  {
+	position: absolute;
+	cursor: default;
+	user-select: none;
+}
+.dcont  {
+    left: -50%;
+    width: 0;
+    height: 8%;
+    background: linear-gradient(to bottom, rgba(0, 255, 0, 0.6), rgba(0, 255, 0, 0.5), rgba(0, 255, 0, 0.5));
+    overflow: hidden;
+}
+.dct  {
+    left: 0;
+    height: 100%;
+    line-height: 8vh;
+    width: calc(30% - 2vh);
+    left: 0;
+    background: lime;
+    font-size: 3vh;
+    text-align: right;
+    padding-right: 2vh;
+    font-variant: petite-caps;
+    letter-spacing: 3vh;
+}
+.dcs  {
+    width: 40%;
+    left: 30%;
+    height: 100%;
+    top: 0;
+}
+.dcc  {
+    height: 2.5vh;
+    width: 2.5vh;
+    border-radius: 50%;
+    background: lime;
+    top: 3vh;
+    overflow: hidden;
+}
+.dccp  {
+    height: 1.5vh;
+    width: 1.5vh;
+    border-radius: 50%;
+    border: 0.5vh solid lime;
+    top: 3vh;
+    overflow: hidden;
+}
+.dcct  {
+    top: 0;
+    left: 0;
+    height: 8vh;
+    width: 30vw;
+    background: lime;
+    text-align: center;
+    line-height: 8vh;
+    font-size: 3vh;
+    font-variant: petite-caps;
+    letter-spacing: 3vh;
+}
+.nx, .fx  {
+    top: 89%;
+    height: 0;
+    width: 0;
+    left: -50%;
+    border: 2px solid lime;
+    transform: skewX(-20deg);
+    line-height: 8vh;
+    overflow: hidden;
+    color: lime;
+    text-align: center;
+    font-variant: petite-caps;
+    font-size: 3.5vh;
+    letter-spacing: 1.5vh;
+    box-shadow: 0 0 0px lime;
+    text-shadow: 0 0 0px lime;
+}
+
+#queryarea  {
+    height: 100%;
+    width: 200%;
+    left: -200%;
+    top: 0;
+}
+
+#querycapt  {
+    position: absolute;
+    height: 70%;
+    width: 0;
+    left: 49.25%;
+    top: 12%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+    color: lime;
+    font-size: 3.5vh;
+    letter-spacing: 1vh;
+    font-variant: petite-caps;
+    line-height: 6vh;
+    resize: none;
+    padding-left: 1.5vw;
+    padding-top: 1vh;
+}
+
+#righthook, #lefthook  {
+    top: 12%;
+    border: 10vw solid transparent;
+    border-top-width: 35vh;
+    border-bottom-width: 35vh;
+}

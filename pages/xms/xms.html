@@ -1,0 +1,252 @@
+<html>
+    <head>
+        <title>XMS</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <style>
+            *  {
+                font-family: Segoe UI Light;
+            }
+            span  {
+                position: absolute;
+                cursor: default;
+            }
+            #tmov, #ttv, #tart, #tmor  {
+                font-size: 7vh;
+                text-align: center;
+                opacity: 0.6;
+            }
+            #tmov, #ttv, #tart  {
+                box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+            }
+            #tmvc, #ttvc, #tarc  {
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <img src='images/lowperf_xmsbg.png' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: -1;'>
+        <span id='spkc' style='top: 0; left: 0; width: 100%; height: 100%;'>
+            <span id='spk0' style='top: -50%; left: -50%; width: 200%; height: 200%; border-radius: 50%; background: black; transform: rotate(-45deg)'></span>
+            <span id='spk1' style='top: -50%; left: -50%; width: 200%; height: 200%; border-radius: 50%; background: black; transform: rotate(45deg)'></span>
+            <span id='let0' style='top: 73%; left: 32%; width: 18%; height: 7%; color: black; font-size: 4vh; text-align: center;'>X</span>
+            <span id='let1' style='top: 73%; left: 41%; width: 18%; height: 7%; color: black; font-size: 4vh; text-align: center;'>M</span>
+            <span id='let2' style='top: 73%; left: 50%; width: 18%; height: 7%; color: black; font-size: 4vh; text-align: center;'>S</span>
+        </span>
+        <span id='tilc' style='top: 100%; left: 0; height: 100%; width: 100%;'>
+            <span id='tmov' style='top: 5%; width: 50%; left: 5%; height: 45%; line-height: 45vh; letter-spacing: 2vh; overflow: hidden;'>
+                <span id='tmvc' style='background: url("images/highperf_movtilebg.png"); background-repeat: no-repeat; background-size: cover;'></span>
+                <span id='tmvh' style='top: 0; left: 0; height: 100%; width: 100%; z-index: 0; background: lime;'></span>
+                <span id='tmvx' style='top: 0; left: 0; height: 100%; width: 100%; line-height: inherit; letter-spacing: inherit; z-index: 2;'>MOVIES</span>
+            </span>
+            <span id='ttv' style='top: 155%; width: 60%; left: 5%; height: 40%; line-height: 40vh; letter-spacing: 2vh;'>
+                <span id='ttvc' style='background: url("images/highperf_tvtilebg1.jpg"); background-repeat: no-repeat; background-size: cover;'></span>
+                <!-- <span style='top: calc(50% - 8vh); height: 16vh; width: 100%; left: 0; backdrop-filter: blur(10px); z-index: 0;'></span> -->
+                <span id='ttvh' style='top: 0; left: 0; height: 100%; width: 100%; z-index: 0; background: yellow; z-index: 1;'></span>
+                <span id='ttvx' style='top: 0; left: 0; height: 100%; width: 100%; line-height: inherit; letter-spacing: inherit; z-index: 2;'>TV SHOWS</span>
+            </span>
+            <span id='tmor' style='top: 105%; width: calc(5% - 4px); left: 60%; height: calc(45% - 4px); line-height: 5vw; writing-mode: vertical-rl; text-orientation: upright; font-size: 5.5vh; border: 2px solid rgba(0, 0, 0, 0.2);'>
+                <span id='tmrc' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; opacity: 0; background: rgba(0, 0, 0, 0.33); z-index: -1'></span>
+                <span id='tmrx' style='top: 0; left: 0; height: 100%; width: 100%; line-height: inherit; letter-spacing: inherit; z-index: 2; color: rgba(0, 0, 0, 0.7);'>MORE</span>
+            </span>
+            <span id='tart' style='top: 105%; width: 25%; left: 70%; height: 90%; writing-mode: vertical-rl; text-orientation: upright; line-height: 25vw;'>
+                <span id='tarc' style='background: url("images/highperf_arttilebg.png"); background-repeat: no-repeat; background-size: cover;'></span>
+                <span id='tarh' style='top: 0; left: 0; height: 100%; width: 100%; z-index: 0; background: rebeccapurple;'></span>
+                <span id='tarx' style='top: 0; left: 0; height: 100%; width: 100%; line-height: inherit; letter-spacing: inherit; z-index: 2;'>ARTISTS</span>
+            </span>
+            <!-- <span id='tbk' style='top: 5%; width: 50%; left: 5%; height: 40%; background: dodgerblue;'></span>
+            <span id='tgam' style='top: 5%; width: 50%; left: 5%; height: 40%; background: dodgerblue;'></span> -->
+
+            <span id='cont' style='left: 50%; top: 80%; width: 0; height: 0; z-index: 990;'></span>
+
+            <span id='moreover' style='z-index: 100; top: 100%; left: 0; height: 100%; width: 100%; backdrop-filter: blur(5px); overflow: hidden;'></span>
+            <span id='cfgnav' style='z-index: 102; top: 105%; height: 20%; font-family: SF Pro Display Thin; line-height: 20vh; letter-spacing: 1vw; width: 80%; left: 10%; text-align: center; font-size: 12vh;'>configuration
+                <span id='cfgnbg' style='z-index: 101; top: 0; left: 0; height: 100%; width: 100%; background: white; opacity: 0;'></span>
+            </span>
+        </span>
+        <script>
+
+            //VARIABLES
+
+            var sW = window.innerWidth, sH = window.innerHeight;
+            var scr = 'msel';
+            var main_intm = localStorage.getItem('xms_main_intm');
+
+            //CINEMATIC PAGE PRESENTATION
+
+            $(document).ready(function()  {
+                $('#spk0').delay(1000).velocity({rotateZ: [-45, 180], width: '25%', height: '1%', top: '49.5%', left: '37.5%'}, 'easeOutExpo', 1200);
+                $('#spk1').delay(1000).velocity({rotateZ: [45, 225], width: '25%', height: '1%', top: '49.5%', left: '37.5%'}, 'easeOutExpo', 1200, function()  {
+                    $('#let0, #let1, #let2').delay(600).velocity({left: '41%', top: '46.5%', scale: 0.1}, 800, 'easeInOutExpo');
+                    $('#spk0, #spk1').delay(600).velocity({left: (sW / 2) - (0.01 * sH), width: '2vh', height: '2%', top: '49%', borderRadius: '50%'}, 800, 'easeInOutExpo', function()  {
+                        $('#spk0, #spk1, #let0, #let1, #let2').velocity({top: '120%'}, 600, 'easeInExpo', function()  {
+                            if(main_intm == 'gen')  {
+                                $('#tilc').velocity({top: 0}, 600, 'easeOutExpo');
+                                $('#ttv').delay(900).velocity({top: '55%'}, 600, 'easeOutExpo');
+                                $('#tmor').delay(600).velocity({top: '5%'}, 600, 'easeOutExpo');
+                                $('#tart').delay(300).velocity({top: '5%'}, 600, 'easeOutExpo');
+                            }  else  {
+                                $('#tilc').velocity({top: 0}, 0);
+                                $('#tmov').velocity({transformPerspective: 280, translateZ: 500, rotateX: 15, rotateY: -15, translateX: -500, translateY: -500}, 0);
+                                $('#ttv').velocity({top: '55%', transformPerspective: 280, translateZ: 500, rotateX: -15, rotateY: -15, translateX: -500, translateY: 500}, 0);
+                                $('#tmor').velocity({top: '5%', transformPerspective: 280, translateZ: 500, rotateX: 15, rotateY: 15, translateX: 500, translateY: -500}, 0);
+                                $('#tart').velocity({top: '5%', transformPerspective: 280, translateZ: 500, rotateX: -15, rotateY: 15, translateX: 500, translateY: 500}, 0, function()  {
+                                    $('#tmov').velocity({transformPerspective: 280, translateZ: 0, rotateX: 0, rotateY: 0, translateX: 0, translateY: 0}, 1800, 'easeOutExpo');
+                                    $('#tmor').delay(400).velocity({transformPerspective: 280, translateZ: 0, rotateX: 0, rotateY: 0, translateX: 0, translateY: 0}, 1800, 'easeOutExpo');
+                                    $('#ttv').delay(800).velocity({transformPerspective: 280, translateZ: 0, rotateX: 0, rotateY: 0, translateX: 0, translateY: 0}, 1800, 'easeOutExpo');
+                                    $('#tart').delay(1200).velocity({transformPerspective: 280, translateZ: 0, rotateX: 0, rotateY: 0, translateX: 0, translateY: 0}, 1800, 'easeOutExpo');
+                                });
+                            }
+                        });
+                    });
+                });
+            });
+
+            //EVENTS
+
+            $(document).ready(function()  {
+                $('#tmov, #ttv').mouseenter(function()  {
+                    if(scr == 'msel')  {
+                        $(['#tmvh', '#ttvh'][['tmov', 'ttv'].indexOf($(this).attr('id'))]).velocity({height: '80%'}, 200, 'easeInOutExpo');
+                    }
+                });
+                $('#tmov, #ttv').mouseleave(function()  {
+                    if(scr == 'msel')  {
+                        $('#tmov, #ttv').velocity({scale: 1}, 200, 'easeOutExpo');
+                        $(['#tmvh', '#ttvh'][['tmov', 'ttv'].indexOf($(this).attr('id'))]).velocity({height: '100%'}, 200, 'easeInOutExpo');
+                    }
+                });
+                $('#tmov, #ttv').mousedown(function()  {
+                    if(scr == 'msel')  {
+                        $(this).velocity({scale: 0.9}, 200);
+                        $(['#tmvh', '#ttvh'][['tmov', 'ttv'].indexOf($(this).attr('id'))]).velocity({height: 0}, 200, 'easeInOutExpo');
+                        $(['#tmvx', '#ttvx'][['tmov', 'ttv'].indexOf($(this).attr('id'))]).velocity({color: '#ffffff', textShadowBlur: 20}, 200);
+                    }
+                });
+                $('#tmov, #ttv').mouseup(function()  {
+                    if(scr == 'msel')  {
+                        $(this).velocity({scale: 1, opacity: 1, top: 0, left: 0, height: '100%',  width: '100%', zIndex: [6, 6], lineHeight: '100vh'}, 800, 'easeOutExpo');
+                        $(['#tmvc', '#ttvc'][['tmov', 'ttv'].indexOf($(this).attr('id'))]).velocity({blur: 5}, 200, 'easeInOutExpo');
+                        scr = $(this).attr('id').substr(1);
+                    }
+                });
+                $('#tart').mouseenter(function()  {
+                    if(scr == 'msel')  {
+                        $(['#tarh'][['tart'].indexOf($(this).attr('id'))]).velocity({width: '80%'}, 200, 'easeInOutExpo');
+                    }
+                });
+                $('#tart').mouseleave(function()  {
+                    if(scr == 'msel')  {
+                        $('#tart').velocity({scale: 1}, 200, 'easeOutExpo');
+                        $(['#tarh'][['tart'].indexOf($(this).attr('id'))]).velocity({width: '100%'}, 200, 'easeInOutExpo');
+                    }
+                });
+                $('#tart').mousedown(function()  {
+                    if(scr == 'msel')  {
+                        $(this).velocity({scale: 0.9}, 200, 'easeOutExpo');
+                        $(['#tarh'][['tart'].indexOf($(this).attr('id'))]).velocity({width: '0'}, 200, 'easeInOutExpo');
+                        $(['#tarx'][['tart'].indexOf($(this).attr('id'))]).velocity({color: '#ffffff', textShadowBlur: 20}, 200);
+                    }
+                });
+                $('#tart').mouseup(function()  {
+                    if(scr == 'msel')  {
+                        scr = $(this).attr('id').substr(1);
+                        $(this).velocity({scale: 1, opacity: 1, top: 0, left: 0, height: '100%', width: '100%', zIndex: [6, 6], lineHeight: '100vw'}, 800, 'easeOutExpo');
+                        $(['#tarc'][['tart'].indexOf($(this).attr('id'))]).velocity({width: '100%', left: 0, zIndex: [1, 1], blur: 5}, 800, 'easeOutExpo');
+                    }
+                });
+                $('#tmor').mouseenter(function()  {
+                    if(scr == 'msel')  {
+                        $('#tmrc').velocity({opacity: 0.6}, 200);
+                    }
+                });
+                $('#tmor').mouseleave(function()  {
+                    if(scr == 'msel')  {
+                        $('#tmor').velocity({scale: 1}, 200, 'easeOutExpo');
+                        $('#tmrc').velocity({opacity: 0}, 200);
+                    }
+                });
+                $('#tmor').mousedown(function()  {
+                    if(scr == 'msel')  {
+                        $('#tmor').velocity({scale: 0.9}, 200, 'easeOutExpo');
+                        $('#tmrc').velocity({opacity: 1}, 200);
+                    }
+                });
+                $('#tmor').mouseup(function()  {
+                    if(scr == 'msel')  {
+                        scr = 'mor';
+                        $('#tmor').velocity({scale: 1}, 200, 'easeOutExpo');
+                        $('#tmrc').velocity({opacity: 0}, 200);
+                        $('#moreover').velocity({top: 0}, 800, 'easeOutExpo');
+                        $('#cfgnav').delay(700).velocity({top: '40%'}, 1000, 'easeOutExpo');
+                    }
+                });
+                $('#moreover').mousedown(function()  {
+                    scr = 'msel';
+                    $('#cfgnav').velocity({top: '100%'}, 800, 'easeInExpo');
+                    $('#moreover').delay(600).velocity({top: '100%'}, 800, 'easeInExpo');
+                });
+            });
+
+
+            //XPR BLOCK
+            //ELEMENTARY
+
+            var xelemid = -1;
+			var xelembrk = 0;
+			function exec()  {
+				genS();
+				var u = "#stick" + xelemid;
+				$(u).velocity({top: '-6px'}, 1000, "easeOutExpo", function()  {
+					var h = gCom(sH * 0.2);
+					$(u).velocity({translateX: -(h / 2), width: h, rotateZ: gCom(360) - 180}, 1000, "easeInOutCubic", function()  {
+						if(xelembrk == 0)  {
+							exec();
+						}
+					});
+				});
+			}
+
+            function elempause()  {
+                xelembrk = 1;
+            }
+            function elemrun()  {
+                xelembrk = 1;
+                $('#cont').velocity({top: "120%"}, 600, "easeInExpo", function()  {
+                    $("#cont").html("");
+                    $("#cont").velocity({top: "80%"}, 600, "easeOutExpo", function()  {
+                        xelembrk = 0;
+                        exec();
+                    });
+                });
+            }
+            function gCol()  {
+                return "rgb(" + gCom(255) + ", " + gCom(255) + ", " + gCom(255) + ")";
+            }
+			function gCom(R)  {
+				return parseInt(Math.random() * R);
+			}
+			function genS()  {
+				xelemid++;
+				var t = 5 + gCom(22);
+				document.getElementById("cont").innerHTML += "<span style='border-radius: 1000px; top: 100vh; height: 12px; width: 12px; left: -6px; background-color: " + gCol() + "; z-index: " + xelemid + ";' id='stick" + xelemid + "'></span>";
+			}
+        </script>
+    </body>
+</html>
+
+<!--
+    spkc: spoke container
+    spk0/1: spoke 0/1
+    let0/1/2: letter 0/1/2
+    tilc: tile container
+    tmov/tv/art/mor: movie/tv/artist/more tile
+    t(mv/tv/ar/mr)c: movie/tv/artist/more tile cover
+    t(mv/tv/ar)h: movie/tv/artist tile cover hider
+    t(mv/tv/ar/mr)x: movie/tv/artist/more tile text
+    moreover: more section container
+-->

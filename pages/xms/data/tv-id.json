@@ -1,0 +1,106 @@
+{
+    "backdrop_path": "/fake_backdrop.jpg",
+    "created_by": [
+        {
+            "id": 168798,
+            "name": "Generic Name 3145",
+            "gender": 2,
+            "profile_path": "/fake_profile.jpg"
+        },
+        {
+            "id": 168812,
+            "name": "Generic Name 4335",
+            "gender": 1,
+            "profile_path": "/fake_profile.jpg"
+        }
+    ],
+    "episode_run_time": [
+        50
+    ],
+    "first_air_date": "2017-11-21",
+    "genres": [
+        {
+            "id": 10759,
+            "name": "Generic Name 303"
+        },
+        {
+            "id": 80,
+            "name": "Generic Name 638"
+        },
+        {
+            "id": 18,
+            "name": "Generic Name 2505"
+        },
+        {
+            "id": 10765,
+            "name": "Generic Name 3859"
+        }
+    ],
+    "homepage": "https://www.hulu.com/marvels-runaways",
+    "id": 67466,
+    "in_production": true,
+    "languages": [
+        "en"
+    ],
+    "last_air_date": "2018-01-09",
+    "name": "Generic Name 1490",
+    "networks": [
+        {
+            "name": "Generic Name 179",
+            "id": 453,
+            "logo_path": "/4giYeGORZzztkAAd1HOzrQ4iaLW.png",
+            "origin_country": "US"
+        }
+    ],
+    "number_of_episodes": 10,
+    "number_of_seasons": 1,
+    "origin_country": [
+        "US"
+    ],
+    "original_language": "en",
+    "original_name": "Generic Name 1274",
+    "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+    "popularity": 11.223264,
+    "poster_path": "/fake_poster.jpg",
+    "production_companies": [
+        {
+            "id": 58423,
+            "logo_path": null,
+            "name": "Generic Name 193",
+            "origin_country": ""
+        },
+        {
+            "id": 38679,
+            "logo_path": "/7sD79XoadVfcgOVCjuEgQduob68.png",
+            "name": "Generic Name 4023",
+            "origin_country": "US"
+        },
+        {
+            "id": 51718,
+            "logo_path": "/fS7xGI3Pm48AsvrjBMceyBoKr2c.png",
+            "name": "Generic Name 4410",
+            "origin_country": "US"
+        },
+        {
+            "id": 76871,
+            "logo_path": "/dH7AzsDsqprczfONV4fdKldJXb9.png",
+            "name": "Generic Name 4762",
+            "origin_country": "US"
+        }
+    ],
+    "seasons": [
+        {
+            "air_date": "2017-11-21",
+            "episode_count": 10,
+            "id": 79336,
+            "name": "Generic Name 1137",
+            "overview": "This is a generic placeholder overview for anonymized content. All real information has been replaced.",
+            "poster_path": "/fake_poster.jpg",
+            "season_number": 1
+        }
+    ],
+    "status": "Returning Series",
+    "type": "Scripted",
+    "vote_average": 7.4,
+    "vote_count": 68
+}

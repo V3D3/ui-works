@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>XMS - INVOLVE</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <script>
+            var sW = window.innerWidth, sH = window.innerHeight;
+            var config = [];
+
+            $(document).ready(function()  {
+                if(localStorage.getItem('xms_username') != null)  {
+                    $('#inp0').val(localStorage.getItem('xms_username'));
+                }
+                if(localStorage.getItem('xms_tmdbapikey') != null)  {
+                    $('#inp1').val(localStorage.getItem('xms_tmdbapikey'));
+                }
+                $('#tex0').delay(1000).velocity({top: 0, opacity: 1}, 2000, 'easeOutExpo', function()  {
+                    $('#tex0').velocity({top: '-100%', opacity: 0}, 1000, 'easeInExpo', function()  {
+                        $('#tex4').delay(100).velocity({opacity: 1}, 500);
+                        $('#tex5').delay(250).velocity({opacity: 1}, 500);
+                        $('#tex6').delay(500).velocity({opacity: 1}, 500, function()  {
+                            $('#inp0').focus();
+                            $('#inp0').delay(200).velocity({height: '50vh', opacity: 1, top: '50%'}, 2000, 'easeOutExpo');
+                            $('#tex4, #tex5, #tex6').velocity({height: '50vh', top: 0, lineHeight: '50vh'}, 2000, 'easeOutExpo');
+                        });
+                    });
+                });
+            });
+            $(document).ready(function()  {
+                $('#inp0').keypress(function(e)  {
+                    if(e.keyCode == 13)  {
+                        localStorage.setItem('xms_username', $('#inp0').val());
+                        $('#inp0').blur();
+                        $('#tex4').velocity({opacity: 0}, 400);
+                        $('#tex5').delay(200).velocity({opacity: 0}, 400);
+                        $('#tex6').delay(400).velocity({opacity: 0}, 400);
+                        $('#grd0').delay(500).velocity({left: 0}, 1000, function()  {
+                            $('#tex7').delay(100).velocity({left: 0, opacity: 1}, 2000, 'easeOutExpo');
+                            $('#inp1').focus();
+                            $('#inp1').css({left: 0, opacity: 1});
+                            $('#inp0').css({left: '100%'});
+                            $('#grd0').velocity({left: '200%'}, 1000);
+                        });
+                    }
+                });
+                $('#inp1').keypress(function(e)  {
+                    if(e.keyCode == 13)  {
+                        localStorage.setItem('xms_tmdbapikey', $('#inp1').val());
+                        $('#inp1').blur();
+                        $('#inp1, #tex7').velocity({height: 0, lineHeight: 0, top: '105%'}, 2000, 'easeOutExpo');
+                        $('#tex8').delay(1500).velocity({height: '100%', lineHeight: '100vh', top: 0, opacity: 1}, 2000, 'easeOutExpo', function()  {
+                            $('#tex8').delay(200).velocity({height: 0, lineHeight: 0, top: '-100%', opacity: 0}, 1000, 'easeInExpo');
+                            $('#tex9').delay(1500).velocity({height: '100%', lineHeight: '100vh', top: 0, opacity: 1}, 1500, 'easeOutExpo');
+                            $('#tex9').delay(800).velocity({height: 0, lineHeight: 0, top: '100%', opacity: 0}, 1000, 'easeInExpo', function()  {
+                                $('#tex1').velocity({top: [0, '100%'], opacity: 1}, 2000, 'easeOutExpo');
+                                $('#tex2').delay(300).velocity({top: ['33%', '100%'], opacity: 1}, 2000, 'easeOutExpo');
+                                $('#tex3').delay(600).velocity({top: ['67%', '100%'], opacity: 1}, 2000, 'easeOutExpo', function()  {
+                                    $('#tex1').velocity({opacity: 0}, 500);
+                                    $('#tex2').delay(250).velocity({opacity: 0}, 500);
+                                    $('#tex3').delay(500).velocity({opacity: 0}, 500, function()  {
+                                        window.location = window.location.href.split('/').reverse().splice(1).reverse().join('/') + "/xms.html";
+                                    });
+                                });
+                            });
+                        });
+                    }
+                });
+            });
+
+        </script>
+        <style>
+            *  {
+                font-family: Segoe UI Light;
+            }
+            .tex  {
+                position: absolute; font-family: SF Pro Display Thin; font-size: 25vh; height: 100%; width: 100%; left: 0; top: 100%; line-height: 100vh; text-align: center; color: orange; opacity: 0; overflow: hidden;
+            }
+            input:focus  {
+                outline: 0;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <span id='tex0' class='tex'>hi.</span>
+        <span id='tex1' class='tex' style='line-height: 33vh; height: 33%;'>welcome</span>
+        <span id='tex2' class='tex' style='line-height: 34vh; height: 34%;'>to</span>
+        <span id='tex3' class='tex' style='line-height: 33vh; height: 33%;'>xms.</span>
+        <span id='tex4' class='tex' style='width: 30vw; left: 0; text-align: right; top: 0;'>who</span>
+        <span id='tex5' class='tex' style='width: 34vw; left: 33vw; top: 0;'>are</span>
+        <span id='tex6' class='tex' style='width: 30vw; left: 70vw; text-align: left; top: 0;'>you?</span>
+        <input id='inp0' class='tex' style='border: 0; background: rgba(255, 255, 255, 0.1); height: 0; line-height: 0; top: 75%; text-transform: lowercase;' spellcheck=false value='Jane Doe'>
+        <span id='tex7' class='tex' style='height: 50%; top: 0; left: -100%; font-size: 13vh; line-height: 50vh;'>now, enter an API key for TMDB</span>
+        <input id='inp1' class='tex' style='border: 0; background: rgba(255, 255, 255, 0.1); height: 50%; line-height: 50vh; top: 50%; text-transform: lowercase; left: -100%; font-size: 9vh;' spellcheck=false value='dummydummydummydumumdumumdumdums'>
+        <span id='grd0' style='position: absolute; left: -200%; width: 200%; height: 50%; top: 50%;'>
+            <span style='position: absolute; left: -50%; width: 50%; height: 100%; top: 0; background: linear-gradient(to left, black, transparent);'></span>
+            <span style='position: absolute; left: 0; width: 50%; height: 100%; top: 0; background: black;'></span>
+            <span style='position: absolute; left: 50%; width: 50%; height: 100%; top: 0; background: linear-gradient(to right, black, transparent);'></span>
+        </span>
+        <span id='tex8' class='tex' style='top: -100%; height: 0; line-height: 0; font-size: 20vh;'>alright, thanks.</span>
+        <span id='tex9' class='tex' style='height: 0; line-height: 0; font-size: 13vh;'>the basic setup is now complete.</span>
+    </body>
+</html>

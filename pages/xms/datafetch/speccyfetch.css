@@ -1,0 +1,257 @@
+::-webkit-scrollbar  {
+	width: 6px;
+	height: 6px;
+}
+::-webkit-scrollbar-track  {
+	background: transparent;
+}
+::-webkit-scrollbar-thumb  {
+	background: black;
+	border-radius: 50px;
+}
+*  {
+	font-family: SF Pro Display Ultralight;
+}
+#MIB:focus, #TIB:focus, #AIB:focus  {
+	outline-color: black;
+}
+#MAB:focus, #TAB:focus  {
+	outline-color: lime;
+}
+#MIB::selection, #TIB::selection, #AIB::selection  {
+    color: lime;
+    background: black;
+}
+#MAB::selection, #TAB::selection  {
+    color: black;
+    background: lime;
+}
+span  {
+	position: absolute;
+	cursor: default;
+	user-select: none;
+}
+.MTX, .MCC  {
+	border: 2px solid lime;
+	color: lime;
+	text-align: center;
+	font-size: 3.392vw;
+	width: 20%;
+	height: 5.815vw;
+	line-height: 5.815vw;
+	left: -100%;
+	opacity: 0.5;
+	box-shadow: 0 0 60px rgba(0, 255, 0, 0.3);
+}
+.MMOOBJ, .TMOOBJ  {
+	top: 110%;
+	width: 90%;
+	height: 14.539vw;
+	left: 5%;
+	border: 2px solid lime;
+	box-shadow: 0 0 50px black;
+	background: lime;
+}
+.MMOCOV, .TMOCOV  {
+	position: absolute;
+	top: 0;
+	width: 9.692vw;
+	height: 14.539vw;
+	border: 0;
+	background: black;
+	left: 0;
+}
+.MMODET, .TMODET  {
+	top: 2.907vw;
+	height: 7.269vw;
+	width: calc(100% - 10.662vw - 2px);
+	left: calc(9.692vw + 2px);
+	padding: 0.484vw;
+	text-align: left;
+	overflow: auto;
+	font-size: 1.454vw;
+	box-shadow: inset 0 0 20px black;
+	background: lime;
+}
+.MMOGCN, .TMOGCN  {
+	top: 11.146vw;
+	height: 3.392vw;
+	width: calc(100% - 9.692vw);
+	left: 9.692vw;
+	overflow-x: auto;
+	overflow-y: hidden;
+	background: lime;
+}
+.MMOGTG, .TMOGTG  {
+	position: relative;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	top: 15%;
+	height: 2.471vw;
+	line-height: 2.568vw;
+	font-size: 1.163vw;
+	text-align: center;
+	border: 1px solid black;
+}
+.MMOTTL, .TMOTTL  {
+	padding-left: 0.484vw;
+	left: 9.692vw;
+	width: calc(100% - 13.085vw);
+	background: lime;
+	color: black;
+	font-variant: petite-caps;
+	letter-spacing: 0.484vw;
+	font-size: 1.454vw;
+	height: 2.907vw;
+	top: 0;
+	line-height: 2.907vw;
+}
+.MMOFCH, .TMOFCH  {
+	right: 2%;
+	width: 12%;
+	border: 1px solid black;
+	font-size: 1.211vw;
+	height: 2.471vw;
+	font-variant: petite-caps;
+	line-height: 2.568vw;
+	top: 11.655vw;
+	text-align: center;
+	letter-spacing: 0.194vw;
+	opacity: 0.8;
+}
+
+.DFT  {
+	width: 200%;
+	left: 60%;
+	height: 20%;
+	line-height: 16vh;
+	font-variant: petite-caps;
+	color: lime;
+	letter-spacing: 0.6vh;
+	font-size: 3vh;
+}
+.DFP  {
+	width: 50%;
+	left: 5%;
+	height: 1vh;
+	top: 7.5vh;
+	background: linear-gradient(to right, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0.1));
+}
+.DFB  {
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	background: lime;
+	box-shadow: 0 0 10px lime;
+}
+#DFF  {
+	top: 10%;
+	left: 5%;
+	height: 80%;
+	width: 90%;
+	background: rgb(0, 10, 0);
+	border: 2px solid rgba(0, 255, 0, 0.2);
+	transform: perspective(49.32vw) translateY(-250vh) translateZ(-70vh) rotateX(-30deg);
+	overflow: hidden;
+}
+.DFC  {
+	height: 20%;
+	width: 100%;
+	left: 0;
+}
+.AAOOBJ  {
+	width: 30vh;
+	height: 70vh;
+	border: 2px solid lime;
+	box-shadow: 0 0 50px black;
+	background: lime;
+    left: 110%;
+    top: 8.5%;
+}
+.MAOOBJ  {
+	width: 30vh;
+	height: 70vh;
+	border: 2px solid lime;
+	box-shadow: 0 0 20px lime;
+	background: black;
+    left: 10%;
+    top: 8.5%;
+}
+.AAOCOV, .MAOCOV  {
+	width: 100%;
+	height: 45vh;
+	left: 0;
+	top: 0;
+	border: 0;
+	background: black;
+	position: absolute;
+}
+.AAOTTL, .MAOTTL  {
+	top: 64.2%;
+	height: 6vh;
+	line-height: 6vh;
+	font-size: 2.6vh;
+	font-variant: petite-caps;
+	text-align: center;
+	width: 100%;
+	left: 0;
+}
+.AAOWCN, .MAOWCN  {
+    top: 72%;
+    left: 0;
+    height: 18%;
+    width: 100%;
+}
+.MAOTTL, .MAOWTG  {
+    color: lime;
+}
+.AAOWTG  {
+    height: 33.33%;
+    left: -1;
+    width: 100%;
+    float: bottom;
+    text-align: center;
+    font-size: 2.5vh;
+    line-height: 4vh;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    font-variant: petite-caps;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: hidden;
+}
+.MAOWTG  {
+    height: 33.33%;
+    left: -1;
+    width: 100%;
+    float: bottom;
+    text-align: center;
+    font-size: 2.5vh;
+    line-height: 4vh;
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.5);
+    font-variant: petite-caps;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: hidden;
+}
+.AAOFCH  {
+	width: 87%;
+	border: 1px solid black;
+	font-size: 1.1vw;
+	height: 2.471vw;
+	font-variant: petite-caps;
+	line-height: 2.568vw;
+	bottom: 2%;
+	text-align: center;
+	letter-spacing: 0.194vw;
+	opacity: 0.8;
+    right: 6.5%;
+}
+.MAOEXP  {
+    border-radius: 50%;
+    border: 2px solid lime;
+    width: 2vh;
+    height: 2vh;
+    left: calc(50% - 1vh);
+    bottom: 3%;
+}

@@ -1,0 +1,188 @@
+<html>
+    <head>
+
+        <!--
+
+            There needs to be a clarification regarding what DataFetch is meant to be.
+            Here it is:
+            DataFetch is a method to add content to your library IN BULK.
+            It's supposed to be a convenient, yet a detailed approach to so.
+
+            An account of the past:
+            ~ DataFetch1 featured a skeletal interface, which let you either enter a list of items or process a single item.
+            ~ DataFetch2 featured a much better interface, which didn't let you enter a list, but featured multiple items (with their details),
+            and offered selection of one or more of these items (to fetch).
+            ~ DataFetch3, I realized during development, featured the best design, yes, but didn't satisfy its basic purpose.
+            It only allowed you to search for, and select the top-most result of an item. Hence, development was abandoned.
+
+            DataFetch4 (ARKEN), this, is supposed to be the definitive DataFetch - which features an interface that will age well, allow extension,
+            and clear all the basic necessities - featuring appropriate, if not all, details of all matched hits supplied by the API, and
+            most importantly, bulk DataFetching.
+
+            The targeted features are as follows:
+            ~ DataFetching + ImgFetching - requesting data (about each search result in choice-based methods) from, and storing all data provided by
+            parts of the API (search as well as specialized sections), with proper progress returning (as managed by xpr.toast.js in DataFetch2).
+            ~ WebFetching - fetching data by trailing after, say all contributions by all artists of an item, and all contributions of all artists
+            of each contribution out of the former items, and so on.
+            ~ SpeccyFetching - adding a single item to the library.
+            ~ BulkFetching - adding a list of items to the library, either top result of each search or as per extra data given (release date/result number).
+            ~ ListFetching - adding a list of items to the library, but providing details about each search hit, and choice of one or more hits to add.
+            ~ CheckFetching - scanning of a specified folder for media items, checking with the API for existence, and adding to library.
+
+            The targeted (ordered according to priority) metadata fetch and storage (not necessarily display) support for XMS is as follows:
+            [ Movies ] \\ [ TV ] \\ [ Artists ] \\ [ Games ] \\ [ Comics ] \\ [ Books ] \\ [ YouTube content ] \\ [ Wikipedia content ] \\ [ Fandom (wikia) content ]
+
+        -->
+
+        <title>DataFetch (ARKEN) \\ XMS</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <script src='../../scripts/xt.js'></script>
+        <style>
+            span  {
+                position: absolute;
+                font-family: Segoe UI Light;
+                cursor: default;
+                font-variant: petite-caps;
+                text-align: center;
+            }
+            ::-webkit-scrollbar  {
+                width: 6px;
+                height: 6px;
+            }
+            ::-webkit-scrollbar-track  {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: black;
+                border-radius: 50px;
+            }
+            #ASPC, #ABLK, #ALST, #ACHK, #AWEB  {
+                overflow: hidden;
+            }
+            .AL, .TL  {
+                line-height: 20vh;
+                font-size: 5vh;
+                left: 0;
+                letter-spacing: 4vh;
+                height: 20%;
+                border: 2px solid lime;
+            }
+            .AL  {
+                color: black;
+                background: lime;
+                width: 0;
+            }
+            .TL  {
+                color: lime;
+                width: 80%;
+            }
+            .DFH  {
+                color: black;
+                line-height: 100vh;
+                height: 100%;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <span id='DFHD' style='top: 0; left: -900%; height: 100%; width: calc(120% - 5px); transform: skewX(-15deg); background: lime; padding-right: 5%; padding-left: 90%; box-shadow: 0 0 50px lime; z-index: 2;'>
+            <span id='DFH0' class='DFH' style='font-size: 15vw; width: 7vw; left: -115vw;'>D</span>
+            <span id='DFH1' class='DFH' style='font-size: 10vw; width: 21vw; left: -122vw; overflow: hidden;'>ATA</span>
+            <span id='DFH2' class='DFH' style='font-size: 15vw; width: 5.5vw; left: -141.5vw;'>F</span>
+            <span id='DFH3' class='DFH' style='font-size: 10vw; width: 23vw; left: -148.5vw; overflow: hidden;'>ETCH</span>
+        </span>
+        <span id='NAVC' style='top: 0; right: -27%; height: 100%; width: 100%; transform: skewX(-15deg); opacity: 0; z-index: 1;'>
+            <span id='TSPC' class='TL' style='top: 0;'>SPECCYfetch</span>
+            <span id='ASPC' class='AL' style='top: 0;'>SPECCYfetch</span>
+            <span id='TBLK' class='TL' style='top: 20%;'>BULKfetch</span>
+            <span id='ABLK' class='AL' style='top: 20%;'>BULKfetch</span>
+            <span id='TLST' class='TL' style='top: 40%;'>LISTfetch</span>
+            <span id='ALST' class='AL' style='top: 40%;'>LISTfetch</span>
+            <span id='TCHK' class='TL' style='top: 60%;'>CHECKfetch</span>
+            <span id='ACHK' class='AL' style='top: 60%;'>CHECKfetch</span>
+            <span id='TWEB' class='TL' style='top: 80%;'>WEBfetch</span>
+            <span id='AWEB' class='AL' style='top: 80%;'>WEBfetch</span>
+        </span>
+        <script>
+
+            //CINEMATIC PAGE PRESENTATION
+
+            $(document).ready(function()  {
+                $('#PSTS').velocity({skewX: [15, 15]}, 0);
+                $('#DFHD').velocity({left: '-90%'}, 800, 'easeOutExpo');
+                $('#DFH0').delay(600).velocity({left: '115vw'}, 700, 'easeOutExpo');
+                $('#DFH1').delay(600).velocity({left: '122vw'}, 700, 'easeOutExpo');
+                $('#DFH2').delay(600).velocity({left: '141.5vw'}, 700, 'easeOutExpo');
+                $('#DFH3').delay(600).velocity({left: '148.5vw'}, 700, 'easeOutExpo', function()  {
+                    $('#NAVC').css('opacity', 1);
+                    $('#DFHD').delay(500).velocity({width: '30%'}, 700, 'easeInOutExpo');
+                    $('#DFH0').delay(500).velocity({left: '101vw'}, 700, 'easeInOutExpo');
+                    $('#DFH1').delay(500).velocity({width: 0, left: '101vw', opacity: 0}, 700, 'easeInOutExpo');
+                    $('#DFH2').delay(500).velocity({left: '111vw'}, 700, 'easeInOutExpo');
+                    $('#DFH3').delay(500).velocity({width: 0, left: '111vw', opacity: 0}, 700, 'easeInOutExpo');
+                });
+            });
+
+            //EVENTS
+
+            $(document).ready(function()  {
+                var ar0 = ["#TSPC", "#TBLK", "#TLST", "#TCHK", "#TWEB"];
+                var ar1 = ["#ASPC", "#ABLK", "#ALST", "#ACHK", "#AWEB"];
+                function excl(id, z = 0)  {
+                    var elAr = eval("ar" + z);
+                    var ind = elAr.indexOf(id);
+                    var str = (ind)?elAr[0]:elAr[1];
+                    for(var i = 0; i < elAr.length; i++)  {
+                        if(i != ind)  {
+                            str += ', ' + elAr[i];
+                        }
+                    }
+                    return str;
+                }
+                $('#TSPC, #TBLK, #TLST, #TCHK, #TWEB').mousedown(function()  {
+                    $(this).velocity({width: 0, left: '80%'}, 900, 'easeInOutExpo');
+                    $(excl($(this).attr('id')), 1).velocity({width: 0}, 900, 'easeInOutExpo');
+                    $(excl($(this).attr('id'))).velocity({width: '80%', left: 0}, 900, 'easeInOutExpo');
+                    $('#A' + $(this).attr('id').substr(1)).velocity({width: '80%'}, 900, 'easeInOutExpo', function()  {
+                        $('#NAVC').delay(200).velocity({left: '-20%', zIndex: [5, 5]}, 800, 'easeInOutExpo');
+                        $(this).delay(200).velocity({top: 0, left: '-10%', width: '160%', height: '100%', lineHeight: '100vh', zIndex: [5, 5]}, 800, 'easeInOutExpo', function()  {
+                            $('#DFHD, #NAVC').delay(200).velocity({left: '200%'}, 800, 'easeInExpo');
+                            $(this).delay(200).velocity({left: '200%'}, 800, 'easeInExpo', function()  {
+                                window.location = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/')) + '/datafetch/' + ['speccyfetch', 'bulkfetch', 'listfetch', 'checkfetch', 'webfetch'][['ASPC', 'ABLK', 'ALST', 'ACHK', 'AWEB'].indexOf(($(this).attr('id')))] + '.html';
+                            });
+                        });
+                    });
+                });
+                $('#TSPC, #TBLK, #TLST, #TCHK, #TWEB').mouseenter(function()  {
+                    $(this).velocity({opacity: 0.8}, 100);
+                });
+                $('#TSPC, #TBLK, #TLST, #TCHK, #TWEB').mouseleave(function()  {
+                    $(this).velocity({opacity: 1}, 100);
+                });
+            });
+
+            //XPR - TIPSY
+
+            var cssob = {borderColor: 'lime', color: 'lime'};
+            $.tipsy('#TSPC', 'DataFetch for a single item.', cssob);
+            $.tipsy('#TBLK', 'DataFetch for multiple items, auto.', cssob);
+            $.tipsy('#TLST', 'DataFetch for multiple items, manual.', cssob);
+            $.tipsy('#TCHK', 'Scan a folder, and DataFetch accordingly.', cssob);
+            $.tipsy('#TWEB', 'Recursive DataFetch, based on connected items.', cssob);
+        </script>
+    </body>
+</html>
+
+<!--
+    #
+    DFHD: DataFetch Heading
+    DFH0/1/2/3: DataFetch Heading Component 0/1/2/3
+    NAVC: Navigation Components' Container
+    TSPC/BLK/LST/CHK/WEB: Tile Speccy/Bulk/List/Check/Web
+    ASPC/BLK/LST/CHK/WEB: Active Tile Speccy/Bulk/List/Check/Web
+    .
+    DFH: DataFetch Heading Component
+    TL: Tile
+    AL: Active Tile
+-->

@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>BulkFetch (DF_ARKEN) \\ XMS</title>
+        <script src='../../../scripts/jq.js'></script>
+        <script src='../../../scripts/vm.js'></script>
+        <script src='../../../scripts/xt.js'></script>
+        <script src='bulkfetch.js'></script>
+        <link rel='stylesheet' href='bulkfetch.css' type='text/css' />
+    </head>
+    <body style='background: black; overflow: hidden; margin: 0;'>
+        <span id='head' style='height: 8vh; width: 0; left: -50%; text-align: center; overflow: hidden; transform: skewX(-20deg); background: lime; letter-spacing: 2vh; line-height: 8vh; font-size: 4vh;'>CONFIGURE SESSION</span>
+        <span class='dcont' id='dc0' style='top: 35%;'>
+            <span class='dct' id='dct0'>category</span>
+            <span class='dcs'>
+                <span class='dccp' style='left: 9vw;'></span>
+                <span class='dccp' style='left: 19vw;'></span>
+                <span class='dccp' style='left: 29vw;'></span>
+                <span class='dcc dcc0' id='dcc0d0' style='left: 40vw; border-radius: 0; height: 100%; width: 30vw; top: 0;' active='true'>
+                    <span class='dcct'>movies</span>
+                </span>
+                <span class='dcc dcc0' id='dcc0d1' style='left: 19vw;' active='false'>
+                    <span class='dcct'>tv shows</span>
+                </span>
+                <span class='dcc dcc0' id='dcc0d2' style='left: 29vw;' active='false'>
+                    <span class='dcct'>artists</span>
+                </span>
+<!--
+                <span class='dcc' id='dcc0d3' style='left: 7vh;'>
+                    <span class='dcct'>game</span>
+                </span>
+                <span class='dcc' id='dcc0d4' style='left: 7vh;'>
+                    <span class='dcct'>book</span>
+                </span>
+-->
+            </span>
+        </span>
+        <span class='dcont' id='dc1' style='top: 45%;'>
+            <span class='dct' id='dct1'>status</span>
+            <span class='dcs'>
+                <span class='dccp' style='left: 4.7vw;'></span>
+                <span class='dccp' style='left: 10.4vw;'></span>
+                <span class='dccp' style='left: 16.1vw;'></span>
+                <span class='dccp' style='left: 21.8vw;'></span>
+                <span class='dccp' style='left: 27.5vw;'></span>
+                <span class='dccp' style='left: 33.2vw;'></span>
+                <span class='dcc dcc1' id='dcc1d0' style='left: 40vw; border-radius: 0; height: 100%; width: 30vw; top: 0;' active='true'>
+                    <span class='dcct'>watchlist</span>
+                </span>
+                <span class='dcc dcc1' id='dcc1d1' style='left: 10.4vw;' active='false'>
+                    <span class='dcct'>purchased</span>
+                </span>
+                <span class='dcc dcc1' id='dcc1d2' style='left: 16.1vw;' active='false'>
+                    <span class='dcct'>downloading</span>
+                </span>
+                <span class='dcc dcc1' id='dcc1d3' style='left: 21.8vw;' active='false'>
+                    <span class='dcct'>downloaded</span>
+                </span>
+                <span class='dcc dcc1' id='dcc1d4' style='left: 27.5vw;' active='false'>
+                    <span class='dcct'>watching</span>
+                </span>
+                <span class='dcc dcc1' id='dcc1d5' style='left: 33.2vw;' active='false'>
+                    <span class='dcct'>watched</span>
+                </span>
+            </span>
+        </span>
+        <span class='dcont' id='dc2' style='top: 55%;'>
+            <span class='dct' id='dct2'>result</span>
+            <span class='dcs'>
+                <span class='dccp' style='left: 9vw;'></span>
+                <span class='dccp' style='left: 19vw;'></span>
+                <span class='dccp' style='left: 29vw;'></span>
+                <span class='dcc dcc2' id='dcc2d0' style='left: 40vw; border-radius: 0; height: 100%; width: 30vw; top: 0;' active='true'>
+                    <span class='dcct'>zero</span>
+                </span>
+                <span class='dcc dcc2' id='dcc2d1' style='left: 19vw;' active='false'>
+                    <span class='dcct'>one</span>
+                </span>
+                <span class='dcc dcc2' id='dcc2d2' style='left: 29vw;' active='false'>
+                    <span class='dcct'>two</span>
+                </span>
+<!--
+                <span class='dcc' id='dcc0d3' style='left: 7vh;'>
+                    <span class='dcct'>game</span>
+                </span>
+                <span class='dcc' id='dcc0d4' style='left: 7vh;'>
+                    <span class='dcct'>book</span>
+                </span>
+-->
+            </span>
+        </span>
+        <span id='nx0' class='nx'>load last config.</span>
+        <span id='nx1' class='nx'>continue</span>
+        <span id='queryarea'>
+            <textarea id='querycapt' spellcheck=false></textarea>
+            <span id='righthook' style='border-left-color: rgba(255, 255, 255, 0.1); border-top-color: rgba(255, 255, 255, 0.1); left: 50%;'></span>
+            <span id='lefthook' style='border-right-color: rgba(255, 255, 255, 0.1); border-bottom-color: rgba(255, 255, 255, 0.1); left: 50%;'></span>
+        </span>
+        <span id='fx0' class='fx'>advanced</span>
+        <span id='fx1' class='fx' style='font-size: 4vh;'>begin</span>
+        <span id='fx2' class='fx'>checkfetch</span>
+        <span id='DEC' style='bottom: 0; height: 6%; font-size: 3.5vh; line-height: 6vh; text-align: center; font-variant: small-caps; left: 0; width: 0; z-index: 900;'></span>
+    </body>
+</html>

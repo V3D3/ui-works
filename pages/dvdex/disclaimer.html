@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <title id='title'> DIGIT / DY'19 \ DVDEX
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <style>
+            ::-webkit-scrollbar  {
+                width: 0.44vw;
+                height: 0.44vw;
+                border-radius: 0.22vw;
+            }
+            ::-webkit-scrollbar-track  {
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 0.22vw;
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: white;
+                border-radius: 0.22vw;
+            }
+            #agr0, #agr1  {
+                cursor: default;
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body style="background: rgba(248, 11, 62, 1); overflow: hidden; margin: 0; transform: perspective(78.125vh);">
+        <span id='splasharc' style='position: absolute; top: 0; left: 0; transform: perspective(39.063vh) rotateX(-1800deg); height: 100%; width: 100%; z-index: 1;'>
+			<span id='logoderzero' style='position: absolute; height: 15%; width: 15vh; border-radius: 2.19vw; background: rgb(248, 11, 62); top: calc(50% - 7.5vh - 0.22vw); left:  calc(50% - 7.5vh - 0.22vw); transform: rotate(45deg); border: 0.22vw solid white;'></span>
+			<span id='logoderzeroun' style="position: absolute; height: calc(15vh + 0.29vw); width: calc(15vh + 0.22vw); top: calc(50% - 7.5vh - 0.22vw); left: calc(50% - 7.5vh - 0.22vw); color: white; line-height: calc(15vh + 0.29vw); font-family: Tahoma; font-size: 8.5vh; text-align: center; z-index: 100; font-weight: 600;">d</span>
+		</span>
+		<span id='agr0' style='position: absolute; top: -50%; left: 20%; width: 15%; height: 8%; line-height: 8vh; text-align: center; font-family: Segoe UI Light; font-size: 4vh; color: white; border: 0.14vw solid white; font-variant: petite-caps; box-shadow: 0 0 0 white; z-index: 3;'>Agree</span>
+		<span id='agr1' style='position: absolute; top: -50%; left: 65%; width: 15%; height: 8%; line-height: 8vh; text-align: center; font-family: Segoe UI Light; font-size: 4vh; color: white; border: 0.14vw solid white; font-variant: petite-caps; box-shadow: 0 0 0 white; z-index: 3;'>Decline</span>
+                <span id='agr' style='position: absolute; top: -100%; left: 0; padding-left: 10%; padding-right: 10%; height: 60%; color: white; font-family: Segoe UI Light; text-align: center; overflow-y: auto; overflow-x: hidden; font-size: 3.8vh; width: 80%; z-index: 2;'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget null.</span>
+		<script>
+			var sW = window.innerWidth,
+                sH = window.innerHeight;
+                        var data = {};
+            $(document).ready(function()  {
+                    $('#title').html('DIGIT / MY\'19 \\ DVDEX');
+                    fetchAgr();
+            });
+			function fetchAgr()  {
+				$(document).ready(function()  {
+					if(gd('agree') === undefined)  {
+						sd('agree', 'false');
+						setAgr();
+					}  else  {
+						if(gd('agree') == 'true')  {
+							$('#splasharc').delay(100).velocity({top: '100%'}, 800, 'easeInExpo', function()  {
+								$('#splasharc').css("display", "none");
+								everybodyActNormal();
+							});
+						}  else  {
+							sd('agree', 'false');
+							setAgr();
+						}
+					}
+				});
+			}
+			function setAgr()  {
+				$('#splasharc').delay(100).velocity({top: '100%'}, 800, 'easeInExpo', function()  {
+					$('#splasharc').css('display', 'none');
+					$('#perbg').css('z-index', '-1');
+					$('body').css('background', 'rgba(248, 11, 62, 1)')
+					$('#agr0').velocity({top: '82%'}, 1200, 'easeOutExpo');
+					$('#agr1').delay(350).velocity({top: '82%'}, 1200, 'easeOutExpo');
+					$('#agr').delay(700).velocity({top: '10%'}, 1200, 'easeOutExpo');
+				});
+			}
+			function gd(x)  {
+				return localStorage.getItem(x);
+			}
+			function sd(x, y)  {
+				// localStorage.setItem(x, y);
+                                // for demo [ui-works], always show disclaimer
+			}
+			$(document).ready(function()  {
+				$('#agr0, #agr1').mouseenter(function()  {
+                    $(this).velocity('stop');
+					$(this).velocity({boxShadowBlur: 20}, 200);
+				});
+				$('#agr0, #agr1').mouseleave(function()  {
+                    $(this).velocity('stop');
+					$(this).velocity({boxShadowBlur: 0}, 200);
+				});
+				$('#agr0, #agr1').mousedown(function()  {
+					$(this).css({color: 'rgb(248, 11, 62)', background: 'white'});
+				});
+				$('#agr0').mouseup(function()  {
+                    
+                    /*
+                        AGREEMENT ACCEPTED.
+                        * Set agreement status as accepted.
+                        * Clear stage.
+                        * Load main interface.
+                    */
+                    
+					$('#agr0').css({color: 'white', background: 'rgb(248, 11, 62)'});
+					sd('agree', 'true');
+                    $('#agr0').velocity({top: '150%'}, 400, 'easeInExpo');
+                    $('#agr1').delay(200).velocity({top: '150%'}, 600, 'easeInExpo');
+                    $('#agr').delay(400).velocity({top: '150%'}, 800, 'easeInExpo', function()  {
+                        everybodyActNormal();
+                    });
+				});
+				$('#agr1').mouseup(function()  {
+                    
+                    /* 
+                        AGREEMENT DECLINED. 
+                        * Set agreement status as declined.
+                        * Close app.
+                        * IDK why I specified these.
+                    */
+                    
+					//$('#agr1').css({color: 'white', background: 'rgb(248, 11, 62)'});
+					sd('agree', 'false');
+					$('#agr1').velocity({top: 0, left: 0, height: '100%', width: '100%', lineHeight: '100vh'}, 800, 'easeOutExpo', function()  {
+						var i = 1.2;
+						$("#agr1").velocity({paddingTop: '100vh'}, 1000, 'easeInExpo', function()  {
+                            $("#agr0").velocity({opacity: [1, 0]}, {duration: 300, easing: "easeInExpo", progress: function(e, p, x1, x2)  {
+                                // win.y = Math.round(p * sH);
+                            }, complete: function()  {
+                                // win.close();
+                            }});
+						});
+					});
+				});
+			});
+			function everybodyActNormal()  {
+//                fread('./data/app.json', function(d)  {
+                    var interface = 0, interfacelist = ['flippy'];
+
+                    /*
+                        INTERFACES
+                        There are multiple DVDex main interface variants, which are almost as separate as different apps.
+                        As in, their design could vary vastly. The data they store is limited to themselves.
+                        This is because each interface shall also contain unique variations of certain components.
+                        For instance, the first interface contains a clock, which has its own variants - text-indicated, line-indicated, etc.
+                        While, other (future) interfaces might not even feature a clock.
+
+                        The identifier for an interface shall be unique, since each interface's data would be stored with the interface's name as part of the key.
+                    */
+
+                    window.location = 'interfaces/' + interfacelist[interface] + '/dvdex.html';
+ //               });
+			}
+        </script>
+    </body>
+</html>

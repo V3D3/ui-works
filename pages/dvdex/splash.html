@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title id='title'> DIGIT / DY'19 \ DVDEX
+        </title>
+        <script src="../../scripts/jq.js"></script>
+        <script src="../../scripts/vm.js"></script>
+        <script>
+			var sW = window.innerWidth;
+			var sH = window.innerHeight;
+//			var wn = nw.Window.get();
+            $(document).ready(function()  {
+                data = {
+                    colormode: "light",
+                    issue: "SEP '23",
+                };
+//                fread('./data/app.json', function(d)  {
+                //    var data = JSON.parse(d);
+                    
+                    if(data.colormode == 'dark')  {
+                        //$('#logoderzero').css({})
+                    }
+                    
+                    $('#title').html('DIGIT / ' + data.issue + ' \\ DVDEX');
+                    
+                    $('#splasharc').velocity({transformPerspective: 300, rotateX: -1440}, 0);
+                    $('#splasharc').velocity({transformPerspective: 300, rotateX: 0, top: 0}, 3050, "easeOutExpo", function()  {
+                        $('#perbg').delay(800).velocity({width: '250%', left: '-75%', height: '250vw', top: (sH / 2) - (1.25 * sW)}, 1000, 'easeInExpo', function()  {
+                            window.location = 'disclaimer.html';
+//                            nw.Window.open('./res/disclaimer.html', {"frame": false, "fullscreen": false, "focus": false, "width": sW, "height": sH, "position": "center"}, function(nwi)  {
+ //                               nwi.on('focus', function()  {
+  //                                  clear();
+   //                             });
+    //                        });
+                        });
+                    });
+                //});
+            });
+			function clear()  {
+				$(document).ready(function()  {
+					$('body').velocity({opacity: 1}, 400, function()  {
+                        // wn.hide();
+			// 	        wn.close();
+					});
+				});
+			}
+        </script>
+    </head>
+    <body style="background: transparent; overflow: hidden; margin: 0; transform: perspective(78.125vh); position: absolute; top: 0; left: 0; height: 100%; width: 100%;">
+        <span id='splasharc' style='position: absolute; top: 100%; left: 0; transform: perspective(39.063vh) rotateX(-1800deg); height: 100%; width: 100%; z-index: 1;'>
+			<span id='logoderzero' style='position: absolute; height: 15%; width: 15vh; border-radius: 2.20vw; background: rgb(248, 11, 62); top: calc(50% - 7.5vh - 0.22vw); left:  calc(50% - 7.5vh - 0.22vw); transform: rotate(45deg); border: 0.22vw solid white;'></span>
+			<span id='logoderzeroun' style="position: absolute; height: calc(15vh + 0.29vw); width: calc(15vh + 0.22vw); top: calc(50% - 7.5vh - 0.22vw); left: calc(50% - 7.5vh - 0.22vw); color: white; line-height: calc(15vh + 0.29vw); font-family: Tahoma; font-size: 8.5vh; text-align: center; z-index: 100; font-weight: 600;">d</span>
+		</span>
+		<span id='perbg' style='position: absolute; top: 50%; height: 0; width: 0; border-radius: 50%; background: rgb(248, 11, 62); left: 50%; z-index: 0;'></span>
+    </body>
+</html>

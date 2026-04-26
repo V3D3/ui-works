@@ -617,5 +617,26 @@
                 "entry_type": "page"
             }
         ]
+    },
+    {
+        "title": "punkd",
+        "type": "Tool/NWjs",
+        "path": "pages/punkd/index.html",
+        "weight": 2,
+        "description": "A desktop GUI for a YouTube media downloader."
+    },
+    {
+        "title": "ArB X",
+        "type": "Tool/Cordova",
+        "path": "pages/arbx/index.html",
+        "weight": 2,
+        "description": "A bluetooth based controller for the ArB X bot, written for Cordova."
+    },
+    {
+        "title": "DVDex",
+        "type": "Splash",
+        "path": "pages/dvdex/splash.html",
+        "weight": 1,
+        "description": "A splash for a desktop application."
     }
 ]

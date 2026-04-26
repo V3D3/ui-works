@@ -1,0 +1,603 @@
+<html>
+    <head>
+        <title>ArB X</title>
+        <link rel='stylesheet' type='text/css' href='css/fontload.css'>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+		<meta name=viewport content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+        <meta charset="utf-8" />
+        <style>
+            *  {
+                cursor: default;
+                user-select: none;
+            }
+            ::-webkit-scrollbar  {
+                width: 4px;
+            }
+            ::-webkit-scrollbar-track  {
+                background: rgba(0, 0, 0, 0.3);
+                border-radius: 100px;
+            }
+            ::-webkit-scrollbar-track:hover  {
+                background: rgba(0, 0, 0, 0.3);
+            }
+            ::-webkit-scrollbar-thumb  {
+                background: rgba(0, 0, 0, 0.8);
+                border-radius: 100px;
+            }
+            ::-webkit-scrollbar-thumb:hover  {
+                background: rgb(0, 0, 0);
+            }
+            ::-webkit-scrollbar-corner  {
+                opacity: 0;
+                border-radius: 100px;
+            }
+        </style>
+    </head>
+    <body style='background: rgb(220, 80, 80); overflow: hidden;'>
+        <span id='main' style='position: absolute; top: 0; left: 0; height: 100vh; width: 100vw; overflow: hidden; background: rgb(220, 80, 80);'>
+            <span id='logo' style='position: absolute; height: 100%; width: 150%; top: 0; left: -25%; z-index: 2; background: rgb(220, 80, 80);'>
+                <span id='logo0' style='position: absolute; height: 100%; width: 100%; top: 0; left: 0; z-index: 2; background: rgb(220, 80, 80);'>
+                    <span style='position: absolute; background: black; height: 0.5vh; width: 28.25vh; left: calc(50% - 14.125vh); top: calc(50% - 12.5vh);'></span>
+                    <span style='position: absolute; background: black; height: 0.5vh; width: 28.25vh; left: calc(50% - 14.125vh); top: 50%;'></span>
+                    <span style='position: absolute; background: black; height: 25vh; width: 0.5vh; left: calc(50% - 14.125vh); top: calc(50% - 12.5vh);'></span>
+                    <span style='position: absolute; background: black; height: 25vh; width: 0.5vh; left: calc(50% + 14.125vh); top: calc(50% - 12.5vh);'></span>
+                    <!-- Dimensions fixed (vh, vw), not position (%). -->
+                </span>
+            </span>
+            <span id='scanDev' style='position: absolute; height: 7%; width: 70%; left: 15%; top: 150%; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); text-align: center; font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 1vh; z-index: 3;'>SCAN</span>
+            <span id='listDev' style='position: absolute; height: 7%; width: 70%; left: 15%; top: 150%; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); text-align: center; font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 1vh; z-index: 3;'>PAIRED</span>
+            <span id='scanLoader' style='position: absolute; width: 150vw; left: -25vw; height: 15%; top: 150%; box-shadow: 0 0 5vh rgba(0, 0, 0, 0.8); text-align: center; font-family: common; line-height: 10vh; font-size: 2vh; letter-spacing: 1vh; z-index: 4;'>SCANNING</span>
+            <span id='pairLoader' style='position: absolute; width: 150vw; left: -25vw; height: 15%; top: 150%; box-shadow: 0 0 5vh rgba(0, 0, 0, 0.8); text-align: center; font-family: common; line-height: 10vh; font-size: 2vh; letter-spacing: 1vh; z-index: 4;'>CONNECTING</span>
+
+            <span id='scannedList' style='position: absolute; width: 100%; left: 0; height: 85%; top: 100%; overflow-y: scroll; z-index: 1; overflow-x: hidden;'></span>
+            <span id='pairedList' style='position: absolute; width: 100%; left: 0; height: 85%; top: 100%; overflow-y: scroll; z-index: 1; overflow-x: hidden;'></span>
+
+            <span id='moreOptionsPlatform' style='position: absolute; width: 150vw; left: -25vw; height: 25%; top: 150%; box-shadow: 0 0 5vh rgba(0, 0, 0, 0.8); overflow: hidden; z-index: 5;'>
+                <span id='scanDevInstead' style='position: absolute; height: 7vh; width: 70vw; left: 40vw; top: 103vh; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); text-align: center; font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 1vh;'>SCAN</span>
+
+                <span id='rescanDev' style='position: absolute; height: 7vh; width: 70vw; left: 40vw; top: 103vh; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); text-align: center; font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 1vh;'>RESCAN</span>
+                <span id='listDevInstead' style='position: absolute; height: 7vh; width: 70vw; left: 40vw; top: 113vh; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); text-align: center; font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 1vh;'>PAIRED</span>
+            </span>
+
+            <span id='controller_dpad_bouncy' style='position: absolute; top: 150%; left: 0; height: 70%; width: 100%; overflow: hidden; z-index: 1000;'>
+                <span id='c_dpad_b_rt' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); left: calc(50% - 2.5vh); top: calc(50% - 2.5vh);'>
+                    <span id='c_dpad_b_rt_tx' style='position: absolute; top: calc(50% - 0.6vh); left: calc(50% - 0.4vh); height: 0; width: 0; border-style: solid; border-left-width: 1.2vh; border-left-color: black; border-top-width: 0.6vh; border-top-color: rgb(220, 80, 80); border-bottom-width: 0.6vh; border-bottom-color: rgb(220, 80, 80); border-right-width: 0vh;'></span>
+                </span>
+                <span id='c_dpad_b_lt' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(180deg); left: calc(50% - 2.5vh); top: calc(50% - 2.5vh);'>
+                    <span id='c_dpad_b_lt_tx' style='position: absolute; top: calc(50% - 0.6vh); left: calc(50% - 0.4vh); height: 0; width: 0; border-style: solid; border-left-width: 1.2vh; border-left-color: black; border-top-width: 0.6vh; border-top-color: rgb(220, 80, 80); border-bottom-width: 0.6vh; border-bottom-color: rgb(220, 80, 80); border-right-width: 0vh;'></span>
+                </span>
+                <span id='c_dpad_b_bwd' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(90deg); left: calc(50% - 2.5vh); top: calc(50% - 2.5vh);'>
+                    <span id='c_dpad_b_bwd_tx' style='position: absolute; top: calc(50% - 0.6vh); left: calc(50% - 0.4vh); height: 0; width: 0; border-style: solid; border-left-width: 1.2vh; border-left-color: black; border-top-width: 0.6vh; border-top-color: rgb(220, 80, 80); border-bottom-width: 0.6vh; border-bottom-color: rgb(220, 80, 80); border-right-width: 0vh;'></span>
+                </span>
+                <span id='c_dpad_b_fwd' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(270deg); left: calc(50% - 2.5vh); top: calc(50% - 2.5vh);'>
+                    <span id='c_dpad_b_fwd_tx' style='position: absolute; top: calc(50% - 0.6vh); left: calc(50% - 0.4vh); height: 0; width: 0; border-style: solid; border-left-width: 1.2vh; border-left-color: black; border-top-width: 0.6vh; border-top-color: rgb(220, 80, 80); border-bottom-width: 0.6vh; border-bottom-color: rgb(220, 80, 80); border-right-width: 0vh;'></span>
+                </span>
+                <span id='c_dpad_b_l0' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(270deg); left: calc(70% - 2.5vh); top: 80%'>
+                    L0
+                </span>
+                <span id='c_dpad_b_l1' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(270deg); left: calc(30% - 2.5vh); top: 80%'>
+                    L1
+                </span>
+                <span id='c_dpad_b_b0' style='position: absolute; height: 5vh; width: 5vh; background: rgb(220, 80, 80); border-radius: 50%; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transform: rotate(270deg); left: calc(50% - 2.5vh); top: 80%;'>
+                    B0
+                </span>
+            </span>
+        </span>
+
+        <!--
+
+            ListItem template: (clone of scanDev, listDev buttons)
+            <span id='pairedListItem{n}' style='position: absolute; height: 7%; width: 70%; left: 15%; box-shadow: 0 0 2vh rgba(0, 0, 0, 0.7); font-family: common; line-height: 7vh; font-size: 2vh; border-radius: 10px; letter-spacing: 0.8vh;'>{devname}</span>
+
+        -->
+
+        <script>
+            var sW = window.innerWidth,
+                sH = window.innerHeight;
+
+            var scannedDev = [];
+            var pairedDev = [];
+
+            var lstate = 0, rstate = 0;
+            var l0state = false, l1state = false, b0state = false;
+
+            $(document).ready(function()  {
+                // document.addEventListener("deviceready", load, false); 
+                load();
+            });
+
+            function load()  {
+//                 StatusBar.overlaysWebView(false);
+//                 StatusBar.backgroundColorByHexString("#DC5050");
+//                 StatusBar.styleLightContent();
+//                 window.screen.orientation.lock('portrait');
+
+                $('#logo').delay(1000).velocity({height: '80%'}, 800, 'easeOutExpo');
+                $('#logo0').delay(1000).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                $('#scanDev').delay(1100).velocity({top: '80%'}, 800, 'easeOutExpo');
+                $('#listDev').delay(1200).velocity({top: '90%'}, 800, 'easeOutExpo');
+
+                $('#scanDev, #listDev, #scanDevInstead, #rescanDev, #listDevInstead').on('mousedown', function()  {
+                    $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                });
+                $('#scanDev').on('mouseup', function()  {
+                    // $(this).css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                    //you might wonder why. uncomment the above, run and tap the button - don't hold it (a user would tap).
+                    //doesn't feel like a satisfactory button press (no instant change in the surroundings).
+                    $('#listDev').velocity({top: '150%'}, 800, 'easeInExpo');
+                    $('#scanDev').delay(200).velocity({top: '150%'}, 800, 'easeInExpo');
+                    $('#logo').delay(500).velocity({height: '100%'}, 800, 'easeInOutExpo');
+                    $('#logo0').delay(500).velocity({scale: 1}, 800, 'easeInOutExpo', function()  {
+                        $('#scanDev').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                        //and here, because we might bring it back up, if the scan fails or returns nothing.
+                        $('#logo').delay(400).velocity({height: '90%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(400).velocity({scale: 0.9}, 800, 'easeOutExpo');
+                        $('#scanLoader').delay(600).velocity({top: '90%'}, 800, 'easeOutExpo', function()  {
+                            scanForDev(function()  {
+                                $('#scanLoader').velocity({top: '150%'}, 800, 'easeOutExpo');
+                                $('#logo0').delay(200).velocity({scale: 1}, 800, 'easeOutExpo');
+                                $('#logo').delay(200).velocity({height: '100%'}, 800, 'easeOutExpo', function()  {
+                                    if(scannedDev.length == 0)  {
+                                        toastLong('No devices discovered in the scan.');
+                                        $('#logo').delay(100).velocity({height: '80%'}, 800, 'easeOutExpo');
+                                        $('#logo0').delay(100).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                                        $('#scanDev').delay(200).velocity({top: '80%'}, 800, 'easeOutExpo');
+                                        $('#listDev').delay(300).velocity({top: '90%'}, 800, 'easeOutExpo');
+                                    }  else  {
+                                        //renderlist
+                                        $('#scannedList').html('');
+                                        for(var i = 0; i < scannedDev.length; i++)  {
+                                            tempEl = "<span id='scannedListItem" + i + "' style='position: absolute; width: 80%; height: 6vh; line-height: 6vh; letter-spacing: 1vh; text-align: left; font-size: 2vh; font-family: common; border-radius: 10px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); left: 10%; top: " + (3 + (i * 10)) + "vh;'>&nbsp;" + scannedDev[i].name + "</span>";
+                                            $('#scannedList').html($('#scannedList').html() + tempEl);
+                                        }
+                                        $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                                        $('#logo').delay(200).velocity({height: '15%'}, 1400, 'easeOutExpo');
+                                        $('#logo0').delay(200).velocity({scale: 0.3}, 1400, 'easeOutExpo');
+                                        $('#scannedList').delay(200).velocity({top: '15%'}, 1400, 'easeOutExpo', function()  {
+                                            for(var i = 0; i < scannedDev.length; i++)  {
+                                                $('#scannedListItem' + i).on('mouseup', function()  {
+                                                    $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                                                    stageOutAndPair('scan', +$(this).attr('id').substr(15));
+                                                });
+                                            }
+                                            $('#scannedList').velocity({height: '62%'}, 800, 'easeOutExpo');
+                                            $('#moreOptionsPlatform').velocity({top: '77%'}, 800, 'easeOutExpo');
+                                            $('#rescanDev').delay(200).velocity({top: '3vh'}, 800, 'easeOutExpo');
+                                            $('#listDevInstead').delay(400).velocity({top: '13vh'}, 800, 'easeOutExpo');
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    });
+                });
+                $('#listDev').on('mouseup', function()  {
+                    loadPairedDev(function()  {
+                        if(pairedDev.length != 0)  {
+                            $('#listDev').velocity({top: '150%'}, 800, 'easeInExpo');
+                            $('#scanDev').delay(200).velocity({top: '150%'}, 800, 'easeInExpo');
+                            $('#logo').delay(500).velocity({height: '100%'}, 800, 'easeInOutExpo');
+                            $('#logo0').delay(500).velocity({scale: 1}, 800, 'easeInOutExpo', function()  {
+                                $('#listDev').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                                $('#pairedList').html('');
+                                for(var i = 0; i < pairedDev.length; i++)  {
+                                    tempEl = "<span id='pairedListItem" + i + "' style='position: absolute; width: 80%; height: 6vh; line-height: 6vh; letter-spacing: 1vh; text-align: left; font-size: 2vh; font-family: common; border-radius: 10px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); left: 10%; top: " + (3 + (i * 10)) + "vh; overflow: hidden; text-overflow: ellipsis;'>&nbsp;" + pairedDev[i].name + "</span>";
+                                    $('#pairedList').html($('#pairedList').html() + tempEl);
+                                }
+                                $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                                $('#logo').delay(200).velocity({height: '15%'}, 1400, 'easeOutExpo');
+                                $('#logo0').delay(200).velocity({scale: 0.3}, 1400, 'easeOutExpo');
+                                $('#pairedList').delay(200).velocity({top: '15%'}, 1400, 'easeOutExpo', function()  {
+                                    for(var i = 0; i < pairedDev.length; i++)  {
+                                        $('#pairedListItem' + i).on('mouseup', function()  {
+                                            $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                                            stageOutAndPair('list', +$(this).attr('id').substr(14));
+                                        });
+                                    }
+                                    $('#pairedList').velocity({height: '72%'}, 800, 'easeOutExpo');
+                                    $('#moreOptionsPlatform').velocity({top: '87%'}, 800, 'easeOutExpo');
+                                    $('#scanDevInstead').delay(200).velocity({top: '3vh'}, 800, 'easeOutExpo');
+                                });
+                            });
+                        }  else  {
+                            toastLong('No paired devices available.');
+                            $('#listDev').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                        }
+                    });
+                });
+                $('#scanDevInstead').on('mouseup', function()  {
+                    $('#scanDevInstead').velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#moreOptionsPlatform').delay(200).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#pairedList').delay(200).velocity({height: '85%'}, 800, 'easeInExpo');
+                    $('#logo0').delay(800).velocity({scale: 1}, 800, 'easeInOutExpo');
+                    $('#logo').delay(800).velocity({height: '100%'}, 800, 'easeInOutExpo', function()  {
+                        $('#pairedList').css({top: '150vh'});
+                        $('#logo').css({boxShadow: '0 0 0 rgba(0, 0, 0, 0)'});
+                        $('#scanDevInstead').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                        $('#logo').delay(400).velocity({height: '90%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(400).velocity({scale: 0.9}, 800, 'easeOutExpo');
+                        $('#scanLoader').delay(600).velocity({top: '90%'}, 800, 'easeOutExpo', function()  {
+                            scanForDev(function()  {
+                                $('#scanLoader').velocity({top: '150%'}, 800, 'easeOutExpo');
+                                $('#logo0').delay(200).velocity({scale: 1}, 800, 'easeOutExpo');
+                                $('#logo').delay(200).velocity({height: '100%'}, 800, 'easeOutExpo', function()  {
+                                    if(scannedDev.length == 0)  {
+                                        toastLong('No devices discovered in the scan.');
+                                        $('#logo').delay(100).velocity({height: '80%'}, 800, 'easeOutExpo');
+                                        $('#logo0').delay(100).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                                        $('#scanDev').delay(200).velocity({top: '80%'}, 800, 'easeOutExpo');
+                                        $('#listDev').delay(300).velocity({top: '90%'}, 800, 'easeOutExpo');
+                                    }  else  {
+                                        $('#scannedList').html('');
+                                        for(var i = 0; i < scannedDev.length; i++)  {
+                                            tempEl = "<span id='scannedListItem" + i + "' style='position: absolute; width: 80%; height: 6vh; line-height: 6vh; letter-spacing: 1vh; text-align: left; font-size: 2vh; font-family: common; border-radius: 10px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); left: 10%; top: " + (3 + (i * 10)) + "vh;'>&nbsp;" + ((scannedDev[i].name)?scannedDev[i].name:scannedDev[i].id) + "</span>";
+                                            $('#scannedList').html($('#scannedList').html() + tempEl);
+                                        }
+                                        $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                                        $('#logo').delay(200).velocity({height: '15%'}, 1400, 'easeOutExpo');
+                                        $('#logo0').delay(200).velocity({scale: 0.3}, 1400, 'easeOutExpo');
+                                        $('#scannedList').delay(200).velocity({top: '15%'}, 1400, 'easeOutExpo', function()  {
+                                            for(var i = 0; i < scannedDev.length; i++)  {
+                                                $('#scannedListItem' + i).on('mouseup', function()  {
+                                                    $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                                                    stageOutAndPair('scan', +$(this).attr('id').substr(15));
+                                                });
+                                            }
+                                            $('#scannedList').velocity({height: '62%'}, 800, 'easeOutExpo');
+                                            $('#moreOptionsPlatform').velocity({top: '77%'}, 800, 'easeOutExpo');
+                                            $('#rescanDev').delay(200).velocity({top: '3vh'}, 800, 'easeOutExpo');
+                                            $('#listDevInstead').delay(400).velocity({top: '13vh'}, 800, 'easeOutExpo');
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    });
+                });
+                $('#rescanDev').on('mouseup', function()  {
+                    $('#listDevInstead').velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#rescanDev').delay(200).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#moreOptionsPlatform').delay(400).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#scannedList').delay(400).velocity({height: '85%'}, 800, 'easeInExpo');
+                    $('#logo0').delay(1000).velocity({scale: 1}, 800, 'easeInOutExpo');
+                    $('#logo').delay(1000).velocity({height: '100%'}, 800, 'easeInOutExpo', function()  {
+                        $('#scannedList').css({top: '150vh'});
+                        $('#logo').css({boxShadow: '0 0 0 rgba(0, 0, 0, 0)'});
+                        $('#rescanDev').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                        $('#logo').delay(400).velocity({height: '90%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(400).velocity({scale: 0.9}, 800, 'easeOutExpo');
+                        $('#scanLoader').delay(600).velocity({top: '90%'}, 800, 'easeOutExpo', function()  {
+                            scanForDev(function()  {
+                                $('#scanLoader').velocity({top: '150%'}, 800, 'easeOutExpo');
+                                $('#logo0').delay(200).velocity({scale: 1}, 800, 'easeOutExpo');
+                                $('#logo').delay(200).velocity({height: '100%'}, 800, 'easeOutExpo', function()  {
+                                    if(scannedDev.length == 0)  {
+                                        toastLong('No devices discovered in the scan.');
+                                        $('#logo').delay(100).velocity({height: '80%'}, 800, 'easeOutExpo');
+                                        $('#logo0').delay(100).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                                        $('#scanDev').delay(200).velocity({top: '80%'}, 800, 'easeOutExpo');
+                                        $('#listDev').delay(300).velocity({top: '90%'}, 800, 'easeOutExpo');
+                                    }  else  {
+                                        $('#scannedList').html('');
+                                        for(var i = 0; i < scannedDev.length; i++)  {
+                                            tempEl = "<span id='scannedListItem" + i + "' style='position: absolute; width: 80%; height: 6vh; line-height: 6vh; letter-spacing: 1vh; text-align: left; font-size: 2vh; font-family: common; border-radius: 10px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); left: 10%; top: " + (3 + (i * 10)) + "vh;'>&nbsp;" + scannedDev[i].name + "</span>";
+                                            $('#scannedList').html($('#scannedList').html() + tempEl);
+                                        }
+                                        $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                                        $('#logo').delay(200).velocity({height: '15%'}, 1400, 'easeOutExpo');
+                                        $('#logo0').delay(200).velocity({scale: 0.3}, 1400, 'easeOutExpo');
+                                        $('#scannedList').delay(200).velocity({top: '15%'}, 1400, 'easeOutExpo', function()  {
+                                            for(var i = 0; i < scannedDev.length; i++)  {
+                                                $('#scannedListItem' + i).on('mouseup', function()  {
+                                                    $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                                                    stageOutAndPair('scan', +$(this).attr('id').substr(15));
+                                                });
+                                            }
+                                            $('#scannedList').velocity({height: '62%'}, 800, 'easeOutExpo');
+                                            $('#moreOptionsPlatform').velocity({top: '77%'}, 800, 'easeOutExpo');
+                                            $('#rescanDev').delay(200).velocity({top: '3vh'}, 800, 'easeOutExpo');
+                                            $('#listDevInstead').delay(400).velocity({top: '13vh'}, 800, 'easeOutExpo');
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                    });
+                });
+                $('#listDevInstead').on('mouseup', function()  {
+                    loadPairedDev(function()  {
+                        if(pairedDev.length != 0)  {
+                            $('#listDevInstead').velocity({top: '150vh'}, 800, 'easeInExpo');
+                            $('#rescanDev').delay(200).velocity({top: '150vh'}, 800, 'easeInExpo');
+                            $('#moreOptionsPlatform').delay(400).velocity({top: '150vh'}, 800, 'easeInExpo');
+                            $('#scannedList').delay(400).velocity({height: '85%'}, 800, 'easeInExpo');
+                            $('#logo0').delay(1000).velocity({scale: 1}, 800, 'easeInOutExpo');
+                            $('#logo').delay(1000).velocity({height: '100%'}, 800, 'easeInOutExpo', function()  {
+                                $('#scannedList').css({top: '150vh'});
+                                $('#listDevInstead').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                                $('#pairedList').html('');
+                                for(var i = 0; i < pairedDev.length; i++)  {
+                                    tempEl = "<span id='pairedListItem" + i + "' style='position: absolute; width: 80%; height: 6vh; line-height: 6vh; letter-spacing: 1vh; text-align: left; font-size: 2vh; font-family: common; border-radius: 10px; box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7); left: 10%; top: " + (3 + (i * 10)) + "vh;'>&nbsp;" + pairedDev[i].name + "</span>";
+                                    $('#pairedList').html($('#pairedList').html() + tempEl);
+                                }
+                                $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                                $('#logo').delay(200).velocity({height: '15%'}, 1400, 'easeOutExpo');
+                                $('#logo0').delay(200).velocity({scale: 0.3}, 1400, 'easeOutExpo');
+                                $('#pairedList').delay(200).velocity({top: '15%'}, 1400, 'easeOutExpo', function()  {
+                                    for(var i = 0; i < pairedDev.length; i++)  {
+                                        $('#pairedListItem' + i).on('mouseup', function()  {
+                                            $(this).css({boxShadow: '0 0 0 rgba(0, 0, 0, 0.7)', background: 'black', color: 'rgb(220, 80, 80)'});
+                                            stageOutAndPair('list', +$(this).attr('id').substr(14));
+                                        });
+                                    }
+                                    $('#pairedList').velocity({height: '72%'}, 800, 'easeOutExpo');
+                                    $('#moreOptionsPlatform').velocity({top: '87%'}, 800, 'easeOutExpo');
+                                    $('#scanDevInstead').delay(200).velocity({top: '3vh'}, 800, 'easeOutExpo');
+                                });
+                            });
+                        }  else  {
+                            toastLong('No paired devices available.');
+                            $('#listDevInstead').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                        }
+                    });
+                });
+            }
+
+            function loadPairedDev(success)  {
+                let fail = false;
+                if (!fail) {
+                    // pairedDev = []
+                    pairedDev = [{name: "ArB 3"}];
+                    success();
+                } else {
+                    toastLong('Failed to enable Bluetooth.\n\nGrant the Bluetooth permission from this app\'s settings for proper function.');
+                    $('#listDev').css({boxShadow: '0 0 1vh rgba(0, 0, 0, 0.7)', background: 'transparent', color: 'black'});
+                }
+            }
+
+            function scanForDev(success)  {
+                let fail = false;
+                // bluetoothSerial.enable(function() {bluetoothSerial.discoverUnpaired(function(e) {...
+
+                if (!fail) {
+                    //scannedDev = [];
+                    scannedDev = [{name: "ArB X"}, {name: "BT Speaker"}]; 
+                    success();
+                } else {
+                    toastLong('Failed to enable Bluetooth.\n\nGrant the Bluetooth permission from this app\'s settings for proper function.');
+                    $('#scanLoader').velocity({top: '150%'}, 800, 'easeOutExpo');
+                    $('#logo0').delay(200).velocity({scale: 1}, 800, 'easeOutExpo');
+                    $('#logo').delay(200).velocity({height: '100%'}, 800, 'easeOutExpo', function()  {
+                        $('#logo').delay(100).velocity({height: '80%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(100).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                        $('#scanDev').delay(200).velocity({top: '80%'}, 800, 'easeOutExpo');
+                        $('#listDev').delay(300).velocity({top: '90%'}, 800, 'easeOutExpo');
+                    });
+                }
+            }
+
+            function stageOutAndPair(ver, devtpw)  { //tpw: to pair with
+
+                var dev;
+                if(ver == 'scan')  {dev = scannedDev[devtpw];}
+                if(ver == 'list')  {dev = pairedDev[devtpw];}
+
+                if(ver == 'scan')  {
+                    $('#listDevInstead').velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#rescanDev').delay(200).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#moreOptionsPlatform').delay(400).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#scannedList').delay(400).velocity({height: '85%'}, 800, 'easeInExpo');
+                    $('#logo0').delay(1000).velocity({scale: 1}, 800, 'easeInOutExpo');
+                    $('#logo').delay(1000).velocity({height: '100%'}, 800, 'easeInOutExpo', function()  {
+                        $('#logo').css({boxShadow: '0 0 0 rgba(0, 0, 0, 0)'});
+                        $('#scannedList').html('');
+                        $('#scannedList').css({top: '150%'});
+                        $('#logo').delay(400).velocity({height: '90%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(400).velocity({scale: 0.9}, 800, 'easeOutExpo');
+                        $('#pairLoader').delay(600).velocity({top: '90%'}, 800, 'easeOutExpo', function()  {
+                            //bluetoothSerial.connect(dev.address, allowControl, function()  {
+                            let fail = false;
+                            if (!fail) {
+                                allowControl();
+                            } else {
+                                $('#pairLoader').velocity({top: '150%'}, 600, 'easeInExpo');
+                                $('#logo0').delay(200).velocity({scale: 1}, 600, 'easeInExpo');
+                                $('#logo').delay(200).velocity({height: '100%'}, 600, 'easeInExpo', function()  {
+                                    scannedDev = [];
+                                    pairedDev = [];
+                                    toastLong('Connection failed. Make sure the device is turned on and in range.');
+
+                                    $('#logo').delay(1000).velocity({height: '80%'}, 800, 'easeOutExpo');
+                                    $('#logo0').delay(1000).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                                    $('#scanDev').delay(1100).velocity({top: '80%'}, 800, 'easeOutExpo');
+                                    $('#listDev').delay(1200).velocity({top: '90%'}, 800, 'easeOutExpo');
+                                });
+                            }
+                        });
+                    });
+                }
+
+                if(ver == 'list')  {
+                    $('#scanDevInstead').velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#moreOptionsPlatform').delay(200).velocity({top: '150vh'}, 800, 'easeInExpo');
+                    $('#pairedList').delay(200).velocity({height: '85%'}, 800, 'easeInExpo');
+                    $('#logo0').delay(800).velocity({scale: 1}, 800, 'easeInOutExpo');
+                    $('#logo').delay(800).velocity({height: '100%'}, 800, 'easeInOutExpo', function()  {
+                        $('#logo').css({boxShadow: '0 0 0 rgba(0, 0, 0, 0)'});
+                        $('#pairedList').html('');
+                        $('#pairedList').css({top: '150%'});
+                        $('#logo').delay(400).velocity({height: '90%'}, 800, 'easeOutExpo');
+                        $('#logo0').delay(400).velocity({scale: 0.9}, 800, 'easeOutExpo');
+                        $('#pairLoader').delay(600).velocity({top: '90%'}, 800, 'easeOutExpo', function()  {
+                            //bluetoothSerial.connect(dev.address, allowControl, function()  {
+                            let fail = false;
+                            if (!fail) {
+                                allowControl();
+                            } else {
+                                $('#pairLoader').velocity({top: '150%'}, 600, 'easeInExpo');
+                                $('#logo0').delay(200).velocity({scale: 1}, 600, 'easeInExpo');
+                                $('#logo').delay(200).velocity({height: '100%'}, 600, 'easeInExpo', function()  {
+                                    scannedDev = [];
+                                    pairedDev = [];
+                                    toastLong('Connection failed. Make sure the device is turned on and in range.');
+
+                                    $('#logo').delay(1000).velocity({height: '80%'}, 800, 'easeOutExpo');
+                                    $('#logo0').delay(1000).velocity({scale: 0.8}, 800, 'easeOutExpo');
+                                    $('#scanDev').delay(1100).velocity({top: '80%'}, 800, 'easeOutExpo');
+                                    $('#listDev').delay(1200).velocity({top: '90%'}, 800, 'easeOutExpo');
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+
+            function allowControl()  {
+                $('#pairLoader').velocity({top: '150%'}, 600, 'easeInExpo');
+                $('#logo0').delay(200).velocity({scale: 1}, 600, 'easeInExpo');
+                $('#logo').delay(200).velocity({height: '100%'}, 600, 'easeInExpo', function()  {
+                    $('#logo').css({boxShadow: '0 0 3.5vh rgba(0, 0, 0, 0.8)'});
+                    $('#logo0').delay(200).velocity({scale: 0}, 600, 'easeInExpo');
+                    $('#logo').delay(200).velocity({height: 0, top: '-50%'}, 600, 'easeInExpo', function()  {
+                        $('#controller_dpad_bouncy').velocity({top: 0}, 600, 'easeOutExpo', function()  {
+                            $('#c_dpad_b_fwd').velocity({rotateZ: 270}, 0);
+                            $('#c_dpad_b_bwd').velocity({rotateZ: 90}, 0);
+                            $('#c_dpad_b_lt').velocity({rotateZ: 180}, 0);
+                            $('#c_dpad_b_fwd').velocity({top: '30%', rotateZ: 270}, 400, 'easeInOutExpo');
+                            $('#c_dpad_b_bwd').delay(200).velocity({top: '65%', rotateZ: 90}, 400, 'easeInOutExpo');
+                            $('#c_dpad_b_lt').delay(400).velocity({left: (0.30 * sW) - (0.025 * sH), rotateZ: 180}, 400, 'easeInOutExpo');
+                            $('#c_dpad_b_rt').delay(600).velocity({left: (0.70 * sW) - (0.025 * sH)}, 400, 'easeInOutExpo', function()  {
+                                $('#c_dpad_b_fwd').on('mousedown', function()  {
+                                    $('#c_dpad_b_bwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_rt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_lt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_fwd').css({boxShadow: '0 0 0 black', background: 'black'});
+                                    $('#c_dpad_b_fwd_tx').css({borderLeftColor: 'rgb(220, 80, 80)', borderTopColor: 'black', borderBottomColor: 'black'});
+                                    //bluetoothSerial.write(prepComm(255, 255) + '\n');
+                                });
+                                $('#c_dpad_b_fwd').on('mouseup', function()  {
+                                    $('#c_dpad_b_fwd').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)'});
+                                    $('#c_dpad_b_fwd_tx').css({borderLeftColor: 'black', borderTopColor: 'rgb(220, 80, 80)', borderBottomColor: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(0, 0) + '\n');
+                                });
+                                $('#c_dpad_b_bwd').on('mousedown', function()  {
+                                    $('#c_dpad_b_fwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_rt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_lt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_bwd').css({boxShadow: '0 0 0 black', background: 'black'});
+                                    $('#c_dpad_b_bwd_tx').css({borderLeftColor: 'rgb(220, 80, 80)', borderTopColor: 'black', borderBottomColor: 'black'});
+                                    //bluetoothSerial.write(prepComm(-255, -255) + '\n');
+                                });
+                                $('#c_dpad_b_bwd').on('mouseup', function()  {
+                                    $('#c_dpad_b_bwd').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)'});
+                                    $('#c_dpad_b_bwd_tx').css({borderLeftColor: 'black', borderTopColor: 'rgb(220, 80, 80)', borderBottomColor: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(0, 0) + '\n');
+                                });
+                                $('#c_dpad_b_lt').on('mousedown', function()  {
+                                    $('#c_dpad_b_bwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_rt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_fwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_lt').css({boxShadow: '0 0 0 black', background: 'black'});
+                                    $('#c_dpad_b_lt_tx').css({borderLeftColor: 'rgb(220, 80, 80)', borderTopColor: 'black', borderBottomColor: 'black'});
+                                    //bluetoothSerial.write(prepComm(255, -255) + '\n');
+                                });
+                                $('#c_dpad_b_lt').on('mouseup', function()  {
+                                    $('#c_dpad_b_lt').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)'});
+                                    $('#c_dpad_b_lt_tx').css({borderLeftColor: 'black', borderTopColor: 'rgb(220, 80, 80)', borderBottomColor: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(0, 0) + '\n');
+                                });
+                                $('#c_dpad_b_rt').on('mousedown', function()  {
+                                    $('#c_dpad_b_bwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_lt').triggerHandler('mouseup');
+                                    $('#c_dpad_b_fwd').triggerHandler('mouseup');
+                                    $('#c_dpad_b_rt').css({boxShadow: '0 0 0 black', background: 'black'});
+                                    $('#c_dpad_b_rt_tx').css({borderLeftColor: 'rgb(220, 80, 80)', borderTopColor: 'black', borderBottomColor: 'black'});
+                                    //bluetoothSerial.write(prepComm(-255, 255) + '\n');
+                                });
+                                $('#c_dpad_b_rt').on('mouseup', function()  {
+                                    $('#c_dpad_b_rt').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)'});
+                                    $('#c_dpad_b_rt_tx').css({borderLeftColor: 'black', borderTopColor: 'rgb(220, 80, 80)', borderBottomColor: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(0, 0) + '\n');
+                                });
+                                $('#c_dpad_b_l0').on('mousedown', function()  {
+                                    $('#c_dpad_b_l0').css({boxShadow: '0 0 0 black', background: 'black', color: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, true) + '\n');
+                                });
+                                $('#c_dpad_b_l0').on('mouseup', function()  {
+                                    $('#c_dpad_b_l0').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)', color: 'black'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, false) + '\n');
+                                });
+                                $('#c_dpad_b_l1').on('mousedown', function()  {
+                                    $('#c_dpad_b_l1').css({boxShadow: '0 0 0 black', background: 'black', color: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, l0state, true) + '\n');
+                                });
+                                $('#c_dpad_b_l1').on('mouseup', function()  {
+                                    $('#c_dpad_b_l1').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)', color: 'black'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, l0state, false) + '\n');
+                                });
+                                $('#c_dpad_b_b0').on('mousedown', function()  {
+                                    $('#c_dpad_b_b0').css({boxShadow: '0 0 0 black', background: 'black', color: 'rgb(220, 80, 80)'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, l0state, l1state, true) + '\n');
+                                });
+                                $('#c_dpad_b_b0').on('mouseup', function()  {
+                                    $('#c_dpad_b_b0').css({boxShadow: '0 0 20px rgba(0, 0, 0, 0.5)', background: 'rgb(220, 80, 80)', color: 'black'});
+                                    //bluetoothSerial.write(prepComm(lstate, rstate, l0state, l1state, false) + '\n');
+                                });
+                            });
+                        });
+                    });
+                });
+            }
+
+//             function prepComm(l = lstate, r = rstate, l0 = l0state, l1 = l1state, b0 = b0state)  {
+//                 cstr = '';
+//                 if(l > 0)  {
+//                     cstr = 'LF' + pad3(l + '') + 'LB000';
+//                 }  else  {
+//                     cstr = 'LF000LB' + pad3((-l) + '');
+//                 }
+//                 if(r > 0)  {
+//                     cstr += 'RF' + pad3(r + '') + 'RB000';
+//                 }  else  {
+//                     cstr += 'RF000RB' + pad3((-r) + '');
+//                 }
+//                 cstr += 'L0' + ((l0)?'1':'0') + 'L1' + ((l1)?'1':'0') + 'B0' + ((b0)?'1':'0');
+//                 lstate = l;
+//                 rstate = r;
+//                 l0state = l0;
+//                 l1state = l1;
+//                 b0state = b0;
+//                 return cstr;
+//             }
+
+//             function pad3(s)  {
+//                 if(s.length == 2)  {
+//                     s = '0' + s;
+//                 }
+//                 if(s.length == 1)  {
+//                     s = '00' + s;
+//                 }
+//                 if(!s.length)  {
+//                     s = '000';
+//                 }
+//                 return s;
+//             }
+
+            function toastLong(message)  {
+                window.plugins.toast.showWithOptions({
+                    message: message,
+                    duration: 'long',
+                    position: 'bottom'
+                });
+            }
+            function toastShort(message)  {
+                window.plugins.toast.showWithOptions({
+                    message: message,
+                    duration: 'short',
+                    position: 'bottom'
+                });
+            }
+        </script>
+    </body>
+</html>

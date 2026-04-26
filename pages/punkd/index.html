@@ -1,0 +1,265 @@
+<html>
+    <head>
+        <title>punkd</title>
+        <script src='../../scripts/jq.js'></script>
+        <script src='../../scripts/vm.js'></script>
+        <meta charset='UTF-8'>
+        <style>
+        	@font-face  {
+        		font-family: "titlef";
+                        src: Segoe UI, Roboto;
+        	}
+        	@font-face  {
+        		font-family: "monof";
+                        src: IBM Plex Mono, JetBrainsMono, monospace;
+        	}
+        	@font-face  {
+        		font-family: "thinf";
+                        src: Segoe UI Light, Roboto Light;
+        	}
+            #qin:focus  {
+                outline: none;
+                box-shadow: 0 0 20px lime;
+                text-shadow: 0 0 20px black;
+            }
+            div  {
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body style="background: transparent; overflow: hidden;">
+        <div id='stage' style="top: 20%; left: 20%; height: 60%; width: 60%; background: black; transform: perspective(600px) rotateX(63deg); z-index: 1; box-shadow: 0 0 30px gray;"></div>
+        <div id='ob1' style="top: 30%; left: 20%; height: 40vh; width: 60%; line-height: 40vh; font-size: 25vh; transform: perspective(600px) rotateX(63deg) translateZ(100px); z-index: 3; color: lime; font-family: titlef; font-style: italic; font-variant: petite-caps; text-align: center;">punkd</div>
+        <div id='ob1s' style="top: 30%; left: 20%; height: 40vh; width: 60%; line-height: 40vh; font-size: 25vh; opacity: 0.3; transform: perspective(600px) rotateX(63deg) scale(2); z-index: 2; filter: blur(20px); color: lime; font-family: titlef; font-style: italic; font-variant: petite-caps; text-align: center;">punkd</div>
+        <script>
+            var sW = window.innerWidth;
+            var sH = window.innerHeight;
+            var audio_flg = false;
+            var splash_flg = !(+localStorage.getItem('punkd_splash_dis_flg'));
+            $(document).ready(function()  {
+                if(splash_flg)  {  
+                    $('#stage').delay(1500).velocity({transformPerspective: [600, 600], rotateX: [0, 63]}, 2000, 'easeInOutExpo');
+                    $('#ob1s').delay(1500).velocity({transformPerspective: [600, 600], rotateX: [0, 63], scale: [1, 2]}, 2000, 'easeInOutExpo');
+                    $('#ob1').delay(1500).velocity({transformPerspective: [600, 600], rotateX: [0, 63], translateZ: [0, 100]}, 2000, 'easeInOutExpo', function()  {
+                        $('#pnkfloor').delay(200).velocity({top: '20%'}, 0);
+                        $('#bar_bg, #bar_cn').delay(1000).velocity({height: '20px'}, 600, 'easeOutExpo');
+                        $('#bar_tt').delay(1000).velocity({lineHeight: '20px', width: '6vw', fontSize: '4vh'}, 600, 'easeOutExpo');
+                        $('#bar_mn').delay(1200).velocity({left: (sW * 0.6) - 40}, 400, 'easeInOutExpo');
+                        $('#bar_cl').delay(1200).velocity({left: (sW * 0.6) - 20}, 400, 'easeInOutExpo', function()  {
+                            $('#disparea').css({zIndex: 0});
+                        });
+                    });
+                }  else  {
+                    $('#stage').velocity({transformPerspective: [600, 600], rotateX: [0, 63]}, 0);
+                    $('#ob1s').velocity({transformPerspective: [600, 600], rotateX: [0, 63], scale: [1, 2]}, 0);
+                    $('#ob1').velocity({transformPerspective: [600, 600], rotateX: [0, 63], translateZ: [0, 100]}, 0, function()  {
+                        $('#pnkfloor').velocity({top: '20%'}, 0);
+                        $('#bar_bg, #bar_cn').velocity({height: '20px'}, 0);
+                        $('#bar_tt').velocity({lineHeight: '20px', width: '6vw', fontSize: '4vh'}, 0);
+                        $('#bar_mn').velocity({left: (sW * 0.6) - 40}, 0);
+                        $('#bar_cl').velocity({left: (sW * 0.6) - 20}, 0, function()  {
+                            $('#disparea').css({zIndex: 0});
+                        });
+                    });
+                }
+            });
+            
+            $(document).ready(function()  {
+                $('#bar_mn, #bar_cl').mouseenter(function()  {
+                    $(this).css('background', 'rgba(0, 0, 0, 0.1)');
+                    if($(this).attr('id') == 'bar_mn')  {
+                        $('#bar_bg').velocity({left: '0%'}, 200);
+                        $('#bar_bg').css({boxShadow: '0 0 20px yellow'});
+                    }  else  {
+                        $('#bar_bg').velocity({left: '-400%'}, 200);
+                        $('#bar_bg').css({boxShadow: '0 0 20px red'});
+                    }
+                });
+                $('#bar_mn, #bar_cl').mouseleave(function()  {
+                    $(this).css('background', 'rgba(0, 0, 0, 0)');
+                    $('#bar_bg').velocity({left: '-200%'}, 200);
+                    $('#bar_bg').css({boxShadow: '0 0 20px lime'});
+                });
+                $('#bar_mn, #bar_cl').mousedown(function()  {
+                    $(this).css({background: 'rgba(0, 0, 0, 1)'});
+                    if($(this).attr('id') == 'bar_mn')  {
+                        $(this).css({color: '#ffff00'});
+                    }  else  {
+                        $(this).css({color: '#ff0000'});
+                    }
+                });
+                $('#bar_mn').mouseup(function()  {
+                    $(this).css({background: 'rgba(0, 0, 0, 0.1)', color: 'black'});
+                    var w = nw.Window.get();
+                    w.minimize();
+                });
+                $('#bar_cl').mouseup(function()  {
+                    $(this).css({background: 'rgba(0, 0, 0, 0.1)', color: 'black'});
+                    var w = nw.Window.get();
+                    w.close();
+                });
+                $('#qin').keypress(function(e)  {
+                    if(e.key == "Enter")  {
+                        var str = $('#qin').val();
+                        if(str == '?')  {
+                            var s = 'To re-enable splash, enter "|".';
+                            if(splash_flg)  {
+                                s = 'To disable splash, enter "|".';
+                            }
+                            alert('// PUNKD // help //\nFor this dialog, you entered "?".\nTo update youtube-dl, enter "~".\nTo download audio only, begin with "`".\n\nYou can enter the URL of a user, a channel or a playlist too - they would be treated automatically as such.\nTo download the first result for a YouTube search query, simply enter the query.\n\n' + s + '\n\nPUNKD authored by V3D3 // Vedaant Arya. 2019.\nUtilizes youtube-dl for backend; NWjs and jQuery for backend + frontend; VelocityJS for frontend.');
+                        }  else if(str == '~')  {
+                            updateYDL();
+                        }  else if(str == '|')  {
+                            splash_flg = !splash_flg;
+                            localStorage.setItem('punkd_splash_dis_flg', "" + (+(!splash_flg)));
+                        }  else  {
+                            if(str[0] == '`')  {
+                                audio_flg = true;
+                                str = str.split('`')[1];
+                            }  else  {
+                                audio_flg = false;
+                            }
+                            if(validateURL(str))  {
+                                DL(str, audio_flg);
+                            }  else  {
+                                DLQ(str, audio_flg);
+                            }
+                        }
+                    }
+                });
+                $('#cancel').mouseenter(function()  {
+                    $(this).css({background: "rgba(0, 255, 0, 0.1)"});
+                });
+                $('#cancel').mouseleave(function()  {
+                    $(this).css({background: "rgba(0, 255, 0, 0)"});
+                });
+                $('#cancel').mousedown(function()  {
+                    $(this).css({background: "rgba(0, 255, 0, 1)", color: "black"});
+                });
+                $('#cancel').mouseup(function()  {
+                    $(this).css({background: "rgba(0, 255, 0, 0.1)", color: "lime"});
+                });
+            });
+            function validateURL(str)  {
+                var rgx = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+                if(str.match(rgx))  {
+                    return true;
+                }  else  {
+                    return false;
+                }
+            }
+            const spawn = require('child_process').spawn;
+            function DL(str, audio_flg)  {
+                if(!audio_flg)  {
+                    const dl_v = spawn('youtube-dl.exe', [str, "--no-warnings"]);
+                    $('#qin').attr('disabled', 'true');
+                    $('#cancel').css({opacity: 1});
+                    dl_v.stdout.on('data', (data) => {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dl_v.stderr.on('data', (data) => {
+                        $('#stdout').css({background: "red"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dl_v.on('exit', function() {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html("Task completed.");
+                        $('#qin').attr('disabled', null);
+                        $('#cancel').css({opacity: 0});
+                    });
+                }  else  {
+                    const dl_a = spawn('youtube-dl.exe', ["-x", "--audio-format", "mp3", str, "--no-warnings"]);
+                    $('#qin').attr('disabled', 'true');
+                    $('#cancel').css({opacity: 1});
+                    dl_a.stdout.on('data', (data) => {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dl_a.stderr.on('data', (data) => {
+                        $('#stdout').css({background: "red"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dl_a.on('exit', function()  {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html("Task completed.");
+                        $('#qin').attr('disabled', null);
+                        $('#cancel').css({opacity: 0});
+                    });
+                }
+            }
+            function updateYDL()  {
+                const upd = spawn('youtube-dl.exe', ["--update", "--no-warnings"]);
+                $('#qin').attr('disabled', 'true');
+                $('#cancel').css({opacity: 1});
+                upd.stdout.on('data', (data) => {
+                    $('#stdout').css({background: "lime"});
+                    $('#stdout').html(data.toString());
+                });
+                upd.stderr.on('data', (data) => {
+                    $('#stdout').css({background: "red"});
+                    $('#stdout').html(data.toString());
+                });
+                upd.on('exit', function()  {
+                    $('#stdout').css({background: "lime"});
+                    $('#stdout').html("youtube-dl is now up-to-date.");
+                    $('#qin').attr('disabled', null);
+                    $('#cancel').css({opacity: 0});
+                });
+            }
+            function DLQ(str, audio_flg)  {
+                if(!audio_flg)  {
+                    const dlq_v = spawn("youtube-dl.exe", ['ytsearch1:"' + str + '"', "--no-warnings"]);
+                    $('#qin').attr('disabled', 'true');
+                    $('#cancel').css({opacity: 1});
+                    dlq_v.stdout.on('data', (data) => {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dlq_v.stderr.on('data', (data) => {
+                        $('#stdout').css({background: "red"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dlq_v.on('exit', function()  {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html("Task completed.");
+                        $('#qin').attr('disabled', null);
+                        $('#cancel').css({opacity: 0});
+                    });
+                }  else  {
+                    const dlq_a = spawn("youtube-dl.exe", ["-x", "--audio-format", "mp3", 'ytsearch1:"' + str + '"', "--no-warnings"]);
+                    $('#qin').attr('disabled', 'true');
+                    $('#cancel').css({opacity: 1});
+                    dlq_a.stdout.on('data', (data) => {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dlq_a.stderr.on('data', (data) => {
+                        $('#stdout').css({background: "red"});
+                        $('#stdout').html(data.toString());
+                    });
+                    dlq_a.on('exit', function()  {
+                        $('#stdout').css({background: "lime"});
+                        $('#stdout').html("Task completed.");
+                        $('#qin').attr('disabled', null);
+                        $('#cancel').css({opacity: 0});
+                    });
+                }
+            }
+        </script>
+        <div id='pnkfloor' style='top: 120%; left: 20%; height: 60%; width: 60%; background: black; z-index: 10; overflow: hidden; box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);'>
+            <div id='bar_bg' style='top: 0; left: -200%; height: 100%; width: 500%; background: linear-gradient(to right, #dddd00, lime, red); z-index: 0; box-shadow: 0 0 20px lime;'></div>
+            <div id='bar_cn' style='top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 100;'>
+                <div id='bar_tt' style='position: absolute; top: 0; left: 0; height: 100%; width: 100%; font-family: titlef; color: black; font-size: 25vh; line-height: 60vh; text-align: center; overflow: visible; user-select: none; -webkit-app-region: drag; font-style: italic; font-variant: petite-caps; text-shadow: 0 0 10px black;'>punkd</div>
+                <div id='bar_mn' style='top: 0; height: 100%; width: 20px; line-height: 20px; font-size: 15px; text-align: center; left: 110%; cursor: default; user-select: none;'>–</div>
+                <div id='bar_cl' style='top: 0; height: 100%; width: 20px; line-height: 20px; font-size: 20px; text-align: center; left: 120%; cursor: default; user-select: none;'>×</div>
+            </div>
+
+            <div id='disparea' style='top: 20px; width: 100%; height: calc(100% - 20px); left: 0; overflow: hidden; z-index: -2;'>
+                <input id='qin' style='position: absolute; border-radius: 50px; color: black; font-family: monof; font-size: 3vh; text-align: center; height: 7vh; width: 70%; top: calc(50% - 3.5vh); left: 15%; border: 0; background: rgba(0, 255, 0, 1);' spellcheck=false>
+                <div id='stdout' style='bottom: 0; height: 4vh; line-height: 4vh; left: 0; width: 95%; color: black; background: lime; font-family: monof; font-size: 2.5vh; padding-left: 2.5%; padding-right: 2.5%;'>Enter "?" for help.</div>
+                <div id='cancel' style='bottom: 9vh; height: 4.5vh; line-height: 4.5vh; width: 15%; text-align: center; left: 42.5%; border: 1px solid lime; color: lime; font-family: thinf; font-size: 3vh; opacity: 0; border-radius: 20px; cursor: default; user-select: none;'>cancel</div>
+            </div>
+        </div>
+    </body>
+</html>
